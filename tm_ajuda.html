@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link href="tm_ajuda_style.css" rel="stylesheet" type="text/css">
+    <title>Ajuda do Traço Mágico em JS - v1.2 </title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+<div align="center">
+    <font face="Tahoma" size="2" color="Yellow">
+    <TABLE BORDER=3; cellspacing=0; bordercolor=lightgray; width="800"> 
+
+      <TR> 
+        <TD> 
+          <img src="./tm_ajuda.jpg"</TD>
+        </TD> 
+       </TR>
+       <TR>
+       <TD>
+         <H4>CONCEITOS BÁSICOS</H4>
+         <p class="txt">
+           O <tm class="tmj">Traço Mágico JS</tm>&nbsp;é um editor de imagens simples, destinado ao lazer, indicado para desenhos como uma "Lousa Mágica".
+         </p>
+         <p class="txt";>
+            Você pode desenhar com <tm class="tmj">Traço Mágico JS</tm>&nbsp;utilizando as setas do teclado e/ou o mouse.<br>
+            <tm class="att">DICA:</tm> Utilizando o teclado o Ponto Anterior (<tm class="cur2">⊕</tm>)&nbsp; não muda de lugar, você pode fazer
+            várias formas repetidas enquando movimenta as setas do cursor e clica nas ferramentas Formas.<br>
+            <tm class="att">DICA:</tm> Você pode utilizar as letras W.A.R.D. para movimentação como mostra a imagem abaixo:
+         </p>
+
+         <p align="center";>
+            <img src="./tm_teclas.jpg"</TD>
+           </p>
+           <br>
+
+         <H5>Os Cursores</H5>
+        <P class="txt">
+            O Cursor: <tm class="cur1">⊗</tm>&nbsp;representa o Ponto Atual e o 
+            Cursor: <tm class="cur2">⊕</tm>&nbsp;representa o Ponto Anterior.
+            <p ; class="txt">
+              As ferramentas de Formas utilizam um ou dois cursores:
+            </p>
+            <ul><li>
+            As Formas círculares serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro. </li><li>
+            As Formas Reta e Retângulo serão traçadas utilizando os cursores Ponto Atual (<tm class="cur1">⊗</tm>) e 
+            Ponto Anterior (<tm class="cur2">⊕</tm>) como vértices.</li><li>
+            O Clique do mouse sempre irá mudar a posição de ambos os cursores.
+            </li>
+        </ul>
+      </P>
+
+         <H5>A Tela de Desenho</H5>
+         <P class="txt">
+            A Tela de Desenho é um espaço fixo de 950 x 500 pixels onde o usuário pode desenhar, inserir imagens e textos, 
+            ela é composta de 2 camadas
+         </p>
+         <ul><li>
+            Camada Fundo - Esta camada fica atrás do desenho e pode ser alterada pela unicamente pela ferramenta Fundo.</li><li>
+            Camada Desenho - Esta camada contem todo o desenho do usuário e pode ser alterada por todas as outras ferramentas.
+          </li></ul>
+
+         <H4>CONTROLES BÁSICOS</H4>
+
+         <p class="txt";>
+          O <tm class="tmj">Traço Mágico JS</tm>&nbsp;apresenta controles que afetam as ferramentas, os controles possuem botões 
+          que operam de forma semelhante em todas os controles como explicamos abaixo:
+         </p>
+         <ul>
+         <li>
+          Setas esquerda e direita <tm class="btclass">◁</tm>&nbsp;e <tm class="btclass">▷</tm>&nbsp;tem a fução de 
+          reduzir (esq.) ou aumentar (dir.) os parâmetros de cada controle.<br>
+        </li><li>
+         Setas de aceleração esquerda e direita <tm class="btclass">❙◀</tm>&nbsp;&nbsp;e <tm class="btclass">▶❙</tm>&nbsp;tem a função 
+         de levar até o menor número disponível (esq.) ou até o maior número disponível (dir.) para o controle.<br> 
+        </li><li>
+         Alguns Controles apresentam também o botão meio (<tm class="btclass">⧓</tm>) que leva ao número intermediário 
+         disponível na ferramenta.<br>
+        </li>
+      </ul>
+       <H5>Tabela de Cores</H5>
+       <p class="txt";>
+         Clicando no Círculo da Cor Selecionada abrirá uma janelinha onde você poderá escolher entre as cores pré-selecionadas ou 
+         usar o misturador para ter acesso a milhões de cores.
+         <br><br>
+       </P>
+       <p align="center";>
+        <img src="./tm_cores.jpg"</TD>
+       </p>
+       <H5>Largura do Traço</H5>
+       <p class="txt";>
+        O Controle Largura do Traço afeta todas as Ferramentas de Formas. 
+        O número que aparece ao lado do título é a largura definida.<br>
+        <tm class="att">DICA:</tm> Este controle afeta inverdamente as ferramentas 
+        de Fundo (<tm class="btaction">⠪</tm>) e (<tm class="btaction">⧉</tm>).<br> 
+        A ferramenta apresenta um círculo amarelo que mostra exatamente a largura do traço em uso.<br>
+        A largura padrão é 2 podendo chegar a 20.
+        <br>
+        Utilize as setas de controle descritos anteriormente para mudar a largura.
+       </p>
+       <H5>transparência de Objetos</H5>
+       <p class="txt";>
+        O Controle Transparência afeta todas as ferramentas de Forma e de Fundo com exceção de <tm class="btmedio"">Cor</tm>.
+        A Transparência padrão é zero [0] (nenhuma transparência), podendo chegar a 80 onde o objeto é 80% transparente.
+        <br>Utilize as setas de controle e o botão meio (<tm class="btclass">⧓</tm>&nbsp;) descritos anteriormente para mudar o percentual de transparência.
+       </p>
+       <H5>Velocidade do Cursor</H5>
+       <p class="txt";>
+        O Controle Velocidade afeta apenas a movimentação feita com as setas do teclado, a velocidade varia de 2 a 10. 
+        Utilizando valores altos de Velocidade juntamente valores baixos do controle Largura conseguimos traço pontilhado.
+        </p>
+       <H5>Raio</H5>
+       <p class="txt";>
+        O Controle Raio afeta todas as ferramentas de Forma baseadas em círculos, define o tamanho final do círculo.<br>
+        O quadro apresenta um círculo em escala de aproximadamente 20x menor que círculo do que será traçado na tela.
+        <br>Utilize as setas de controle e o botão meio (<tm class="btclass">⧓</tm>&nbsp;) descritos anteriormente para mudar o tamanho do Raio.
+
+      </p>
+    </TD> 
+    </TR>
+      <TD> 
+          <H4>FERRAMENTAS</H4>
+          <H5>FORMAS</H5>
+        <br>
+          <img src="./tm_ferramentas.jpg"</TD>
+        </TD> 
+       </TR>
+       <TD> 
+<br><br>
+      <p class="txt";>
+        As formas incluem Retas, Retângulos e Círculos.<br>
+        <ul><li>
+        As retas ligam Ponto Atual (<tm class="cur1">⊗</tm>) e o Ponto Anterior (<tm class="cur2">⊕</tm>).<br>
+      </li><li>
+        O retângulos são traçados entre o Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>) 
+        sempre iniciando no vértice superior esquerdo independente de qual deles é o Ponto Atual e terminando no ponto mais 
+        baixo e mais para direita na tela conforme indicado na imagem acima.
+      </li><li>
+        As Formas círculares serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro.
+      </li>
+    </ul>
+        <br><br><br>
+
+        <div align="center">
+        <TABLE BORDER=2;  class="txt"; cellspacing=0; bordercolor="#333333"; width="90%"> 
+
+            <TR bgcolor="#1B1B1B"> 
+              <TD width="15%"> 
+                FERRAMENTA
+              </TD> 
+              <TD width="50%"> 
+                  DESCRIÇÃO
+              </TD> 
+              <TD width="35%"> 
+                  DEPENDENCIA
+              </TD> 
+            </TR>
+             <TR> 
+                <TD> 
+                  <tm class="btaction">/</tm>
+                </TD> 
+                <TD> 
+                    Traça uma reta.
+                </TD> 
+                <TD> 
+                    Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>)
+                </TD> 
+               </TR>
+               <TR> 
+                  <TD> 
+                    <tm class="btaction">▯</tm>
+                  </TD> 
+                  <TD> 
+                      Traça uma retângulo vazio.
+                  </TD> 
+                  <TD> 
+                    Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>)
+                  </TD> 
+                 </TR>
+                 <TD> 
+                    <tm class="btaction">▮</tm>
+                  </TD> 
+                  <TD> 
+                      Traça uma retângulo sólido.
+                  </TD> 
+                  <TD> 
+                      Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>)
+                  </TD> 
+                 </TR>
+                 <TD> 
+                    <tm class="btaction">◯</tm>
+                  </TD> 
+                  <TD> 
+                      Traça um círculo vazio.
+                  </TD> 
+                  <TD> 
+                      Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                  </TD> 
+                 </TR>
+                 <TD> 
+                    <tm class="btaction">●</tm>
+                  </TD> 
+                  <TD> 
+                      Traça um círculo sólido.
+                  </TD> 
+                  <TD> 
+                    Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                  </TD> 
+                 </TR>
+                 <TD> 
+                    <tm class="btaction">◉</tm>
+                  </TD> 
+                  <TD> 
+                      Traça círculos concêntricos com a cor selecionada.
+                  </TD>
+                  <TD> 
+                      Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                  </TD>  
+                 </TR>
+                 <TD> 
+                    <tm class="btaction">◎</tm>
+                  </TD> 
+                  <TD> 
+                      Traça círculos concêntricos com cores aleatórias.
+                  </TD>
+                  <TD> 
+                      Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                  </TD>  
+                 </TR>
+        </TABLE>
+        <tm class="att">OBS:</tm> <tm class="txt">Todas estas ferramentas são dependentes dos controles Cor, Largura e Transparência.</tm> 
+        </div>
+        <br>
+       </p>
+       <H5>TEXTO</H5>
+       <p class="txt";>
+        A ferramenta Texto permite inserir textos de até 150 caracteres na imagem com o tamanho entre 10 e 30 pontos.
+        <br>
+        <tm class="att">ATENÇÃO:</tm> quando o texto não cabe na tela ele será simplesmente truncado!
+        O número que apare entre colchetes é o tamanho do texto em Pontos. 
+      </p>
+      <ul>
+      <li>
+        Utilize o botão Teclado (<tm class="btaction">⌨</tm>)  para digitar o texto que será posteriormente colado.
+      </li>
+      <li>
+        Utilize o botão Lápis (<tm class="btaction">✎</tm>) para escrever na Tela de Desenho colar o texto no Ponto Atual (<tm class="cur1">⊗</tm>).
+      </li>
+      <li>
+        Utilize as setas de controle  e o botão meio (<tm class="btclass">⧓</tm>&nbsp;) descritos anteriormente para mudar o tamanho do texto.
+      </li>
+    </ul>
+    
+    <H5>IMAGEM (abrir e salvar)</H5>
+    <p class="txt";>
+     
+     A ferramenta Imagem permite inserir uma imagem de até 1Mb (Megabyte) na Tela de Desenho.<br>
+     Após abrir uma imagem no seu computador você poderá inseri-la na Tela de Desenho várias vezes como um carimbo.<br>
+     O tamanho da imagem é definido da mesma forma que o retângulo:  Ponto Atual (<tm class="cur1">⊗</tm>) e o 
+     Ponto Anterior (<tm class="cur2">⊕</tm>) desta forma você é que define o tamanho e a proporção que a imagem deverá 
+     aparecer na Tela de Desenho.<br><br>
+     Outra função desta ferramenta é fazer o download da Tela de Desenho para o seu computador no formato PNG.<br>
+     </p>
+     <ul>
+      <li>
+     O Símbolo [X] mostra que nenhuma imagem foi lida, o simbolo [✔] mostra que há imagem para colar.
+    </p>
+    <p class="txt2";>
+     Utilize o botão (<tm class="btaction">⏏</tm>) para abrir a imagem no seu computador.
+    </li>
+    <li>
+     Utilize o botão (<tm class="btaction">▣</tm>) para colar a imagem da mesma maneira que se usa a ferramenta Retângulo.
+    </li>
+    <li>
+     <tm class="att">SALVANDO SUA TELA DE DESENHO EM DISCO:</tm><br>
+     Utilize o botão Disquete (<tm class="btaction">&#x1F5AB;</tm>) para fazer o download da sua Tela de Desenho para seu computador.
+    </li>
+  </ul>
+   <H5>FUNDO</H5>
+   <p class="txt";>
+    A ferramenta Fundo permite alterar o fundo da Tela de Desenho independentemente. 
+    Utilize uma imagem, uma cor ou desenhos aleatórios de círculos e retângulos coloridos.
+    É possível combinar todas e ainda combinar com o controle Transparência.
+    A ferramenta Fundo permite utilizar uma imagem com transparência.
+    <br>
+    <tm class="att">ATENÇÃO:</tm> Uma imagem de fundo poderá parecer distorcida a proporção total da Tela de Desenhoo é 950 x 500 pixels. 
+  </p>
+  <ul><li>
+    Utilize o botão <tm class="btmedio">Cor</tm> para definir o fundo com a cor selecionada.</li><li>
+    Utilize o botão Círculos (<tm class="btaction">⠪</tm>) para traçar círculos coloridos aleatórios no fundo.<br>
+    <tm class="att">DICA:</tm> Aumentando o controle Largura a quantidade de círculos diminui.
+  </li><li>
+
+    Utilize o botão Retângulos (<tm class="btaction">⧉</tm>) para traçar Retângulos coloridos aleatórios no fundo.<br>
+    <tm class="att">DICA:</tm> Aumentando o controle Largura a quantidade de retângulos diminui.
+    </li><li>
+    Utilize o botão <tm class="btmedio">Foto</tm> para definir o fundo com uma imagem previamente selecionada na ferramenta Imagem.<br>
+    <tm class="att">DICA:</tm> Esta é uma opção para editar uma imagem baixada do <tm class="tmj">Traço Mágico JS</tm>.</li><li>
+        <tm class="att">DICA:</tm> As 3 últimas opções aceitam a combinação com a ferramenta Transparência.</li>
+  </ul>
+
+  <H5>GRAVAÇÃO</H5>
+  <p class="txt";>
+   A ferramenta Gravação grava os passos do desenho permitindo que o usuário apague passos a qualquer momento. 
+   Todos os passos são gravados, desde o posicionamento do cursor na tela até as mudanças de fundo, 
+   uma maneira prática de dizer isso é: todos os passos das ferramentas à esquerda da ferramenta Gravação são gravados.<br><br>
+   <tm class="att">ATENÇÃO:</tm> Não é possível gravar os passos no computador, apenas fazer o download da imagem.<br><br>
+   Quando um passo é apagado todas as ferramentas retornam para a configuração existente no momento da gravação do 
+   passo anterior.<br>
+   No título da ferramenta vemos o LED de gravação que indica a situação da gravação:
+   Gravação Ligada: <tm class="rec">✹</tm> ou Gravação Desligada: <tm class="cur2">✹</tm>.<br>
+   Logo abaixo temos o contador de passos gravados: <tm class="contador">Passo[1]</tm>.
+   </p>
+   <ul>
+   <li>
+   Utilize o botão Gravar (<tm class="btaction">●</tm>) para ligar a Gravação.</li><li>
+   Utilize o botão Pausar (<tm class="btaction">❚❚</tm>) para pausar a Gravação.</li> <li>
+   Utilize o botão Play (<tm class="btaction">►</tm>) Refazer todo o desenho gravado, mesmo depois de um Apaga.<br>
+   <tm class="att">ATENÇÃO:</tm> Depois de usar  o botão Play (<tm class="btaction">►</tm>) a gravação retorna desligada..</li> <li>
+   Utilize o botão Apaga (<tm class="btaction">⌫</tm>) para apagar o último passo.<br>
+   <tm class="att">DICA:</tm> Não há como refazer o passo que foi apagado. 
+    <tm class="att">/</tm> Só é possível apagar os passos sequencialmente!</li><li>
+   Utilize o botão (<tm class="btaction">✘</tm>) para apagar toda a gravação.<br>
+   <tm class="att">ATENÇÃO:</tm> Depois disso não será mais possível apagar passos no desenho.
+  </li>
+</ul>
+
+  <H5>APAGAR E REINICIAR</H5>
+  <p class="txt";>
+   A ferramenta Apagar permite apagar a tela e a ferramenta Reset reinicia todo o programa.
+   <br>
+
+  </p>
+  <ul><li>
+    Utilize o botão <tm class="btgrande">APAGA</tm> para apagar toda a Tela de Desenho e torna-la branca.<br>
+    <tm class="att">DICA:</tm> Você pode utilizar o botão Play  (<tm class="btaction">►</tm>) para refazer o desenho caso 
+    haja uma gravação na memória.</li><li>
+    Utilize o botão <tm class="btgrande">RESET</tm> para reiniciar todo o programa.<br>
+    <tm class="att">ATENÇÃO:</tm> Se usar a função <tm class="btgrande">RESET</tm> antes de salvar (<tm class="btaction">&#x1F5AB;</tm>) o desenho no 
+    computador nada poderá ser recuperado! </li>
+</ul>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div>
+        <hr width="60%"; size="3"; color="orange">
+        <tm class="txt">
+        Encontrou erro? <br>
+        Envie feedback para: Paulo Mello<br>
+        <a href="mailto:prgmello@yahoo.com?Subject=Traço Mágico Ajuda - Feekback" target="_top"> ✉ prgmello@yahoo.com</a> <br>
+        </tm>
+       <hr width="60%"; size="3"; color="orange">
+    </div>
+
+      <br>
+      <br>
+      <br>
+       </TD>
+       <TR> 
+    </TR>
+    </TABLE> 
+    </div>
+<!-- 
+  QUALQUER ALTERAÇÃO DE ÍCONES OU 
+      FORMATAÇÃO DE BOTÕES 
+  NO CÓDIGO PRINCIPAL OU NO INDEX 
+  DEVE SER ALTERADO NESTE CÓDIGO TAMBÉM!           
+-->
+</font>
+ </body>
+</html>

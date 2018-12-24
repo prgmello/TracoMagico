@@ -1,0 +1,425 @@
+/* Texto em parágrafos */
+html {
+    background-color: #000000;
+  }
+
+  a  {
+    color:yellow; text-decoration:none;
+  }
+
+
+.manual {
+	color: rgb(255, 255, 0);
+    text-align:left;
+    margin-top: 6px;
+    margin-bottom: 12px;
+   }
+
+.tmj {
+	face:Verdana; 
+	size:14pt; 
+	color: #ff8c00;
+   }
+
+
+.cur1 {
+	face:Verdana; 
+	size:12pt; 
+	color: #FFD700;
+   }
+
+.cur2 {
+	face:Verdana; 
+	size:12pt; 
+	color: #696969;
+   }
+
+
+.container {
+	position: relative;
+	width:952px; 
+	height:502px
+	}
+	
+
+.contador {
+    color: white;
+    text-align:center;
+    margin-top: 1px;
+	margin-bottom: 2px;
+	letter-spacing:-1px;
+   }
+
+H4 {
+    color: rgb(72, 255, 0);
+    text-align:center;
+    margin-top: 30px;
+	margin-bottom: 2px;
+	face:Verdana; 
+	size:10pt;
+   }
+
+
+H5 {
+    color: rgb(255, 255, 0);
+    text-align:center;
+    margin-top: 50px;
+	margin-bottom: 2px;
+	face:Verdana; 
+	size:9pt;
+   }
+
+
+/* Parte interna de tabelas */
+TD {  text-align:center;
+      BORDER:1;  
+      BGCOLOR:black 
+    }
+
+LI	{
+		face:Verdana; size:11pt; color:white;
+		text-align:left;
+		margin-top: 10px;
+		margin-bottom: 8px;
+		line-height: 1.5;
+	}
+
+
+.txt {
+		face:Verdana; size:11pt; color:white;
+		text-align:left;
+		margin-top: 10px;
+		margin-bottom: 8px;
+		line-height: 1.5;
+	}
+	
+.txt2 {
+		face:Verdana; size:11pt; color:white;
+		text-align:left;
+		margin-top: 10px;
+		margin-bottom: 8px;
+    	line-height: 1.8;
+    }
+
+.att {
+	face:Verdana; size:11pt; color:hsl(46, 81%, 69%);
+	text-align:left;
+	margin-top: 10px;
+	margin-bottom: 8px;
+	line-height: 1.5;
+    }
+
+.rec {
+		face:Verdana; size:11pt; color:red;
+		text-align:left;
+		margin-top: 10px;
+		margin-bottom: 8px;
+		line-height: 1.5;
+    }
+
+/* ==
+   == BOTÃO INPUT FILE 
+   == 
+*/
+#files 
+{
+    position: relative;
+    overflow: hidden;
+}
+
+#files input 
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	opacity: 0.001
+}
+
+
+.BTimg 
+{
+	height: 18px;
+	width:	25px;
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	font: Verdana; 
+	font-size: 12pt;
+	color: #ff8c00;
+	background-color: black;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-bottom-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+}
+
+
+
+/* ==
+   == BOTÃO PEQUENO PADRÃO DE CONTROLES 
+   == 
+*/
+.btclass {
+	-moz-box-shadow:inset 0px 1px 0px 0px #000000;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #000000;
+	box-shadow:inset 0px 1px 0px 0px #000000;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #000000) );
+	background:-moz-linear-gradient( center top, #000000 5%, #000000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000');
+	background-color:#000000;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	display:inline-block;
+	color:#ff8c00;
+	font-family:Impact;
+	font-size:14px;
+	font-weight:bold;
+	font-style:normal;
+	height:13px;
+	line-height:13px;
+	width:13px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #000000;
+	letter-spacing:-2px;
+}
+.btclass:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #000000) );
+	background:-moz-linear-gradient( center top, #000000 5%, #000000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000');
+	background-color:#000000;
+}.btclass:active {
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */
+
+
+
+/* ==
+   == BOTÃO GRANDE DE TEXTO
+   == 
+*/
+.btgrande {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color:#ffc477;
+	-webkit-border-top-left-radius:4px;
+	-moz-border-radius-topleft:4px;
+	border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	border-top-right-radius:4px;
+	-webkit-border-bottom-right-radius:4px;
+	-moz-border-radius-bottomright:4px;
+	border-bottom-right-radius:4px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-bottomleft:4px;
+	border-bottom-left-radius:4px;
+	text-indent:0;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	color:#000000;
+	font-family:Verdana;
+	font-size:11px;
+	font-weight:bold;
+	font-style:normal;
+	height:12px;
+	line-height:12px;
+	width:53px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #cc9f52;
+}
+.btgrande:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color:#fb9e25;
+}.btgrande:active {
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */
+	
+
+
+
+
+/* ==
+   == BOTÃO GRANDE PADRÃO DE AÇÃO  (http://css3button.net/)
+   == 
+*/
+.btaction {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #ff8c00;
+	padding: 0px 0px;
+	background: -moz-linear-gradient(
+		top,
+		#000000 0%,
+		#0a0a0a);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#000000),
+		to(#0a0a0a));
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 1px;
+	border-radius: 162px;
+	border: 0px solid #080808;
+	-moz-box-shadow:
+		0px 0px 0px rgba(000,000,000,0),
+		inset 0px 0px 0px rgba(0,0,0,0);
+	-webkit-box-shadow:
+		0px 0px 0px rgba(000,000,000,0),
+		inset 0px 0px 0px rgba(0,0,0,0);
+	box-shadow:
+		0px 0px 0px rgba(000,000,000,0),
+		inset 0px 0px 0px rgba(0,0,0,0);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.4),
+		0px 1px 0px rgba(255,255,255,0.3);
+
+}
+
+
+
+
+/* ==
+   == BOTÃO MÉDIO DE TEXTO
+   == 
+*/
+.btmedio {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color:#ffc477;
+	-webkit-border-top-left-radius:2px;
+	-moz-border-radius-topleft:2px;
+	border-top-left-radius:2px;
+	-webkit-border-top-right-radius:2px;
+	-moz-border-radius-topright:2px;
+	border-top-right-radius:2px;
+	-webkit-border-bottom-right-radius:2px;
+	-moz-border-radius-bottomright:2px;
+	border-bottom-right-radius:2px;
+	-webkit-border-bottom-left-radius:2px;
+	-moz-border-radius-bottomleft:2px;
+	border-bottom-left-radius:2px;
+	text-indent:0;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	color:#000000;
+	font-family:Verdana;
+	font-size:11px;
+	font-weight:bold;
+	font-style:normal;
+	height:10px;
+	line-height:12px;
+	width:30px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #cc9f52;
+}
+.btmedio:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color:#fb9e25;
+}.btmedio:active {
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */
+	
+
+
+/* ==
+   == BOTÃO GRANDE DE TEXTO
+   == 
+*/
+.btpeq {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color:#ffc477;
+	-webkit-border-top-left-radius:2px;
+	-moz-border-radius-topleft:2px;
+	border-top-left-radius:2px;
+	-webkit-border-top-right-radius:2px;
+	-moz-border-radius-topright:2px;
+	border-top-right-radius:2px;
+	-webkit-border-bottom-right-radius:2px;
+	-moz-border-radius-bottomright:2px;
+	border-bottom-right-radius:2px;
+	-webkit-border-bottom-left-radius:2px;
+	-moz-border-radius-bottomleft:2px;
+	border-bottom-left-radius:2px;
+	text-indent:0;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	color:#000000;
+	font-family:Verdana;
+	font-size:11px;
+	font-weight:bold;
+	font-style:normal;
+	height:10px;
+	line-height:12px;
+	width:20px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #cc9f52;
+}
+.btpeq:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color:#fb9e25;
+}.btpeq:active {
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */
+
+
+
+/*            R E F E R Ê N C I A S
+              =====================
+
+https://www.hostinger.com.br/tutoriais/diferenca-entre-estilos-css/#gref 
+
+https://developer.mozilla.org/pt-BR/docs/Aprender/Getting_started_with_the_web/CSS_basico
+
+*/
+
+

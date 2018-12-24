@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link href="tm_style.css" rel="stylesheet" type="text/css">
+    <title>Traço Mágico em JS - v3.8b</title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+<div align="left">
+    <font face="Tahoma" size="1" color="Yellow">
+    <TABLE BORDER=3 cellspacing=0 bordercolor=lightgray> 
+
+      <TR> 
+        <TD> 
+        <TABLE width="100%" height="100%"  cellspacing=0 BORDER=0 bordercolor=red> 
+            <TR> 
+              <TD style="text-align:left;" BORDER=0  width="35%">
+                <img src="logo_traco_magico_js.jpg" title="Use setas para desenhar, clique do mouse muda de posição">   
+              </TD> 
+              <TD  BORDER=0  width="55%">
+                 <h3><a href="javascript:sobrePM();" >by Paulo Mello &#169; 2018 </a>
+                  <a href="#" onclick="testa();">*</a>
+                
+                </h3>
+              </TD>
+              <TD  BORDER=0  width="15%">
+                <H4>
+                  <a href="./tm_ajuda.html" target="_blank" style="color:black"><img src="tm_sobre.gif" title="Clique para ajuda"></a>
+                </H4>
+              </TD> 
+            </TR>
+        </TABLE> 
+        </TD> 
+       </TR>
+       <TR> 
+          <TD>
+              <div id = "caixa" class="container">
+                <canvas id="tmcanvasFu" class="layer0"  width="950" height="500" ></canvas>
+                <canvas id="tmcanvas"   class="layer1"  width="950" height="500" ></canvas>
+                <canvas id="tmcanvasFr" class="layer2"  width="950" height="500" ></canvas>
+              </div>
+          </TD> 
+      </TR>
+      <TR>
+        <TD>
+        <div id="mostraMSG"; class="msg">
+           <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="red" width="100%" height="100%" bgcolor="black">
+           <TR>
+            <TD width="60px" >
+              <p>
+             </p>  
+           </TD>
+            <TD>
+              <tm id="textoMSG"; class="msg">.</tm>
+           </TD>        
+           <TD width="60px">
+              <p align:center>
+               <a href="#" class="btgrande" onclick="ocultaMSG();" >OK</a>
+             </p>  
+           </TD>
+           </TR>
+           </TABLE>
+      </div>
+      <div align:center; id="mostraCONF">
+        <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="red" width="100%" height="100%" bgcolor="black">
+        <TR>
+            <TD width="60px">
+                <p>
+                 <a href="#" class="btgrande" onclick="ocultacONF('N');">Cancela</a>
+               </p>  
+             </TD>
+        <TD>
+           <H4 id="textoCONF">.</H>
+        </TD>        
+        <TD width="60px">
+           <p>
+            <a href="#" class="btgrande" onclick="ocultacONF('N');">Cancela</a>
+          </p>  
+        </TD>
+        </TR>
+        </TABLE>
+   </div>
+      </TD>
+      <TR> 
+      <td>
+       <TABLE BORDER=1 cellspacing=0 cellpadding=0 bordercolor="#333333" width="100%" height="100%">
+          <TR>  
+              <font face="Tahoma" size="1" color="#FFFFFF;">
+              <TD bgcolor="#333333"> 
+                  <H4 id="nomedacor" title="Cor selecionada.">COR:</H>
+              </TD>
+              <TD bgcolor="#000000"> 
+                <H4 id="numlargura" title="Largura do traço.">LARGURA</H>
+                <P>              
+              <TD bgcolor="#333333">
+                  <H4  title="Transparência de objetos sólidos.">TRANSP.</H>
+              </TD>
+              <TD bgcolor="#000000"> 
+                <H4  title="Velocidade do traço (desenhando com as setas).">VELOC.</H>
+              </TD>
+              <TD bgcolor="#333333">
+                <H4 id="numraio" title="Tamanho do raio para traçar círculos.">RAIO</H>
+              </TD>
+              <TD bgcolor="#000000">
+                 <H4 title="Formas básicas.">FORMAS</h>
+              </TD>
+              <TD bgcolor="#333333">
+                <H4  title="Inserir um texto no desenho.">TEXTO</H>
+              </TD>
+              <TD bgcolor="#000000"> 
+                 <H4 title="Inserir fotos do computador.">IMAGEM</H>
+              </TD>
+              <TD bgcolor="#333333">
+                  <H4  title="Define uma cor ou imagem para o fundo.">FUNDO</h>
+              </TD>
+              <TD bgcolor="#000000">
+                <H4  title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H>
+              </TD>
+              <TD bgcolor="#333333" >
+                <H4  title="Apaga o desenho.">APAGAR</H>
+              </TD>
+             </font>
+         </TR>
+       <TR>  
+          <TD width="35px">
+              <div class="input-color-container"> 
+               <input id="input-color" type="color" class="input-color" value = "#0000FF" name="cor"  title="Escolha a cor desejada." oninput="cor=this.value;">
+              </div>
+            </p>
+            </TD>
+
+          <TD width="80px"> 
+            <P>              
+                <a href="#" class="btclass" onclick="deflargura(-1);"    title="Diminui a Largura.">      ◁</a>
+                <canvas id="espcanvas" title="Largura do traço." width="20" height="20" style="border:1px solid #1C1C1C;"></canvas> 
+                <a href="#" class="btclass" onclick="deflargura(+1);"    title="Aumenta a Largura.">      ▷</a>
+            </P>             
+            <P>
+              <a href="#" class="btclass" onclick="deflargura('MIN');" title="Largura mínima (padrão).">❙◀</a>
+
+              <a href="#" class="btclass" onclick="deflargura('MAX');" title="Largura máxima."   >      ▶❙</a>
+             </P>
+          </TD>
+            <TD  width="60px">
+                <p class="contador" id="sttransp"  title="Transparência: 0 a 80%.">[1]</p>
+                <p>
+                  <a href="#" class="btclass" onclick="transparencia(+1);"    title="Menos transparente"   >◁</a>
+                  <a href="#" class="btclass" onclick="transparencia(-1);"    title="Mais transparente."   >▷</a>
+                </p>
+                <p>
+
+                  <a href="#" class="btclass" onclick="transparencia('MIN');"  title="Transparencia Mínima (padrão).">❙◀</a>
+                  <a href="#" class="btclass" onclick="transparencia('MEIO');" title="Transparencia intermediária.">⧓</a>
+                  <a href="#" class="btclass" onclick="transparencia('MAX');"  title="Transparencia Máxima.">▶❙</a>
+               </p>
+            </TD>
+            <TD width="60px"> 
+              <p class="contador" id="numvelocidade" title="Velocidade: 2 a 10.">[2]</p>
+            <P >
+              <a href="#" class="btclass" onclick="defvelocidade(-1);"    title="Diminui a velocidade.">◁</a>
+              <a href="#" class="btclass" onclick="defvelocidade(+1);"    title="Aumenta a velocidade.">▷</a>
+            </p>
+            <p>
+              <a href="#" class="btclass" onclick="defvelocidade('MIN');" title="Velocidade Mínima (padrão)."   >❙◀</a>
+              <a href="#" class="btclass" onclick="defvelocidade('MAX');" title="Velocidade Máxima."   >▶❙</a>
+           </P>
+          </TD>
+
+  
+
+          <TD width="70px"> 
+            <p>
+             <a href="#" class="btclass" onclick="defraio(-1);"     title="Diminui o raio." >◁</a>
+             <canvas id="circanvas" title="Tamanho do Raio (20X)." width="20" height="20" style="border:1px solid #333333;"></canvas>
+             <a href="#" class="btclass" onclick="defraio(+1);"     title="Aumenta o raio." >▷</a>
+            </p>
+            <P>
+             <a href="#" class="btclass" onclick="defraio('MIN');" title="Raio mínimo."    >❙◀</a>
+            <a href="#" class="btclass" onclick="defraio('MEIO');" title="Raio médio."     >⧓</a>
+            <a href="#" class="btclass" onclick="defraio('MAX');"  title="Raio máximo."    >▶❙</a>
+            </p>
+          </TD>
+
+          <TD width="100px"> 
+              <p>
+                <a href="#" class="btaction" onclick="reta();" title="Cria uma reta entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
+                &nbsp;
+
+  
+                <a href="#" class="btaction" onclick="retangulo(0);" title="Traça um retângulo vazio entre os dois últimos pontos marcados."    >▯</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="retangulo(1);" title="Traça um retângulo sólido entre os dois últimos pontos marcados.">▮</a>
+                <hr width="80%" color="#333333">
+              </p>
+              <p> 
+                <a href="#" class="btaction" onclick="circulo(0);"       title="Desenha um círculo vazio."               >◯</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="circulo(1);"       title="Desenha um círculo sólido"               >●</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="concentrico('M');" title="Desenha Círculos concêntricos."          >◉</a> 
+                &nbsp;
+                <a href="#" class="btaction" onclick="concentrico('C');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
+              </p>
+          </TD>
+
+          <TD width="70px"> 
+                <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[20]</p>
+              <P >
+                <a href="#" class="btclass" onclick="deftexto(-1);"     title="Diminui o tamanho do texto.">◁</a>
+                <a href="#" class="btclass" onclick="deftexto('MEIO');" title="Tamanho do texto médio (padrão).">⧓</a>
+                <a href="#" class="btclass" onclick="deftexto(+1);"     title="Aumenta o tamanho do texto.">▷</a>
+              </p>
+              <p>
+                <a href="#" class="btaction" onclick="escrevetexto();" title="Digite o texto."   >⌨</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="colatexto();"    title="Cole o texto no ponto atual.">✎</a>
+             </P>
+            </TD>
+
+          <TD width="70px" align="center">
+              <p class="contador" id="pegaimg" title="✔ Imagem  /  ✘ Vazio.">[✘]</p>
+              <p align="center">
+                 <a href="#" class="btaction" onclick="colaimg(0);"  title="Insere uma imagem no ponto atual.">▣</a>
+              </p>
+              <p>
+                  <a href="#" class="btaction" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador" onclick="SalvaDesenho()">&#x1F5AB;</a>
+                  &nbsp;
+                  <button id="files"  class="BTimg" title="Seleciona uma imagem do computador." >
+                      <input type="file" class="BTimg">
+                      <span>⏏</span>
+                     </button>
+              </p>
+          </TD>
+          
+          <TD width="60px">
+              <p>
+                <a href="#" class="btmedio" onclick="fundo();"  title="Troca o fundo para a cor selecionada.">Cor</a>
+              </p>
+              <p>
+                <a href="#" class="btaction" onclick="tilt(0);"  title="Círculos randômicos (use transparência).">⠪</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="tilt(1);"  title="Retângulos randômicos (use transparência).">⧉</a>
+              </p>
+              <p>
+                <a href="#" class="btmedio" onclick="colaimg(1);"  title="Imagem preenchendo o fundo (use transparência).">Foto</a>
+              </p>
+           </TD>
+          <TD  width="80px">
+             <p class="contador" id="stgrava" title="Passos gravados.">Passo[0]</p>
+             <p>
+                <a href="#" class="btaction" onclick="grava();" title=" ●  Ligar   /   ❚❚  Pausar." id="btgrava">❚❚</a>
+                &nbsp;&nbsp;
+                <a href="#" class="btaction" onclick="toca();"   title="Toca a gravação."      >►</a>
+              </p>
+              <p> 
+                <a href="#" class="btaction" onclick="corta();"   title="Apaga o útimo passo" >⌫</a>
+                &nbsp;&nbsp;
+                <a href="#" class="btaction" onclick="cancela();" title="Apaga a gravação."    >✘</a>
+           </p>
+          </TD>
+          <TD width="90px" align:"center">
+            <p> 
+
+            </p>
+            <p> 
+              <a href="#" class="btgrande" onclick="apagar(0);"  title="Apaga a tela atual.">APAGA</a>
+            </p>
+            <hr width="80%">
+            <p> 
+              <a href=".\index.html"  target="_self" class="btgrande"  title="Apaga tudo (tela e gravação).">RESET</a>
+            </p>
+          </TD>
+        </TR> 
+      </TABLE> 
+      </td>
+      </TR>
+     </TABLE> 
+    </div>
+  <script type="text/javascript" src="tm_testa_script.js"></script>  
+  <script type="text/javascript" src="tm_desenha_script.js"></script>   
+  <script type="text/javascript" src="tm_grava_script.js"></script>   
+  <script type="text/javascript" src="tm_principal_script.js"></script>   
+</font>
+ </body>
+</html>
