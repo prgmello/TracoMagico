@@ -8,22 +8,33 @@
 */
 
 
+function escrtxt(ttexto)
+{
+  alert(ttexto);
+}
+
+
+
+
 //
 // INICIO DA FUNÇÃO TESTA
 //
-//var str1 = "S✊✋✌✍⌚☔☕☃★☆☹☺☻☼☽☾✝✞✟✠✡✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋۞☘☙E";
-var str1 = "*1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz@";
+var str1 = "S✊✋✌✍⌚☔☕☹☺♨☘☙❥❤♡♥♠♦♣♩♪♫♬♭♯☃★☆☼☁☽☾✝✞✟✠✡☢☣۞¤✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋E";
+//var str1 = "*1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz@";
 
 var QtdEMC = str1.length;
 //alert(QtdEMC);
 var pEMC = new Array(QtdEMC);
 var element = document.getElementById("EmoTab"); // SELECIONA A DIV
 
-for (f = 0; f < QtdEMC; f=f+1)
+       
+for (f = 0; f < QtdEMC; f++)
 {
   pEMC[f] = str1.substring(f,f+1);
   //console.log(pEMC[f]);
-  element.innerHTML += "<a href='#' onclick='escrevetexto("+ pEMC[f] + ");' >" + pEMC[f] + "</a>";
+  element.innerHTML += '<a href="#" class="EMC" onclick=\'escrtxt("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
 
 }
+
+
 

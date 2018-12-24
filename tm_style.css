@@ -81,15 +81,17 @@ html {
 
 /* DIV DA FUNÇÃO DE EMNOTICONS */
 .content {
-	width:950px;
+	width:80%;
 	margin:auto;
-	background-color:Red;
+    text-align:center;
+	background-color:#1b1b1b;
+	overflow-wrap:break-word;
 }
 
 .EMC {    
 	color:#ff8c00;
 	margin:5px;
-	font-size: 14pt;
+	font-size: 16pt;
 	} 
 
 
