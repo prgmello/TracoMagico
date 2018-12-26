@@ -20,7 +20,7 @@
               </TD> 
               <TD  BORDER=0  width="55%">
                  <h3><a href="javascript:sobrePM();" >by Paulo Mello &#169; 2018 </a>
-                  <a href="#" onclick="testa();"></a>
+                  <a href="#" onclick="testa();">*</a>
                 
                 </h3>
               </TD>
@@ -175,17 +175,10 @@
              </P>
           </TD>
             <TD  width="60px">
-                <p class="contador" id="sttransp"  title="Transparência: 0 a 80%.">[1]</p>
+                <p class="contador" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
                 <p>
-                  <a href="#" class="btclass" onclick="transparencia(+1);"    title="Menos transparente"   >◁</a>
-                  <a href="#" class="btclass" onclick="transparencia(-1);"    title="Mais transparente."   >▷</a>
+                  <input type="range" class="slider" min="0" max="99" value="0" oninput="transparencia(this.value)">                  
                 </p>
-                <p>
-
-                  <a href="#" class="btclass" onclick="transparencia('MIN');"  title="Transparencia Mínima (padrão).">❙◀</a>
-                  <a href="#" class="btclass" onclick="transparencia('MEIO');" title="Transparencia intermediária.">⧓</a>
-                  <a href="#" class="btclass" onclick="transparencia('MAX');"  title="Transparencia Máxima.">▶❙</a>
-               </p>
             </TD>
             <TD width="60px"> 
               <p class="contador" id="numvelocidade" title="Velocidade: 2 a 10.">[2]</p>
@@ -239,9 +232,10 @@
           <TD width="70px"> 
                 <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[50]</p>
               <P >
-                <a href="#" class="btclass" onclick="deftexto(-1);"     title="Diminui o tamanho do texto.">◁</a>
+                <!-- <a href="#" class="btclass" onclick="deftexto(-1);"     title="Diminui o tamanho do texto.">◁</a>
                 <a href="#" class="btclass" onclick="deftexto('MEIO');" title="Tamanho do texto médio (padrão).">⧓</a>
-                <a href="#" class="btclass" onclick="deftexto(+1);"     title="Aumenta o tamanho do texto.">▷</a>
+                <a href="#" class="btclass" onclick="deftexto(+1);"     title="Aumenta o tamanho do texto.">▷</a> -->
+                <input type="range" class="slider" min="10" max="100" value="50" oninput="deftexto(this.value)">
               </p>
               <p>
                 <a href="#" class="btaction" onclick="escrevetexto();" title="Digite o texto."   >⌨</a>

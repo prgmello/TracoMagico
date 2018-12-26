@@ -1,110 +1,112 @@
 /* Texto em parágrafos */
 html {
-    background-color: #000000;
-  }
+	background-color: #000000;
+}
 
-  a  {
-    color:yellow; text-decoration:none;
-  }
+a {
+	color: yellow;
+	text-decoration: none;
+}
 
 
-  p {
-    color: white;
-    text-align:center;
-    margin-top: 3px;
-    margin-bottom: 2px;
-   }
+p {
+	color: white;
+	text-align: center;
+	margin-top: 3px;
+	margin-bottom: 2px;
+}
 
-   .manual {
+.manual {
 	color: rgb(255, 255, 0);
-    text-align:left;
-    margin-top: 6px;
-    margin-bottom: 12px;
-   }
+	text-align: left;
+	margin-top: 6px;
+	margin-bottom: 12px;
+}
 
-  .container {
+.container {
 	position: relative;
-	width:952px; 
-	height:502px
-	}
-	
-  .layer0 {
-	position:absolute;
+	width: 950px;
+	height: 502px
+}
+
+.layer0 {
+	position: absolute;
 	z-index: 1;
-	left:0px;
-	top:0px;
-	background-color:white;
-  }
+	left: 0px;
+	top: 0px;
+	background-color: white;
+}
 
-  .layer1 {
-	position:absolute;
+.layer1 {
+	position: absolute;
 	z-index: 2;
-	left:0px;
-	top:0px;
-  }
+	left: 0px;
+	top: 0px;
+}
 
-  .layer2 {
-	position:absolute;
+.layer2 {
+	position: absolute;
 	z-index: 3;
-	left:0px;
-	top:0px;
-  }
+	left: 0px;
+	top: 0px;
+	cursor: crosshair;
+}
 
- .contador {
-    color: white;
-    text-align:center;
-    margin-top: 1px;
+.contador {
+	color: white;
+	text-align: center;
+	margin-top: 1px;
 	margin-bottom: 2px;
-	letter-spacing:-1px;
-   }
+	letter-spacing: -1px;
+}
 
+.slider {
+	width: 40px;
+}
 
-
-   H4 {
-    color: white;
-    text-align:center;
-    margin-top: 3px;
+H4 {
+	color: white;
+	text-align: center;
+	margin-top: 3px;
 	margin-bottom: 2px;
-	face:Verdana; 
-	size:9pt;
-   }
+	face: Verdana;
+	size: 9pt;
+}
 
- .msg {    
+.msg {
 	color: Red;
-    text-align:center;
-    margin-top: 3px;
+	text-align: center;
+	margin-top: 3px;
 	margin-bottom: 2px;
-	font-family:Verdana;
-	font-weight:bold;
-	font-size:8pt;} 
-
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 8pt;
+}
 
 /* DIV DA FUNÇÃO DE EMNOTICONS */
 .content {
-	width:500pt;
-	margin:auto;
-    text-align:center;
+	width: 500pt;
+	margin: auto;
+	text-align: center;
 	background-color: black;
-	overflow-wrap:break-word;
+	overflow-wrap: break-word;
 }
 
-.EMC {    
-	color:#ff8c00;
-	margin:4px;
+.EMC {
+	color: #ff8c00;
+	margin: 4px;
 	font-size: 14pt;
-	} 
+}
 
-
-.EmoTab
-{
-	height:12px;
-	line-height:18px;
+.EmoTab {
+	height: 12px;
+	line-height: 18px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
-   /* BOTÃO DO COLOR PICKER */
-   .input-color-container {
+/* BOTÃO DO COLOR PICKER */
+.input-color-container {
 	position: relative;
 	overflow: hidden;
 	width: 30px;
@@ -112,37 +114,40 @@ html {
 	border: solid 2px #ff8c00;
 	border-radius: 30px;
 	margin-left: 5px;
-  }
-  
-  .input-color {
+}
+
+.input-color {
 	position: absolute;
 	right: -8px;
 	top: -8px;
 	width: 42px;
 	height: 42px;
 	border: none;
-  }
-  /* FIM DO BOTÃO DO COLOR PICKER */
+}
+
+/* FIM DO BOTÃO DO COLOR PICKER */
 
 
 
 /* Parte interna de tabelas */
-TD {  text-align:center;
-      BORDER:1;  
-      BGCOLOR:black 
-    }
+TD {
+	text-align: center;
+	BORDER: 1;
+	BGCOLOR: black
+}
 
 font {
-        face:Verdana; size:10pt; color:white;
-    }
+	face: Verdana;
+	size: 10pt;
+	color: white;
+}
 
 
-form 
-{
-	font: Verdana; 
+form {
+	font: Verdana;
 	font-size: 8pt;
 	color: #ff8c00;
-	padding:0px;
+	padding: 0px;
 	margin: 0px;
 	border: none;
 	border-top-width: 0px;
@@ -158,33 +163,30 @@ form
    == BOTÃO INPUT FILE 
    == 
 */
-#files 
-{
-    position: relative;
-    overflow: hidden;
+#files {
+	position: relative;
+	overflow: hidden;
 }
 
-#files input 
-{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+#files input {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	opacity: 0.001
 }
 
 
-.BTimg 
-{
+.BTimg {
 	height: 18px;
-	width:	25px;
+	width: 25px;
 	position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-	font: Verdana; 
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font: Verdana;
 	font-size: 12pt;
 	color: #ff8c00;
 	background-color: black;
@@ -206,49 +208,53 @@ form
    == 
 */
 .btclass {
-	-moz-box-shadow:inset 0px 1px 0px 0px #000000;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #000000;
-	box-shadow:inset 0px 1px 0px 0px #000000;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #000000) );
-	background:-moz-linear-gradient( center top, #000000 5%, #000000 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000');
-	background-color:#000000;
-	-webkit-border-top-left-radius:0px;
-	-moz-border-radius-topleft:0px;
-	border-top-left-radius:0px;
-	-webkit-border-top-right-radius:0px;
-	-moz-border-radius-topright:0px;
-	border-top-right-radius:0px;
-	-webkit-border-bottom-right-radius:0px;
-	-moz-border-radius-bottomright:0px;
-	border-bottom-right-radius:0px;
-	-webkit-border-bottom-left-radius:0px;
-	-moz-border-radius-bottomleft:0px;
-	border-bottom-left-radius:0px;
-	text-indent:0;
-	display:inline-block;
-	color:#ff8c00;
-	font-family:Impact;
-	font-size:12px;
-	font-weight:bold;
-	font-style:normal;
-	height:13px;
-	line-height:13px;
-	width:13px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #000000;
-	letter-spacing:-2px;
+	-moz-box-shadow: inset 0px 1px 0px 0px #000000;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #000000;
+	box-shadow: inset 0px 1px 0px 0px #000000;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #000000));
+	background: -moz-linear-gradient(center top, #000000 5%, #000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000');
+	background-color: #000000;
+	-webkit-border-top-left-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	border-top-right-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-moz-border-radius-bottomright: 0px;
+	border-bottom-right-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-bottom-left-radius: 0px;
+	text-indent: 0;
+	display: inline-block;
+	color: #ff8c00;
+	font-family: Impact;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: normal;
+	height: 13px;
+	line-height: 13px;
+	width: 13px;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px 0px #000000;
+	letter-spacing: -2px;
 }
+
 .btclass:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #000000) );
-	background:-moz-linear-gradient( center top, #000000 5%, #000000 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000');
-	background-color:#000000;
-}.btclass:active {
-	position:relative;
-	top:1px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #000000));
+	background: -moz-linear-gradient(center top, #000000 5%, #000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000');
+	background-color: #000000;
 }
+
+.btclass:active {
+	position: relative;
+	top: 1px;
+}
+
 /* This button was generated using CSSButtonGenerator.com */
 
 
@@ -258,51 +264,55 @@ form
    == 
 */
 .btgrande {
-	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
-	background-color:#ffc477;
-	-webkit-border-top-left-radius:4px;
-	-moz-border-radius-topleft:4px;
-	border-top-left-radius:4px;
-	-webkit-border-top-right-radius:4px;
-	-moz-border-radius-topright:4px;
-	border-top-right-radius:4px;
-	-webkit-border-bottom-right-radius:4px;
-	-moz-border-radius-bottomright:4px;
-	border-bottom-right-radius:4px;
-	-webkit-border-bottom-left-radius:4px;
-	-moz-border-radius-bottomleft:4px;
-	border-bottom-left-radius:4px;
-	text-indent:0;
-	border:1px solid #eeb44f;
-	display:inline-block;
-	color:#000000;
-	font-family:Verdana;
-	font-size:11px;
-	font-weight:bold;
-	font-style:normal;
-	height:12px;
-	line-height:12px;
-	width:53px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #cc9f52;
+	-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+	background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color: #ffc477;
+	-webkit-border-top-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	border-bottom-right-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-bottom-left-radius: 4px;
+	text-indent: 0;
+	border: 1px solid #eeb44f;
+	display: inline-block;
+	color: #000000;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	font-style: normal;
+	height: 12px;
+	line-height: 12px;
+	width: 53px;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px 0px #cc9f52;
 }
+
 .btgrande:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
-	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-	background-color:#fb9e25;
-}.btgrande:active {
-	position:relative;
-	top:1px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+	background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color: #fb9e25;
 }
+
+.btgrande:active {
+	position: relative;
+	top: 1px;
+}
+
 /* This button was generated using CSSButtonGenerator.com */
-	
+
 
 
 
@@ -316,12 +326,10 @@ form
 	font-size: 14px;
 	color: #ff8c00;
 	padding: 0px 0px;
-	background: -moz-linear-gradient(
-		top,
+	background: -moz-linear-gradient(top,
 		#000000 0%,
 		#0a0a0a);
-	background: -webkit-gradient(
-		linear, left top, left bottom,
+	background: -webkit-gradient(linear, left top, left bottom,
 		from(#000000),
 		to(#0a0a0a));
 	-moz-border-radius: 9px;
@@ -329,17 +337,17 @@ form
 	border-radius: 9px;
 	border: 0px solid #080808;
 	-moz-box-shadow:
-		0px 0px 0px rgba(000,000,000,0),
-		inset 0px 0px 0px rgba(0,0,0,0);
+		0px 0px 0px rgba(000, 000, 000, 0),
+		inset 0px 0px 0px rgba(0, 0, 0, 0);
 	-webkit-box-shadow:
-		0px 0px 0px rgba(000,000,000,0),
-		inset 0px 0px 0px rgba(0,0,0,0);
+		0px 0px 0px rgba(000, 000, 000, 0),
+		inset 0px 0px 0px rgba(0, 0, 0, 0);
 	box-shadow:
-		0px 0px 0px rgba(000,000,000,0),
-		inset 0px 0px 0px rgba(0,0,0,0);
+		0px 0px 0px rgba(000, 000, 000, 0),
+		inset 0px 0px 0px rgba(0, 0, 0, 0);
 	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.4),
-		0px 1px 0px rgba(255,255,255,0.3);
+		0px -1px 0px rgba(000, 000, 000, 0.4),
+		0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
 
@@ -350,51 +358,55 @@ form
    == 
 */
 .btmedio {
-	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
-	background-color:#ffc477;
-	-webkit-border-top-left-radius:2px;
-	-moz-border-radius-topleft:2px;
-	border-top-left-radius:2px;
-	-webkit-border-top-right-radius:2px;
-	-moz-border-radius-topright:2px;
-	border-top-right-radius:2px;
-	-webkit-border-bottom-right-radius:2px;
-	-moz-border-radius-bottomright:2px;
-	border-bottom-right-radius:2px;
-	-webkit-border-bottom-left-radius:2px;
-	-moz-border-radius-bottomleft:2px;
-	border-bottom-left-radius:2px;
-	text-indent:0;
-	border:1px solid #eeb44f;
-	display:inline-block;
-	color:#000000;
-	font-family:Verdana;
-	font-size:11px;
-	font-weight:bold;
-	font-style:normal;
-	height:10px;
-	line-height:12px;
-	width:30px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #cc9f52;
+	-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+	background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color: #ffc477;
+	-webkit-border-top-left-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	border-top-left-radius: 2px;
+	-webkit-border-top-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	border-top-right-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	border-bottom-left-radius: 2px;
+	text-indent: 0;
+	border: 1px solid #eeb44f;
+	display: inline-block;
+	color: #000000;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	font-style: normal;
+	height: 10px;
+	line-height: 12px;
+	width: 30px;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px 0px #cc9f52;
 }
+
 .btmedio:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
-	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-	background-color:#fb9e25;
-}.btmedio:active {
-	position:relative;
-	top:1px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+	background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color: #fb9e25;
 }
+
+.btmedio:active {
+	position: relative;
+	top: 1px;
+}
+
 /* This button was generated using CSSButtonGenerator.com */
-	
+
 
 
 /* ==
@@ -402,49 +414,53 @@ form
    == 
 */
 .btpeq {
-	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
-	background-color:#ffc477;
-	-webkit-border-top-left-radius:2px;
-	-moz-border-radius-topleft:2px;
-	border-top-left-radius:2px;
-	-webkit-border-top-right-radius:2px;
-	-moz-border-radius-topright:2px;
-	border-top-right-radius:2px;
-	-webkit-border-bottom-right-radius:2px;
-	-moz-border-radius-bottomright:2px;
-	border-bottom-right-radius:2px;
-	-webkit-border-bottom-left-radius:2px;
-	-moz-border-radius-bottomleft:2px;
-	border-bottom-left-radius:2px;
-	text-indent:0;
-	border:1px solid #eeb44f;
-	display:inline-block;
-	color:#000000;
-	font-family:Verdana;
-	font-size:11px;
-	font-weight:bold;
-	font-style:normal;
-	height:10px;
-	line-height:12px;
-	width:20px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #cc9f52;
+	-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+	background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color: #ffc477;
+	-webkit-border-top-left-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	border-top-left-radius: 2px;
+	-webkit-border-top-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	border-top-right-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	border-bottom-left-radius: 2px;
+	text-indent: 0;
+	border: 1px solid #eeb44f;
+	display: inline-block;
+	color: #000000;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	font-style: normal;
+	height: 10px;
+	line-height: 12px;
+	width: 20px;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px 0px #cc9f52;
 }
+
 .btpeq:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
-	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-	background-color:#fb9e25;
-}.btpeq:active {
-	position:relative;
-	top:1px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+	background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color: #fb9e25;
 }
+
+.btpeq:active {
+	position: relative;
+	top: 1px;
+}
+
 /* This button was generated using CSSButtonGenerator.com */
 
 
@@ -457,5 +473,3 @@ https://www.hostinger.com.br/tutoriais/diferenca-entre-estilos-css/#gref
 https://developer.mozilla.org/pt-BR/docs/Aprender/Getting_started_with_the_web/CSS_basico
 
 */
-
-

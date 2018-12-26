@@ -11,10 +11,8 @@
 //
 // INICIO DA FUNÇÃO TESTA
 //
-function testa()
+function testa(mouseState)
 {
-
-
   ctxFr.moveTo(20,20);
   ctxFr.font = "12 px Verdana";
   ctxFr.fillStyle = "Red";
@@ -23,7 +21,7 @@ function testa()
   ctxFr.fillStyle = "Black";
   ctxFr.fillText("ENTROU NA  ROTINA TESTE",750,20);
 
-  RodaRotina();
+  RodaRotina(mouseState);
 
   ctxFr.moveTo(20,20);
   ctxFr.font = "12 px Verdana";
@@ -45,10 +43,10 @@ function testa()
 //
 // COLE AQUI A ROTINA QUE VC QUER TESTAR
 //
-function RodaRotina()
+function RodaRotina(mouseState)
 {
-  mensagem("Não há rotina para executar")
-
+  //mensagem("Não há rotina para executar")
+  console.log(mouseState);
 }
 
 
