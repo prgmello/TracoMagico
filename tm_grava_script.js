@@ -75,6 +75,7 @@ function redesenha(stGravar)
   var lPassoFim = Passo;
   var lPasso;
   var lTipo;
+  var lEmoticon;
   pGravar = stGravar;
   
   for (lPasso = 0; lPasso < lPassoFim; lPasso++) 
@@ -90,10 +91,19 @@ function redesenha(stGravar)
     dx         = pVelocidade[lPasso];
     dy         = pVelocidade[lPasso];
     transp     = pTransp[lPasso];
-    if (pForma[lPasso]=="Texto")
+
+    // SE TEXTO
+    if (pForma[lPasso]=="Texto") 
     {
       texto      = pTexto[lPasso];
       tamtexto   = pTamtexto[lPasso];
+    }
+
+    // SE EMOTICON
+    if (pForma[lPasso]=="Emoticon")
+    {
+      lEmoticon   = pTexto[lPasso];
+
     }
     gravouIMG  = pGravouIMG[lPasso];
      
@@ -122,6 +132,9 @@ function redesenha(stGravar)
            break;
       case "Texto":         // REFAZ TEXTO
            colatexto();
+           break;
+      case "Emoticon":      // REFAZ EMOTICON
+           cola_emo(lEmoticon);
            break;
       case "Fundo":         // REFAZ O FUNDO
            fundo();
@@ -245,13 +258,21 @@ function addpasso(forma,tipo)
    pLargura[Passo]     = largura;
    pVelocidade[Passo]  = dx;
    pTransp[Passo]      = transp;
+
+
    // Grava o Texto se o tipo == "Texto"
    if (forma=="Texto") 
    {
-     pTexto[Passo]    = texto;
-     pTamtexto[Passo] = tamtexto;
+     pTexto[Passo]    = tipo;
+     pTamtexto[Passo] = tipo.length;
     }
-   
+
+       // Grava o Texto se o tipo == "Emoticon"
+   if (forma=="Emoticon") 
+    {
+     pTexto[Passo]    = tipo;
+    }
+    
    pGravouIMG[Passo]   = gravouIMG;
    if ((forma=="Imagem") && (gravouIMG=="N"))
    {

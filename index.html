@@ -20,7 +20,7 @@
               </TD> 
               <TD  BORDER=0  width="55%">
                  <h3><a href="javascript:sobrePM();" >by Paulo Mello &#169; 2018 </a>
-                  <a href="#" onclick="testa();">*</a>
+                  <a href="#" onclick="testa();"></a>
                 
                 </h3>
               </TD>
@@ -67,7 +67,7 @@
         <TR>
             <TD width="60px">
                 <p>
-                 <a href="#" class="btgrande" onclick="ocultacONF('N');">Cancela</a>
+                 <a href="#" class="btgrande" id="btCancela">Cancela</a>
                </p>  
              </TD>
         <TD>
@@ -75,12 +75,44 @@
         </TD>        
         <TD width="60px">
            <p>
-            <a href="#" class="btgrande" onclick="ocultacONF('N');">Cancela</a>
+            <a href="#" class="btgrande" id="btConfirma">Confirma</a>
           </p>  
         </TD>
         </TR>
         </TABLE>
-   </div>
+     </div>
+     <div id="ContemEmoTab" class="msg">
+      <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="#ff8c00" width="100%" height="100%" bgcolor="black">
+      <TR>
+       <TD width="116px" >
+          <p align="center">
+              <form action="">
+                <fieldset>
+                <legend><input type="checkbox" id="ligaX" title="Liga o Deslocamento horizontal." onchange="limpaDeslocamento();" checked>Horizontal</legend>
+              <input type="radio" id="emoX"  name="X" title="Deslocamento para a Direita." checked>▶&nbsp;
+              <input type="radio" id="emoXR" name="X" title="Deslocamento para a Esquerda.">◀
+            </fieldset>
+            </form>
+          </p>
+          <div  class="EmoTab"></div>
+      </TD>
+       <TD>
+        <div id="EmoTab"  class="content"></div>
+      </TD>
+      <TD width="115px">
+            <form action="">
+            <fieldset>
+                <legend><input type="checkbox" id="ligaY" title="Liga o Deslocamento vertical." onchange="limpaDeslocamento();">Vertical</legend>
+                <input type="radio" id="emoY"  name="Y" title="Deslocamento para a Baixo." disabled>▼&nbsp;
+                <input type="radio" id="emoYR" name="Y" title="Deslocamento para a Cima."  disabled>▲
+              </fieldset>
+          <div class="EmoTab">
+              <a href="#" class="btgrande" onclick="MostraEmoTab(0);">FECHA</a>
+          </div>
+      </TD>
+      </TR>
+      </TABLE>
+    </div>
       </TD>
       <TR> 
       <td>
@@ -125,7 +157,7 @@
        <TR>  
           <TD width="35px">
               <div class="input-color-container"> 
-               <input id="input-color" type="color" class="input-color" value = "#0000FF" name="cor"  title="Escolha a cor desejada." oninput="cor=this.value;">
+               <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Escolha a cor desejada." oninput="DefineCor(this.value);">
               </div>
             </p>
             </TD>
@@ -205,7 +237,7 @@
           </TD>
 
           <TD width="70px"> 
-                <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[20]</p>
+                <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[50]</p>
               <P >
                 <a href="#" class="btclass" onclick="deftexto(-1);"     title="Diminui o tamanho do texto.">◁</a>
                 <a href="#" class="btclass" onclick="deftexto('MEIO');" title="Tamanho do texto médio (padrão).">⧓</a>
@@ -215,6 +247,9 @@
                 <a href="#" class="btaction" onclick="escrevetexto();" title="Digite o texto."   >⌨</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="colatexto();"    title="Cole o texto no ponto atual.">✎</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="MostraEmoTab(1);" title="Abrir Tabela de Emoticons."   >❤</a>
+                &nbsp;
              </P>
             </TD>
 

@@ -33,9 +33,6 @@ function testa()
   ctxFr.fillStyle = "Red";
   ctxFr.fillText("SAIU DA ROTINA TESTE",750,490);
 
-  
-
-
    //alert("X:" + x + " Y: " + y);
 
 // =======================
@@ -45,16 +42,12 @@ function testa()
 
 
 
-
-
-
 //
 // COLE AQUI A ROTINA QUE VC QUER TESTAR
 //
 function RodaRotina()
 {
-
-mensagem("Não há rotina para executar")
+  mensagem("Não há rotina para executar")
 
 }
 

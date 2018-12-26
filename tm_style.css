@@ -81,20 +81,27 @@ html {
 
 /* DIV DA FUNÇÃO DE EMNOTICONS */
 .content {
-	width:80%;
+	width:500pt;
 	margin:auto;
     text-align:center;
-	background-color:#1b1b1b;
+	background-color: black;
 	overflow-wrap:break-word;
 }
 
 .EMC {    
 	color:#ff8c00;
-	margin:5px;
-	font-size: 16pt;
+	margin:4px;
+	font-size: 14pt;
 	} 
 
 
+.EmoTab
+{
+	height:12px;
+	line-height:18px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
    /* BOTÃO DO COLOR PICKER */
    .input-color-container {
@@ -128,6 +135,23 @@ TD {  text-align:center;
 font {
         face:Verdana; size:10pt; color:white;
     }
+
+
+form 
+{
+	font: Verdana; 
+	font-size: 8pt;
+	color: #ff8c00;
+	padding:0px;
+	margin: 0px;
+	border: none;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+
+}
+
 
 
 /* ==

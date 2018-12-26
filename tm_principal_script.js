@@ -113,7 +113,24 @@ function iniciar1()
   Yant = y;
   retL = 0;
   retA = 0;
-  cor = "#0000FF";
+  
+//
+// CRIA OS BOTÕES PARA A FERRAMENTA EMOTICONS
+//
+var str1 = "✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋♩♪♫♬♭♯★☆✝✞✟✠✡☢☣❥❤♡♥♠♦♣☃۞☼☽☾☁☹☺☙☘✊✋✌✍⌚☔☕";
+
+var QtdEMC = str1.length;
+var pEMC = new Array(QtdEMC);
+var element = document.getElementById("EmoTab"); // SELECIONA A DIV
+element.innerHTML = "";
+       
+for (f = 0; f < QtdEMC; f++)
+{
+  pEMC[f] = str1.substring(f,f+1);
+  //console.log(pEMC[f]);
+  element.innerHTML += '<a href="#" class="EMC" onclick=\'cola_emo("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
+
+}
 }
 
 
@@ -130,7 +147,16 @@ function iniciar2()
 }
 
 
+function DefineCor(inCor)
+{
+  cor=inCor;
+}
 
+
+function mostracor()
+{
+  document.getElementById('input-color').value = cor;
+}
 
 
 //
@@ -201,35 +227,93 @@ function ocultaMSG()
    clearTimeout(ocultaMSG);
 }
 
-
-
-
-//
-// FUNÇÃO PARA SUBSTITUIR O "CONFIRM" DO JS
-// É PRECISO REESCREVER ESTA FUNÇÃO COM 'POO'
-//
-//function confirma(textoMSG,vResp)
-//{
-//  if (textoMSG == "") // OCULTA
-//  {
-//    ocultacONF();
-//  } else {
-//    document.getElementById("mostraCONF").style.display = ""; // MOSTRA O BOTÃO
-//  var element = document.getElementById("textoCONF");
-//  element.innerHTML = textoMSG;
-//  }
-//}
-
 //
 // FUNÇÃO PARA OCULTAR O CAMPO DE CONFIRMAÇÃO DO PROGRAMA
 //
-function ocultacONF(vResp)
+function ocultaCONF(vResp)
 {
   document.getElementById("mostraCONF").style.display = "none"; // OCULTA O BOTÃO "block" ou "none"  
 }
 
 
 
+//
+// FUNÇÃO PARA SUBSTITUIR O "CONFIRM" DO JS
+//
+// function confirma(text, confirmCallback, cancelCallback)
+// {
+//   console.log(text);
+//   document.getElementById("mostraCONF").style.display = "block"; // MOSTRA O BOTÃO
+//   document.getElementById("textoCONF").innerHTML = text;
+  
+//   var btConfirma = document.getElementById("btConfirma");
+//   btConfirma.onclick = function () 
+//   { 
+//     ocultaCONF();
+//     confirmCallback();
+// };
+
+// var btCancela = document.getElementById("btCancela");
+//   btCancela.onclick = function()
+//   { 
+//     ocultaCONF();
+//     cancelCallback();
+//   };
+// }
+
+
+
+//
+// FUNÇÃO PARA SUBSTITUIR O "ALERT" DO JS
+//
+function MostraEmoTab(modo)
+{
+  if (modo == 0) // OCULTA
+  {
+    document.getElementById("ContemEmoTab").style.display = "none"; // OCULTA O BOTÃO "block" ou "none"  
+  } else {
+    document.getElementById("ContemEmoTab").style.display = ""; // MOSTRA O BOTÃO
+  //var element = document.getElementById("textoMSG");
+  //element.innerHTML = textoMSG;
+  }
+}
+
+
+function limpaDeslocamento()
+{
+  if (!document.getElementById("ligaX").checked)
+  {
+    document.getElementById("emoX").checked=false;
+    document.getElementById("emoXR").checked=false;
+    // Desativa para não set clicado
+    document.getElementById( "emoX").disabled=true;
+    document.getElementById("emoXR").disabled=true;
+  } else 
+    {
+      document.getElementById("emoX").checked=true;
+      // Desativa para não set clicado
+      document.getElementById( "emoX").disabled=false;
+      document.getElementById("emoXR").disabled=false;
+    }
+
+  if (!document.getElementById("ligaY").checked)
+  {
+    document.getElementById( "emoY").checked=false;
+    document.getElementById("emoYR").checked=false;
+    // Desativa para não set clicado
+    document.getElementById( "emoY").disabled=true;
+    document.getElementById("emoYR").disabled=true;
+
+  } else 
+  {
+    document.getElementById("emoY").checked=true;
+    // Desativa para não set clicado
+    document.getElementById( "emoY").disabled=false;
+    document.getElementById("emoYR").disabled=false;
+  }
+
+
+}
 
 
 
@@ -364,10 +448,13 @@ function transparencia(sentido)
 //
 function deftexto(sentido)
 {
-  tamtexto=tamtexto+sentido 
-  if (tamtexto < 10) { tamtexto=10 }
-  if (tamtexto > 30) { tamtexto=30 }  
-  if (sentido == 'MEIO') { tamtexto=20 }
+  var lTxtMax = 150; // MAX
+  var lTxtMin = 10; // MIN
+  var lTxtMeio = lTxtMax/2; // MEIO
+  tamtexto=tamtexto+sentido
+  if (tamtexto < lTxtMin)  { tamtexto=lTxtMin}
+  if (tamtexto > lTxtMax)  { tamtexto=lTxtMax }  
+  if (sentido == 'MEIO')   { tamtexto=lTxtMeio }
 
   // AUALIZANDO O MOSTRADOR DE TAMANHO DO TEXTO
   var element = document.getElementById("numtexto");
@@ -519,9 +606,8 @@ window.addEventListener('keydown', KeyDown, true);
 
 
 ocultaMSG();
-ocultacONF(vResp);
+MostraEmoTab(0);
+ocultaCONF(vResp);
 limpatela();
 iniciar1();
 iniciar2();
-
-

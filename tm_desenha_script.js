@@ -258,10 +258,38 @@ function colatexto()
   // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
   if (pGravar=="S")
   {
-    addpasso("Texto",""); 
+    addpasso("Texto",texto); 
   }
 }
 
+
+//
+// COLA O TEXTO NO DESENHO
+//
+function cola_emo(emoticon)
+{
+  ctx.moveTo(x,y);
+  ctx.font=tamtexto+"px Verdana";
+  ctx.fillStyle = cor;
+  ctx.fillText(emoticon,x,y);
+
+  // Calcula a direção do deslocamento do CURSOR
+  if (document.getElementById( "emoX").checked) {x += tamtexto};
+  if (document.getElementById("emoXR").checked) {x -= tamtexto};
+  if (document.getElementById( "emoY").checked) {y += tamtexto};
+  if (document.getElementById("emoYR").checked) {y -= tamtexto};
+  if (x > WIDTH) {x=WIDTH};
+  if (x < 0) {x=0};
+  if (y > HEIGHT) {y=HEIGHT};
+  if (y < 0) {y=0};
+  // Fim do Cálculo de Descolocamento do CURSOR
+
+  // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
+  if (pGravar=="S")
+  {
+    addpasso("Emoticon",emoticon); 
+  }
+}
 
 
 //

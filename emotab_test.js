@@ -17,9 +17,9 @@ function escrtxt(ttexto)
 
 
 //
-// INICIO DA FUNÇÃO TESTA
+// CRIA OS BOTÕES PARA A FERRAMENTA EMOTICONS
 //
-var str1 = "S✊✋✌✍⌚☔☕☹☺♨☘☙❥❤♡♥♠♦♣♩♪♫♬♭♯☃★☆☼☁☽☾✝✞✟✠✡☢☣۞¤✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋E";
+var str1 = "►✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋◯☹☺☘☙♩♪♫♬♭♯★☆✝✞✟✠✡☢☣❥❤♡♥♠♦♣☃۞☼☽☾☁✊✋✌✍⌚☔☕◄";
 //var str1 = "*1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz@";
 
 var QtdEMC = str1.length;
