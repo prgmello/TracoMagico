@@ -126,7 +126,7 @@
                 <H4 id="numlargura" title="Largura do traço.">LARGURA</H>
                 <P>              
               <TD bgcolor="#333333">
-                  <H4  title="Transparência de objetos sólidos.">TRANSP.</H>
+                  <H4  title="Transparência de objetos sólidos.">TRANSP.%</H>
               </TD>
               <TD bgcolor="#000000"> 
                 <H4  title="Velocidade do traço (desenhando com as setas).">VELOC.</H>
@@ -157,53 +157,42 @@
        <TR>  
           <TD width="35px">
               <div class="input-color-container"> 
-               <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Escolha a cor desejada." oninput="DefineCor(this.value);">
+               <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Escolha a cor desejada." oninput="DefColor(this.value);">
               </div>
             </p>
             </TD>
 
           <TD width="80px"> 
             <P>              
-                <a href="#" class="btclass" onclick="deflargura(-1);"    title="Diminui a Largura.">      ◁</a>
                 <canvas id="espcanvas" title="Largura do traço." width="20" height="20" style="border:1px solid #1C1C1C;"></canvas> 
-                <a href="#" class="btclass" onclick="deflargura(+1);"    title="Aumenta a Largura.">      ▷</a>
             </P>             
             <P>
-              <a href="#" class="btclass" onclick="deflargura('MIN');" title="Largura mínima (padrão).">❙◀</a>
-
-              <a href="#" class="btclass" onclick="deflargura('MAX');" title="Largura máxima."   >      ▶❙</a>
+              <input type="range" class="slider" min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
              </P>
           </TD>
             <TD  width="60px">
                 <p class="contador" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
+                <br>
                 <p>
-                  <input type="range" class="slider" min="0" max="99" value="0" oninput="transparencia(this.value)">                  
+                  <input type="range" title="Transparência." class="slider" min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();">                  
                 </p>
             </TD>
             <TD width="60px"> 
-              <p class="contador" id="numvelocidade" title="Velocidade: 2 a 10.">[2]</p>
+              <p class="contador" id="numvelocidade" title="Velocidade: 2 a 20.">[2]</p>
             <P >
-              <a href="#" class="btclass" onclick="defvelocidade(-1);"    title="Diminui a velocidade.">◁</a>
-              <a href="#" class="btclass" onclick="defvelocidade(+1);"    title="Aumenta a velocidade.">▷</a>
+              <input type="range" title="Velocidade." class="slider" min="2" max="20" value="2" oninput="DefSpeed(this.value)" onchange="this.blur();"> 
             </p>
-            <p>
-              <a href="#" class="btclass" onclick="defvelocidade('MIN');" title="Velocidade Mínima (padrão)."   >❙◀</a>
-              <a href="#" class="btclass" onclick="defvelocidade('MAX');" title="Velocidade Máxima."   >▶❙</a>
-           </P>
+
           </TD>
 
   
 
           <TD width="70px"> 
             <p>
-             <a href="#" class="btclass" onclick="defraio(-1);"     title="Diminui o raio." >◁</a>
              <canvas id="circanvas" title="Tamanho do Raio (20X)." width="20" height="20" style="border:1px solid #333333;"></canvas>
-             <a href="#" class="btclass" onclick="defraio(+1);"     title="Aumenta o raio." >▷</a>
             </p>
             <P>
-             <a href="#" class="btclass" onclick="defraio('MIN');" title="Raio mínimo."    >❙◀</a>
-            <a href="#" class="btclass" onclick="defraio('MEIO');" title="Raio médio."     >⧓</a>
-            <a href="#" class="btclass" onclick="defraio('MAX');"  title="Raio máximo."    >▶❙</a>
+              <input type="range" class="slider" min="5" max="200" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
             </p>
           </TD>
 
@@ -219,9 +208,9 @@
                 <hr width="80%" color="#333333">
               </p>
               <p> 
-                <a href="#" class="btaction" onclick="circulo(0);"       title="Desenha um círculo vazio."               >◯</a>
+                <a href="#" class="btaction" onclick="DrawCircle(0);"    title="Desenha um círculo vazio."               >◯</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="circulo(1);"       title="Desenha um círculo sólido"               >●</a>
+                <a href="#" class="btaction" onclick="DrawCircle(1);"    title="Desenha um círculo sólido"               >●</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="concentrico('M');" title="Desenha Círculos concêntricos."          >◉</a> 
                 &nbsp;
@@ -235,7 +224,7 @@
                 <!-- <a href="#" class="btclass" onclick="deftexto(-1);"     title="Diminui o tamanho do texto.">◁</a>
                 <a href="#" class="btclass" onclick="deftexto('MEIO');" title="Tamanho do texto médio (padrão).">⧓</a>
                 <a href="#" class="btclass" onclick="deftexto(+1);"     title="Aumenta o tamanho do texto.">▷</a> -->
-                <input type="range" class="slider" min="10" max="100" value="20" oninput="deftexto(this.value)">
+                <input type="range" class="slider" min="10" max="100" value="20" oninput="deftexto(this.value)" onchange="this.blur();">
               </p>
               <p>
                 <a href="#" class="btaction" onclick="escrevetexto();" title="Digite o texto."   >⌨</a>
@@ -293,7 +282,7 @@
 
             </p>
             <p> 
-              <a href="#" class="btgrande" onclick="apagar(0);"  title="Apaga a tela atual.">APAGA</a>
+              <a href="#" class="btgrande" onclick="apagar();"  title="Apaga a tela atual.">APAGA</a>
             </p>
             <hr width="80%">
             <p> 

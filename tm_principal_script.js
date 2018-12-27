@@ -34,13 +34,13 @@ var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
 var largura = 2; // largura do traço de 2 a 20
 var sentido = 0; // Definição de sentido de alteração: [menos = -1] [mais = 1]
-var raio = 105; // Tamanho do raio para circulos
+var raio = 100; // Tamanho do raio para circulos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
 var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
-var LinhaManual = 0; // 
+var LinhaManual = false; // 
 var vResp = "N"; // Saída da função confirma
 var gEmogi; // Emoji adicionado
 
@@ -115,10 +115,30 @@ function iniciar1() {
   Yant = y;
   retL = 0;
   retA = 0;
+}
 
-  //
+
+//
+// FAZ INICIALIZAÇÃO DOS CONTROLES
+//
+function UpdateTools() 
+{
+  ShowColor();
+  ShowThickness();
+  ShowTransparency();
+  ShowSpeed();
+  ShowRadius();
+  ShowSaveStatus();
+  ShowCursor();
+}
+
+
+
+//
   // CRIA OS BOTÕES PARA A FERRAMENTA EMOTICONS
   //
+  function CriaEmoTab() 
+  {
   var str1 = "✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋♩♪♫♬♭♯★☆✝✞✟✠✡☢☣❥❤♡♥♠♦♣☃۞☼☽☾☁☹☺☙☘✊✋✌✍⌚☔☕";
 
   var QtdEMC = str1.length;
@@ -132,27 +152,21 @@ function iniciar1() {
     element.innerHTML += '<a href="#" class="EMC" onclick=\'ColaEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
 
   }
-}
+  }
+
 
 
 //
-// FAZ INICIALIZAÇÃO DOS CONTROLES
+// DEFINE A COR
 //
-function iniciar2() {
-  deflargura(0);
-  defvelocidade(0);
-  defraio(0);
-  MostraStatusGrava();
-  cursor();
-}
-
-
-function DefineCor(inCor) {
+function DefColor(inCor) {
   cor = inCor;
 }
 
-
-function mostracor() {
+//
+// MOSTRA A COR
+//
+function ShowColor() {
   document.getElementById('input-color').value = cor;
 }
 
@@ -182,7 +196,7 @@ function SalvaDesenho() {
 
   arquivo.href = meucanvas.toDataURL();
   mensagem('Imagem salva com o nome "TM-Imagem.png"')
-  cursor();
+  ShowCursor();
 }
 
 
@@ -311,7 +325,7 @@ function apagar() {
     limpatela();
   }
   iniciar1();
-  iniciar2();
+  UpdateTools();
 }
 
 
@@ -336,20 +350,17 @@ function limpatela() {
 //
 // DEFINE LARGURA DA CANETA
 //
-function deflargura(sentido) {
-  largura = largura + sentido
-  if (largura < 2) {
-    largura = 2
-  }
-  if (largura > 20) {
-    largura = 20
-  }
-  if (sentido == 'MIN') {
-    largura = 2
-  }
-  if (sentido == "MAX") {
-    largura = 20
-  }
+function DefThickness(parametro) {
+  largura = parseInt(parametro);
+  ShowThickness();
+}
+
+
+//
+// MOSTRA A LARGURA DA CANETA
+//
+ function ShowThickness()
+{
   ctx2.lineWidth = 1;
   ctx2.clearRect(0, 0, 20, 20);
 
@@ -367,23 +378,20 @@ function deflargura(sentido) {
 //
 // DEFINE A VELOCIDADE DA CANETA
 //
-function defvelocidade(sentido) {
-  var vel;
-  dx = dx + sentido
-  if (dx < 2) {
-    dx = 2
-  }
-  if (dx > 10) {
-    dx = 10
-  }
-  if (sentido == 'MIN') {
-    dx = 2
-  }
-  if (sentido == "MAX") {
-    dx = 10
-  }
-  dy = dx
-  vel = dx - 2
+function DefSpeed(parametro) 
+{
+  dx =  parseInt(parametro);
+  dy =  dx;
+  ShowSpeed();
+}
+
+
+
+//
+// MOSTRA A VELOCIDADE DA CANETA
+//
+function ShowSpeed()
+{
   // AUALIZANDO O MOSTRADOR DA VELOCIDADE
   var element = document.getElementById("numvelocidade");
   element.innerHTML = "[ " + dx + " ]";
@@ -393,24 +401,17 @@ function defvelocidade(sentido) {
 //
 // DEFINE RAIO DO CIRCULO
 //
-function defraio(sentido) {
-  raio = raio + sentido * 2
-  if (raio < 5) {
-    raio = 5
-  }
-  if (raio > 200) {
-    raio = 200
-  }
-  if (sentido == 'MIN') {
-    raio = 5
-  }
-  if (sentido == "MAX") {
-    raio = 205
-  }
-  if (sentido == "MEIO") {
-    raio = 105
-  }
+function DefRadius(parametro) {
+  raio = parseInt(parametro);
+  ShowRadius();
+}
 
+
+//
+// MOSTRA O RAIO DO CIRCULO
+//
+function ShowRadius()
+{
   // Desenha o Círculo no Canvas de Raio
   ctx4.lineWidth = 1;
   ctx4.beginPath();
@@ -421,20 +422,27 @@ function defraio(sentido) {
 
   // Mostrando o valor do Raio
   var element = document.getElementById("numraio");
-  element.innerHTML = "RAIO: " + (raio - 5);
+  element.innerHTML = "RAIO: " + raio;
 }
 
 
 //
 // DEFINE A TRANSPARENCIA
 //
-function transparencia(value) 
+function DefTransparency(value) 
 {
   var lTransp = 1 - (value / 100);
   transp = parseFloat(lTransp.toFixed(2));
-  
-  // ATUALIZANDO O MOSTRADOR DA TRANSPARENCIA
-  var lTransp2Dig = value * 1.0;
+  ShowTransparency();
+}
+
+
+//
+// MOSTRA A TRANSPARENCIA
+//
+function ShowTransparency() 
+{
+  var lTransp2Dig = (1-transp) * 100;
   lTransp2Dig = parseFloat(lTransp2Dig.toFixed(2));
   var element = document.getElementById("sttransp");
   element.innerHTML = "[ " + lTransp2Dig + " ]";
@@ -456,15 +464,13 @@ function deftexto(value)
 //
 // MOSTRA O TEXTO PASSEI AQUI  (DEBUG)
 //
-function ola() {
-  alert('PASSEI AQUI');
-}
+function ola() {console.log('PASSEI AQUI');}
 
 
 //
 // POSICIONA O CURSOR NO CANVAS DA FRENTE
 //
-function cursor() {
+function ShowCursor() {
   ctxFr.beginPath();
   ctxFr.clearRect(0, 0, WIDTH, HEIGHT);
   ctxFr.font = "10px Verdana";
@@ -476,7 +482,7 @@ function cursor() {
   var halfCursorWidth = ctxFr.measureText(cursorText).width/2;
   ctxFr.fillText(cursorText, 
     x - halfCursorWidth, 
-    y + halfCursorWidth - 2); // this is a total HACK!
+    y + halfCursorWidth - 2); // Isso foi setado à força!!
 
   // Marca o ponto no Canvas de desenho
   ctx.moveTo(x, y);
@@ -530,13 +536,15 @@ function KeyDown(evt) {
       break;
   }
 
-  if (LinhaManual == 0) {
-    Xant = x;
-    Yant = y;
-  }
+  // // FLAG DE USO DE TECLADO
+  if (LinhaManual == false) 
+   {
+     Xant = x;
+     Yant = y;
+   }
 
-  ponto();
-  LinhaManual = 1
+   ponto();
+   LinhaManual = true;
 
 }
 
@@ -553,7 +561,7 @@ tmcanvasFr.onmousedown = function (evt) {
   var rect = tmcanvasFr.getBoundingClientRect(); 
   x = evt.offsetX;
   y = evt.offsetY;
-  cursor();
+  ShowCursor();
 }
 
 
@@ -609,8 +617,9 @@ if (window.File && window.FileList && window.FileReader) {
 
 
 ocultaMSG();
+CriaEmoTab();
 MostraEmoTab(0);
 ocultaCONF(vResp);
 limpatela();
 iniciar1();
-iniciar2();
+UpdateTools();

@@ -28,7 +28,7 @@ function ponto()
   // CALCULA LARGURA E ALTURA DO RETÂNGULO
   retL = Math.abs(x - Xant)+1;
   retA = Math.abs(y - Yant)+1;
-  cursor();
+  ShowCursor();
 }
 
 
@@ -140,7 +140,7 @@ function retangulo(tipo)
 //
 // FAZ UM CÍRCULO NA POSIÇÃO ATUAL
 //
-function circulo(tipo)
+function DrawCircle(tipo)
 {
   var lcor1;
   var lcor2;
@@ -274,7 +274,8 @@ function ColaEmoji(parametro)
   ctx.fillStyle = cor;
   ctx.fillText(gEmoji,x,y);
 
-console.log("FS: " + FontSize + " X:" + x+ " Y:" + y);
+//console.log("FS: " + FontSize + " X:" + x+ " Y:" + y);
+
 // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
 if (pGravar=="S")
 {
@@ -291,7 +292,7 @@ if (pGravar=="S")
   if (y > HEIGHT) {y=HEIGHT};
   if (y < 0) {y=0};
   // Fim do Cálculo de Descolocamento do CURSOR
-  cursor();
+  ShowCursor();
 
 }
 

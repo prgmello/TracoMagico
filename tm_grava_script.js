@@ -15,14 +15,14 @@ function grava()
 {
   if (pGravar == "S") {pGravar = "N";} 
   else if (pGravar == "N") {pGravar = "S";}
-  MostraStatusGrava();
+  ShowSaveStatus();
 }
 
 
 //
-// FUNÇÃO MOSTRA O STATUS DA GRAVAÇÃO (S/N)
+// FUNÇÃO MOSTRA O STATUS DA GRAVAÇÃO
 //
-function MostraStatusGrava() 
+function ShowSaveStatus() 
 {
   if (pGravar == "S") 
   {
@@ -59,7 +59,7 @@ function toca()
     if (confirm("Confirma Redesenhar?"))
     {
       pGravar = "N";
-      MostraStatusGrava();
+      ShowSaveStatus();
       redesenha("N");
       mensagem("ATENÇÃO: A Gravação desligada!")
     }
@@ -108,66 +108,64 @@ function redesenha(stGravar)
      
 
 
-    var o = new Object;
-    o.forma = pForma[lPasso];
-    o.x = x;
-    o.y = y;
-    o.tipo = lTipo;
-    o.FontSize = FontSize;
-    console.log(o);
+    // var o = new Object;
+    // o.forma = pForma[lPasso];
+    // o.x = x;
+    // o.y = y;
+    // o.tipo = lTipo;
+    // o.FontSize = FontSize;
+    // console.log(o);
  
 
 
-    //alert("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " raio= " + raio + " cor= " + cor + " largura= " + largura)
+    //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " raio= " + raio + " cor= " + cor + " largura= " + largura)
 
 
     switch (pForma[lPasso])
     {
       case "Cursor":         // REFAZ O POSICIONAMENTO DO CURSOR
-           cursor();
+           ShowCursor();
            break;
       case "Ponto":         // REFAZ PONTO
-           ponto();
+           ponto();       // Sugestão: DrawPoint
            break;
       case "Reta":          // REFAZ RETA
-           reta();
+           reta();     // Sugestão: DrawLine
            break;
       case "Retangulo":     // REFAZ RETANGULO
-           retangulo(lTipo);
+           retangulo(lTipo);  // Sugestão: DrawRectangle
            break;
       case "Circulo":       // REFAZ CIRCULO
-           circulo(lTipo);
+           DrawCircle(lTipo);
            break;
       case "Concentrico":   // REFAZ CONCENTRICO
-           concentrico(lTipo);
+           concentrico(lTipo); // Sugestão: DrawConcentricCircles
            break;
       case "Texto":         // REFAZ TEXTO
-           colatexto();
+           colatexto(); // Sugestão: DrawText
            break;
       case "Emoticon":      // REFAZ EMOTICON
-           ColaEmoji(gEmoji);
+           ColaEmoji(gEmoji); // Sugestão: DrawEmoji
            break;
       case "Fundo":         // REFAZ O FUNDO
-           fundo();
+           fundo();      // Sugestão: SetBackgoundColor
            break;
       case "Imagem":        // REFAZ COLA IMAGEM
-            if (gravouIMG == "N") 
+            if (gravouIMG == "N")  
             {
-             // DELETAR A PROXIMA LINHA CASO NÃO FUNCIONE
              usuarioIMG = new Image();
              usuarioIMG = pUsuarioIMG[lPasso];
             }
-            colaimg(lTipo);
+            colaimg(lTipo); // Sugestão: DrawImage
             break;
-      case "Tilt":   // REFAZ Apagar
-           tilt(lTipo);
+      case "Tilt":   // REFAZ Tilt
+           tilt(lTipo);    // Sugestão: BackgroudTilt
            break;
  
     }
   }
    // DEVOLVE OS VALORES ORIGINAIS PARA AS VARIÁVEIS GLOBAIS
-  mostracor();
-  MostraStatusGrava();
+  UpdateTools();
 }
  
 
@@ -207,6 +205,7 @@ function corta()
        redesenha("S");
     }
   } else {mensagem("Não há Passos de desenho gravados!!!")}
+  UpdateTools();
 }
 
 
@@ -241,8 +240,7 @@ function cancela()
       }
       Passo     = 0;   // Zera o Passo de gravação
       gravouIMG = "N"; // Define a imagem como não Gravada
-      MostraStatusGrava();
-      iniciar1();
+      UpdateTools();
     }
   } else {mensagem("Não há desenho gravado!!!")}
 }
@@ -298,7 +296,7 @@ function addpasso(forma,tipo)
     mensagem("Você chegou ao limite de passos gravados: " + PassoLimite + " passos" );
     pGravar="N";
   }
-  MostraStatusGrava();
+  ShowSaveStatus();
  }
 
 
