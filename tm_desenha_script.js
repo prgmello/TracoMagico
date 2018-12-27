@@ -251,7 +251,7 @@ function escrevetexto()
 function colatexto()
 {
   ctx.moveTo(x,y);
-  ctx.font=tamtexto+"px Verdana";
+  ctx.font=FontSize+"px Verdana";
   ctx.fillStyle = cor;
   ctx.fillText(texto,x,y);
 
@@ -266,29 +266,33 @@ function colatexto()
 //
 // COLA O TEXTO NO DESENHO
 //
-function cola_emo(emoticon)
+function ColaEmoji(parametro)
 {
+  gEmoji = parametro
   ctx.moveTo(x,y);
-  ctx.font=tamtexto+"px Verdana";
+  ctx.font=FontSize+"px Verdana";
   ctx.fillStyle = cor;
-  ctx.fillText(emoticon,x,y);
+  ctx.fillText(gEmoji,x,y);
 
-  // Calcula a direção do deslocamento do CURSOR
-  if (document.getElementById( "emoX").checked) {x += tamtexto};
-  if (document.getElementById("emoXR").checked) {x -= tamtexto};
-  if (document.getElementById( "emoY").checked) {y += tamtexto};
-  if (document.getElementById("emoYR").checked) {y -= tamtexto};
+console.log("FS: " + FontSize + " X:" + x+ " Y:" + y);
+// ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
+if (pGravar=="S")
+{
+   addpasso("Emoticon","");
+}
+
+// Calcula a direção do deslocamento do CURSOR
+  if (document.getElementById( "emoX").checked) {x += FontSize};
+  if (document.getElementById("emoXR").checked) {x -= FontSize};
+  if (document.getElementById( "emoY").checked) {y += FontSize};
+  if (document.getElementById("emoYR").checked) {y -= FontSize};
   if (x > WIDTH) {x=WIDTH};
   if (x < 0) {x=0};
   if (y > HEIGHT) {y=HEIGHT};
   if (y < 0) {y=0};
   // Fim do Cálculo de Descolocamento do CURSOR
+  cursor();
 
-  // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
-  if (pGravar=="S")
-  {
-    addpasso("Emoticon",emoticon); 
-  }
 }
 
 

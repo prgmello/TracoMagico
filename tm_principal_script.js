@@ -42,10 +42,11 @@ var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
 var LinhaManual = 0; // 
 var vResp = "N"; // Saída da função confirma
+var gEmogi; // Emoji adicionado
 
 // VARIÁVEIS DAS FUNÇÕES LER FOTOS
 var texto = "Escreva seu texto." // Armazena o texto digitado
-var tamtexto = 20; // Tamanho do texto em pixels
+var FontSize = 20; // Tamanho da Fonte em pixels
 var usuarioIMG = new Image(); // Guarda a foto do usuário lida do computador
 var temIMG = 0; // Não tem foto na memória
 var gravouIMG = "N" // Define se a imagem foi gravada em memória.
@@ -54,22 +55,24 @@ var gravouIMG = "N" // Define se a imagem foi gravada em memória.
 //
 var Passo = 0;
 var PassoLimite = 4000;
-var pGravar      = "S";
-var pForma       = new Array(PassoLimite);
-var pTipo        = new Array(PassoLimite);
-var pX           = new Array(PassoLimite);
-var pY           = new Array(PassoLimite);
-var pXant        = new Array(PassoLimite);
-var pYant        = new Array(PassoLimite);
-var pRaio        = new Array(PassoLimite);
-var pCor         = new Array(PassoLimite);
-var pLargura     = new Array(PassoLimite);
-var pVelocidade  = new Array(PassoLimite);
-var pTransp      = new Array(PassoLimite);
-var pTexto       = new Array(PassoLimite);
-var pTamtexto    = new Array(PassoLimite);
-var pUsuarioIMG  = new Array(PassoLimite);
-var pGravouIMG   = new Array(PassoLimite);
+var pGravar = "S";
+var pForma = new Array(PassoLimite);
+var pTipo = new Array(PassoLimite);
+var pX = new Array(PassoLimite);
+var pY = new Array(PassoLimite);
+var pXant = new Array(PassoLimite);
+var pYant = new Array(PassoLimite);
+var pRaio = new Array(PassoLimite);
+var pCor = new Array(PassoLimite);
+var pLargura = new Array(PassoLimite);
+var pVelocidade = new Array(PassoLimite);
+var pTransp = new Array(PassoLimite);
+var pTexto = new Array(PassoLimite);
+var pEmoji = new Array(PassoLimite);
+var pFontSize = new Array(PassoLimite);
+var pUsuarioIMG = new Array(PassoLimite);
+var pGravouIMG = new Array(PassoLimite);
+
 
 //
 // FIM DA DEFINIÇÃO DAS VARIÁVEIS GLOBAIS
@@ -126,7 +129,7 @@ function iniciar1() {
   for (f = 0; f < QtdEMC; f++) {
     pEMC[f] = str1.substring(f, f + 1);
     //console.log(pEMC[f]);
-    element.innerHTML += '<a href="#" class="EMC" onclick=\'cola_emo("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
+    element.innerHTML += '<a href="#" class="EMC" onclick=\'ColaEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
 
   }
 }
@@ -439,14 +442,14 @@ function transparencia(value)
 
 
 //
-// DEFINEO TAMANHO DO TEXTO
+// DEFINE O TAMANHO DA FONTE DO TEXTO
 //
 function deftexto(value) 
 {
   // AUALIZANDO O MOSTRADOR DE TAMANHO DO TEXTO
-  tamtexto = value;
+  FontSize = parseInt(value);
   var element = document.getElementById("numtexto");
-  element.innerHTML = "[ " + tamtexto + " ]";
+  element.innerHTML = "[ " + FontSize + " ]";
 }
 
 

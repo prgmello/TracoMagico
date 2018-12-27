@@ -75,7 +75,6 @@ function redesenha(stGravar)
   var lPassoFim = Passo;
   var lPasso;
   var lTipo;
-  var lEmoticon;
   pGravar = stGravar;
   
   for (lPasso = 0; lPasso < lPassoFim; lPasso++) 
@@ -96,17 +95,29 @@ function redesenha(stGravar)
     if (pForma[lPasso]=="Texto") 
     {
       texto      = pTexto[lPasso];
-      tamtexto   = pTamtexto[lPasso];
+      FontSize   = pFontSize[lPasso];
     }
 
     // SE EMOTICON
     if (pForma[lPasso]=="Emoticon")
     {
-      lEmoticon   = pTexto[lPasso];
-
+      gEmogi   = pEmoji[lPasso];
+      FontSize = pFontSize[lPasso];
     }
     gravouIMG  = pGravouIMG[lPasso];
      
+
+
+    var o = new Object;
+    o.forma = pForma[lPasso];
+    o.x = x;
+    o.y = y;
+    o.tipo = lTipo;
+    o.FontSize = FontSize;
+    console.log(o);
+ 
+
+
     //alert("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " raio= " + raio + " cor= " + cor + " largura= " + largura)
 
 
@@ -134,7 +145,7 @@ function redesenha(stGravar)
            colatexto();
            break;
       case "Emoticon":      // REFAZ EMOTICON
-           cola_emo(lEmoticon);
+           ColaEmoji(gEmoji);
            break;
       case "Fundo":         // REFAZ O FUNDO
            fundo();
@@ -189,7 +200,7 @@ function corta()
        pTransp[lPasso]     = null;
        pUsuarioIMG[Passo]  = null;
        pTexto[lPasso]      = null;
-       pTamtexto[lPasso]   = null;
+       pFontSize[lPasso]   = null;
        pGravouIMG[Passo]   = null;
        limpatela(0);
        Passo -- // Subtrai um do Passo de gravação
@@ -224,7 +235,7 @@ function cancela()
         pVelocidade[lPasso]  = null;
         pTransp[lPasso]      = null;
         pTexto[lPasso]       = null;
-        pTamtexto[lPasso]    = null;
+        pFontSize[lPasso]    = null;
         pUsuarioIMG[lPasso]  = null;
         pGravouIMG[lPasso]   = null;
       }
@@ -264,13 +275,14 @@ function addpasso(forma,tipo)
    if (forma=="Texto") 
    {
      pTexto[Passo]    = tipo;
-     pTamtexto[Passo] = tipo.length;
+     pFontSize[Passo] = FontSize;
     }
 
        // Grava o Texto se o tipo == "Emoticon"
    if (forma=="Emoticon") 
     {
-     pTexto[Passo]    = tipo;
+     pEmoji[Passo]    = gEmoji;
+     pFontSize[Passo] = FontSize;
     }
     
    pGravouIMG[Passo]   = gravouIMG;
