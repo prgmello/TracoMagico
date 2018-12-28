@@ -12,7 +12,7 @@
 //
 // FAZ O TRAÇO
 //
-function ponto() 
+function DrawPoint() 
 {
   ctx.beginPath();
   ctx.fillStyle = cor;
@@ -21,10 +21,8 @@ function ponto()
   ctx.closePath();
   ctx.fillStyle = cor;
 
-  if (pGravar=="S")
-  {
-    addpasso("Ponto",0); 
-  }
+  if (pGravar) {SaveStep("Ponto","","");}
+
   // CALCULA LARGURA E ALTURA DO RETÂNGULO
   retL = Math.abs(x - Xant)+1;
   retA = Math.abs(y - Yant)+1;
@@ -37,36 +35,35 @@ function ponto()
 //
 // DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
 //
-function concentrico(tipo)
+function DrawConcentricCircles(vBehavior)
 {
   var lCores;
   var passo = largura*3;
   ctx.lineWidth=largura
-  for (var f = 1; f < raio; f=f+passo)
+  for (var f = 1; f < Radius; f=f+passo)
    { 
     ctx.beginPath()
-    if (tipo=="M") {lCores=cor;} 
-    else {lCores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);}
+    if (vBehavior=="uma-cor") {lCores=cor;} 
+    else if (vBehavior=="varias-cores") 
+      {lCores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
     // Plota os Círculos Concêntricos
     ctx.strokeStyle = lCores;
     ctx.arc(x, y, f, 0, Math.PI*2, true);
     ctx.stroke();
    }
 
-   if (pGravar=="S")
-   {
-     addpasso("Concentrico",tipo); 
-   }
+   if (pGravar) {SaveStep("Concentrico",vBehavior,"");}
 }
 
 
 //
 // TRAÇA UMA RETA USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function reta()
+function DrawLine()
 {
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");}
-  else {
+  else 
+  {
     ctx.beginPath()
     ctx.lineWidth=largura;
     ctx.strokeStyle = cor;
@@ -74,12 +71,9 @@ function reta()
     ctx.lineTo(x,y)
     ctx.stroke();
     ctx.closePath();
+  
+   if (pGravar) {SaveStep("Linha","","");}
 
-    
-  if (pGravar=="S")
-  {
-    addpasso("Reta",0); 
-  }
   }
 
 }
@@ -88,7 +82,7 @@ function reta()
 //
 // FAZ UM RETANGULO USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function retangulo(tipo)
+function DrawRectangle(vBehavior)
 {
   var newX = x;
   var newY = y;
@@ -104,7 +98,7 @@ function retangulo(tipo)
 
      ctx.beginPath();
      ctx.lineWidth=largura;
-     if (tipo==1) 
+     if (vBehavior=="preenchido") 
      {
       ctx.fillStyle = cor;
       if (transp!==1)
@@ -120,7 +114,7 @@ function retangulo(tipo)
       ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
 
 
-     } else if (tipo==0) 
+     } else if (vBehavior=="vazio") 
      {
       ctx.strokeStyle = cor;
       ctx.strokeRect(newX,newY,retL,retA);
@@ -129,10 +123,7 @@ function retangulo(tipo)
     }
     ctx.closePath();
 
-    if (pGravar=="S")
-    {
-      addpasso("Retangulo",tipo); 
-    }
+    if (pGravar) {SaveStep("Retangulo",vBehavior,"");}
   }
   
 
@@ -140,14 +131,14 @@ function retangulo(tipo)
 //
 // FAZ UM CÍRCULO NA POSIÇÃO ATUAL
 //
-function DrawCircle(tipo)
+function DrawCircle(vBehavior)
 {
   var lcor1;
   var lcor2;
   var lcor3; 
   ctx.beginPath();
   ctx.lineWidth=largura;
-  if (tipo==1) 
+  if (vBehavior=="preenchido") 
   {
     ctx.fillStyle = cor;
     if (transp!==1)
@@ -157,21 +148,18 @@ function DrawCircle(tipo)
       lcor3 = parseInt(cor.substring(5,7), 16);
       ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
     }
-    ctx.arc(x, y, raio, 0, Math.PI*2, true);
+    ctx.arc(x, y, Radius, 0, Math.PI*2, true);
     ctx.fill();
     // Faz o reset o RGBA para 1
     ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
-  } else if (tipo==0) 
+  } else if (vBehavior=="vazio") 
   {
    ctx.strokeStyle = cor;
-   ctx.arc(x, y, raio, 0, Math.PI*2, true);
+   ctx.arc(x, y, Radius, 0, Math.PI*2, true);
    ctx.stroke(); 
   }
   
-  if (pGravar=="S")
-  {
-    addpasso("Circulo",tipo); 
-  }
+  if (pGravar) {SaveStep("Circulo",vBehavior,"");}
 }
 
 
@@ -188,7 +176,7 @@ function DrawCircle(tipo)
 //
 // COLA A IMAGEM NO CANVAS
 //
-function colaimg(tipo)
+function DrawReadImage(vBehavior)
 {
   var newX = x;
   var newY = y;
@@ -197,19 +185,19 @@ function colaimg(tipo)
   if (newX > Xant)  {newX = Xant;}  
   if (newY > Yant)  {newY = Yant}
 
-  if (temIMG == 0)
+  if (temIMG == false)
   {mensagem("Não há foto para colar ou arquivo inválido.");
   return false;}   
 
   
-  if (tipo == 0)
+  if (vBehavior == 'frente')
     { 
-      if ((Xant==x) && (Yant==y)) 
+      if ((Xant==x) && (Yant==y))
       {mensagem("Marque dois pontos formando um retângulo.");
       return false;} 
       ctx.drawImage(usuarioIMG , newX , newY , retL , retA);
     }
-  else
+  else if (vBehavior == 'fundo')
   { 
     ctxFu.globalAlpha = transp;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
@@ -217,10 +205,7 @@ function colaimg(tipo)
 
   }
 
-  if (pGravar=="S")
-  {
-    addpasso("Imagem",tipo); 
-  }
+  if (pGravar) {SaveStep("Imagem",vBehavior,"");}
 }
 
 
@@ -229,70 +214,63 @@ function colaimg(tipo)
 //
 
 // PERMITE QUE O USUÁRIO ESCREVA O TEXTO
-function escrevetexto()
+function ReadText()
 {
-  var vTexto = texto;
+  var lTexto = texto;
   texto = prompt("Digite o texto até 150 caracteres", texto);
   if (texto == null) {
-    texto = vTexto;
+    texto = lTexto;
   } else if (texto.length > 150)
   {
   texto = texto.substring(0,150);
   mensagem("Texto cortado para 150 caracteres!")
   }  else if (texto.length == 0)
   {   
-    texto = vTexto;
+    texto = lTexto;
   }
 }
 
 //
 // COLA O TEXTO NO DESENHO
 //
-function colatexto()
+function DrawText()
 {
   ctx.moveTo(x,y);
   ctx.font=FontSize+"px Verdana";
   ctx.fillStyle = cor;
   ctx.fillText(texto,x,y);
 
-  // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
-  if (pGravar=="S")
-  {
-    addpasso("Texto",texto); 
-  }
+  if (pGravar) {SaveStep("Texto","",texto);}
 }
 
 
 //
 // COLA O TEXTO NO DESENHO
 //
-function ColaEmoji(parametro)
+function DrawEmoji(lEmoji)
 {
-  gEmoji = parametro
   ctx.moveTo(x,y);
   ctx.font=FontSize+"px Verdana";
   ctx.fillStyle = cor;
-  ctx.fillText(gEmoji,x,y);
+  ctx.fillText(lEmoji,x,y);
 
 //console.log("FS: " + FontSize + " X:" + x+ " Y:" + y);
 
-// ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
-if (pGravar=="S")
-{
-   addpasso("Emoticon","");
-}
 
-// Calcula a direção do deslocamento do CURSOR
-  if (document.getElementById( "emoX").checked) {x += FontSize};
-  if (document.getElementById("emoXR").checked) {x -= FontSize};
-  if (document.getElementById( "emoY").checked) {y += FontSize};
-  if (document.getElementById("emoYR").checked) {y -= FontSize};
-  if (x > WIDTH) {x=WIDTH};
-  if (x < 0) {x=0};
-  if (y > HEIGHT) {y=HEIGHT};
-  if (y < 0) {y=0};
-  // Fim do Cálculo de Descolocamento do CURSOR
-  ShowCursor();
+if (pGravar) {SaveStep("Emoji","","lEmoji");}
+
+
+// // Calcula a direção do deslocamento do CURSOR
+//   if (document.getElementById( "emoX").checked) {x += FontSize};
+//   if (document.getElementById("emoXR").checked) {x -= FontSize};
+//   if (document.getElementById( "emoY").checked) {y += FontSize};
+//   if (document.getElementById("emoYR").checked) {y -= FontSize};
+//   if (x > WIDTH) {x=WIDTH};
+//   if (x < 0) {x=0};
+//   if (y > HEIGHT) {y=HEIGHT};
+//   if (y < 0) {y=0};
+//   // Fim do Cálculo de Descolocamento do CURSOR
+//  ShowCursor();
 
 }
 
@@ -300,17 +278,17 @@ if (pGravar=="S")
 //
 // CRIA UM FUNDO PSICODÉLICO
 //
-function tilt(tipo)
+function MakeBackgroudTilt(vBehavior)
 {
   var passo = largura;
   var lx;
   var ly;
   var lcor1, lcor2, lcor3;
 
-if (tipo == 0)
+if (vBehavior == "circulos")
 {
   var llargura;
-  var lraio;
+  var lRadius;
   var ltrans;
   for (f = 60; f > 10; f=f-passo)
   { 
@@ -320,13 +298,13 @@ if (tipo == 0)
      lcor3 = Math.floor(Math.random()*255);
      lx    = Math.floor(Math.random()*(WIDTH));
      ly    = Math.floor(Math.random()*(HEIGHT));
-     lraio = Math.floor(Math.random()*(HEIGHT/2));
+     lRadius = Math.floor(Math.random()*(HEIGHT/2));
      ltrans = transp;
      llargura = Math.floor(Math.random()*dx);
 
      ctxFu.lineWidth=llargura;
      ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + ltrans + ' )';
-     ctxFu.arc(lx, ly, lraio, 0, Math.PI*2, true);
+     ctxFu.arc(lx, ly, lRadius, 0, Math.PI*2, true);
 
      ctxFu.fill();
      ctxFu.closePath();
@@ -334,7 +312,7 @@ if (tipo == 0)
   ctxFu.strokeStyle = 0;
   ctxFu.fillStyle = 0;
 }
-else if (tipo==1)
+else if (vBehavior=="retangulos")
 {
 
   var llarg;
@@ -357,36 +335,27 @@ else if (tipo==1)
    lcor3 = Math.floor(Math.random()*255);
    ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
    ctxFu.fillRect(lx, ly, llarg, lalt);
+  
+  }
+  ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
+  ctxFu.closePath();
+  }
 
-   
- }
- ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
- ctxFu.closePath();
-
-}
-
-    // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
-    if (pGravar=="S")
-    {
-      addpasso("Tilt",tipo); 
-    }
+  if (pGravar) {SaveStep("Fundo-Aleatorio",vBehavior,"");}
 }
 
 
 //
 // FUNÇÃO FUNDO - MUDA O FUNDO DO DESENHO
 //
-function fundo()
+function ChangeBackgroundColor()
 {
     ctxFu.beginPath();
     ctxFu.fillStyle = cor;
     ctxFu.fillRect(0,0,WIDTH,HEIGHT); 
     ctxFu.fill();
-    // ADICIONA O PASSO SE GRAVAR ESTIVER LIGADO
-    if (pGravar=="S")
-    {
-      addpasso("Fundo",""); 
-    }    
+
+    if (pGravar) {SaveStep("Fundo","","");}    
 }
 
 

@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <link href="tm_style.css" rel="stylesheet" type="text/css">
-    <title>Traço Mágico em JS - v3.8f</title>
+    <title>Traço Mágico em JS - v3.8g</title>
     <meta charset="utf-8">
   </head>
 
@@ -107,7 +107,7 @@
                 <input type="radio" id="emoYR" name="Y" title="Deslocamento para a Cima."  disabled>▲
               </fieldset>
           <div class="EmoTab">
-              <a href="#" class="btgrande" onclick="MostraEmoTab(0);">FECHA</a>
+              <a href="#" class="btgrande" onclick="ShowEmojiTab(false);">FECHA</a>
           </div>
       </TD>
       </TR>
@@ -132,7 +132,7 @@
                 <H4  title="Velocidade do traço (desenhando com as setas).">VELOC.</H>
               </TD>
               <TD bgcolor="#333333">
-                <H4 id="numraio" title="Tamanho do raio para traçar círculos.">RAIO</H>
+                <H4 id="numradius" title="Tamanho do raio para traçar círculos.">RAIO</H>
               </TD>
               <TD bgcolor="#000000">
                  <H4 title="Formas básicas.">FORMAS</h>
@@ -167,7 +167,7 @@
                 <canvas id="espcanvas" title="Largura do traço." width="20" height="20" style="border:1px solid #1C1C1C;"></canvas> 
             </P>             
             <P>
-              <input type="range" class="slider" min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
+              <input type="range" title="Largura do Traço." class="slider" min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
              </P>
           </TD>
             <TD  width="60px">
@@ -198,40 +198,37 @@
 
           <TD width="100px"> 
               <p>
-                <a href="#" class="btaction" onclick="reta();" title="Cria uma reta entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
+                <a href="#" class="btaction" onclick="DrawLine();" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
                 &nbsp;
 
   
-                <a href="#" class="btaction" onclick="retangulo(0);" title="Traça um retângulo vazio entre os dois últimos pontos marcados."    >▯</a>
+                <a href="#" class="btaction" onclick="DrawRectangle('vazio');" title="Traça um retângulo vazio entre os dois últimos pontos marcados."    >▯</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="retangulo(1);" title="Traça um retângulo sólido entre os dois últimos pontos marcados.">▮</a>
+                <a href="#" class="btaction" onclick="DrawRectangle('preenchido');" title="Traça um retângulo sólido entre os dois últimos pontos marcados.">▮</a>
                 <hr width="80%" color="#333333">
               </p>
               <p> 
-                <a href="#" class="btaction" onclick="DrawCircle(0);"    title="Desenha um círculo vazio."               >◯</a>
+                <a href="#" class="btaction" onclick="DrawCircle('vazio');"    title="Desenha um círculo vazio."               >◯</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="DrawCircle(1);"    title="Desenha um círculo sólido"               >●</a>
+                <a href="#" class="btaction" onclick="DrawCircle('preenchido');"    title="Desenha um círculo preenchido"            >●</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="concentrico('M');" title="Desenha Círculos concêntricos."          >◉</a> 
+                <a href="#" class="btaction" onclick="DrawConcentricCircles('uma-cor');" title="Desenha Círculos concêntricos."          >◉</a> 
                 &nbsp;
-                <a href="#" class="btaction" onclick="concentrico('C');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
+                <a href="#" class="btaction" onclick="DrawConcentricCircles('varias-cores');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
               </p>
           </TD>
 
           <TD width="70px"> 
                 <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[20]</p>
               <P >
-                <!-- <a href="#" class="btclass" onclick="deftexto(-1);"     title="Diminui o tamanho do texto.">◁</a>
-                <a href="#" class="btclass" onclick="deftexto('MEIO');" title="Tamanho do texto médio (padrão).">⧓</a>
-                <a href="#" class="btclass" onclick="deftexto(+1);"     title="Aumenta o tamanho do texto.">▷</a> -->
-                <input type="range" class="slider" min="10" max="100" value="20" oninput="deftexto(this.value)" onchange="this.blur();">
+                <input type="range" class="slider" min="10" max="100" value="20" oninput="DefText(this.value)" onchange="this.blur();">
               </p>
               <p>
-                <a href="#" class="btaction" onclick="escrevetexto();" title="Digite o texto."   >⌨</a>
+                <a href="#" class="btaction" onclick="ReadText();" title="Digite o texto."   >⌨</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="colatexto();"    title="Cole o texto no ponto atual.">✎</a>
+                <a href="#" class="btaction" onclick="DrawText();"    title="Cole o texto no ponto atual.">✎</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="MostraEmoTab(1);" title="Abrir Tabela de Emojis."   >❤</a>
+                <a href="#" class="btaction" onclick="ShowEmojiTab(true);" title="Abrir Tabela de Emojis."   >❤</a>
                 &nbsp;
              </P>
             </TD>
@@ -239,7 +236,7 @@
           <TD width="70px" align="center">
               <p class="contador" id="pegaimg" title="✔ Imagem  /  ✘ Vazio.">[✘]</p>
               <p align="center">
-                 <a href="#" class="btaction" onclick="colaimg(0);"  title="Insere uma imagem no ponto atual.">▣</a>
+                 <a href="#" class="btaction" onclick="DrawReadImage('frente');"  title="Insere uma imagem no ponto atual.">▣</a>
               </p>
               <p>
                   <a href="#" class="btaction" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador" onclick="SalvaDesenho()">&#x1F5AB;</a>
@@ -253,28 +250,28 @@
           
           <TD width="60px">
               <p>
-                <a href="#" class="btmedio" onclick="fundo();"  title="Troca o fundo para a cor selecionada.">Cor</a>
+                <a href="#" class="btmedio" onclick="ChangeBackgroundColor();" title="Troca o fundo para a cor selecionada.">Cor</a>
               </p>
               <p>
-                <a href="#" class="btaction" onclick="tilt(0);"  title="Círculos randômicos (use transparência).">⠪</a>
+                <a href="#" class="btaction" onclick="MakeBackgroudTilt('circulos');" title="Círculos randômicos (use transparência).">⠪</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="tilt(1);"  title="Retângulos randômicos (use transparência).">⧉</a>
+                <a href="#" class="btaction" onclick="MakeBackgroudTilt('retangulos');" title="Retângulos randômicos (use transparência).">⧉</a>
               </p>
               <p>
-                <a href="#" class="btmedio" onclick="colaimg(1);"  title="Imagem preenchendo o fundo (use transparência).">Foto</a>
+                <a href="#" class="btmedio" onclick="DrawReadImage('fundo');"  title="Imagem preenchendo o fundo (use transparência).">Foto</a>
               </p>
            </TD>
           <TD  width="80px">
              <p class="contador" id="stgrava" title="Passos gravados.">Passo[0]</p>
              <p>
-                <a href="#" class="btaction" onclick="grava();" title=" ●  Ligar   /   ❚❚  Pausar." id="btgrava">❚❚</a>
+                <a href="#" class="btaction" onclick="RecordProject();" title=" ●  Ligar   /   ❚❚  Pausar." id="btgrava">❚❚</a>
                 &nbsp;&nbsp;
-                <a href="#" class="btaction" onclick="toca();"   title="Toca a gravação."      >►</a>
+                <a href="#" class="btaction" onclick="RestoreProject();"   title="Toca a gravação."      >►</a>
               </p>
               <p> 
-                <a href="#" class="btaction" onclick="corta();"   title="Apaga o útimo passo" >⌫</a>
+                <a href="#" class="btaction" onclick="CutProjetStep();"   title="Apaga o útimo passo" >⌫</a>
                 &nbsp;&nbsp;
-                <a href="#" class="btaction" onclick="cancela();" title="Apaga a gravação."    >✘</a>
+                <a href="#" class="btaction" onclick="CancelProjectRecorded();" title="Apaga a gravação."    >✘</a>
            </p>
           </TD>
           <TD width="90px" align:"center">

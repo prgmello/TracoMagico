@@ -11,7 +11,7 @@
 //
 // FUNÇÃO LIGA A GRAVAÇÃO (S/N) [TOGLE]
 //
-function grava() 
+function RecordProject()
 {
   if (pGravar == "S") {pGravar = "N";} 
   else if (pGravar == "N") {pGravar = "S";}
@@ -51,19 +51,19 @@ function ShowSaveStatus()
 //
 //  CONFIRMAÇÃO O PARA REFAZER O DESENHO
 //
-function toca()
+function RestoreProject()
 {
   if (Passo > 0)
   {
     
     if (confirm("Confirma Redesenhar?"))
     {
-      pGravar = "N";
+      pGravar = false;
       ShowSaveStatus();
-      redesenha("N");
-      mensagem("ATENÇÃO: A Gravação desligada!")
+      redesenha(false);
+      mensagem("ATENÇÃO: A Gravação está DESLIGADA!!!")
     }
-  } else {mensagem("Não há desenho gravado!!!")}
+  } else {mensagem("Não há Passos gravados!!!")}
 }
 
 
@@ -74,92 +74,85 @@ function redesenha(stGravar)
 {
   var lPassoFim = Passo;
   var lPasso;
-  var lTipo;
+  var lBehavior;
+  var lEmoji;
   pGravar = stGravar;
   
   for (lPasso = 0; lPasso < lPassoFim; lPasso++) 
   { 
-    lTipo      = pTipo[lPasso];
-    x          = pX[lPasso];
-    y          = pY[lPasso];
-    Xant       = pXant[lPasso];
-    Yant       = pYant[lPasso];
-    raio       = pRaio[lPasso];
-    cor        = pCor[lPasso];
-    largura    = pLargura[lPasso];
-    dx         = pVelocidade[lPasso];
-    dy         = pVelocidade[lPasso];
-    transp     = pTransp[lPasso];
+    lBehavior = pBehavior[lPasso];
+    x         = pX[lPasso];
+    y         = pY[lPasso];
+    Xant      = pXant[lPasso];
+    Yant      = pYant[lPasso];
+    Radius      = pRadius[lPasso];
+    cor       = pColor[lPasso];
+    largura   = pThickness[lPasso];
+    dx        = pSpeed[lPasso];
+    dy        = pSpeed[lPasso];
+    transp    = pTransparency[lPasso];
+    FontSize   = pFontSize[lPasso];
+    lEmogi = pEmoji[lPasso]
 
-    // SE TEXTO
-    if (pForma[lPasso]=="Texto") 
-    {
-      texto      = pTexto[lPasso];
-      FontSize   = pFontSize[lPasso];
-    }
-
-    // SE EMOTICON
-    if (pForma[lPasso]=="Emoticon")
-    {
-      gEmogi   = pEmoji[lPasso];
-      FontSize = pFontSize[lPasso];
-    }
+    if (pForma[lPasso]=="Texto") {texto  = pText[lPasso];}
+    
     gravouIMG  = pGravouIMG[lPasso];
-     
+        
 
 
     // var o = new Object;
     // o.forma = pForma[lPasso];
     // o.x = x;
     // o.y = y;
-    // o.tipo = lTipo;
+    // o.tipo = lBehavior;
     // o.FontSize = FontSize;
     // console.log(o);
  
 
+    //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " Raio= " + Radius + " cor= " + cor + " largura= " + largura)
 
-    //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " raio= " + raio + " cor= " + cor + " largura= " + largura)
+    //console.log(pForma[lPasso] + " - "  +lBehavior);
 
 
     switch (pForma[lPasso])
     {
-      case "Cursor":         // REFAZ O POSICIONAMENTO DO CURSOR
+      case "Cursor":
            ShowCursor();
            break;
-      case "Ponto":         // REFAZ PONTO
-           ponto();       // Sugestão: DrawPoint
+      case "Ponto":         
+           DrawPoint();
            break;
-      case "Reta":          // REFAZ RETA
-           reta();     // Sugestão: DrawLine
+      case "Linha":
+           DrawLine();     
            break;
-      case "Retangulo":     // REFAZ RETANGULO
-           retangulo(lTipo);  // Sugestão: DrawRectangle
+      case "Retangulo":
+           DrawRectangle(lBehavior);  
            break;
-      case "Circulo":       // REFAZ CIRCULO
-           DrawCircle(lTipo);
+      case "Circulo":
+           DrawCircle(lBehavior);
            break;
-      case "Concentrico":   // REFAZ CONCENTRICO
-           concentrico(lTipo); // Sugestão: DrawConcentricCircles
+      case "Concentrico":
+           DrawConcentricCircles(lBehavior);
            break;
-      case "Texto":         // REFAZ TEXTO
-           colatexto(); // Sugestão: DrawText
+      case "Texto":   
+           DrawText(); 
            break;
-      case "Emoticon":      // REFAZ EMOTICON
-           ColaEmoji(gEmoji); // Sugestão: DrawEmoji
+      case "Emoji":  
+           DrawEmoji(lEmoji); 
            break;
-      case "Fundo":         // REFAZ O FUNDO
-           fundo();      // Sugestão: SetBackgoundColor
+      case "Fundo": 
+           ChangeBackgroundColor(); 
            break;
-      case "Imagem":        // REFAZ COLA IMAGEM
-            if (gravouIMG == "N")  
+      case "Imagem": 
+            if (gravouIMG == false)  
             {
              usuarioIMG = new Image();
              usuarioIMG = pUsuarioIMG[lPasso];
             }
-            colaimg(lTipo); // Sugestão: DrawImage
+            DrawReadImage(lBehavior);
             break;
-      case "Tilt":   // REFAZ Tilt
-           tilt(lTipo);    // Sugestão: BackgroudTilt
+      case "Fundo-Aleatorio":
+           MakeBackgroudTilt(lBehavior);
            break;
  
     }
@@ -173,36 +166,37 @@ function redesenha(stGravar)
 //
 //  APAGA O ÚLTIMO PASSO GRAVADO
 //
-function corta()
+function CutProjetStep()
 {
   if (Passo > 1)
   {
     var lPasso = Passo-1;
-    if (confirm("Confirma Apagar Último Passo Gravado? (" + pForma[lPasso] +")")) 
+    if (confirm("Confirma Apagar Último Passo Gravado? ( " + pForma[lPasso] + " " + pBehavior[lPasso] + " )")) 
     {
        // SE FOR UMA IMAGEM
-       if ( (pForma[lPasso]== "Imagem") && (pTipo[lPasso] == "N") )
+       if ( (pForma[lPasso]== "Imagem") && (pBehavior[lPasso] == "N") ) // VERIFICAR ISSO AQUI QUE DEVE SER O BUG DE APAGAR PASSO IMAGEM!!!
        {
-         gravouIMG = "N"
+         gravouIMG = false
        }
-       pForma[lPasso]      = "";
-       pTipo[lPasso]       = null;
-       pX[lPasso]          = null;
-       pY[lPasso]          = null;
-       pXant[lPasso]       = null;
-       pYant[lPasso]       = null;
-       pRaio[lPasso]       = null;
-       pCor[lPasso]        = null;
-       pLargura[lPasso]    = null;
-       pVelocidade[lPasso] = null;
-       pTransp[lPasso]     = null;
-       pUsuarioIMG[Passo]  = null;
-       pTexto[lPasso]      = null;
-       pFontSize[lPasso]   = null;
-       pGravouIMG[Passo]   = null;
-       limpatela(0);
-       Passo -- // Subtrai um do Passo de gravação
-       redesenha("S");
+       pForma[lPasso]     = "";
+       pBehavior[lPasso]  = null;
+       pX[lPasso]         = null;
+       pY[lPasso]         = null;
+       pXant[lPasso]      = null;
+       pYant[lPasso]      = null;
+       pColor[lPasso]     = null;
+       pThickness[lPasso] = null;
+       pTransparency[lPasso]  = null;
+       pSpeed[lPasso]     = null;
+       pRadius[lPasso]    = null;
+       pUsuarioIMG[Passo] = null;
+       pText[lPasso]      = null;
+       pFontSize[lPasso]  = null;
+       pGravouIMG[Passo]  = null;
+       
+       ClearScreen();
+       Passo-- // Subtrai um do Passo de gravação
+       redesenha(false);
     }
   } else {mensagem("Não há Passos de desenho gravados!!!")}
   UpdateTools();
@@ -211,9 +205,9 @@ function corta()
 
 
 //
-//  CONFIRMAÇÃO O PARA CANCELAR A GRAVAÇÃO
+//  CONFIRMAÇÃO O PARA CANCELAR O PROJETO GRAVADO 
 //
-function cancela()
+function CancelProjectRecorded()
 {
   var lPasso = 0
   if (Passo > 0)
@@ -222,21 +216,21 @@ function cancela()
     {
       for (lPasso = 0; lPasso <= Passo; lPasso++) 
       {
-        pForma[lPasso]       = "";
-        pTipo[lPasso]        = null;
-        pX[lPasso]           = null;
-        pY[lPasso]           = null;
-        pXant[lPasso]        = null;
-        pYant[lPasso]        = null;
-        pRaio[lPasso]        = null;
-        pCor[lPasso]         = null;
-        pLargura[lPasso]     = null;
-        pVelocidade[lPasso]  = null;
-        pTransp[lPasso]      = null;
-        pTexto[lPasso]       = null;
-        pFontSize[lPasso]    = null;
-        pUsuarioIMG[lPasso]  = null;
-        pGravouIMG[lPasso]   = null;
+        pForma[lPasso]      = "";
+        pBehavior[lPasso]   = null;
+        pX[lPasso]          = null;
+        pY[lPasso]          = null;
+        pXant[lPasso]       = null;
+        pYant[lPasso]       = null;
+        pColor[lPasso]      = null;
+        pThickness[lPasso]  = null;
+        pTransparency[lPasso] = null;
+        pSpeed[lPasso]      = null;
+        pRadius[lPasso]     = null;
+        pFontSize[lPasso]   = null;
+        pText[lPasso]       = null;
+        pUsuarioIMG[lPasso] = null;
+        pGravouIMG[lPasso]  = null;
       }
       Passo     = 0;   // Zera o Passo de gravação
       gravouIMG = "N"; // Define a imagem como não Gravada
@@ -250,44 +244,33 @@ function cancela()
 
 
 //
-// ADICIONA CADA PASSO À GRAVAÇÃO
+// SALVA O PASSO 
 //
-function addpasso(forma,tipo)
+function SaveStep(forma,tipo,string)
 {
  if (Passo < PassoLimite)  
  {  
-   pForma[Passo]       = forma;
-   pTipo[Passo]        = tipo;
-   pX[Passo]           = x;
-   pY[Passo]           = y;
-   pXant[Passo]        = Xant;
-   pYant[Passo]        = Yant;
-   pRaio[Passo]        = raio;
-   pCor[Passo]         = cor;
-   pLargura[Passo]     = largura;
-   pVelocidade[Passo]  = dx;
-   pTransp[Passo]      = transp;
+   pForma[Passo]      = forma;
+   pBehavior[Passo]   = tipo;
+   pX[Passo]          = x;
+   pY[Passo]          = y;
+   pXant[Passo]       = Xant;
+   pYant[Passo]       = Yant;
+   pRadius[Passo]     = Radius;
+   pColor[Passo]      = cor;
+   pThickness[Passo]  = largura;
+   pSpeed[Passo]      = dx;
+   pTransparency[Passo] = transp;
+   pFontSize[Passo]   = FontSize;
 
+   if (forma=="Emoji") {pEmoji[Passo] = string;} else {pEmoji[Passo]="";} // SE FORMA = EMOJI
+   if (forma=="Texto") {pText[Passo]  = string;} else {pText[Passo]="";}  // SE FORMA = TEXTO
 
-   // Grava o Texto se o tipo == "Texto"
-   if (forma=="Texto") 
-   {
-     pTexto[Passo]    = tipo;
-     pFontSize[Passo] = FontSize;
-    }
-
-       // Grava o Texto se o tipo == "Emoticon"
-   if (forma=="Emoticon") 
-    {
-     pEmoji[Passo]    = gEmoji;
-     pFontSize[Passo] = FontSize;
-    }
-    
-   pGravouIMG[Passo]   = gravouIMG;
-   if ((forma=="Imagem") && (gravouIMG=="N"))
-   {
-    pUsuarioIMG[Passo] = usuarioIMG;
-    gravouIMG = "S";
+   pGravouIMG[Passo]  = gravouIMG;
+   // SE FORMA = IMAGEM
+   if ((forma=="Imagem") && (gravouIMG==false))
+   { pUsuarioIMG[Passo] = usuarioIMG;
+     gravouIMG = true; 
    }
    Passo++ ;
   }

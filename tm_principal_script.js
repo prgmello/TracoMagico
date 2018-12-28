@@ -33,8 +33,7 @@ var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
 var largura = 2; // largura do traço de 2 a 20
-var sentido = 0; // Definição de sentido de alteração: [menos = -1] [mais = 1]
-var raio = 100; // Tamanho do raio para circulos
+var Radius = 100; // Tamanho do raio para circulos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
@@ -42,34 +41,33 @@ var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
 var LinhaManual = false; // 
 var vResp = "N"; // Saída da função confirma
-var gEmogi; // Emoji adicionado
 
 // VARIÁVEIS DAS FUNÇÕES LER FOTOS
 var texto = "Escreva seu texto." // Armazena o texto digitado
 var FontSize = 20; // Tamanho da Fonte em pixels
 var usuarioIMG = new Image(); // Guarda a foto do usuário lida do computador
-var temIMG = 0; // Não tem foto na memória
-var gravouIMG = "N" // Define se a imagem foi gravada em memória.
+var temIMG = false; // Não tem foto na memória
+var gravouIMG = false // Define se a imagem foi gravada em memória.
 //
 // VARIÁVEL DE GRAVAÇÃO 
 //
 var Passo = 0;
 var PassoLimite = 4000;
-var pGravar = "S";
+var pGravar = true;
 var pForma = new Array(PassoLimite);
-var pTipo = new Array(PassoLimite);
+var pBehavior = new Array(PassoLimite);
 var pX = new Array(PassoLimite);
 var pY = new Array(PassoLimite);
 var pXant = new Array(PassoLimite);
 var pYant = new Array(PassoLimite);
-var pRaio = new Array(PassoLimite);
-var pCor = new Array(PassoLimite);
-var pLargura = new Array(PassoLimite);
-var pVelocidade = new Array(PassoLimite);
-var pTransp = new Array(PassoLimite);
-var pTexto = new Array(PassoLimite);
-var pEmoji = new Array(PassoLimite);
+var pColor = new Array(PassoLimite);
+var pThickness = new Array(PassoLimite);
+var pTransparency = new Array(PassoLimite);
+var pSpeed = new Array(PassoLimite);
+var pRadius = new Array(PassoLimite);
 var pFontSize = new Array(PassoLimite);
+var pText = new Array(PassoLimite);
+var pEmoji = new Array(PassoLimite);
 var pUsuarioIMG = new Array(PassoLimite);
 var pGravouIMG = new Array(PassoLimite);
 
@@ -108,7 +106,7 @@ ctx4 = canvas4.getContext("2d");
 //
 // FAZ INICIALIZAÇÃO DAS VARIÁVEIS
 //
-function iniciar1() {
+function Start() {
   x = WIDTH / 2;
   y = HEIGHT / 2;
   Xant = x;
@@ -137,8 +135,9 @@ function UpdateTools()
 //
   // CRIA OS BOTÕES PARA A FERRAMENTA EMOTICONS
   //
-  function CriaEmoTab() 
+  function CreateEmojiTab() 
   {
+  // TODOS OS CARACTERES DESTA STRING VIRAM BOTÕES NA EMOJI-TAB
   var str1 = "✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋♩♪♫♬♭♯★☆✝✞✟✠✡☢☣❥❤♡♥♠♦♣☃۞☼☽☾☁☹☺☙☘✊✋✌✍⌚☔☕";
 
   var QtdEMC = str1.length;
@@ -146,12 +145,12 @@ function UpdateTools()
   var element = document.getElementById("EmoTab"); // SELECIONA A DIV
   element.innerHTML = "";
 
-  for (f = 0; f < QtdEMC; f++) {
+  for (f = 0; f < QtdEMC; f++) 
+   {
     pEMC[f] = str1.substring(f, f + 1);
     //console.log(pEMC[f]);
-    element.innerHTML += '<a href="#" class="EMC" onclick=\'ColaEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
-
-  }
+    element.innerHTML += '<a href="#" class="EMC" onclick=\'DrawEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
+   }
   }
 
 
@@ -270,14 +269,14 @@ function ocultaCONF(vResp) {
 
 
 //
-// FUNÇÃO PARA SUBSTITUIR O "ALERT" DO JS
+// FUNÇÃO MOSTRA A TABELA DE EMOJIS 
 //
-function MostraEmoTab(modo) {
-  if (modo == 0) // OCULTA
+function ShowEmojiTab(modo) {
+  if (modo == false) // OCULTA
   {
-    document.getElementById("ContemEmoTab").style.display = "none"; // OCULTA O BOTÃO "block" ou "none"  
+    document.getElementById("ContemEmoTab").style.display = "none"; // OCULTA A EMOJI TAB 
   } else {
-    document.getElementById("ContemEmoTab").style.display = ""; // MOSTRA O BOTÃO
+    document.getElementById("ContemEmoTab").style.display = ""; // MOSTRA A EMOJI TAB 
     //var element = document.getElementById("textoMSG");
     //element.innerHTML = textoMSG;
   }
@@ -322,9 +321,9 @@ function limpaDeslocamento() {
 //
 function apagar() {
   if (confirm("Confirma apagar todo o desenho?")) {
-    limpatela();
+    ClearScreen();
   }
-  iniciar1();
+  Start();
   UpdateTools();
 }
 
@@ -332,7 +331,7 @@ function apagar() {
 //
 // LIMPA A TELA
 //  
-function limpatela() {
+function ClearScreen() {
   // APAGA A TELA DE DESENHO
   ctx.beginPath();
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -402,7 +401,7 @@ function ShowSpeed()
 // DEFINE RAIO DO CIRCULO
 //
 function DefRadius(parametro) {
-  raio = parseInt(parametro);
+  Radius = parseInt(parametro);
   ShowRadius();
 }
 
@@ -417,12 +416,12 @@ function ShowRadius()
   ctx4.beginPath();
   ctx4.clearRect(0, 0, 40, 20);
   ctx4.strokeStyle = "Yellow";
-  ctx4.arc(10, 10, (raio) / 22, 0, Math.PI * 2, true);
+  ctx4.arc(10, 10, (Radius) / 22, 0, Math.PI * 2, true);
   ctx4.stroke();
 
   // Mostrando o valor do Raio
-  var element = document.getElementById("numraio");
-  element.innerHTML = "RAIO: " + raio;
+  var element = document.getElementById("numradius");
+  element.innerHTML = "RAIO: " + Radius;
 }
 
 
@@ -452,7 +451,7 @@ function ShowTransparency()
 //
 // DEFINE O TAMANHO DA FONTE DO TEXTO
 //
-function deftexto(value) 
+function DefText(value) 
 {
   // AUALIZANDO O MOSTRADOR DE TAMANHO DO TEXTO
   FontSize = parseInt(value);
@@ -462,7 +461,7 @@ function deftexto(value)
 
 
 //
-// MOSTRA O TEXTO PASSEI AQUI  (DEBUG)
+// MOSTRA O TEXTO PASSEI AQUI (PARA DEBUG)
 //
 function ola() {console.log('PASSEI AQUI');}
 
@@ -487,10 +486,8 @@ function ShowCursor() {
   // Marca o ponto no Canvas de desenho
   ctx.moveTo(x, y);
 
-  if (pGravar == "S") 
-  {
-    addpasso("Cursor", 0);
-  }
+  if (pGravar) {SaveStep("Cursor","","");}
+
   // CALCULA LARGURA E ALTURA DO RETÂNGULO
   retL = Math.abs(x - Xant) + 1;
   retA = Math.abs(y - Yant) + 1;
@@ -543,7 +540,7 @@ function KeyDown(evt) {
      Yant = y;
    }
 
-   ponto();
+   DrawPoint();
    LinhaManual = true;
 
 }
@@ -583,7 +580,7 @@ if (window.File && window.FileList && window.FileReader) {
       picReader.addEventListener("load", function (event) {
         var picFile = event.target;
         usuarioIMG = new Image();
-        gravouIMG = "N";
+        gravouIMG = false;
         usuarioIMG.src = picFile.result;
       });
       //Read the image
@@ -591,19 +588,19 @@ if (window.File && window.FileList && window.FileReader) {
       var vSize = files[0].size;
 
       if (vSize < 1048576) { //1MB         
-        temIMG = 1 // Tamanho da imagem dentro do permitido
+        temIMG = true // Tamanho da imagem dentro do permitido
       } else {
         mensagem("Selecione uma imagem até 1Mb."); //Acima do limite
         picReader = ""; //Limpa o campo   
-        temIMG = 0;
+        temIMG = false;
       }
     } else {
-      temIMG = 0
+      temIMG = false
     }
 
     // ATUALIZA O STATUS DA IMAGEM
     var vImg;
-    if (temIMG == "1") {
+    if (temIMG == true) {
       vImg = "[ ✔ ]";
     } else {
       vImg = "[ ✘ ]";
@@ -617,9 +614,9 @@ if (window.File && window.FileList && window.FileReader) {
 
 
 ocultaMSG();
-CriaEmoTab();
-MostraEmoTab(0);
+CreateEmojiTab();
+ShowEmojiTab(false);
 ocultaCONF(vResp);
-limpatela();
-iniciar1();
+ClearScreen();
+Start();
 UpdateTools();
