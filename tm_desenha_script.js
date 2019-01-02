@@ -287,9 +287,9 @@ function MakeBackgroudTilt(vBehavior)
 
 if (vBehavior == "circulos")
 {
-  var llargura;
+  var lLineWidth;
   var lRadius;
-  var ltrans;
+  var lTransparency;
   for (f = 60; f > 10; f=f-passo)
   { 
      ctxFu.beginPath()
@@ -299,11 +299,11 @@ if (vBehavior == "circulos")
      lx    = Math.floor(Math.random()*(WIDTH));
      ly    = Math.floor(Math.random()*(HEIGHT));
      lRadius = Math.floor(Math.random()*(HEIGHT/2));
-     ltrans = transp;
-     llargura = Math.floor(Math.random()*dx);
+     lTransparency = transp;
+     lLineWidth = Math.floor(Math.random()*dx);
 
-     ctxFu.lineWidth=llargura;
-     ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + ltrans + ' )';
+     ctxFu.lineWidth=lLineWidth;
+     ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + lTransparency + ' )';
      ctxFu.arc(lx, ly, lRadius, 0, Math.PI*2, true);
 
      ctxFu.fill();
@@ -315,15 +315,15 @@ if (vBehavior == "circulos")
 else if (vBehavior=="retangulos")
 {
 
-  var llarg;
-  var lalt;
+  var lRectWidth;
+  var lRectHeight;
 
   for (f = 1; f < 50; f=f+passo)
   { 
    lx    = Math.floor(Math.random()*(WIDTH/1.3));
    ly    = Math.floor(Math.random()*(HEIGHT/1.5));
-   llarg = Math.floor(Math.random()*(WIDTH/20)*10);
-   lalt  = Math.floor(Math.random()*(HEIGHT/20)*10);
+   lRectWidth = Math.floor(Math.random()*(WIDTH/20)*10);
+   lRectHeight  = Math.floor(Math.random()*(HEIGHT/20)*10);
 
 
    ctxFu.beginPath();
@@ -334,7 +334,7 @@ else if (vBehavior=="retangulos")
    lcor2 = Math.floor(Math.random()*255);
    lcor3 = Math.floor(Math.random()*255);
    ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
-   ctxFu.fillRect(lx, ly, llarg, lalt);
+   ctxFu.fillRect(lx, ly, lRectWidth, lRectHeight);
   
   }
   ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';

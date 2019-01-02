@@ -94,15 +94,6 @@ ctx = canvas.getContext("2d");
 canvasFr = document.getElementById("tmcanvasFr");
 ctxFr = tmcanvasFr.getContext("2d");
 
-// CANVAS DE largura
-canvas2 = document.getElementById("espcanvas");
-ctx2 = canvas2.getContext("2d");
-
-// CANVAS DE RAIO
-canvas4 = document.getElementById("circanvas");
-ctx4 = canvas4.getContext("2d");
-
-
 //
 // FAZ INICIALIZAÇÃO DAS VARIÁVEIS
 //
@@ -360,17 +351,9 @@ function DefThickness(parametro) {
 //
  function ShowThickness()
 {
-  ctx2.lineWidth = 1;
-  ctx2.clearRect(0, 0, 20, 20);
-
-  ctx2.beginPath();
-  ctx2.fillStyle = "Yellow";
-  ctx2.arc(10, 10, largura / 2, 0, Math.PI * 2, true);
-  ctx2.fill();
-
   // AUALIZANDO O MOSTRADOR DA LARGURA
   var element = document.getElementById("numlargura");
-  element.innerHTML = "LARGURA: " + largura;
+  element.innerHTML = "[" + largura + "]";
 }
 
 
@@ -411,17 +394,9 @@ function DefRadius(parametro) {
 //
 function ShowRadius()
 {
-  // Desenha o Círculo no Canvas de Raio
-  ctx4.lineWidth = 1;
-  ctx4.beginPath();
-  ctx4.clearRect(0, 0, 40, 20);
-  ctx4.strokeStyle = "Yellow";
-  ctx4.arc(10, 10, (Radius) / 22, 0, Math.PI * 2, true);
-  ctx4.stroke();
-
   // Mostrando o valor do Raio
   var element = document.getElementById("numradius");
-  element.innerHTML = "RAIO: " + Radius;
+  element.innerHTML = "[" + Radius + "]";
 }
 
 
@@ -599,14 +574,14 @@ if (window.File && window.FileList && window.FileReader) {
     }
 
     // ATUALIZA O STATUS DA IMAGEM
-    var vImg;
-    if (temIMG == true) {
-      vImg = "[ ✔ ]";
+    if (temIMG) {
+      // BOTÃO HABILITADO
+      document.getElementById("pegaimg").style.color="#ff8c00";
+      document.getElementById("pegaimg").disabled = true; 
     } else {
-      vImg = "[ ✘ ]";
+      document.getElementById("pegaimg").style.color="#333333";
+      document.getElementById("pegaimg").disabled = false;
     }
-    var element = document.getElementById("pegaimg");
-    element.innerHTML = vImg
   });
 } else {
   mensagem("Este navegador não suporta esta função.");

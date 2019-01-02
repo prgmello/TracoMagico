@@ -71,7 +71,7 @@
                </p>  
              </TD>
         <TD>
-           <H4 id="textoCONF">.</H>
+           <H4 id="textoCONF">.</H4>
         </TD>        
         <TD width="60px">
            <p>
@@ -86,12 +86,7 @@
       <TR>
        <TD width="116px" >
           <p align="center">
-              <form action="">
-                <fieldset>
-                <legend><input type="checkbox" id="ligaX" title="Liga o Deslocamento horizontal." onchange="limpaDeslocamento();" checked>Horizontal</legend>
-              <input type="radio" id="emoX"  name="X" title="Deslocamento para a Direita." checked>▶&nbsp;
-              <input type="radio" id="emoXR" name="X" title="Deslocamento para a Esquerda.">◀
-            </fieldset>
+            <form action="">
             </form>
           </p>
           <div  class="EmoTab"></div>
@@ -100,12 +95,6 @@
         <div id="EmoTab"  class="content"></div>
       </TD>
       <TD width="115px">
-            <form action="">
-            <fieldset>
-                <legend><input type="checkbox" id="ligaY" title="Liga o Deslocamento vertical." onchange="limpaDeslocamento();">Vertical</legend>
-                <input type="radio" id="emoY"  name="Y" title="Deslocamento para a Baixo." disabled>▼&nbsp;
-                <input type="radio" id="emoYR" name="Y" title="Deslocamento para a Cima."  disabled>▲
-              </fieldset>
           <div class="EmoTab">
               <a href="#" class="btgrande" onclick="ShowEmojiTab(false);">FECHA</a>
           </div>
@@ -120,134 +109,136 @@
           <TR>  
               <font face="Tahoma" size="1" color="#FFFFFF;">
               <TD bgcolor="#333333"> 
-                  <H4 id="nomedacor" title="Cor selecionada.">COR:</H>
-              </TD>
-              <TD bgcolor="#000000"> 
-                <H4 id="numlargura" title="Largura do traço.">LARGURA</H>
-                <P>              
-              <TD bgcolor="#333333">
-                  <H4  title="Transparência de objetos sólidos.">TRANSP.%</H>
-              </TD>
-              <TD bgcolor="#000000"> 
-                <H4  title="Velocidade do traço (desenhando com as setas).">VELOC.</H>
+                  <H4 id="nomedacor" title="Cor selecionada.">COR</H4>
               </TD>
               <TD bgcolor="#333333">
-                <H4 id="numradius" title="Tamanho do raio para traçar círculos.">RAIO</H>
+                  <H4  title="Inserir um texto no desenho.">FONTE</H4>
               </TD>
+              <TD bgcolor="#333333"> 
+                <H4 title="Largura do traço.">LARG.</H4>
+              </TD>
+              <TD bgcolor="#333333">
+                  <H4  title="Tamanho do raio para traçar círculos.">RAIO</H4>
+              </TD>
+              <TD bgcolor="#333333">
+                <H4  title="Transparência de objetos sólidos.">TRANSP.</H4>
+              </TD>
+              <TD bgcolor="#333333"> 
+                <H4  title="Velocidade do traço (desenhando com as setas).">VELOC.</H4>
+              </TD>
+              <TD bgcolor="#191970">
+                 <H4 title="Formas básicas.">FORMAS</H4>
+              </TD>
+              <TD bgcolor="#191970">
+                <H4  title="Inserir um texto no desenho.">TEXTO</H4>
+              </TD>
+              <TD bgcolor="#191970"> 
+                 <H4 title="Inserir fotos do computador.">IMAGEM</H4>
+              </TD>
+              <TD bgcolor="#191970"> 
+                  <H4 title="Inserir fotos do computador.">SALVAR</H4>
+               </TD>
+              <TD bgcolor="#191970">
+                <H4  title="Define uma cor ou imagem para o fundo.">FUNDO</H4>
+                </TD>
+                <TD bgcolor="#191970">
+                  <H4  title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H4>
+                  </TD>
               <TD bgcolor="#000000">
-                 <H4 title="Formas básicas.">FORMAS</h>
-              </TD>
-              <TD bgcolor="#333333">
-                <H4  title="Inserir um texto no desenho.">TEXTO</H>
-              </TD>
-              <TD bgcolor="#000000"> 
-                 <H4 title="Inserir fotos do computador.">IMAGEM</H>
-              </TD>
-              <TD bgcolor="#333333">
-                  <H4  title="Define uma cor ou imagem para o fundo.">FUNDO</h>
-              </TD>
-              <TD bgcolor="#000000">
-                <H4  title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H>
-              </TD>
-              <TD bgcolor="#333333" >
-                <H4  title="Apaga o desenho.">APAGAR</H>
-              </TD>
+                <H4  title="Apaga o desenho.">APAGAR</H4>
+                </TD>
              </font>
-         </TR>
-       <TR>  
-          <TD width="35px">
-              <div class="input-color-container"> 
-               <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Escolha a cor desejada." oninput="DefColor(this.value);">
-              </div>
-            </p>
+            </TR>
+            <TR>  
+              <TD width="35px">
+                <div class="input-color-container"> 
+                  <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Escolha a cor desejada." oninput="DefColor(this.value);"> 
+                </div> 
+              </p>  
             </TD>
-
-          <TD width="80px"> 
-            <P>              
-                <canvas id="espcanvas" title="Largura do traço." width="20" height="20" style="border:1px solid #1C1C1C;"></canvas> 
-            </P>             
-            <P>
-              <input type="range" title="Largura do Traço." class="slider" min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
-             </P>
-          </TD>
-            <TD  width="60px">
-                <p class="contador" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
-                <br>
+            
+            <TD width="40px"> 
+                <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[20]</p>
                 <p>
-                  <input type="range" title="Transparência." class="slider" min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();">                  
+                  <input type="range" class="slider" min="10" max="100" value="20" oninput="DefText(this.value)" onchange="this.blur();">
                 </p>
-            </TD>
-            <TD width="60px"> 
+              </TD>
+   
+            <TD width="40px">
+              <p class="contador" id="numlargura"  title="Largura do Taço: 2 a 20.">[0]</p> 
+              <p>
+                <input type="range" title="Largura do Traço." class="slider" min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
+              </p>   
+            </TD> 
+            <TD width="40px"> 
+                <p class="contador" id="numradius"  title="Tamanho do raio para traçar círculos: 5 a 200.">[0]</p> 
+                <p>
+                  <input type="range" class="slider" min="5" max="200" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
+                </p>  
+            </TD>  
+            <TD  width="40px">
+              <p class="contador" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
+              <p>
+                <input type="range" title="Transparência." class="slider" min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();">                  
+              </p>  
+            </TD>    
+            <TD width="40px"> 
               <p class="contador" id="numvelocidade" title="Velocidade: 2 a 20.">[2]</p>
-            <P >
-              <input type="range" title="Velocidade." class="slider" min="2" max="20" value="2" oninput="DefSpeed(this.value)" onchange="this.blur();"> 
-            </p>
-
-          </TD>
-
-  
-
-          <TD width="70px"> 
-            <p>
-             <canvas id="circanvas" title="Tamanho do Raio (20X)." width="20" height="20" style="border:1px solid #333333;"></canvas>
-            </p>
-            <P>
-              <input type="range" class="slider" min="5" max="200" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
-            </p>
-          </TD>
-
-          <TD width="100px"> 
+              <p>
+                <input type="range" title="Velocidade." class="slider" min="2" max="20" value="2" oninput="DefSpeed(this.value)" onchange="this.blur();"> 
+              </p>  
+            </TD>  
+            
+            <TD width="90px"> 
               <p>
                 <a href="#" class="btaction" onclick="DrawLine();" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
                 &nbsp;
-
   
                 <a href="#" class="btaction" onclick="DrawRectangle('vazio');" title="Traça um retângulo vazio entre os dois últimos pontos marcados."    >▯</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="DrawRectangle('preenchido');" title="Traça um retângulo sólido entre os dois últimos pontos marcados.">▮</a>
                 <hr width="80%" color="#333333">
-              </p>
+              </p>  
               <p> 
-                <a href="#" class="btaction" onclick="DrawCircle('vazio');"    title="Desenha um círculo vazio."               >◯</a>
+                <a href="#" class="btaction" onclick="DrawCircle('vazio');" title="Desenha um círculo vazio.">◯</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="DrawCircle('preenchido');"    title="Desenha um círculo preenchido"            >●</a>
+                <a href="#" class="btaction" onclick="DrawCircle('preenchido');" title="Desenha um círculo preenchido">●</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="DrawConcentricCircles('uma-cor');" title="Desenha Círculos concêntricos."          >◉</a> 
+                <a href="#" class="btaction" onclick="DrawConcentricCircles('uma-cor');" title="Desenha Círculos concêntricos.">◉</a> 
                 &nbsp;
                 <a href="#" class="btaction" onclick="DrawConcentricCircles('varias-cores');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
-              </p>
-          </TD>
+              </p>  
+          </TD>    
 
-          <TD width="70px"> 
-                <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[20]</p>
-              <P >
-                <input type="range" class="slider" min="10" max="100" value="20" oninput="DefText(this.value)" onchange="this.blur();">
-              </p>
-              <p>
-                <a href="#" class="btaction" onclick="ReadText();" title="Digite o texto."   >⌨</a>
-                &nbsp;
-                <a href="#" class="btaction" onclick="DrawText();"    title="Cole o texto no ponto atual.">✎</a>
-                &nbsp;
-                <a href="#" class="btaction" onclick="ShowEmojiTab(true);" title="Abrir Tabela de Emojis."   >❤</a>
-                &nbsp;
-             </P>
+            <TD width="50px"> 
+                <p>
+                  <a href="#" class="btaction" onclick="ReadText();" title="Digite o texto."   >⌨</a>
+                  &nbsp;
+                  <a href="#" class="btaction" onclick="DrawText();" title="Cole o texto no ponto atual.">✎</a>
+                </p>
+                <p><a href="#" class="btaction" onclick="ShowEmojiTab(true);" title="Abrir Tabela de Emojis."   >❤</a></p>
             </TD>
 
-          <TD width="70px" align="center">
-              <p class="contador" id="pegaimg" title="✔ Imagem  /  ✘ Vazio.">[✘]</p>
+          <TD width="40px" align="center">
               <p align="center">
-                 <a href="#" class="btaction" onclick="DrawReadImage('frente');"  title="Insere uma imagem no ponto atual.">▣</a>
+                 <a href="#" class="btactionGray" id="pegaimg" onclick="DrawReadImage('frente');"  title="Insere uma imagem no ponto atual.">▣</a>
               </p>
               <p>
-                  <a href="#" class="btaction" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador" onclick="SalvaDesenho()">&#x1F5AB;</a>
-                  &nbsp;
-                  <button id="files"  class="BTimg" title="Seleciona uma imagem do computador." >
-                      <input type="file" class="BTimg">
-                      <span>⏏</span>
-                     </button>
+              <div id="files" title="Seleciona uma imagem do computador." >
+                 <input type="file">
+                 <span align="center"  class="btaction">⏏</span>
+              </div>
               </p>
           </TD>
+
+          <TD width="40px" align="center">
+            <p>
+                <a href="#" class="btaction" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador" onclick="SalvaDesenho()">&#x1F5AB;</a>
+            </p>
+          </TD>
           
+
+
           <TD width="60px">
               <p>
                 <a href="#" class="btmedio" onclick="ChangeBackgroundColor();" title="Troca o fundo para a cor selecionada.">Cor</a>
@@ -262,7 +253,7 @@
               </p>
            </TD>
           <TD  width="80px">
-             <p class="contador" id="stgrava" title="Passos gravados.">Passo[0]</p>
+             <p class="conta-passos" id="stgrava" title="Passos gravados.">Passo[0]</p>
              <p>
                 <a href="#" class="btaction" onclick="RecordProject();" title=" ●  Ligar   /   ❚❚  Pausar." id="btgrava">❚❚</a>
                 &nbsp;&nbsp;
