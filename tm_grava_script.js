@@ -85,20 +85,19 @@ function redesenha(stGravar)
     y         = pY[lPasso];
     Xant      = pXant[lPasso];
     Yant      = pYant[lPasso];
-    Radius      = pRadius[lPasso];
+    Radius    = pRadius[lPasso];
     cor       = pColor[lPasso];
     largura   = pThickness[lPasso];
     dx        = pSpeed[lPasso];
     dy        = pSpeed[lPasso];
     transp    = pTransparency[lPasso];
-    FontSize   = pFontSize[lPasso];
-    lEmogi = pEmoji[lPasso]
+    FontSize  = pFontSize[lPasso];
+    lEmoji    = pEmoji[lPasso]
 
     if (pForma[lPasso]=="Texto") {texto  = pText[lPasso];}
     
     gravouIMG  = pGravouIMG[lPasso];
         
-
 
     // var o = new Object;
     // o.forma = pForma[lPasso];

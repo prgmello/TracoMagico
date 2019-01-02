@@ -256,21 +256,9 @@ function DrawEmoji(lEmoji)
 
 //console.log("FS: " + FontSize + " X:" + x+ " Y:" + y);
 
+console.log(lEmoji);
 
-if (pGravar) {SaveStep("Emoji","","lEmoji");}
-
-
-// // Calcula a direção do deslocamento do CURSOR
-//   if (document.getElementById( "emoX").checked) {x += FontSize};
-//   if (document.getElementById("emoXR").checked) {x -= FontSize};
-//   if (document.getElementById( "emoY").checked) {y += FontSize};
-//   if (document.getElementById("emoYR").checked) {y -= FontSize};
-//   if (x > WIDTH) {x=WIDTH};
-//   if (x < 0) {x=0};
-//   if (y > HEIGHT) {y=HEIGHT};
-//   if (y < 0) {y=0};
-//   // Fim do Cálculo de Descolocamento do CURSOR
-//  ShowCursor();
+if (pGravar) {SaveStep("Emoji","",lEmoji);}
 
 }
 
