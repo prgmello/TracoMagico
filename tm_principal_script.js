@@ -213,7 +213,7 @@ function mensagem(textoMSG) {
     var element = document.getElementById("textoMSG");
     element.innerHTML = textoMSG;
     // TEMPORIZANDO O FECHAMENTO DA LINHA DE MENSAGEM
-    setTimeout(ocultaMSG, 5000)
+    //setTimeout(ocultaMSG, 5000)
   }
 }
 

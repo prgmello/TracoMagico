@@ -80,7 +80,7 @@ H4 {
 	size: 8pt;
 }
 
-.msg {
+.MsgLine {
 	color: Red;
 	text-align: center;
 	margin-top: 3px;
@@ -90,14 +90,31 @@ H4 {
 	font-size: 8pt;
 }
 
+.MsgDiv {
+	position: absolute;
+	width: 900px;
+	top: 300px;
+	left: 35px;
+	z-index: 100;
+	color: Red;
+	text-align: center;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 8pt;
+	border: solid 2px #fb9e25;
+}
+
+
 
 
 /* DIV DA FUNÇÃO DE EMNOTICONS */
 .EmoTab {
 	position: absolute;
 	top: 10%;
-    left: 20px;
-	z-index: 100;
+    left: 35px;
+	z-index: 90;
 	color: Red;
 	text-align: center;
 	margin-top: 2px;

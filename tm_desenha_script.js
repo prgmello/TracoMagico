@@ -262,9 +262,8 @@ if (pGravar) {SaveStep("Emoji","",lEmoji);}
 //
 // CRIA UM FUNDO PSICODÉLICO
 //
-function MakeBackgroudTilt(vBehavior)
+function MakeBgTilt(vBehavior)
 {
-  var passo = largura;
   var lx;
   var ly;
   var lcor1, lcor2, lcor3;
@@ -274,7 +273,7 @@ if (vBehavior == "circulos")
   var lLineWidth;
   var lRadius;
   var lTransparency;
-  for (f = 60; f > 10; f=f-passo)
+  for (f = 30; f > 10; f--)
   { 
      ctxFu.beginPath()
      lcor1 = Math.floor(Math.random()*255);
@@ -302,7 +301,7 @@ else if (vBehavior=="retangulos")
   var lRectWidth;
   var lRectHeight;
 
-  for (f = 1; f < 50; f=f+passo)
+  for (f = 1; f < 25; f++)
   { 
    lx    = Math.floor(Math.random()*(WIDTH/1.3));
    ly    = Math.floor(Math.random()*(HEIGHT/1.5));
@@ -332,7 +331,7 @@ else if (vBehavior=="retangulos")
 //
 // FUNÇÃO FUNDO - MUDA O FUNDO DO DESENHO
 //
-function ChangeBackgroundColor()
+function ChangeBgColor()
 {
     ctxFu.beginPath();
     ctxFu.fillStyle = cor;

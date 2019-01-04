@@ -44,24 +44,6 @@
       </TR>
       <TR>
         <TD>
-        <div id="mostraMSG"; class="msg">
-           <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="red" width="100%" height="100%" bgcolor="black">
-           <TR>
-            <TD width="60px" >
-              <p>
-             </p>  
-           </TD>
-            <TD>
-              <tm id="textoMSG"; class="msg">.</tm>
-           </TD>        
-           <TD width="60px">
-              <p align:center>
-               <a href="#" class="btgrande" onclick="ocultaMSG();" >OK</a>
-             </p>  
-           </TD>
-           </TR>
-           </TABLE>
-      </div>
       <div align:center; id="mostraCONF">
         <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="red" width="100%" height="100%" bgcolor="black">
         <TR>
@@ -209,12 +191,12 @@
           
           <TD width="60px">
             <p>
-              <a href="#" class="btmedio" onclick="ChangeBackgroundColor();" title="Troca o fundo para a cor selecionada.">Cor</a>
+              <a href="#" class="btmedio" onclick="ChangeBgColor();" title="Troca o fundo para a cor selecionada.">Cor</a>
             </p>
             <p>
-              <a href="#" class="btaction" onclick="MakeBackgroudTilt('circulos');" title="Círculos randômicos (use transparência).">⠪</a>
+              <a href="#" class="btaction" onclick="MakeBgTilt('circulos');" title="Círculos randômicos (use transparência).">⠪</a>
               &nbsp;
-                <a href="#" class="btaction" onclick="MakeBackgroudTilt('retangulos');" title="Retângulos randômicos (use transparência).">⧉</a>
+                <a href="#" class="btaction" onclick="MakeBgTilt('retangulos');" title="Retângulos randômicos (use transparência).">⧉</a>
               </p>
               <p>
                 <a href="#" class="btmedio" onclick="DrawReadImage('fundo');"  title="Imagem preenchendo o fundo (use transparência).">Foto</a>
@@ -249,22 +231,56 @@
       </TABLE> 
       </td>
       </TR>
-      <TR>
-        <TD>
-        </TD>
-      </TR>
      </TABLE> 
-     <div id="ContemEmoTab" class="EmoTab">
+    </div>
+
+    <!-- 
+    ==
+    == DIV DE MENSAGEM
+    ==
+     -->
+
+
+    <div id="mostraMSG"; class="MsgDiv">
+        <TABLE BORDER=0 cellspacing=3 cellpadding=0 bordercolor="red" width="900px" height="45px" bgcolor="black">
+        <TR>
+         <TD width="70px" >
+           <p>
+          </p>  
+        </TD>
+         <TD>
+           <tm id="textoMSG"; class="MsgLine">.</tm>
+        </TD>        
+        <TD width="70px">
+           <p align:center>
+            <a href="#" class="btgrande" onclick="ocultaMSG();" >OK</a>
+          </p>  
+        </TD>
+        </TR>
+        </TABLE>
+   </div>
+
+
+    <!-- 
+    ==
+    == DIV DA TABELA DE EMOJIS
+    ==
+     -->
+    <div id="ContemEmoTab" class="EmoTab">
         <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="#ff8c00" width="100%" height="100%" bgcolor="black">
         <TR>
          <TD width="116px" >
+
             <br>
-            <p align="center">
-                <a href="#" class="btgrande" onclick="MoveEmoTab('UP');">CIMA</a>
+            <p>
+                Mover Tabela
             </p>
-            <br>
             <p align="center">
-                <a href="#" class="btgrande" onclick="MoveEmoTab('DOWN');">BAIXO</a>
+                <a href="#" class="btaction" title="Move para cima." onclick="MoveEmoTab('UP');">▲</a>
+            </p>
+
+            <p align="center">
+                <a href="#" class="btaction" title="Move para baixo." onclick="MoveEmoTab('DOWN');">▼</a>
             </p>
             <div  class="EmoBox"></div>
         </TD>
@@ -279,7 +295,6 @@
         </TR>
         </TABLE>
       </div>
-    </div>
 
   <script type="text/javascript" src="tm_testa_script.js"></script>  
   <script type="text/javascript" src="tm_desenha_script.js"></script>   
