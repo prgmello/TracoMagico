@@ -23,6 +23,7 @@ p {
 	margin-bottom: 12px;
 }
 
+/* FORMATAÇÃO DOS LAYERS DO CANVAS */
 .container {
 	position: relative;
 	width: 950px;
@@ -51,6 +52,8 @@ p {
 	top: 0px;
 	cursor: crosshair;
 }
+/* FIM DA FORMATAÇÃO DOS LAYERS DO CANVAS */
+
 
 .contador {
 	color: white;
@@ -66,10 +69,6 @@ p {
 	margin-top: 1px;
 	margin-bottom: 5px;
 	letter-spacing: -1px;
-}
-
-.slider {
-	width: 40px;
 }
 
 H4 {
@@ -121,8 +120,8 @@ H4 {
 .input-color-container {
 	position: relative;
 	overflow: hidden;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	border: solid 2px #ff8c00;
 	border-radius: 30px;
 	margin-left: 5px;
@@ -139,6 +138,12 @@ H4 {
 
 /* FIM DO BOTÃO DO COLOR PICKER */
 
+/* ROTAÇÃO DO SLIDER */
+input[type="range"] {
+	position: relative;
+	transform: rotate(270deg);
+	width: 35px;
+ }
 
 
 /* Parte interna de tabelas */
@@ -300,15 +305,16 @@ form {
 	display: inline-block;
 	color: #000000;
 	font-family: Verdana;
-	font-size: 11px;
+	font-size: 10px;
 	font-weight: bold;
 	font-style: normal;
-	height: 12px;
-	line-height: 12px;
-	width: 53px;
+	height: 11px;
+	line-height: 11px;
+	width: 55px;
 	text-decoration: none;
 	text-align: center;
 	text-shadow: 1px 1px 0px #cc9f52;
+	margin: 1px;
 }
 
 .btgrande:hover {
@@ -423,11 +429,11 @@ form {
 	display: inline-block;
 	color: #000000;
 	font-family: Verdana;
-	font-size: 11px;
+	font-size: 10px;
 	font-weight: bold;
 	font-style: normal;
-	height: 10px;
-	line-height: 12px;
+	height: 11px;
+	line-height: 11px;
 	width: 30px;
 	text-decoration: none;
 	text-align: center;

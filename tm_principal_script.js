@@ -82,17 +82,18 @@ var pGravouIMG = new Array(PassoLimite);
 // SELECIONA OS CANVAS DE TRABALHO
 //
 
-// CANVAS PRINCIPAL Layer de Fundo (background)
+// CANVAS Layer de Fundo (background)
 canvasFu = document.getElementById("tmcanvasFu");
 ctxFu = tmcanvasFu.getContext("2d");
 
-// CANVAS PRINCIPAL Layer Principal (Desenho)
+// CANVAS Layer Principal (Desenho)
 canvas = document.getElementById("tmcanvas");
 ctx = canvas.getContext("2d");
 
-// CANVAS PRINCIPAL Layer de Frente (cursor)
+// CANVAS Layer de Frente (cursor)
 canvasFr = document.getElementById("tmcanvasFr");
 ctxFr = tmcanvasFr.getContext("2d");
+
 
 //
 // FAZ INICIALIZAÇÃO DAS VARIÁVEIS
@@ -317,6 +318,17 @@ function apagar() {
   Start();
   UpdateTools();
 }
+
+
+//
+// FUNÇÃO RESET - REINICIA A PÁGINA
+//
+function reset() 
+{
+  if (confirm("Confirma reiniciar TUDO?!?!")) {window.location.reload();}
+}
+
+
 
 
 //
