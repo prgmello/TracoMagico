@@ -254,10 +254,6 @@ function DrawEmoji(lEmoji)
   ctx.fillStyle = cor;
   ctx.fillText(lEmoji,x,y);
 
-//console.log("FS: " + FontSize + " X:" + x+ " Y:" + y);
-
-console.log(lEmoji);
-
 if (pGravar) {SaveStep("Emoji","",lEmoji);}
 
 }

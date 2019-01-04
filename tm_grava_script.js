@@ -13,9 +13,10 @@
 //
 function RecordProject()
 {
-  if (pGravar == "S") {pGravar = "N";} 
-  else if (pGravar == "N") {pGravar = "S";}
+  if (pGravar) {pGravar = false;} 
+  else if (!pGravar) {pGravar = true;}
   ShowSaveStatus();
+
 }
 
 
@@ -24,13 +25,13 @@ function RecordProject()
 //
 function ShowSaveStatus() 
 {
-  if (pGravar == "S") 
+  if (pGravar) 
   {
     // Botão
     document.getElementById("btgrava").innerHTML  = "❚❚";
     document.getElementById('btgrava').setAttribute('title', 'Pausar gravação');
     // Título
-    document.getElementById('REC').style.color = "red";
+    document.getElementById('REC').style.color = "#FF0000";
   }
   else                
   {
@@ -276,7 +277,7 @@ function SaveStep(forma,tipo,string)
   else
   {
     mensagem("Você chegou ao limite de passos gravados: " + PassoLimite + " passos" );
-    pGravar="N";
+    pGravar=false;
   }
   ShowSaveStatus();
  }
