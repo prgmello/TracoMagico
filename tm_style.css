@@ -92,9 +92,18 @@ H4 {
 
 
 
-
-
 /* DIV DA FUNÇÃO DE EMNOTICONS */
+.EmoTab {
+	color: Red;
+	text-align: center;
+	margin-top: 3px;
+	margin-bottom: 2px;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 8pt;
+	}
+
+
 .content {
 	width: 500pt;
 	margin: auto;
@@ -103,18 +112,21 @@ H4 {
 	overflow-wrap: break-word;
 }
 
-.EMC {
+.EMC  { /* BOTÕES CRIADOS PELO TM_PRINCIPAL */
 	color: #ff8c00;
 	margin: 4px;
 	font-size: 14pt;
 }
 
-.EmoTab {
+.EmoBox {
 	height: 12px;
 	line-height: 18px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+/* FIM - DIV DA FUNÇÃO DE EMNOTICONS */
+
+
 
 /* BOTÃO DO COLOR PICKER */
 .input-color-container {
@@ -123,16 +135,16 @@ H4 {
 	width: 20px;
 	height: 20px;
 	border: solid 2px #ff8c00;
-	border-radius: 30px;
+	border-radius: 20px;
 	margin-left: 5px;
 }
 
 .input-color {
 	position: absolute;
-	right: -8px;
-	top: -8px;
-	width: 42px;
-	height: 42px;
+	right: -9px;
+	top: -9px;
+	width: 40px;
+	height: 40px;
 	border: none;
 }
 
