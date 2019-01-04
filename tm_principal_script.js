@@ -275,6 +275,23 @@ function ShowEmojiTab(modo) {
 }
 
 
+//
+// FUNÇÃO MOVE A TABELA DE EMOJIS 
+//
+function MoveEmoTab(parametro) 
+{
+  if (parametro == "UP") // MOVE PRA CIMA
+  {
+    document.getElementById("ContemEmoTab").style.top = "10%";
+  } else
+  {
+    document.getElementById("ContemEmoTab").style.top = "62%";
+  }
+}
+
+
+
+
 function limpaDeslocamento() {
   if (!document.getElementById("ligaX").checked) {
     document.getElementById("emoX").checked = false;

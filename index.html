@@ -251,32 +251,36 @@
       </TR>
       <TR>
         <TD>
-            <div id="ContemEmoTab" class="EmoTab">
-                <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="#ff8c00" width="100%" height="100%" bgcolor="black">
-                <TR>
-                 <TD width="116px" >
-                    <p align="center">
-                      <form action="">
-                      </form>
-                    </p>
-                    <div  class="EmoBox"></div>
-                </TD>
-                 <TD>
-                  <div id="EmoTab"  class="content"></div>
-                </TD>
-                <TD width="115px">
-                    <div class="EmoBox">
-                        <a href="#" class="btgrande" onclick="ShowEmojiTab(false);">FECHA</a>
-                    </div>
-                </TD>
-                </TR>
-                </TABLE>
-              </div>
-          
         </TD>
       </TR>
      </TABLE> 
+     <div id="ContemEmoTab" class="EmoTab">
+        <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="#ff8c00" width="100%" height="100%" bgcolor="black">
+        <TR>
+         <TD width="116px" >
+            <br>
+            <p align="center">
+                <a href="#" class="btgrande" onclick="MoveEmoTab('UP');">CIMA</a>
+            </p>
+            <br>
+            <p align="center">
+                <a href="#" class="btgrande" onclick="MoveEmoTab('DOWN');">BAIXO</a>
+            </p>
+            <div  class="EmoBox"></div>
+        </TD>
+         <TD>
+          <div id="EmoTab"  class="content"></div>
+        </TD>
+        <TD width="115px">
+            <div class="EmoBox">
+                <a href="#" class="btgrande" onclick="ShowEmojiTab(false);">FECHA</a>
+            </div>
+        </TD>
+        </TR>
+        </TABLE>
+      </div>
     </div>
+
   <script type="text/javascript" src="tm_testa_script.js"></script>  
   <script type="text/javascript" src="tm_desenha_script.js"></script>   
   <script type="text/javascript" src="tm_grava_script.js"></script>   

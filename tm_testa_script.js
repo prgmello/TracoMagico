@@ -45,8 +45,9 @@ function testa(mouseState)
 //
 function RodaRotina(mouseState)
 {
-  //mensagem("Não há rotina para executar")
-  console.log(mouseState);
+  mensagem("Não há rotina para executar")
+
+
 }
 
 
