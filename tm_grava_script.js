@@ -152,7 +152,7 @@ function redesenha(stGravar)
             DrawReadImage(lBehavior);
             break;
       case "Fundo-Aleatorio":
-           MakeBackgroudTilt(lBehavior);
+           MakeBgTilt(lBehavior);
            break;
  
     }

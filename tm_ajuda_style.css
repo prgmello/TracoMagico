@@ -50,15 +50,30 @@ html {
 	letter-spacing:-1px;
    }
 
-H4 {
-    color: rgb(72, 255, 0);
-    text-align:center;
-    margin-top: 30px;
-	margin-bottom: 2px;
-	face:Verdana; 
-	size:10pt;
-   }
 
+ H4 {
+
+	text-align: center;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-family: Verdana;
+	size: 8pt;
+}
+
+.ControlsTitle
+{
+	color: #32CD32;
+}
+
+.ToolsTitle
+{
+	color: #ff8c00;
+}
+
+.CommandTitle
+{
+	color: #00BFFF;
+}
 
 H5 {
     color: rgb(255, 255, 0);

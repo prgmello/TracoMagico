@@ -113,11 +113,14 @@ function Start() {
 //
 function UpdateTools() 
 {
+  // Ferramentas
   ShowColor();
+  ShowTextSize();
   ShowThickness();
+  ShowRadius();
   ShowTransparency();
   ShowSpeed();
-  ShowRadius();
+  // Gravação e Posição do Cursor
   ShowSaveStatus();
   ShowCursor();
 }
@@ -285,7 +288,7 @@ function MoveEmoTab(parametro)
     document.getElementById("ContemEmoTab").style.top = "10%";
   } else
   {
-    document.getElementById("ContemEmoTab").style.top = "62%";
+    document.getElementById("ContemEmoTab").style.top = "61%";
   }
 }
 
@@ -367,6 +370,28 @@ function ClearScreen() {
 
 
 //
+// DEFINE O TAMANHO DA FONTE DO TEXTO
+//
+function DefTextSize(value) 
+{
+  // AUALIZANDO O MOSTRADOR DE TAMANHO DO TEXTO
+  FontSize = parseInt(value);
+  ShowTextSize();
+}
+
+//
+// MOSTRA O TAMANHO DA FONTE DO TEXTO
+//
+function ShowTextSize() 
+{
+  // AUALIZANDO O MOSTRADOR DE TAMANHO DO TEXTO
+  var element = document.getElementById("numtexto");
+  element.innerHTML = "[ " + FontSize + " ]";
+  // setando o valor no Slider
+  document.getElementById("SlTextSize").value = FontSize;
+}
+
+//
 // DEFINE LARGURA DA CANETA
 //
 function DefThickness(parametro) {
@@ -383,6 +408,8 @@ function DefThickness(parametro) {
   // AUALIZANDO O MOSTRADOR DA LARGURA
   var element = document.getElementById("numlargura");
   element.innerHTML = "[" + largura + "]";
+  // setando o valor no Slider
+  document.getElementById("SlLargura").value = largura;
 }
 
 
@@ -406,6 +433,9 @@ function ShowSpeed()
   // AUALIZANDO O MOSTRADOR DA VELOCIDADE
   var element = document.getElementById("numvelocidade");
   element.innerHTML = "[ " + dx + " ]";
+  // setando o valor no Slider
+  document.getElementById("SlVelocidade").value = dx;
+
 }
 
 
@@ -426,6 +456,9 @@ function ShowRadius()
   // Mostrando o valor do Raio
   var element = document.getElementById("numradius");
   element.innerHTML = "[" + Radius + "]";
+  // setando o valor no Slider
+  document.getElementById("SlRadius").value = Radius;
+
 }
 
 
@@ -449,19 +482,10 @@ function ShowTransparency()
   lTransp2Dig = parseFloat(lTransp2Dig.toFixed(2));
   var element = document.getElementById("sttransp");
   element.innerHTML = "[ " + lTransp2Dig + " ]";
+  // setando o valor no Slider
+  document.getElementById("SlTransparency").value = (1-transp) * 100;
 }
 
-
-//
-// DEFINE O TAMANHO DA FONTE DO TEXTO
-//
-function DefText(value) 
-{
-  // AUALIZANDO O MOSTRADOR DE TAMANHO DO TEXTO
-  FontSize = parseInt(value);
-  var element = document.getElementById("numtexto");
-  element.innerHTML = "[ " + FontSize + " ]";
-}
 
 
 //
