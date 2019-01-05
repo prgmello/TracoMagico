@@ -71,23 +71,41 @@ p {
 	letter-spacing: -1px;
 }
 
+
 H4 {
-	color: white;
+
 	text-align: center;
 	margin-top: 2px;
 	margin-bottom: 2px;
-	face: Verdana;
+	font-family: Verdana;
 	size: 8pt;
 }
 
+.ControlsTitle
+{
+	color: #32CD32;
+}
+
+.ToolsTitle
+{
+	color: #ff8c00;
+}
+
+.CommandTitle
+{
+	color: #00BFFF;
+}
+
+
 .MsgLine {
-	color: Red;
+	color: rgb(255, 255, 4);
+	background-color: Black;
 	text-align: center;
 	margin-top: 3px;
 	margin-bottom: 2px;
 	font-family: Verdana;
 	font-weight: bold;
-	font-size: 8pt;
+	font-size: 10pt;
 }
 
 .MsgDiv {
@@ -96,14 +114,13 @@ H4 {
 	top: 300px;
 	left: 35px;
 	z-index: 100;
-	color: Red;
 	text-align: center;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	font-family: Verdana;
 	font-weight: bold;
 	font-size: 8pt;
-	border: solid 2px #fb9e25;
+	border: solid 4px Red;
 }
 
 
@@ -117,12 +134,12 @@ H4 {
 	z-index: 90;
 	color: Red;
 	text-align: center;
-	margin-top: 2px;
-	margin-bottom: 2px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 	font-family: Verdana;
 	font-weight: bold;
 	font-size: 8pt;
-	border: solid 2px #fb9e25;
+	border: solid 4px #fb9e25;
 
 	}
 
@@ -130,6 +147,8 @@ H4 {
 .content {
 	width: 500pt;
 	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 7px;
 	text-align: center;
 	background-color: black;
 	overflow-wrap: break-word;
@@ -146,6 +165,14 @@ H4 {
 	line-height: 18px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.EmoBox2 {
+	color: #ff8c00;
+	height: 12px;
+	line-height: 12px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 /* FIM - DIV DA FUNÇÃO DE EMNOTICONS */
@@ -188,7 +215,6 @@ input[type="range"] {
 TD {
 	text-align: center;
 	BORDER: 1;
-	BGCOLOR: black
 }
 
 font {
@@ -353,6 +379,7 @@ form {
 	text-align: center;
 	text-shadow: 1px 1px 0px #cc9f52;
 	margin: 1px;
+	right: 3px;
 }
 
 .btgrande:hover {
