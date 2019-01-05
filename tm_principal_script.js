@@ -146,6 +146,7 @@ function UpdateTools()
     //console.log(pEMC[f]);
     element.innerHTML += '<a href="#" class="EMC" onclick=\'DrawEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
    }
+   document.getElementById("ContemEmoTab").style.top = "75px"
   }
 
 
@@ -283,13 +284,19 @@ function ShowEmojiTab(modo) {
 //
 function MoveEmoTab(parametro) 
 {
-  if (parametro == "UP") // MOVE PRA CIMA
+  var lPosition = parseInt(document.getElementById("ContemEmoTab").style.top);
+  if (parametro == "DOWN") // MOVE PRA CIMA
   {
-    document.getElementById("ContemEmoTab").style.top = "10%";
-  } else
+    if (lPosition == 460) {lPosition = 680;}
+    if (lPosition == 280) {lPosition = 460;}
+    if (lPosition ==  75) {lPosition = 280;}
+  } else if (parametro == "UP")
   {
-    document.getElementById("ContemEmoTab").style.top = "61%";
+    if (lPosition == 280) {lPosition =  75;}
+    if (lPosition == 460) {lPosition = 280;}
+    if (lPosition == 680) {lPosition = 460;}
   }
+  document.getElementById("ContemEmoTab").style.top = lPosition+"px";
 }
 
 
@@ -514,7 +521,7 @@ function ShowCursor() {
   // Marca o ponto no Canvas de desenho
   ctx.moveTo(x, y);
 
-  if (pGravar) {SaveStep("Cursor","","");}
+  //if (pGravar) {SaveStep("Cursor","","");}
 
   // CALCULA LARGURA E ALTURA DO RETÂNGULO
   retL = Math.abs(x - Xant) + 1;

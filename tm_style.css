@@ -121,6 +121,7 @@ H4 {
 	font-weight: bold;
 	font-size: 8pt;
 	border: solid 4px Red;
+	display: block;
 }
 
 
@@ -129,7 +130,7 @@ H4 {
 /* DIV DA FUNÇÃO DE EMNOTICONS */
 .EmoTab {
 	position: absolute;
-	top: 10%;
+	top: 75px;
     left: 35px;
 	z-index: 90;
 	color: Red;
@@ -140,7 +141,7 @@ H4 {
 	font-weight: bold;
 	font-size: 8pt;
 	border: solid 4px #fb9e25;
-
+	display: block;
 	}
 
 

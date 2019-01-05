@@ -110,15 +110,18 @@ function redesenha(stGravar)
  
 
     //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " Raio= " + Radius + " cor= " + cor + " largura= " + largura)
+    //console.log("Passo: " + lPasso + " - "  +pForma[lPasso] + " - "  + lBehavior);
 
-    //console.log(pForma[lPasso] + " - "  +lBehavior);
-
+   if (lPasso == 0) {DrawPoint();} // Necessário para calcular retL e retA
+   
 
     switch (pForma[lPasso])
     {
-      case "Cursor":
-           ShowCursor();
-           break;
+      // SONHEI QUE NÃO ERA PRECISO GRAVAR O CURSOR... 
+      // DEPOIS DE UM PEQUENO AJUSTE NÃO ERA PRECISO MESMO!!!
+      // case "Cursor":
+      //      ShowCursor();
+      //      break;
       case "Ponto":         
            DrawPoint();
            break;
@@ -144,7 +147,7 @@ function redesenha(stGravar)
            ChangeBackgroundColor(); 
            break;
       case "Imagem": 
-            if (gravouIMG == false)  
+            if (!gravouIMG)
             {
              usuarioIMG = new Image();
              usuarioIMG = pUsuarioIMG[lPasso];
@@ -168,7 +171,8 @@ function redesenha(stGravar)
 //
 function CutProjetStep()
 {
-  if (Passo > 1)
+  var lStGravar = pGravar;
+  if (Passo > 0)
   {
     var lPasso = Passo-1;
     if (confirm("Confirma Apagar Último Passo Gravado? ( " + pForma[lPasso] + " " + pBehavior[lPasso] + " )")) 
@@ -199,6 +203,7 @@ function CutProjetStep()
        redesenha(false);
     }
   } else {mensagem("Não há Passos de desenho gravados!!!")}
+  pGravar = lStGravar;
   UpdateTools();
 }
 
@@ -232,8 +237,8 @@ function CancelProjectRecorded()
         pUsuarioIMG[lPasso] = null;
         pGravouIMG[lPasso]  = null;
       }
-      Passo     = 0;   // Zera o Passo de gravação
-      gravouIMG = "N"; // Define a imagem como não Gravada
+      Passo     = 0;     // Zera o Passo de gravação
+      gravouIMG = false; // Define a imagem como não Gravada
       UpdateTools();
     }
   } else {mensagem("Não há desenho gravado!!!")}
@@ -268,7 +273,7 @@ function SaveStep(forma,tipo,string)
 
    pGravouIMG[Passo]  = gravouIMG;
    // SE FORMA = IMAGEM
-   if ((forma=="Imagem") && (gravouIMG==false))
+   if ((forma=="Imagem") && (!gravouIMG))
    { pUsuarioIMG[Passo] = usuarioIMG;
      gravouIMG = true; 
    }

@@ -190,14 +190,14 @@ function DrawReadImage(vBehavior)
   return false;}   
 
   
-  if (vBehavior == 'frente')
+  if (vBehavior == "frente")
     { 
       if ((Xant==x) && (Yant==y))
       {mensagem("Marque dois pontos formando um retângulo.");
       return false;} 
       ctx.drawImage(usuarioIMG , newX , newY , retL , retA);
     }
-  else if (vBehavior == 'fundo')
+  else if (vBehavior == "fundo")
   { 
     ctxFu.globalAlpha = transp;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
