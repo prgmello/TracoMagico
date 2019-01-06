@@ -112,7 +112,7 @@ function redesenha(stGravar)
     //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " Raio= " + Radius + " cor= " + cor + " largura= " + largura)
     //console.log("Passo: " + lPasso + " - "  +pForma[lPasso] + " - "  + lBehavior);
 
-   if (lPasso == 0) {DrawPoint();} // Necessário para calcular retL e retA
+   //if (lPasso == 0) {DrawPoint();} // Necessário para calcular retL e retA
    
 
     switch (pForma[lPasso])

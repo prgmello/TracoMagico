@@ -23,10 +23,18 @@ function DrawPoint()
 
   if (pGravar) {SaveStep("Ponto","","");}
 
-  // CALCULA LARGURA E ALTURA DO RETÂNGULO
+
+  ShowCursor();
+}
+
+
+//
+// CALCULA LARGURA E ALTURA DO RETÂNGULO
+//
+function CalcRectangle()
+{
   retL = Math.abs(x - Xant)+1;
   retA = Math.abs(y - Yant)+1;
-  ShowCursor();
 }
 
 
@@ -90,6 +98,8 @@ function DrawRectangle(vBehavior)
   var lcor2;
   var lcor3; 
 
+  CalcRectangle();
+  
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");} 
   else {
      // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO
@@ -178,6 +188,7 @@ function DrawCircle(vBehavior)
 //
 function DrawReadImage(vBehavior)
 {
+  CalcRectangle();
   var newX = x;
   var newY = y;
   // Calcula o vértice superior esquerdo do "retangulo" formado pelos 2 últimos pontos
@@ -340,7 +351,6 @@ function ChangeBgColor()
 
     if (pGravar) {SaveStep("Fundo","","");}    
 }
-
 
 
 

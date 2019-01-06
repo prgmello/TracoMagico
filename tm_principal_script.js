@@ -39,7 +39,7 @@ var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
 var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
-var LinhaManual = false; // 
+var LinhaManual = false; // Flag se o Usuário está traçando uma linha com as setas do teclado.
 var vResp = "N"; // Saída da função confirma
 
 // VARIÁVEIS DAS FUNÇÕES LER FOTOS
@@ -533,6 +533,9 @@ function ShowCursor() {
 // FUNÇÃO QUE LÊ AS TECLAS PRESSIONADAS
 //
 function KeyDown(evt) {
+  
+  var lDrawPoint = true;
+
   switch (evt.keyCode) {
     case 38:
       /* seta para cima */
@@ -566,17 +569,16 @@ function KeyDown(evt) {
         x += dx;
       }
       break;
+    default:
+      lDrawPoint = false;
+      break;
   }
 
-  // // FLAG DE USO DE TECLADO
-  if (LinhaManual == false) 
-   {
-     Xant = x;
-     Yant = y;
-   }
+   
+  // SÓ CHAMA A ROTINA SE FOR UMA TECLA VÁLIDA
+  if (lDrawPoint) {DrawPoint();}
 
-   DrawPoint();
-   LinhaManual = true;
+  // LinhaManual = true;
 
 }
 
