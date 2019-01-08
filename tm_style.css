@@ -110,6 +110,7 @@ H4 {
 
 .MsgDiv {
 	position: absolute;
+	display: block;
 	width: 900px;
 	top: 300px;
 	left: 35px;
@@ -121,7 +122,7 @@ H4 {
 	font-weight: bold;
 	font-size: 8pt;
 	border: solid 4px Red;
-	display: block;
+
 }
 
 
@@ -130,6 +131,7 @@ H4 {
 /* DIV DA FUNÇÃO DE EMNOTICONS */
 .EmoTab {
 	position: absolute;
+	display: block;
 	top: 75px;
     left: 35px;
 	z-index: 90;
@@ -141,8 +143,7 @@ H4 {
 	font-weight: bold;
 	font-size: 8pt;
 	border: solid 4px #fb9e25;
-	display: block;
-	}
+}
 
 
 .content {

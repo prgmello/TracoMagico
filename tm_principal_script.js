@@ -72,6 +72,8 @@ var pUsuarioIMG = new Array(PassoLimite);
 var pGravouIMG = new Array(PassoLimite);
 
 
+var Iteration = 0; // Conta as iterações da rotina de pintura
+
 //
 // FIM DA DEFINIÇÃO DAS VARIÁVEIS GLOBAIS
 //
@@ -156,6 +158,8 @@ function UpdateTools()
 //
 function DefColor(inCor) {
   cor = inCor;
+  console.log(inCor)
+
 }
 
 //

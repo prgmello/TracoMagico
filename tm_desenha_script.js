@@ -48,7 +48,7 @@ function DrawConcentricCircles(vBehavior)
   var lCores;
   var passo = largura*3;
   ctx.lineWidth=largura
-  for (var f = 1; f < Radius; f=f+passo)
+  for (f = 1; f < Radius; f=f+passo)
    { 
     ctx.beginPath()
     if (vBehavior=="uma-cor") {lCores=cor;} 
