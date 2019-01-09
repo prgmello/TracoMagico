@@ -52,6 +52,9 @@
                   <H4 class="ControlsTitle" title="Tamanho do Texto ou Emojis.">FONTE</H4>
               </TD>
               <TD bgcolor="black"> 
+                <H4 class="ControlsTitle" title="Largura do traço.">LADOS</H4>
+              </TD>
+              <TD bgcolor="black"> 
                 <H4 class="ControlsTitle" title="Largura do traço.">LARG.</H4>
               </TD>
               <TD bgcolor="black">
@@ -95,14 +98,20 @@
                 <p>
                   <input type="range"  id="SlTextSize" min="10" max="100" value="20" oninput="DefTextSize(this.value)" onchange="this.blur();">
                 </p>
-            </TD>
-   
+              </TD>
+            <TD width="40px">
+                <p class="contador" id="numSides"  title="Lados do polígono: 3 a 30.">[0]</p> 
+                <p>
+                <input type="range" id="SlSides" title="Largura do Traço." min="3" max="30" value="2" oninput="DefSides(this.value)" onchange="this.blur();"> 
+                </p>   
+            </TD> 
             <TD width="40px">
               <p class="contador" id="numlargura"  title="Largura do Taço: 2 a 20.">[0]</p> 
               <p>
                 <input type="range" id="SlLargura" title="Largura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
               </p>   
             </TD> 
+   
             <TD width="40px"> 
                 <p class="contador" id="numradius"  title="Tamanho do raio para traçar círculos: 5 a 200.">[0]</p> 
                 <p>
@@ -130,7 +139,12 @@
                 <a href="#" class="btaction" onclick="DrawRectangle('vazio');" title="Traça um retângulo vazio entre os dois últimos pontos marcados."    >▯</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="DrawRectangle('preenchido');" title="Traça um retângulo sólido entre os dois últimos pontos marcados.">▮</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="DrawPoligon('vazio');" title="Desenha um polígono vazio.">◊</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="DrawPoligon('preenchido');" title="Desenha um círculo polígono">◆</a>
                 <hr width="80%" color="#333333">
+
               </p>  
               <p> 
                 <a href="#" class="btaction" onclick="DrawCircle('vazio');" title="Desenha um círculo vazio.">◯</a>

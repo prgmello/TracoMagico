@@ -88,6 +88,7 @@ function redesenha(stGravar)
     Yant      = pYant[lPasso];
     Radius    = pRadius[lPasso];
     cor       = pColor[lPasso];
+    Sides     = pSides[lPasso];
     largura   = pThickness[lPasso];
     dx        = pSpeed[lPasso];
     dy        = pSpeed[lPasso];
@@ -130,6 +131,9 @@ function redesenha(stGravar)
            break;
       case "Retangulo":
            DrawRectangle(lBehavior);  
+           break;
+      case "Poligono":
+           DrawPoligon(lBehavior);  
            break;
       case "Circulo":
            DrawCircle(lBehavior);
@@ -189,6 +193,7 @@ function CutProjetStep()
        pXant[lPasso]      = null;
        pYant[lPasso]      = null;
        pColor[lPasso]     = null;
+       pSides[Passo]      = null;
        pThickness[lPasso] = null;
        pTransparency[lPasso]  = null;
        pSpeed[lPasso]     = null;
@@ -228,6 +233,7 @@ function CancelProjectRecorded()
         pXant[lPasso]       = null;
         pYant[lPasso]       = null;
         pColor[lPasso]      = null;
+        pSides[Passo]       = null;
         pThickness[lPasso]  = null;
         pTransparency[lPasso] = null;
         pSpeed[lPasso]      = null;
@@ -263,6 +269,7 @@ function SaveStep(forma,tipo,string)
    pYant[Passo]       = Yant;
    pRadius[Passo]     = Radius;
    pColor[Passo]      = cor;
+   pSides[Passo]      = Sides;
    pThickness[Passo]  = largura;
    pSpeed[Passo]      = dx;
    pTransparency[Passo] = transp;

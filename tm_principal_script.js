@@ -34,6 +34,7 @@ var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
 var largura = 2; // largura do traço de 2 a 20
 var Radius = 100; // Tamanho do raio para circulos
+var Sides = 3 // Númro de Lados para Polígonos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
@@ -52,7 +53,7 @@ var gravouIMG = false // Define se a imagem foi gravada em memória.
 // VARIÁVEL DE GRAVAÇÃO 
 //
 var Passo = 0;
-var PassoLimite = 4000;
+var PassoLimite = 2000;
 var pGravar = true;
 var pForma = new Array(PassoLimite);
 var pBehavior = new Array(PassoLimite);
@@ -61,6 +62,7 @@ var pY = new Array(PassoLimite);
 var pXant = new Array(PassoLimite);
 var pYant = new Array(PassoLimite);
 var pColor = new Array(PassoLimite);
+var pSides  = new Array(PassoLimite);
 var pThickness = new Array(PassoLimite);
 var pTransparency = new Array(PassoLimite);
 var pSpeed = new Array(PassoLimite);
@@ -118,6 +120,7 @@ function UpdateTools()
   // Ferramentas
   ShowColor();
   ShowTextSize();
+  ShowSides();
   ShowThickness();
   ShowRadius();
   ShowTransparency();
@@ -422,6 +425,28 @@ function DefThickness(parametro) {
   // setando o valor no Slider
   document.getElementById("SlLargura").value = largura;
 }
+
+//
+// DEFINE O NÚMERO DE LADOS DE UM POLÍGONO
+//
+function DefSides(parametro) {
+  Sides = parseInt(parametro);
+  ShowSides();
+}
+
+//
+// MOSTRA O NÚMERO DE LADOS DE UM POLÍGONO
+//
+function ShowSides()
+{
+  // AUALIZANDO O MOSTRADOR DA LARGURA
+  var element = document.getElementById("numSides");
+  element.innerHTML = "[" + Sides + "]";
+  // setando o valor no Slider
+  document.getElementById("SlSides").value = Sides;
+}
+
+
 
 
 //
