@@ -161,8 +161,6 @@ function UpdateTools()
 //
 function DefColor(inCor) {
   cor = inCor;
-  console.log(inCor)
-
 }
 
 //
