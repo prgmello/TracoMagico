@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <link href="tm_style.css" rel="stylesheet" type="text/css">
-    <title>Traço Mágico em JS - v3.8i</title>
+    <title>Traço Mágico em JS - v3.8L</title>
     <meta charset="utf-8">
   </head>
   <body>
@@ -35,8 +35,9 @@
         <TD>
           <div id = "caixa" class="container">
            <canvas id="tmcanvasFu" class="layer0"  width="950" height="500" ></canvas>
-           <canvas id="tmcanvas"  class="layer1"  width="950" height="500" ></canvas>
+           <canvas id="tmcanvas"   class="layer1"  width="950" height="500" ></canvas>
            <canvas id="tmcanvasFr" class="layer2"  width="950" height="500" ></canvas>
+           <canvas id="tmcanvasPr" class="layer3"  width="950" height="500" ></canvas>
           </div>
          </TD> 
       </TR>
@@ -49,10 +50,10 @@
                   <H4 class="ControlsTitle" title="Cores de Desenho e Fundo.">COR</H4>
               </TD>
               <TD bgcolor="black">
-                  <H4 class="ControlsTitle" title="Tamanho do Texto ou Emojis.">FONTE</H4>
+                  <H4 class="ControlsTitle" title="Tamanho da fonte para Texto ou Emojis.">FONTE</H4>
               </TD>
               <TD bgcolor="black"> 
-                <H4 class="ControlsTitle" title="Largura do traço.">LADOS</H4>
+                <H4 class="ControlsTitle" title="Lados do polígono ou Pontas da estrela.">LADOS</H4>
               </TD>
               <TD bgcolor="black"> 
                 <H4 class="ControlsTitle" title="Largura do traço.">LARG.</H4>
@@ -67,7 +68,8 @@
                 <H4 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H4>
               </TD>
               <TD bgcolor="black">
-                 <H4 class="ToolsTitle" title="Formas básicas.">FORMAS</H4>
+                 <H4 class="ToolsTitle" title="Formas básicas.">FORMAS</H4>   
+
               </TD>
               <TD bgcolor="black">
                 <H4 class="ToolsTitle" title="Inserir um texto no desenho.">TEXTO</H4>
@@ -89,20 +91,20 @@
             <TR>  
               <TD width="30px">
                 <div class="input-color-container"> 
-                  <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Escolha a cor de desenho desejada." oninput="DefColor(this.value);"> 
+                  <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor." oninput="DefColor(this.value);"> 
                 </div> 
             </TD>
             
             <TD width="40px"> 
-                <p class="contador" id="numtexto" title="Tamanho do texto: 10 a 30.">[20]</p>
+                <p class="contador" id="numtexto" title="Tamanho da fonte: 10 a 30.">[20]</p>
                 <p>
-                  <input type="range"  id="SlTextSize" min="10" max="100" value="20" oninput="DefTextSize(this.value)" onchange="this.blur();">
+                  <input type="range"  id="SlTextSize" title="Tamanho da fonte." min="10" max="100" value="20" oninput="DefTextSize(this.value)" onchange="this.blur();">
                 </p>
               </TD>
             <TD width="40px">
-                <p class="contador" id="numSides"  title="Lados do polígono: 3 a 30.">[0]</p> 
+                <p class="contador" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
                 <p>
-                <input type="range" id="SlSides" title="Largura do Traço." min="3" max="30" value="2" oninput="DefSides(this.value)" onchange="this.blur();"> 
+                <input type="range" id="SlSides" title="Lados de um polígono/Pontas da estrela." min="3" max="30" value="5" oninput="DefSides(this.value)" onchange="this.blur();"> 
                 </p>   
             </TD> 
             <TD width="40px">
@@ -115,7 +117,7 @@
             <TD width="40px"> 
                 <p class="contador" id="numradius"  title="Tamanho do raio para traçar círculos: 5 a 200.">[0]</p> 
                 <p>
-                  <input type="range"id="SlRadius" min="5" max="200" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
+                  <input type="range"id="SlRadius"  title="Tamanho do raio." min="5" max="200" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
                 </p>  
             </TD>  
             <TD  width="40px">
@@ -133,23 +135,15 @@
             
             <TD width="80px"> 
               <p>
-                <a href="#" class="btaction" onclick="DrawLine();" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
-                &nbsp;
-  
-                <a href="#" class="btaction" onclick="DrawRectangle('vazio');" title="Traça um retângulo vazio entre os dois últimos pontos marcados."    >▯</a>
-                &nbsp;
-                <a href="#" class="btaction" onclick="DrawRectangle('preenchido');" title="Traça um retângulo sólido entre os dois últimos pontos marcados.">▮</a>
-                &nbsp;
-                <a href="#" class="btaction" onclick="DrawPoligon('vazio');" title="Desenha um polígono vazio.">◊</a>
-                &nbsp;
-                <a href="#" class="btaction" onclick="DrawPoligon('preenchido');" title="Desenha um círculo polígono">◆</a>
+                <a href="#" class="btaction" onclick="DrawRectangle();" title="Traça um retângulo entre os dois cursores.">▯</a>
+                <a href="#" class="btaction" onclick="DrawCircle();" title="Desenha um círculo.">◯</a>
+                <a href="#" class="btaction" onclick="DrawPoligon();" title="Desenha um polígono.">◇</a>
+                <a href="#" class="btaction" onclick="DrawStar();" title="Desenha uma estrela.">✩</a>
+                <input type="checkbox" name="stSolid" id="stSolid" title="Marque para forma sólidas" onchange="DefSolid(this.checked);">
                 <hr width="80%" color="#333333">
-
               </p>  
               <p> 
-                <a href="#" class="btaction" onclick="DrawCircle('vazio');" title="Desenha um círculo vazio.">◯</a>
-                &nbsp;
-                <a href="#" class="btaction" onclick="DrawCircle('preenchido');" title="Desenha um círculo preenchido">●</a>
+                <a href="#" class="btaction" onclick="DrawLine();" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="DrawConcentricCircles('uma-cor');" title="Desenha Círculos concêntricos.">◉</a> 
                 &nbsp;
@@ -168,7 +162,7 @@
 
           <TD width="40px" align="center">
               <p align="center">
-                 <a href="#" class="btactionGray" id="pegaimg" onclick="DrawReadImage('frente');"  title="Insere uma imagem no ponto atual.">▣</a>
+                 <a href="#" class="btaction" id="colaimg" onclick="DrawReadImage('frente');"  title="Insere uma imagem no ponto atual.">▣</a>
               </p>
               <p>
               <div id="files" title="Seleciona uma imagem do computador." >

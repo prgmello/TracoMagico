@@ -43,24 +43,24 @@ function CalcRectangle()
 //
 // DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
 //
-function DrawConcentricCircles(vBehavior)
+function DrawConcentricCircles(lBehavior)
 {
-  var lCores;
+  var cores;
   var passo = largura*3;
   ctx.lineWidth=largura
   for (f = 1; f < Radius; f=f+passo)
    { 
     ctx.beginPath()
-    if (vBehavior=="uma-cor") {lCores=cor;} 
-    else if (vBehavior=="varias-cores") 
-      {lCores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+    if (lBehavior=="uma-cor") {cores=cor;} 
+    else if (lBehavior=="varias-cores") 
+      {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
     // Plota os Círculos Concêntricos
-    ctx.strokeStyle = lCores;
+    ctx.strokeStyle = cores;
     ctx.arc(x, y, f, 0, Math.PI*2, true);
     ctx.stroke();
    }
 
-   if (pGravar) {SaveStep("Concentrico",vBehavior,"");}
+   if (pGravar) {SaveStep("Concentrico",lBehavior,"");}
 }
 
 
@@ -90,14 +90,10 @@ function DrawLine()
 //
 // FAZ UM RETANGULO USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function DrawRectangle(vBehavior)
+function DrawRectangle()
 {
   var newX = x;
   var newY = y;
-  var lcor1;
-  var lcor2;
-  var lcor3; 
-
   CalcRectangle();
   
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");} 
@@ -108,17 +104,15 @@ function DrawRectangle(vBehavior)
 
      ctx.beginPath();
      ctx.lineWidth=largura;
-     if (vBehavior=="preenchido") 
+     if (StSolid) 
       {
-       lcor1 = parseInt(cor.substring(1,3), 16);
-       lcor2 = parseInt(cor.substring(3,5), 16);
-       lcor3 = parseInt(cor.substring(5,7), 16); 
-       ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
-       ctx.fillRect(newX,newY,retL,retA); 
+       ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+       console.log('rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )')
+       ctx.fillRect(newX,newY,retL,retA);
        ctx.fill();
        // Faz o reset o RGBA para 1
-       ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
-     } else if (vBehavior=="vazio") 
+       ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
+     } else
      {
       ctx.strokeStyle = cor;
       ctx.strokeRect(newX,newY,retL,retA);
@@ -127,7 +121,7 @@ function DrawRectangle(vBehavior)
     }
     ctx.closePath();
 
-    if (pGravar) {SaveStep("Retangulo",vBehavior,"");}
+    if (pGravar) {SaveStep("Retangulo","","");}
   }
   
 
@@ -135,31 +129,26 @@ function DrawRectangle(vBehavior)
 //
 // FAZ UM CÍRCULO NA POSIÇÃO ATUAL
 //
-function DrawCircle(vBehavior)
+function DrawCircle()
 {
-  var lcor1;
-  var lcor2;
-  var lcor3; 
   ctx.beginPath();
   ctx.lineWidth=largura;
-  if (vBehavior=="preenchido") 
+  if (StSolid) 
   {
-      lcor1 = parseInt(cor.substring(1,3), 16);
-      lcor2 = parseInt(cor.substring(3,5), 16);
-      lcor3 = parseInt(cor.substring(5,7), 16);
-    ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
+    ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+       console.log('rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )')
     ctx.arc(x, y, Radius, 0, Math.PI*2, true);
     ctx.fill();
     // Faz o reset o RGBA para 1
-    ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
-  } else if (vBehavior=="vazio") 
+    ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
+  } else
   {
    ctx.strokeStyle = cor;
    ctx.arc(x, y, Radius, 0, Math.PI*2, true);
    ctx.stroke(); 
   }
   
-  if (pGravar) {SaveStep("Circulo",vBehavior,"");}
+  if (pGravar) {SaveStep("Circulo","","");}
 }
 
 
@@ -167,7 +156,7 @@ function DrawCircle(vBehavior)
 
 
 //
-// FUNÇÃO AUXILIAR DA ROTINA QUE TRAÇA POLÍGONOS DE N LADOS
+// FUNÇÃO AUXILIAR DA ROTINA QUE TRAÇA POLÍGONOS e ESTRELAS
 //
 function point(angle, Radius) {
   return {
@@ -180,38 +169,62 @@ function point(angle, Radius) {
 //
 // TRAÇA POLÍGONOS DE N LADOS
 //
-function DrawPoligon(vBehavior)
+function DrawPoligon()
 {
-var lcor1 = parseInt(cor.substring(1,3), 16);
-var lcor2 = parseInt(cor.substring(3,5), 16);
-var lcor3 = parseInt(cor.substring(5,7), 16);
 var lSides = Sides;
 var lCalcAngle = lSides;
 ctx.beginPath();
 ctx.lineWidth=largura;
-if (vBehavior=="preenchido") 
-   {ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
+if (StSolid) 
+   {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
    } else{ctx.strokeStyle = cor;} 
  
-var lLoop = lSides +2;
+var lLoop = lSides +2; // É preciso somar 2 para garantir o fechamento do polígono em modo Stroke
 while (lLoop--) 
 {
    var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
    var pt = point(angle, Radius);
    ctx.lineTo(pt.x + x, pt.y + y);
 }
-if (vBehavior=="preenchido") {ctx.fill();} else {ctx.stroke();}
+ctx.closePath();
+if (StSolid) {ctx.fill();} else {ctx.stroke();}
 
 
 // Faz o reset o RGBA para 1
-ctx.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
+ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
 
 
-if (pGravar) {SaveStep("Poligono",vBehavior,"");}
+if (pGravar) {SaveStep("Poligono","","");}
 }
 
 
+function DrawStar()
+{
+var lDistance = Radius;
+var lTips = Sides*2;
+var lCalcAngle = lTips;
+ctx.beginPath();
+if (StSolid) 
+   {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+   } else{ctx.strokeStyle = cor;} 
+ 
+var lLoop = lTips;
+while (lLoop--) 
+{
+   var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
+   var lDistance = (lLoop % 2 === 0) ? (parseInt(Radius/2)) : Radius;
+   var pt = point(angle, lDistance);
+   ctx.lineTo(pt.x + x, pt.y + y); 
+   
+}
+ctx.closePath();
+if (StSolid) {ctx.fill();} else {ctx.stroke();}
 
+
+// Faz o reset o RGBA para 1
+ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
+if (pGravar) {SaveStep("Estrela","","");}
+}
 
 
 
@@ -233,7 +246,7 @@ if (pGravar) {SaveStep("Poligono",vBehavior,"");}
 //
 // COLA A IMAGEM NO CANVAS
 //
-function DrawReadImage(vBehavior)
+function DrawReadImage(StSolid)
 {
   CalcRectangle();
   var newX = x;
@@ -248,14 +261,14 @@ function DrawReadImage(vBehavior)
   return false;}   
 
   
-  if (vBehavior == "frente")
+  if (StSolid == "frente")
     { 
       if ((Xant==x) && (Yant==y))
       {mensagem("Marque dois pontos formando um retângulo.");
       return false;} 
       ctx.drawImage(usuarioIMG , newX , newY , retL , retA);
     }
-  else if (vBehavior == "fundo")
+  else if (StSolid == "fundo")
   { 
     ctxFu.globalAlpha = transp;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
@@ -263,7 +276,7 @@ function DrawReadImage(vBehavior)
 
   }
 
-  if (pGravar) {SaveStep("Imagem",vBehavior,"");}
+  if (pGravar) {SaveStep("Imagem",StSolid,"");}
 }
 
 
@@ -320,13 +333,13 @@ if (pGravar) {SaveStep("Emoji","",lEmoji);}
 //
 // CRIA UM FUNDO PSICODÉLICO
 //
-function MakeBgTilt(vBehavior)
+function MakeBgTilt(StSolid)
 {
   var lx;
   var ly;
-  var lcor1, lcor2, lcor3;
+  var cor1, cor2, cor3;
 
-if (vBehavior == "circulos")
+if (StSolid == "circulos")
 {
   var lLineWidth;
   var lRadius;
@@ -334,9 +347,9 @@ if (vBehavior == "circulos")
   for (f = 30; f > 10; f--)
   { 
      ctxFu.beginPath()
-     lcor1 = Math.floor(Math.random()*255);
-     lcor2 = Math.floor(Math.random()*255);
-     lcor3 = Math.floor(Math.random()*255);
+     cor1 = Math.floor(Math.random()*255);
+     cor2 = Math.floor(Math.random()*255);
+     cor3 = Math.floor(Math.random()*255);
      lx    = Math.floor(Math.random()*(WIDTH));
      ly    = Math.floor(Math.random()*(HEIGHT));
      lRadius = Math.floor(Math.random()*(HEIGHT/2));
@@ -344,7 +357,7 @@ if (vBehavior == "circulos")
      lLineWidth = Math.floor(Math.random()*dx);
 
      ctxFu.lineWidth=lLineWidth;
-     ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + lTransparency + ' )';
+     ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + lTransparency + ' )';
      ctxFu.arc(lx, ly, lRadius, 0, Math.PI*2, true);
 
      ctxFu.fill();
@@ -353,7 +366,7 @@ if (vBehavior == "circulos")
   ctxFu.strokeStyle = 0;
   ctxFu.fillStyle = 0;
 }
-else if (vBehavior=="retangulos")
+else if (StSolid=="retangulos")
 {
 
   var lRectWidth;
@@ -371,18 +384,18 @@ else if (vBehavior=="retangulos")
    ctxFu.lineWidth=largura;
    ctxFu.fillStyle = cor;
    ctxFu.fill();
-   lcor1 = Math.floor(Math.random()*255);
-   lcor2 = Math.floor(Math.random()*255);
-   lcor3 = Math.floor(Math.random()*255);
-   ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + transp + ' )';
+   cor1 = Math.floor(Math.random()*255);
+   cor2 = Math.floor(Math.random()*255);
+   cor3 = Math.floor(Math.random()*255);
+   ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + transp + ' )';
    ctxFu.fillRect(lx, ly, lRectWidth, lRectHeight);
   
   }
-  ctxFu.fillStyle ='rgba('+ lcor1 +  ' , ' + lcor2+  ' , ' + lcor3+  ' , ' + 1 + ' )';
+  ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
   ctxFu.closePath();
   }
 
-  if (pGravar) {SaveStep("Fundo-Aleatorio",vBehavior,"");}
+  if (pGravar) {SaveStep("Fundo-Aleatorio",StSolid,"");}
 }
 
 

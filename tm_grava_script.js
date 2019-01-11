@@ -13,10 +13,8 @@
 //
 function RecordProject()
 {
-  if (pGravar) {pGravar = false;} 
-  else if (!pGravar) {pGravar = true;}
+  if (pGravar) {pGravar = false;} else {pGravar = true;}
   ShowSaveStatus();
-
 }
 
 
@@ -59,25 +57,35 @@ function RestoreProject()
     
     if (confirm("Confirma Redesenhar?"))
     {
-      pGravar = false;
-      ShowSaveStatus();
-      redesenha(false);
-      mensagem("ATENÇÃO: A Gravação está DESLIGADA!!!")
+      CallRedrawProject();
     }
   } else {mensagem("Não há Passos gravados!!!")}
 }
+
+//
+//  SETA A VARIÁVEL DE GRAVAÇÃO COMO FALSE PARA REDESENHAR SEM DUPLICAR O PROJETO
+//
+function CallRedrawProject()
+{
+  var lGravar = pGravar; // Guarda a Situação de Gravação Atual
+  pGravar = false;
+  RedrawProject();
+  pGravar = lGravar; // Restaura a Situação de Gravação antes da rotina executar
+  ShowSaveStatus();
+}
+
+
 
 
 //
 //  REFAZ O DESENHO GRAVADO
 //
-function redesenha(stGravar)
+function RedrawProject()
 {
   var lPassoFim = Passo;
   var lPasso;
   var lBehavior;
   var lEmoji;
-  pGravar = stGravar;
   
   for (lPasso = 0; lPasso < lPassoFim; lPasso++) 
   { 
@@ -87,6 +95,7 @@ function redesenha(stGravar)
     Xant      = pXant[lPasso];
     Yant      = pYant[lPasso];
     Radius    = pRadius[lPasso];
+    StSolid   = pStSolid[lPasso];
     cor       = pColor[lPasso];
     Sides     = pSides[lPasso];
     largura   = pThickness[lPasso];
@@ -95,6 +104,8 @@ function redesenha(stGravar)
     transp    = pTransparency[lPasso];
     FontSize  = pFontSize[lPasso];
     lEmoji    = pEmoji[lPasso]
+
+    CalcColorParts();
 
     if (pForma[lPasso]=="Texto") {texto  = pText[lPasso];}
     
@@ -130,13 +141,16 @@ function redesenha(stGravar)
            DrawLine();     
            break;
       case "Retangulo":
-           DrawRectangle(lBehavior);  
+           DrawRectangle();  
            break;
       case "Poligono":
-           DrawPoligon(lBehavior);  
+           DrawPoligon();  
+           break;
+      case "Estrela":
+           DrawStar();
            break;
       case "Circulo":
-           DrawCircle(lBehavior);
+           DrawCircle();
            break;
       case "Concentrico":
            DrawConcentricCircles(lBehavior);
@@ -192,8 +206,9 @@ function CutProjetStep()
        pY[lPasso]         = null;
        pXant[lPasso]      = null;
        pYant[lPasso]      = null;
+       pStSolid[lPasso]   = null;
        pColor[lPasso]     = null;
-       pSides[Passo]      = null;
+       pSides[lPasso]     = null;
        pThickness[lPasso] = null;
        pTransparency[lPasso]  = null;
        pSpeed[lPasso]     = null;
@@ -205,7 +220,7 @@ function CutProjetStep()
        
        ClearScreen();
        Passo-- // Subtrai um do Passo de gravação
-       redesenha(false);
+       RedrawProject();
     }
   } else {mensagem("Não há Passos de desenho gravados!!!")}
   pGravar = lStGravar;
@@ -232,6 +247,7 @@ function CancelProjectRecorded()
         pY[lPasso]          = null;
         pXant[lPasso]       = null;
         pYant[lPasso]       = null;
+        pStSolid[lPasso]    = null;
         pColor[lPasso]      = null;
         pSides[Passo]       = null;
         pThickness[lPasso]  = null;
@@ -268,6 +284,7 @@ function SaveStep(forma,tipo,string)
    pXant[Passo]       = Xant;
    pYant[Passo]       = Yant;
    pRadius[Passo]     = Radius;
+   pStSolid[Passo]    = StSolid;
    pColor[Passo]      = cor;
    pSides[Passo]      = Sides;
    pThickness[Passo]  = largura;

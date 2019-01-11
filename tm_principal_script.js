@@ -26,15 +26,19 @@ var ctx4;
 
 // Outras Variáveis
 var cor = "#0000FF"; // Inicia com a cor Azul
+var cor1 = "00"; // COMPONENTE DE COR RED=00
+var cor2 = "00"; // COMPONENTE DE COR GREEN=00
+var cor3 = "FF"; // COMPONENTE DE COR BLUE=FF
 var dx = 2; //Taxa de "velocidade" horizontal do desenho
 var dy = 2; //Taxa de "velocidade" vertical do desenho
 var WIDTH = 950; // Largura do Canvas
 var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
+var StSolid = false; // Define se formas serão sólidas ou vazias
 var largura = 2; // largura do traço de 2 a 20
 var Radius = 100; // Tamanho do raio para circulos
-var Sides = 3 // Númro de Lados para Polígonos
+var Sides = 5 // Númro de Lados para Polígonos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
@@ -61,6 +65,7 @@ var pX = new Array(PassoLimite);
 var pY = new Array(PassoLimite);
 var pXant = new Array(PassoLimite);
 var pYant = new Array(PassoLimite);
+var pStSolid = new Array(PassoLimite);
 var pColor = new Array(PassoLimite);
 var pSides  = new Array(PassoLimite);
 var pThickness = new Array(PassoLimite);
@@ -125,9 +130,11 @@ function UpdateTools()
   ShowRadius();
   ShowTransparency();
   ShowSpeed();
+  ShowSolid(); 
   // Gravação e Posição do Cursor
   ShowSaveStatus();
   ShowCursor();
+  CalcColorParts();
 }
 
 
@@ -161,6 +168,15 @@ function UpdateTools()
 //
 function DefColor(inCor) {
   cor = inCor;
+  CalcColorParts();
+}
+
+// CALCULA OS COMPONENTES INDIVIDUAIS DE COR
+function CalcColorParts()
+{
+  cor1 = parseInt(cor.substring(1,3), 16);
+  cor2 = parseInt(cor.substring(3,5), 16);
+  cor3 = parseInt(cor.substring(5,7), 16);
 }
 
 //
@@ -439,6 +455,7 @@ function ShowSides()
 {
   // AUALIZANDO O MOSTRADOR DA LARGURA
   var element = document.getElementById("numSides");
+
   element.innerHTML = "[" + Sides + "]";
   // setando o valor no Slider
   document.getElementById("SlSides").value = Sides;
@@ -521,6 +538,25 @@ function ShowTransparency()
 }
 
 
+//
+// DEFINE SE DESENHO SÓLIDO
+//
+function DefSolid(value) 
+{
+  StSolid = value;
+  ShowSolid();
+}
+
+
+//
+// MOSTRA STATUS DE DESENHO SÓLIDO
+//
+function ShowSolid() 
+{
+ document.getElementById("stSolid").checked = StSolid;
+}
+
+
 
 //
 // MOSTRA O TEXTO PASSEI AQUI (PARA DEBUG)
@@ -548,6 +584,7 @@ function ShowCursor() {
   // Marca o ponto no Canvas de desenho
   ctx.moveTo(x, y);
 
+  // ESTA ROTINA FOI DESATIVADA PORQUE NÃO É NECESSÁRIA
   //if (pGravar) {SaveStep("Cursor","","");}
 
   // CALCULA LARGURA E ALTURA DO RETÂNGULO
@@ -662,15 +699,6 @@ if (window.File && window.FileList && window.FileReader) {
       temIMG = false
     }
 
-    // ATUALIZA O STATUS DA IMAGEM
-    if (temIMG) {
-      // BOTÃO HABILITADO
-      document.getElementById("pegaimg").style.color="#ff8c00";
-      document.getElementById("pegaimg").disabled = true; 
-    } else {
-      document.getElementById("pegaimg").style.color="#333333";
-      document.getElementById("pegaimg").disabled = false;
-    }
   });
 } else {
   mensagem("Este navegador não suporta esta função.");
