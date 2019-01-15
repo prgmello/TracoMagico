@@ -44,6 +44,7 @@ var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
 var LinhaManual = false; // Flag se o Usuário está traçando uma linha com as setas do teclado.
 var vResp = "N"; // Saída da função confirma
+var Shape = ""; // Guarda a última forma utilizada pelo usuário.
 var StPreview = false;
 var vInterval;
 var vTimer = 200; // TEMPO EM MILISSEGUNGOS
@@ -164,7 +165,7 @@ function UpdateTools()
    {
     pEMC[f] = str1.substring(f, f + 1);
     //console.log(pEMC[f]);
-    element.innerHTML += '<a href="#" class="EMC" onclick=\'CallEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
+    element.innerHTML += '<a href="#" class="EMC" onclick=\'CallShape("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
    }
    document.getElementById("ContemEmoTab").style.top = "75px"
   }
@@ -605,41 +606,95 @@ function ClearInterval()
 }
 
 
-function CallRectangle() // CHAMA A FUNÇÃO RETANGULO
-{ ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle()},vTimer); } else {DrawRectangle();} }
+function DesenhaForma()
+{
+  if (StPreview) 
+  {
+    StPreview=false;
+    CallShape(Shape);
+    StPreview=true;
+  } else {mensagem("Preview está desligado");}
 
-function CallCircle() // CHAMA A FUNÇÃO CÍRCULO
-{ ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewCircle()},vTimer); } else {DrawCircle();} }
+}
 
-function CallPoligon() // CHAMA A FUNÇÃO POLÍGONO
-{ ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon();},vTimer); } else {DrawPoligon();} }
 
-function CallStar() // CHAMA A FUNÇÃO ESTRELA
-{ ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} }
 
-function CallLine() // CHAMA A FUNÇÃO linha
-{ ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();} }
+function CallShape(vShape) // CHAMA A FUNÇÃO RETANGULO
+{ 
+  //console.log(vShape);
+  Shape = vShape
+  switch (Shape)
+  {
+    case "Retangulo":
+      if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle()},vTimer); } else {DrawRectangle();} 
+       break;
+    case "Circulo":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircle()},vTimer); } else {DrawCircle();}  
+       break;
+    case "Poligono":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon();},vTimer); } else {DrawPoligon();} 
+       break;
+    case "Estrela":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} 
+       break;
+    case "Linha":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();}
+       break;
+    case "ConcentricCircles-uma-cor":
+    case "ConcentricCircles-varias-cores":
+       var lParametro = vShape.substring(18,31);
+       console.log(lParametro);
+       if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(lParametro);},vTimer); } else {DrawConcentricCircles(lParametro);}
+       break;
+    case "Texto":
+      if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 
+      break;
+    case "Imagem":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage('frente');},vTimer); } else {DrawReadImage('frente');}
+       break;
+    default: 
+        // "Emoji"
+        lParametro = vShape;
+        if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(lParametro);},vTimer); } else {DrawEmoji(lParametro);} 
+        break;
+  }
+}
 
-function CallConcentricCircles(parametro) // CHAMA A FUNÇÃO CÍRCULOS CONCÊNTRICOS
-{ ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(parametro);},vTimer); } else {DrawConcentricCircles(parametro);} }
+// function CallRectangle() // CHAMA A FUNÇÃO RETANGULO
+// { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle()},vTimer); } else {DrawRectangle();} }
+
+// function CallCircle() // CHAMA A FUNÇÃO CÍRCULO
+// { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewCircle()},vTimer); } else {DrawCircle();} }
+
+// function CallPoligon() // CHAMA A FUNÇÃO POLÍGONO
+// { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon();},vTimer); } else {DrawPoligon();} }
+
+// function CallStar() // CHAMA A FUNÇÃO ESTRELA
+// { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} }
+
+// function CallLine() // CHAMA A FUNÇÃO linha
+// { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();} }
+
+// function CallConcentricCircles(parametro) // CHAMA A FUNÇÃO CÍRCULOS CONCÊNTRICOS
+// { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(parametro);},vTimer); } else {DrawConcentricCircles(parametro);} }
   
-function CallText() // CHAMA A FUNÇÃO TEXTO
-{ ClearInterval();
- if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} }
+// function CallText() // CHAMA A FUNÇÃO TEXTO
+// { ClearInterval();
+//  if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} }
    
- function CallReadImage(parametro) // CHAMA A FUNÇÃO TEXTO
- { ClearInterval();
-  if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(parametro);},vTimer); } else {DrawReadImage(parametro);} }
+//  function CallReadImage(parametro) // CHAMA COLA IMAGEM
+//  { ClearInterval();
+//   if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(parametro);},vTimer); } else {DrawReadImage(parametro);} }
    
-  function CallEmoji(parametro) // CHAMA A FUNÇÃO TEXTO
-  { ClearInterval();
-   if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(parametro);},vTimer); } else {DrawEmoji(parametro);} }
+//   function CallEmoji(parametro) // CHAMA A FUNÇÃO TEXTO
+//   { ClearInterval();
+//    if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(parametro);},vTimer); } else {DrawEmoji(parametro);} }
   
 //  PreviewEmoji(lEmoji)
 

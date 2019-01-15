@@ -138,19 +138,19 @@
             
             <TD width="80px"> 
               <p>
-                <a href="#" class="btaction" onclick="CallRectangle();" title="Traça um retângulo entre os dois cursores.">▯</a>
-                <a href="#" class="btaction" onclick="CallCircle();" title="Desenha um círculo.">◯</a>
-                <a href="#" class="btaction" onclick="CallPoligon();" title="Desenha um polígono.">◇</a>
-                <a href="#" class="btaction" onclick="CallStar();" title="Desenha uma estrela.">✩</a>
+                <a href="#" class="btaction" onclick="CallShape('Retangulo');" title="Traça um retângulo entre os dois cursores.">▯</a>
+                <a href="#" class="btaction" onclick="CallShape('Circulo');" title="Desenha um círculo.">◯</a>
+                <a href="#" class="btaction" onclick="CallShape('Poligono');" title="Desenha um polígono.">◇</a>
+                <a href="#" class="btaction" onclick="CallShape('Estrela');" title="Desenha uma estrela.">✩</a>
                 <input type="checkbox" name="stSolid" id="stSolid" title="Marque para formas sólidas" onchange="DefSolid(this.checked);">
                 <hr width="80%" color="#333333">
               </p>  
               <p> 
-                <a href="#" class="btaction" onclick="CallLine();" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
+                <a href="#" class="btaction" onclick="CallShape('Linha');" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
                 &nbsp;
-                <a href="#" class="btaction" onclick="CallConcentricCircles('uma-cor');" title="Desenha Círculos concêntricos.">◉</a> 
+                <a href="#" class="btaction" onclick="CallShape('ConcentricCircles-uma-cor');" title="Desenha Círculos concêntricos.">◉</a> 
                 &nbsp;
-                <a href="#" class="btaction" onclick="CallConcentricCircles('varias-cores');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
+                <a href="#" class="btaction" onclick="CallShape('ConcentricCircles-varias-cores');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
               </p>  
           </TD>    
 
@@ -192,9 +192,13 @@
  
             <TD width="60px">
               <p>
+                <a href="#" class="btmedio" onclick="DesenhaForma();" title="Envia esta previsão para o Desenho.">✔</a>
+              </p>
+    
+              <p>
                 <a href="#" class="btmedio" onclick="TooglePreview();" title="Liga o modo de visualização.">õ‿õ</a>
               </p>
-              </TD>
+            </TD>
    
 
             <TD  width="70px">
