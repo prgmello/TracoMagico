@@ -47,7 +47,7 @@ function DrawConcentricCircles(lBehavior)
 {
   var cores;
   var passo = largura*3;
-  ctx.lineWidth=largura
+  ctx.lineWidth=largura;
   for (f = 1; f < Radius; f=f+passo)
    { 
     ctx.beginPath()
@@ -92,7 +92,7 @@ function DrawLine()
 //
 function DrawRectangle()
 {
-  var newX = x;
+    var newX = x;
   var newY = y;
   CalcRectangle();
   
@@ -107,7 +107,6 @@ function DrawRectangle()
      if (StSolid) 
       {
        ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-       console.log('rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )')
        ctx.fillRect(newX,newY,retL,retA);
        ctx.fill();
        // Faz o reset o RGBA para 1
@@ -136,7 +135,6 @@ function DrawCircle()
   if (StSolid) 
   {
     ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-       console.log('rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )')
     ctx.arc(x, y, Radius, 0, Math.PI*2, true);
     ctx.fill();
     // Faz o reset o RGBA para 1
@@ -204,11 +202,11 @@ var lDistance = Radius;
 var lTips = Sides*2;
 var lCalcAngle = lTips;
 ctx.beginPath();
-if (StSolid) 
-   {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-   } else{ctx.strokeStyle = cor;} 
- 
-var lLoop = lTips;
+  if (StSolid) 
+  {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+  } else{ctx.strokeStyle = cor;} 
+ctx.lineWidth=largura;
+   var lLoop = lTips;
 while (lLoop--) 
 {
    var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;

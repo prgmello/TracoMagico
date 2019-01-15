@@ -11,13 +11,11 @@
 var canvasFu;
 var canvas;
 var canvasFr;
-var canvas1;
-var canvas2;
-var canvas3;
-var canvas4;
+var canvasPr; // Canvas de Preview de ferramentas
 var ctxFu;
 var ctx;
 var ctxFr;
+var ctxPr; // CTX de Preview de ferramentas
 var ctx1;
 var ctx2;
 var ctx3;
@@ -46,6 +44,10 @@ var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
 var LinhaManual = false; // Flag se o Usuário está traçando uma linha com as setas do teclado.
 var vResp = "N"; // Saída da função confirma
+var StPreview = false;
+var vInterval;
+var vTimer = 200; // TEMPO EM MILISSEGUNGOS
+
 
 // VARIÁVEIS DAS FUNÇÕES LER FOTOS
 var texto = "Escreva seu texto." // Armazena o texto digitado
@@ -99,6 +101,11 @@ ctxFu = tmcanvasFu.getContext("2d");
 canvas = document.getElementById("tmcanvas");
 ctx = canvas.getContext("2d");
 
+// CANVAS Layer de PREVIEW de Ferramentas
+canvasPr = document.getElementById("tmcanvasPr");
+ctxPr = tmcanvasFr.getContext("2d");
+
+
 // CANVAS Layer de Frente (cursor)
 canvasFr = document.getElementById("tmcanvasFr");
 ctxFr = tmcanvasFr.getContext("2d");
@@ -131,6 +138,7 @@ function UpdateTools()
   ShowTransparency();
   ShowSpeed();
   ShowSolid(); 
+  ShowPreviewStatus();
   // Gravação e Posição do Cursor
   ShowSaveStatus();
   ShowCursor();
@@ -156,7 +164,7 @@ function UpdateTools()
    {
     pEMC[f] = str1.substring(f, f + 1);
     //console.log(pEMC[f]);
-    element.innerHTML += '<a href="#" class="EMC" onclick=\'DrawEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
+    element.innerHTML += '<a href="#" class="EMC" onclick=\'CallEmoji("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
    }
    document.getElementById("ContemEmoTab").style.top = "75px"
   }
@@ -558,6 +566,85 @@ function ShowSolid()
 
 
 
+
+//
+// LIGA OU DESLIGA O MODO PREVIEW DE AÇÕES
+//
+function TooglePreview()
+{
+  if (StPreview) {StPreview = false;} else {StPreview = true;}
+  ShowPreviewStatus();
+}
+
+//
+// MOSTRA O STATUS DO PREVIEW DE AÇÕES
+//
+function ShowPreviewStatus()
+{
+  if (StPreview)
+  {
+    // Título
+    document.getElementById("StPreview").style.color = "#FF0000";
+  }
+  else                
+  {
+    // Título
+    document.getElementById("StPreview").style.color = "#B1B1B1";
+    ClearInterval();
+    ShowCursor();
+  }
+}
+
+//
+// MOSTRA O STATUS DO PREVIEW DE AÇÕES
+//
+function ClearInterval()
+{
+    clearInterval(vInterval);
+    ctxPr.clearRect(0,0,WIDTH,HEIGHT);
+}
+
+
+function CallRectangle() // CHAMA A FUNÇÃO RETANGULO
+{ ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle()},vTimer); } else {DrawRectangle();} }
+
+function CallCircle() // CHAMA A FUNÇÃO CÍRCULO
+{ ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewCircle()},vTimer); } else {DrawCircle();} }
+
+function CallPoligon() // CHAMA A FUNÇÃO POLÍGONO
+{ ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon();},vTimer); } else {DrawPoligon();} }
+
+function CallStar() // CHAMA A FUNÇÃO ESTRELA
+{ ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} }
+
+function CallLine() // CHAMA A FUNÇÃO linha
+{ ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();} }
+
+function CallConcentricCircles(parametro) // CHAMA A FUNÇÃO CÍRCULOS CONCÊNTRICOS
+{ ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(parametro);},vTimer); } else {DrawConcentricCircles(parametro);} }
+  
+function CallText() // CHAMA A FUNÇÃO TEXTO
+{ ClearInterval();
+ if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} }
+   
+ function CallReadImage(parametro) // CHAMA A FUNÇÃO TEXTO
+ { ClearInterval();
+  if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(parametro);},vTimer); } else {DrawReadImage(parametro);} }
+   
+  function CallEmoji(parametro) // CHAMA A FUNÇÃO TEXTO
+  { ClearInterval();
+   if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(parametro);},vTimer); } else {DrawEmoji(parametro);} }
+  
+//  PreviewEmoji(lEmoji)
+
+
+
 //
 // MOSTRA O TEXTO PASSEI AQUI (PARA DEBUG)
 //
@@ -655,7 +742,7 @@ tmcanvasFr.onmousedown = function (evt) {
   Xant = x;
   Yant = y;
   ctxFr.moveTo(evt.clientY, evt.clientX);
-
+  
   var rect = tmcanvasFr.getBoundingClientRect(); 
   x = evt.offsetX;
   y = evt.offsetY;

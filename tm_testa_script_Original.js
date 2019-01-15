@@ -54,7 +54,7 @@ function RodaRotina()
  
 //mensagem("Não há rotina para executar")
 
-
+DrawPreviewBox()
 
 }
 
