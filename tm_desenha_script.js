@@ -22,8 +22,6 @@ function DrawPoint()
   ctx.fillStyle = cor;
 
   if (pGravar) {SaveStep("Ponto","","");}
-
-
   ShowCursor();
 }
 
@@ -244,7 +242,7 @@ if (pGravar) {SaveStep("Estrela","","");}
 //
 // COLA A IMAGEM NO CANVAS
 //
-function DrawReadImage(StSolid)
+function DrawReadImage(StPosition)
 {
   CalcRectangle();
   var newX = x;
@@ -259,14 +257,14 @@ function DrawReadImage(StSolid)
   return false;}   
 
   
-  if (StSolid == "frente")
+  if (StPosition == "frente")
     { 
       if ((Xant==x) && (Yant==y))
       {mensagem("Marque dois pontos formando um retângulo.");
       return false;} 
       ctx.drawImage(usuarioIMG , newX , newY , retL , retA);
     }
-  else if (StSolid == "fundo")
+  else if (StPosition == "fundo")
   { 
     ctxFu.globalAlpha = transp;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
@@ -274,7 +272,7 @@ function DrawReadImage(StSolid)
 
   }
 
-  if (pGravar) {SaveStep("Imagem",StSolid,"");}
+  if (pGravar) {SaveStep("Imagem",StPosition,"");}
 }
 
 

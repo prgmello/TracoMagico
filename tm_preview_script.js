@@ -16,26 +16,53 @@
 function DrawPreviewBox()
 {
   ctxPr.clearRect(0,0,WIDTH,HEIGHT);
+  ctxPr.strokeStyle = "#FF0000";
+  ctxPr.lineWidth=5;
+  ctxPr.strokeRect(3,3,WIDTH-6,HEIGHT-6);
+  ctxPr.lineWidth=largura;
+  ctxPr.strokeStyle = cor;
+  ShowPreviewCursor() 
 }
 
 
 
-
-
-
 //
-// FAZ O TRAÇO
+// POSICIONA O CURSOR NO CANVAS DE PREVIEW
 //
-function PreviewPoint() 
-{
-  DrawPreviewBox();
+function ShowPreviewCursor() {
   ctxPr.beginPath();
-  ctxPr.fillStyle = cor;
-  ctxPr.fillRect(x,y,largura,largura); 
-  ctxPr.fill();
-  ctxPr.closePath();
-  ctxPr.fillStyle = cor;
+  ctxPr.font = "10px Verdana";
+  ctxPr.fillStyle = "#696969";
+  ctxPr.fillText("⊕", Xant - 4, Yant + 4);
+  ctxPr.fillStyle = "#FFD700";
+
+  var cursorText = "⊗";
+  var halfCursorWidth = ctxPr.measureText(cursorText).width/2;
+  ctxPr.fillText(cursorText, 
+    x - halfCursorWidth, 
+    y + halfCursorWidth - 2); // Isso foi setado à força!!
+  // Marca o ponto no Canvas de desenho
+  ctxPr.moveTo(x, y);
 }
+
+
+
+
+
+
+//
+// PREVIEW DE PONTO (NÃO FUNCIONA)
+//
+// function PreviewPoint() 
+// {
+//   DrawPreviewBox();
+//   ctxPr.beginPath();
+//   ctxPr.fillStyle = cor;
+//   ctxPr.fillRect(x,y,largura,largura); 
+//   ctxPr.fill();
+//   ctxPr.closePath();
+//   ctxPr.fillStyle = cor;
+// }
 
 
 //

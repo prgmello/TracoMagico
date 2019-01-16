@@ -48,7 +48,8 @@ var Shape = ""; // Guarda a última forma utilizada pelo usuário.
 var StPreview = false;
 var vInterval;
 var vTimer = 200; // TEMPO EM MILISSEGUNGOS
-
+var Behavior; // Comportamento da rotina chamada 
+var stShiftKey = false; // Mostra se a Tecla <Shift> está pressionada
 
 // VARIÁVEIS DAS FUNÇÕES LER FOTOS
 var texto = "Escreva seu texto." // Armazena o texto digitado
@@ -115,7 +116,8 @@ ctxFr = tmcanvasFr.getContext("2d");
 //
 // FAZ INICIALIZAÇÃO DAS VARIÁVEIS
 //
-function Start() {
+function Start() 
+{
   x = WIDTH / 2;
   y = HEIGHT / 2;
   Xant = x;
@@ -165,7 +167,7 @@ function UpdateTools()
    {
     pEMC[f] = str1.substring(f, f + 1);
     //console.log(pEMC[f]);
-    element.innerHTML += '<a href="#" class="EMC" onclick=\'CallShape("' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
+    element.innerHTML += '<a href="#" class="EMC" onclick=\'CallShape("Emoji","' + pEMC[f] + '") \' >' + pEMC[f] + '</a>';
    }
    document.getElementById("ContemEmoTab").style.top = "75px"
   }
@@ -573,7 +575,11 @@ function ShowSolid()
 //
 function TooglePreview()
 {
-  if (StPreview) {StPreview = false;} else {StPreview = true;}
+  if (StPreview) {StPreview = false;} 
+  else {
+    StPreview = true;
+    DrawPreviewBox();
+  }
   ShowPreviewStatus();
 }
 
@@ -606,23 +612,38 @@ function ClearInterval()
 }
 
 
+
+
+
+
 function DesenhaForma()
 {
   if (StPreview) 
   {
     StPreview=false;
-    CallShape(Shape);
+    CallShape(Shape,Behavior);
     StPreview=true;
   } else {mensagem("Preview está desligado");}
 
 }
 
+// CHAMA
+function CallShape(vShape,vBehavior) 
+{
+  if (StPreview)
+      {ClearInterval();
+        CallDrawShape(vShape,vBehavior);}
+  else
+     {CallDrawShape(vShape,vBehavior);}
+}
 
 
-function CallShape(vShape) // CHAMA A FUNÇÃO RETANGULO
+
+function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FORMAS, ETC)
 { 
-  //console.log(vShape);
-  Shape = vShape
+  //console.log(vShape,vBehavior);
+  Shape = vShape;
+  Behavior = vBehavior
   switch (Shape)
   {
     case "Retangulo":
@@ -640,23 +661,19 @@ function CallShape(vShape) // CHAMA A FUNÇÃO RETANGULO
     case "Linha":
        if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();}
        break;
-    case "ConcentricCircles-uma-cor":
-    case "ConcentricCircles-varias-cores":
-       var lParametro = vShape.substring(18,31);
-       console.log(lParametro);
-       if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(lParametro);},vTimer); } else {DrawConcentricCircles(lParametro);}
+    case "ConcentricCircles":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(vBehavior);},vTimer); } else {DrawConcentricCircles(vBehavior);}
        break;
     case "Texto":
       if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 
       break;
     case "Imagem":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage('frente');},vTimer); } else {DrawReadImage('frente');}
+       if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(vBehavior);},vTimer); } else {DrawReadImage(vBehavior);}
        break;
-    default: 
-        // "Emoji"
-        lParametro = vShape;
-        if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(lParametro);},vTimer); } else {DrawEmoji(lParametro);} 
-        break;
+    case "Emoji":
+    if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(vBehavior);},vTimer); } else {DrawEmoji(vBehavior);} 
+    break;
+     
   }
 }
 
@@ -722,17 +739,11 @@ function ShowCursor() {
   ctxFr.fillText(cursorText, 
     x - halfCursorWidth, 
     y + halfCursorWidth - 2); // Isso foi setado à força!!
-
   // Marca o ponto no Canvas de desenho
   ctx.moveTo(x, y);
-
-  // ESTA ROTINA FOI DESATIVADA PORQUE NÃO É NECESSÁRIA
-  //if (pGravar) {SaveStep("Cursor","","");}
-
-  // CALCULA LARGURA E ALTURA DO RETÂNGULO
-  retL = Math.abs(x - Xant) + 1;
-  retA = Math.abs(y - Yant) + 1;
 }
+
+
 
 
 //
@@ -741,7 +752,7 @@ function ShowCursor() {
 function KeyDown(evt) {
   
   var lDrawPoint = true;
-
+  //console.log(evt.keyCode);
   switch (evt.keyCode) {
     case 38:
       /* seta para cima */
@@ -775,14 +786,24 @@ function KeyDown(evt) {
         x += dx;
       }
       break;
+    case 16:
+      TooglePreview();
+      lDrawPoint = false;
+      break;
     default:
       lDrawPoint = false;
       break;
   }
 
-   
   // SÓ CHAMA A ROTINA SE FOR UMA TECLA VÁLIDA
-  if (lDrawPoint) {DrawPoint();}
+  if (lDrawPoint) 
+    {
+      if (StPreview)
+      {
+        ctxPr.moveTo(x,y);
+        ShowCursor();
+      } else {DrawPoint();}
+    }
 
   // LinhaManual = true;
 

@@ -162,7 +162,7 @@ function RedrawProject()
            DrawEmoji(lEmoji); 
            break;
       case "Fundo": 
-           ChangeBackgroundColor(); 
+           ChangeBgColor();
            break;
       case "Imagem": 
             if (!gravouIMG)
