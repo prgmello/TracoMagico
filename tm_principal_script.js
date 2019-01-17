@@ -56,9 +56,9 @@ var gravouIMG = false // Define se a imagem foi gravada em memória.
 //
 // VARIÁVEL DE GRAVAÇÃO 
 //
+var StGravar = true;
 var Passo = 0;
 var PassoLimite = 2000;
-var pGravar = true;
 var pForma = new Array(PassoLimite);
 var pBehavior = new Array(PassoLimite);
 var pX = new Array(PassoLimite);
@@ -714,15 +714,12 @@ function ShowCursor() {
 }
 
 
-
-
 //
 // FUNÇÃO QUE LÊ AS TECLAS PRESSIONADAS
 //
-function KeyDown(evt) {
-  
-  var lDrawPoint = true;
-  //console.log(evt.keyCode);
+function KeyDown(evt)
+{
+  //console.log("D" + evt.keyCode);
   switch (evt.keyCode) {
     case 38:  // seta para cima
     case 87:  // 'W'  para cima
@@ -740,6 +737,21 @@ function KeyDown(evt) {
     case 68:  // 'D' para direita 
       if (x + dx < WIDTH) {x += dx;}
       break;
+    default:
+      break;
+  }
+
+  if (StPreview) {ShowPreviewCursor(); } else {ShowCursor();}
+}
+
+
+//
+// FUNÇÃO QUE LÊ AS TECLAS LIBERADAS
+//
+function KeyUp(evt) {
+  var lDrawPoint = true;
+  //console.log("U" + evt.keyCode);
+  switch (evt.keyCode) {
     case 16: // 'SHIFT' Alterna Modo Imediato/Previsão
       TooglePreview();
       lDrawPoint = false;
@@ -755,19 +767,12 @@ function KeyDown(evt) {
       break;
   }
 
-  // SÓ CHAMA A ROTINA SE FOR UMA TECLA VÁLIDA
+  // SÓ CHAMA A ROTINA DO CURSOR SE FOR UMA TECLA DE TRAÇO (DRAW)
   if (lDrawPoint) 
     {
-      if (StPreview)
-      { 
-        ShowPreviewCursor();
-      } else 
-      {
-        ShowCursor();
-      }
+      if (StPreview) {ShowPreviewCursor(); } else {ShowCursor();}
     }
 }
-
 
 
 
@@ -808,6 +813,7 @@ tmcanvasFr.onmousedown = function (evt) {
 
 
 window.addEventListener('keydown', KeyDown, true);
+window.addEventListener('keyup', KeyUp, true);
 
 
 

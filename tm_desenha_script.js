@@ -21,7 +21,7 @@
 //   ctx.closePath();
 //   ctx.fillStyle = cor;
 
-//   if (pGravar) {SaveStep("Ponto","","");}
+//   if (StGravar) {SaveStep("Ponto","","");}
 //   ShowCursor();
 // }
 
@@ -58,7 +58,7 @@ function DrawConcentricCircles(lBehavior)
     ctx.stroke();
    }
 
-   if (pGravar) {SaveStep("Concentrico",lBehavior,"");}
+   if (StGravar) {SaveStep("Concentrico",lBehavior,"");}
 }
 
 
@@ -78,7 +78,7 @@ function DrawLine(lBehavior)
     ctx.stroke();
     ctx.closePath();
     // Adiciona o Passo antes de igualar os Pontos
-    if (pGravar) {SaveStep("Linha",lBehavior,"");}
+    if (StGravar) {SaveStep("Linha",lBehavior,"");}
 
     if (lBehavior == "traço") 
     {
@@ -87,7 +87,6 @@ function DrawLine(lBehavior)
     }
     ShowCursor();
   }
-
 }
 
 
@@ -124,7 +123,7 @@ function DrawRectangle()
     }
     ctx.closePath();
 
-    if (pGravar) {SaveStep("Retangulo","","");}
+    if (StGravar) {SaveStep("Retangulo","","");}
   }
   
 
@@ -150,7 +149,7 @@ function DrawCircle()
    ctx.stroke(); 
   }
   
-  if (pGravar) {SaveStep("Circulo","","");}
+  if (StGravar) {SaveStep("Circulo","","");}
 }
 
 
@@ -196,7 +195,7 @@ if (StSolid) {ctx.fill();} else {ctx.stroke();}
 ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
 
 
-if (pGravar) {SaveStep("Poligono","","");}
+if (StGravar) {SaveStep("Poligono","","");}
 }
 
 
@@ -225,7 +224,7 @@ if (StSolid) {ctx.fill();} else {ctx.stroke();}
 
 // Faz o reset o RGBA para 1
 ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
-if (pGravar) {SaveStep("Estrela","","");}
+if (StGravar) {SaveStep("Estrela","","");}
 }
 
 
@@ -278,7 +277,7 @@ function DrawReadImage(StPosition)
 
   }
 
-  if (pGravar) {SaveStep("Imagem",StPosition,"");}
+  if (StGravar) {SaveStep("Imagem",StPosition,"");}
 }
 
 
@@ -313,7 +312,7 @@ function DrawText()
   ctx.fillStyle = cor;
   ctx.fillText(texto,x,y);
 
-  if (pGravar) {SaveStep("Texto","",texto);}
+  if (StGravar) {SaveStep("Texto","",texto);}
 }
 
 
@@ -327,7 +326,7 @@ function DrawEmoji(lEmoji)
   ctx.fillStyle = cor;
   ctx.fillText(lEmoji,x,y);
 
-if (pGravar) {SaveStep("Emoji","",lEmoji);}
+if (StGravar) {SaveStep("Emoji","",lEmoji);}
 
 }
 
@@ -397,7 +396,7 @@ else if (lBehavior=="retangulos")
   ctxFu.closePath();
   }
 
-  if (pGravar) {SaveStep("Fundo-Aleatorio",lBehavior,"");}
+  if (StGravar) {SaveStep("Fundo-Aleatorio",lBehavior,"");}
 }
 
 
@@ -411,7 +410,7 @@ function ChangeBgColor()
     ctxFu.fillRect(0,0,WIDTH,HEIGHT); 
     ctxFu.fill();
 
-    if (pGravar) {SaveStep("Fundo","","");}    
+    if (StGravar) {SaveStep("Fundo","","");}    
 }
 
 

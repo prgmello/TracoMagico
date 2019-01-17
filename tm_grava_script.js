@@ -13,7 +13,7 @@
 //
 function RecordProject()
 {
-  if (pGravar) {pGravar = false;} else {pGravar = true;}
+  if (StGravar) {StGravar = false;} else {StGravar = true;}
   ShowSaveStatus();
 }
 
@@ -23,7 +23,7 @@ function RecordProject()
 //
 function ShowSaveStatus() 
 {
-  if (pGravar) 
+  if (StGravar) 
   {
     // Botão
     document.getElementById("btgrava").innerHTML  = "❚❚";
@@ -67,10 +67,10 @@ function RestoreProject()
 //
 function CallRedrawProject()
 {
-  var lGravar = pGravar; // Guarda a Situação de Gravação Atual
-  pGravar = false;
+  var lGravar = StGravar; // Guarda a Situação de Gravação Atual
+  StGravar = false;
   RedrawProject();
-  pGravar = lGravar; // Restaura a Situação de Gravação antes da rotina executar
+  StGravar = lGravar; // Restaura a Situação de Gravação antes da rotina executar
   ShowSaveStatus();
 }
 
@@ -82,6 +82,8 @@ function CallRedrawProject()
 //
 function RedrawProject()
 {
+  // OBRIGATORIAMENTE REDESENHA COM StGravar DESLIGADO!!!
+  
   var lPassoFim = Passo;
   var lPasso;
   var lBehavior;
@@ -111,18 +113,8 @@ function RedrawProject()
     
     gravouIMG  = pGravouIMG[lPasso];
         
-
-    // var o = new Object;
-    // o.forma = pForma[lPasso];
-    // o.x = x;
-    // o.y = y;
-    // o.tipo = lBehavior;
-    // o.FontSize = FontSize;
-    // console.log(o);
- 
-
-    //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " Raio= " + Radius + " cor= " + cor + " largura= " + largura)
-    //console.log("Passo: " + lPasso + " - "  +pForma[lPasso] + " - "  + lBehavior);
+   //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " Raio= " + Radius + " cor= " + cor + " largura= " + largura)
+   //console.log("Passo: " + lPasso + " - "  +pForma[lPasso] + " - "  + lBehavior);
 
    //if (lPasso == 0) {DrawPoint();} // Necessário para calcular retL e retA
    
@@ -184,12 +176,21 @@ function RedrawProject()
  
 
 
+    // var o = new Object;
+    // o.forma = pForma[lPasso];
+    // o.x = x;
+    // o.y = y;
+    // o.tipo = lBehavior;
+    // o.FontSize = FontSize;
+    // console.log(o);
+
+
+
 //
 //  APAGA O ÚLTIMO PASSO GRAVADO
 //
 function CutProjetStep()
 {
-  var lStGravar = pGravar;
   if (Passo > 0)
   {
     var lPasso = Passo-1;
@@ -220,10 +221,9 @@ function CutProjetStep()
        
        ClearScreen();
        Passo-- // Subtrai um do Passo de gravação
-       RedrawProject();
+       CallRedrawProject();
     }
   } else {mensagem("Não há Passos de desenho gravados!!!")}
-  pGravar = lStGravar;
   UpdateTools();
 }
 
@@ -306,7 +306,7 @@ function SaveStep(forma,tipo,string)
   else
   {
     mensagem("Você chegou ao limite de passos gravados: " + PassoLimite + " passos" );
-    pGravar=false;
+    StGravar=false;
   }
   ShowSaveStatus();
  }
