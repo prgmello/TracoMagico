@@ -138,7 +138,7 @@ function RedrawProject()
            DrawPoint();
            break;
       case "Linha":
-           DrawLine();     
+           DrawLine(lBehavior);     
            break;
       case "Retangulo":
            DrawRectangle();  

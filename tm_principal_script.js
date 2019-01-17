@@ -16,10 +16,6 @@ var ctxFu;
 var ctx;
 var ctxFr;
 var ctxPr; // CTX de Preview de ferramentas
-var ctx1;
-var ctx2;
-var ctx3;
-var ctx4;
 // Variáveis de Utilização dos Canvas (FIM)
 
 // Outras Variáveis
@@ -27,8 +23,8 @@ var cor = "#0000FF"; // Inicia com a cor Azul
 var cor1 = "00"; // COMPONENTE DE COR RED=00
 var cor2 = "00"; // COMPONENTE DE COR GREEN=00
 var cor3 = "FF"; // COMPONENTE DE COR BLUE=FF
-var dx = 2; //Taxa de "velocidade" horizontal do desenho
-var dy = 2; //Taxa de "velocidade" vertical do desenho
+var dx = 10; //Taxa de "velocidade" horizontal do desenho
+var dy = 10; //Taxa de "velocidade" vertical do desenho
 var WIDTH = 950; // Largura do Canvas
 var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
@@ -105,7 +101,7 @@ ctx = canvas.getContext("2d");
 
 // CANVAS Layer de PREVIEW de Ferramentas
 canvasPr = document.getElementById("tmcanvasPr");
-ctxPr = tmcanvasFr.getContext("2d");
+ctxPr = tmcanvasPr.getContext("2d");
 
 
 // CANVAS Layer de Frente (cursor)
@@ -300,7 +296,7 @@ function ocultaCONF(vResp) {
 // FUNÇÃO MOSTRA A TABELA DE EMOJIS 
 //
 function ShowEmojiTab(modo) {
-  if (modo == false) // OCULTA
+  if (!modo) // OCULTA
   {
     document.getElementById("ContemEmoTab").style.display = "none"; // OCULTA A EMOJI TAB 
   } else {
@@ -583,20 +579,34 @@ function TooglePreview()
   ShowPreviewStatus();
 }
 
+//document.getElementById("DrawCursor").style.display = "none"; // OCULTA 
+//document.getElementById("DrawCursor").style.display = ""; // MOSTRA 
+
+
+
+
 //
 // MOSTRA O STATUS DO PREVIEW DE AÇÕES
 //
 function ShowPreviewStatus()
 {
+
   if (StPreview)
   {
-    // Título
+    // MODO PREVIEW
     document.getElementById("StPreview").style.color = "#FF0000";
+    document.getElementById("StPreview").style.color = "#FF0000";
+    document.getElementById("StModo").innerHTML = "PREVISÃO";
+    canvasPr.style.visibility="visible"; // MOSTRA CANVAS DE PREVIEW
+    ShowPreviewCursor();
   }
   else                
   {
-    // Título
-    document.getElementById("StPreview").style.color = "#B1B1B1";
+
+    // MODO IMEDIATO
+    document.getElementById("StPreview").style.color = "#00ff00";
+    document.getElementById("StModo").innerHTML = "IMEDIATO";
+    canvasPr.style.visibility="hidden";  // OCULTA CANVAS DE PREVIEW
     ClearInterval();
     ShowCursor();
   }
@@ -612,22 +622,18 @@ function ClearInterval()
 }
 
 
-
-
-
-
-function DesenhaForma()
+// FORÇA UM DESENHO MESMO NO MODO PREVIEW (CHAMADA DO BOTÃO [✔]  DO HTML)
+function ForceDrawShape()
 {
-  if (StPreview) 
-  {
-    StPreview=false;
-    CallShape(Shape,Behavior);
-    StPreview=true;
-  } else {mensagem("Preview está desligado");}
-
+  if (StPreview) {
+    StPreview = false;
+    CallDrawShape(Shape,Behavior);
+    StPreview = true;
+  } else {mensagem("Modo PREVISÂO está desativado")} 
 }
 
-// CHAMA
+
+// CHAMA A ROTINA DRAW SHAPE USANDO CLEARINTERVAL CASO O STPREVIEW ESTEJA LIGADO
 function CallShape(vShape,vBehavior) 
 {
   if (StPreview)
@@ -659,7 +665,7 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
        if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} 
        break;
     case "Linha":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();}
+       if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}
        break;
     case "ConcentricCircles":
        if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(vBehavior);},vTimer); } else {DrawConcentricCircles(vBehavior);}
@@ -671,50 +677,14 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
        if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(vBehavior);},vTimer); } else {DrawReadImage(vBehavior);}
        break;
     case "Emoji":
-    if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(vBehavior);},vTimer); } else {DrawEmoji(vBehavior);} 
-    break;
+       if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(vBehavior);},vTimer); } else {DrawEmoji(vBehavior);} 
+       break;
+    default:
+       mensagem("Erro: Objeto não Definido!!!")
+       break;
      
   }
 }
-
-// function CallRectangle() // CHAMA A FUNÇÃO RETANGULO
-// { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle()},vTimer); } else {DrawRectangle();} }
-
-// function CallCircle() // CHAMA A FUNÇÃO CÍRCULO
-// { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewCircle()},vTimer); } else {DrawCircle();} }
-
-// function CallPoligon() // CHAMA A FUNÇÃO POLÍGONO
-// { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon();},vTimer); } else {DrawPoligon();} }
-
-// function CallStar() // CHAMA A FUNÇÃO ESTRELA
-// { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} }
-
-// function CallLine() // CHAMA A FUNÇÃO linha
-// { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine();} }
-
-// function CallConcentricCircles(parametro) // CHAMA A FUNÇÃO CÍRCULOS CONCÊNTRICOS
-// { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(parametro);},vTimer); } else {DrawConcentricCircles(parametro);} }
-  
-// function CallText() // CHAMA A FUNÇÃO TEXTO
-// { ClearInterval();
-//  if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} }
-   
-//  function CallReadImage(parametro) // CHAMA COLA IMAGEM
-//  { ClearInterval();
-//   if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(parametro);},vTimer); } else {DrawReadImage(parametro);} }
-   
-//   function CallEmoji(parametro) // CHAMA A FUNÇÃO TEXTO
-//   { ClearInterval();
-//    if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(parametro);},vTimer); } else {DrawEmoji(parametro);} }
-  
-//  PreviewEmoji(lEmoji)
-
 
 
 //
@@ -731,7 +701,7 @@ function ShowCursor() {
   ctxFr.clearRect(0, 0, WIDTH, HEIGHT);
   ctxFr.font = "10px Verdana";
   ctxFr.fillStyle = "#696969";
-  ctxFr.fillText("⊕", Xant - 4, Yant + 4);
+  ctxFr.fillText("⊕", Xant - 3, Yant + 3);
   ctxFr.fillStyle = "#FFD700";
 
   var cursorText = "⊗";
@@ -754,41 +724,31 @@ function KeyDown(evt) {
   var lDrawPoint = true;
   //console.log(evt.keyCode);
   switch (evt.keyCode) {
-    case 38:
-      /* seta para cima */
-    case 87:
-      /* 'W'  para cima */
-      if (y - dy > 0) {
-        y -= dy;
-      }
+    case 38:  // seta para cima
+    case 87:  // 'W'  para cima
+      if (y - dy > 0) {y -= dy;}
       break;
-    case 40:
-      /* set para baixo*/
-    case 83:
-      /* 'S' para baixo  */
-      if (y + dy < HEIGHT) {
-        y += dy;
-      }
+    case 40:  // seta para baixo
+    case 83:  // 'S' para baixo
+      if (y + dy < HEIGHT) {y += dy;}
       break;
-    case 37:
-      /*set  para esquerda*/
-    case 65:
-      /* 'A' para esquerda*/
-      if (x - dx > 0) {
-        x -= dx;
-      }
+    case 37:  // seta para esquerda
+    case 65:  // 'A' para esquerda
+      if (x - dx > 0) { x -= dx;}
       break;
-    case 39:
-      /*seta para direita*/
-    case 68:
-      /* 'D' para direita */
-      if (x + dx < WIDTH) {
-        x += dx;
-      }
+    case 39:  // seta para direita
+    case 68:  // 'D' para direita 
+      if (x + dx < WIDTH) {x += dx;}
       break;
-    case 16:
+    case 16: // 'SHIFT' Alterna Modo Imediato/Previsão
       TooglePreview();
       lDrawPoint = false;
+      break;
+    case 82: // Letra R - Traça Reta sem Mudar o Ponto Aterior
+      CallShape("Linha","reta");
+      break;
+    case 84: // Letra T - Traça Linha e [T]razendo o Ponto Anterior para junto do Ponto Atual.
+      CallShape("Linha","traço");
       break;
     default:
       lDrawPoint = false;
@@ -799,31 +759,52 @@ function KeyDown(evt) {
   if (lDrawPoint) 
     {
       if (StPreview)
+      { 
+        ShowPreviewCursor();
+      } else 
       {
-        ctxPr.moveTo(x,y);
         ShowCursor();
-      } else {DrawPoint();}
+      }
     }
-
-  // LinhaManual = true;
-
 }
 
 
 
+
 //
-// MOVE O PONTO PARA O CLICK DO MOUSE
+// MOVE O PONTO PARA O CLICK DO MOUSE NO MODO IMEDIATO
 //
 tmcanvasFr.onmousedown = function (evt) {
   Xant = x;
   Yant = y;
+
   ctxFr.moveTo(evt.clientY, evt.clientX);
   
   var rect = tmcanvasFr.getBoundingClientRect(); 
   x = evt.offsetX;
   y = evt.offsetY;
-  ShowCursor();
+
+  if (StPreview) {ShowPreviewCursor();} else {ShowCursor();}
+  
+  
+  
 }
+
+
+// //
+// // MOVE O PONTO PARA O CLICK DO MOUSE NO MODO PREVIEW
+// //
+// tmcanvasCp.onmousedown = function (evt) {
+//   Xant = x;
+//   Yant = y;
+//   ctxCp.moveTo(evt.clientY, evt.clientX);
+  
+//   var rect = tmcanvasCp.getBoundingClientRect(); 
+//   x = evt.offsetX;
+//   y = evt.offsetY;
+//   ShowPreviewCursor();
+// }
+
 
 
 window.addEventListener('keydown', KeyDown, true);

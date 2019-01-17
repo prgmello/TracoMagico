@@ -25,16 +25,27 @@
          </p>
          <p class="txt";>
             Você pode desenhar com <tm class="tmj">Traço Mágico JS</tm>&nbsp;utilizando as setas do teclado e/ou o mouse.<br>
-            <tm class="att">DICA:</tm> Utilizando o teclado o Ponto Anterior (<tm class="cur2">⊕</tm>)&nbsp; não muda de lugar, você pode fazer
+            Movimente o cursor utilizando o teclado.<br>
+            <br>
+            <ul>
+              <li>
+                  Use o botão Reta <tm class="btaction">/</tm> pra traçar uma reta entre os dois cursores. <tm class="att">Atalho</tm> letra [ R ].
+              </li>
+              <li>
+                  Use o botão Traço <tm class="btaction">➜</tm> pra traçar o caminho entre o Ponto Anterio ao Ponto Atual. <tm class="att">Atalho</tm> Letra [ T ]. 
+                  <br>Esta opção traz o Ponto Anterior para junto do Ponto Atual.<br><br>
+               <tm class="att">DICA:</tm> Movendo o Cursor com  o teclado o Ponto Anterior (<tm class="cur2">⊕</tm>)&nbsp; não muda de lugar, você pode fazer
             várias formas repetidas enquando movimenta as setas do cursor e clica nas ferramentas Formas.<br>
             <tm class="att">DICA:</tm> Você pode utilizar as letras W.A.S.D. para movimentação como mostra a imagem abaixo:
-         </p>
-
+          </li>
+        </ul>
+        </p>
+        <br><br>
          <p align="center";>
             <img src="./tm_teclas.jpg"</TD>
            </p>
            <br>
-
+           <br><br>
          <H5>Os Cursores</H5>
         <P class="txt">
             O Cursor: <tm class="cur1">⊗</tm>&nbsp;representa o Ponto Atual e o 
@@ -46,10 +57,31 @@
             As Formas círculares serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro. </li><li>
             As Formas Reta e Retângulo serão traçadas utilizando os cursores Ponto Atual (<tm class="cur1">⊗</tm>) e 
             Ponto Anterior (<tm class="cur2">⊕</tm>) como vértices.</li><li>
-            Somente o Clique do mouse irá mudar a posição dos cursores.
+            Somente o Clique do mouse irá mudar a posição dos cursores no modo Imediato.</li><li>
+            No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
+                  Ponto Anterior (<tm class="cur4">⊕</tm>).</li><li>
+            No modo Previsão o Cursor Ponto Atual (<tm class="cur3">⊗</tm>) pode ser movido com o teclado.
             </li>
-        </ul>
-      </P>
+           </ul>
+        </P>
+
+        
+        <H5>Os Modos</H5>
+        <p class="txt">
+            O <tm class="tmj">Traço Mágico JS</tm>&nbsp; pode ser utilizado de dois modos: 
+            <ul><li>
+            Modo Imediato: Neste modo as ferramentas traçam suas formas diretamente no desenho.
+            </li><li>
+            Modo Previsão: Neste modo as formas aparecem sobre o desenho e podem ser movidas e alteradas à vontade.<br> 
+            O Botão <tm class="btmedio">✔</tm> Envia a forma para o desenho.<br>
+            Uma série de mudanças indica que o Modo Previsão está ligado.<br>
+          <ul><li>
+            A ferramenta IMEDIATO dá lugar à ferramenta PREVISÃO com um Led vermelho aceso.</li><li>
+            No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
+            Ponto Anterior (<tm class="cur4">⊕</tm>).</li></ul>
+            <tm class="att">DICA:</tm> Neste modo as setas do teclado movimental o Cursor: <tm class="cur3">⊗</tm>&nbsp; Ponto Atual.           
+            </ul>
+        </p>
 
          <H5>A Tela de Desenho</H5>
          <P class="txt">
@@ -354,35 +386,33 @@
 
 <br<br>
 
-<H5>PREVIEW</H5>
+<H5>MODO IMEDIATO / MODO PREVISÃO</H5>
 <br>
 <p class="txt";>
- O comando Preview permite experimentar todos as Ferramentas (Título Laranja) e os controles que as afetam  (Título Verde) 
- antes de aplicar a forma efetivamente no seu desenho. 
+    O Modo Imediato permite desenhar diretamente sobre o desenho.
+</p>
+<p class="txt";>
+ O Modo Previsão permite experimentar todas as Ferramentas (Título Laranja) e os controles que as afetam (Título Verde) 
+ antes de aplicar a forma efetivamente ao desenho.
  <ul>
   <li>
- Ligue o botão da carinha <tm class="btmedio">õ‿õ</tm> vai acender o Led do comando Preview.
+ O botão <tm class="btmedio">Modo</tm> &nbsp;alterna entre os Modos IMEDIATO e PREVISÃO.
 </li> <li>
 Clique na ferramenta desejada. Imediatamente a forma irá aparecer no desenho e você pode modificá-la com todos os Controles, inclusive cor.
-</li> <li>
-Quando estiver satisfeito com o resultado, desligue o botão da carinha <tm class="btmedio">õ‿õ</tm> o que fará o objeto desaparecer.
 </li><li>
-Clique novamente na ferramenta (desta vez com o Preview desligado) e o seu objeto irá aparecer no mesmo local e da forma que foi definido. 
+Para mudar de ferramenta basta clicar no botão de outra ferramenta e a previsão já irá apresentar a nova forma.
 </li><li>
- <tm class="att">ATENÇÃO:</tm> Se nada for alterado o objeto será desenhado exatamente no mesmo local em que foi pré-visualizado.
-</li><li>
-<tm class="att">DICA:</tm> Do mesmo modo clicando em outra posição no desenho a mesma forma poderá ser repetida várias vezes enquanto os 
-controles não fores modificados, bastando para isso clicar no botão da ferramenta logo após mudar a posição do cursor.
-</li><li>
-  <tm class="att">DICA:</tm> Para mudar o tamanho de retângulos durante a previsão clique sempre acima e abaixo do objeto:
-  <br>
-  1- Fora do objeto para aumentar de tamanho.
-  2- Dentro do objeto para diminuir de tamanho.
-  (SEMPRE clicando alternadamente Acima e abaixo).
+    Quando estiver satisfeito com o resultado o botão <tm class="btmedio">✔</tm> &nbsp; envia a forma para o desenho.
+<br><br>
+   <tm class="att">ATENÇÃO:</tm>  O desenho com teclado não funciona no modo Preview.
+   <br><br>
+   <tm class="att">DICA:</tm> Aplique a forma em vários locais do desenho apenas clicando em um novo local e utilizando o botão <tm class="btmedio">✔</tm>.
+   <br><br>
+   <tm class="att">DICA:</tm> Use as setas para mudar o tamanho de retângulos durante a previsão.
  </li>
-
-<br<br>
-<br<br>
+</ul>
+<br><br>
+<br><br>
 
   <H5>GRAVAÇÃO</H5>
   <p class="txt";>

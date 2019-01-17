@@ -34,10 +34,10 @@
       <TR> 
         <TD>
           <div id = "caixa" class="container">
-           <canvas id="tmcanvasFu" class="layer0"  width="950" height="500" ></canvas>
-           <canvas id="tmcanvas"   class="layer1"  width="950" height="500" ></canvas>
-           <canvas id="tmcanvasPr" class="layer2"  width="950" height="500" ></canvas>
-           <canvas id="tmcanvasFr" class="layer3"  width="950" height="500" ></canvas>
+           <canvas id="tmcanvasFu" class="layer0"  width="950" height="500"></canvas>
+           <canvas id="tmcanvas"   class="layer1"  width="950" height="500"></canvas>
+           <canvas id="tmcanvasPr" class="layer2"  width="950" height="500"></canvas>
+           <canvas id="tmcanvasFr" class="layer3"  width="950" height="500"></canvas> <!-- Frente  (Cursor) -->
           </div>
          </TD> 
       </TR>
@@ -81,7 +81,7 @@
                 <H4 class="BackgroundToolsTitle" title="Define uma cor ou imagem para o fundo.">FUNDO</H4>
               </TD>
               <TD bgcolor="black">
-                <H4 class="CommandTitle" title="Envia a imagem do preview para o fundo.">PREVIEW <rec id="StPreview">◆</rec></H4>
+                <H4 class="CommandTitle" title="Modo Imediato/Modo Previsão."><rec id="StModo">PREVISÃO</rec><rec id="StPreview">◆</rec></H4>
               </TD>
               <TD bgcolor="black">
                 <H4 class="CommandTitle" title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H4>
@@ -130,7 +130,7 @@
               </p>  
             </TD>    
             <TD width="40px"> 
-              <p class="contador" id="numvelocidade" title="Velocidade: 2 a 20.">[2]</p>
+              <p class="contador" id="numvelocidade" title="Velocidade: 2 a 20.">[10]</p>
               <p>
                 <input type="range" id="SlVelocidade" title="Velocidade." min="2" max="20" value="2" oninput="DefSpeed(this.value)" onchange="this.blur();"> 
               </p>  
@@ -138,7 +138,7 @@
             
             <TD width="80px"> 
               <p>
-                <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo entre os dois cursores.">▯</a>
+                <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo entre os dois cursores. (R)">▯</a>
                 <a href="#" class="btaction" onclick="CallShape('Circulo','');" title="Desenha um círculo.">◯</a>
                 <a href="#" class="btaction" onclick="CallShape('Poligono','');" title="Desenha um polígono.">◇</a>
                 <a href="#" class="btaction" onclick="CallShape('Estrela','');" title="Desenha uma estrela.">✩</a>
@@ -146,7 +146,9 @@
                 <hr width="80%" color="#333333">
               </p>  
               <p> 
-                <a href="#" class="btaction" onclick="CallShape('Linha','');" title="Cria uma linha entre os dois últimos pontos marcados."   >&nbsp;/&nbsp;</a>
+                <a href="#" class="btaction" onclick="CallShape('Linha','reta');" title="Cria uma [R]eta ligando os dois últimos pontos marcados. [R]"   >▬&nbsp;&nbsp;</a>
+                &nbsp;
+                <a href="#" class="btaction" onclick="CallShape('Linha','traço');" title="Traça o caminho até o Ponto Atual [T].">➜&nbsp;&nbsp;</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="CallShape('ConcentricCircles','uma-cor');" title="Desenha Círculos concêntricos.">◉</a> 
                 &nbsp;
@@ -173,7 +175,6 @@
               </p>
           </TD>
           
-          
           <TD width="60px">
             <p>
               <a href="#" class="btmedio" onclick="ChangeBgColor();" title="Troca o fundo para a cor selecionada.">Cor</a>
@@ -190,11 +191,11 @@
  
             <TD width="60px">
                 <p>
-                  <a href="#" class="btmedio" onclick="TooglePreview();" title="Liga o modo de visualização. <Shift>">õ‿õ</a>
+                  <a href="#" class="btmedio" onclick="TooglePreview();" title="Alterna o modo de Utilização. [Shift]">MODO</a>
                 </p>
                 &nbsp;
                 <p>
-                  <a href="#" class="btmedio" onclick="DesenhaForma();" title="Envia previsão para o Desenho.">✔</a>
+                  <a href="#" class="btmedio" onclick="ForceDrawShape();" title="Envia a forma para o desenho.">✔</a>
                 </p>
             </TD>
             <TD  width="70px">

@@ -12,18 +12,18 @@
 //
 // FAZ O TRAÇO
 //
-function DrawPoint() 
-{
-  ctx.beginPath();
-  ctx.fillStyle = cor;
-  ctx.fillRect(x,y,largura,largura); 
-  ctx.fill();
-  ctx.closePath();
-  ctx.fillStyle = cor;
+// function DrawPoint() 
+// {
+//   ctx.beginPath();
+//   ctx.fillStyle = cor;
+//   ctx.fillRect(x,y,largura,largura); 
+//   ctx.fill();
+//   ctx.closePath();
+//   ctx.fillStyle = cor;
 
-  if (pGravar) {SaveStep("Ponto","","");}
-  ShowCursor();
-}
+//   if (pGravar) {SaveStep("Ponto","","");}
+//   ShowCursor();
+// }
 
 
 //
@@ -65,7 +65,7 @@ function DrawConcentricCircles(lBehavior)
 //
 // TRAÇA UMA RETA USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function DrawLine()
+function DrawLine(lBehavior)
 {
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");}
   else 
@@ -73,13 +73,19 @@ function DrawLine()
     ctx.beginPath()
     ctx.lineWidth=largura;
     ctx.strokeStyle = cor;
-    ctx.moveTo(Xant+1,Yant+1); 
+    ctx.moveTo(Xant,Yant); 
     ctx.lineTo(x,y)
     ctx.stroke();
     ctx.closePath();
-  
-   if (pGravar) {SaveStep("Linha","","");}
+    // Adiciona o Passo antes de igualar os Pontos
+    if (pGravar) {SaveStep("Linha",lBehavior,"");}
 
+    if (lBehavior == "traço") 
+    {
+      Xant = x;
+      Yant = y;
+    }
+    ShowCursor();
   }
 
 }
@@ -329,13 +335,13 @@ if (pGravar) {SaveStep("Emoji","",lEmoji);}
 //
 // CRIA UM FUNDO PSICODÉLICO
 //
-function MakeBgTilt(StSolid)
+function MakeBgTilt(lBehavior)
 {
   var lx;
   var ly;
   var cor1, cor2, cor3;
 
-if (StSolid == "circulos")
+if (lBehavior=="circulos")
 {
   var lLineWidth;
   var lRadius;
@@ -362,7 +368,7 @@ if (StSolid == "circulos")
   ctxFu.strokeStyle = 0;
   ctxFu.fillStyle = 0;
 }
-else if (StSolid=="retangulos")
+else if (lBehavior=="retangulos")
 {
 
   var lRectWidth;
@@ -391,7 +397,7 @@ else if (StSolid=="retangulos")
   ctxFu.closePath();
   }
 
-  if (pGravar) {SaveStep("Fundo-Aleatorio",StSolid,"");}
+  if (pGravar) {SaveStep("Fundo-Aleatorio",lBehavior,"");}
 }
 
 
@@ -413,7 +419,7 @@ function ChangeBgColor()
 //
 // MOSTRA AS COORDENADAS DE DESENHO (DEBUG)
 //
-function coordenadas() 
-{
-  alert("Coord: x= " + x + " y= " + y+ " Xant= " + Xant + " Yant= " + Yant);
-}
+// function coordenadas() 
+// {
+//   alert("Coord: x= " + x + " y= " + y+ " Xant= " + Xant + " Yant= " + Yant);
+// }

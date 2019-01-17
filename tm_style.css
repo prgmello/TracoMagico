@@ -26,8 +26,8 @@ p {
 /* FORMATAÇÃO DOS LAYERS DO CANVAS */
 .container {
 	position: relative;
-	width: 950px;
-	height: 502px
+	width:  950px;
+	height: 500px
 }
 
 .layer0 {
@@ -60,6 +60,7 @@ p {
 	top: 0px;
 	cursor: crosshair;
 }
+
 
 /* FIM DA FORMATAÇÃO DOS LAYERS DO CANVAS */
 
@@ -508,7 +509,7 @@ input[type=checkbox]
 	font-style: normal;
 	height: 11px;
 	line-height: 11px;
-	width: 30px;
+	width: 35px;
 	text-decoration: none;
 	text-align: center;
 	text-shadow: 1px 1px 0px #cc9f52;

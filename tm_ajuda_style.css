@@ -34,6 +34,18 @@ html {
 	color: #696969;
    }
 
+.cur3 {
+	face:Verdana; 
+	size:12pt; 
+	color: #FF0000;
+   }
+
+.cur4 {
+	face:Verdana; 
+	size:12pt; 
+	color: #8A2BE2;
+   }
+
 
 .container {
 	position: relative;
@@ -294,37 +306,59 @@ LI	{
    == BOTÃO GRANDE PADRÃO DE AÇÃO  (http://css3button.net/)
    == 
 */
+/* ==
+   == BOTÃO PEQUENO DE TEXTO
+   == 
+*/
 .btaction {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	color: #ff8c00;
-	padding: 0px 0px;
-	background: -moz-linear-gradient(
-		top,
-		#000000 0%,
-		#0a0a0a);
-	background: -webkit-gradient(
-		linear, left top, left bottom,
-		from(#000000),
-		to(#0a0a0a));
-	-moz-border-radius: 16px;
-	-webkit-border-radius: 1px;
-	border-radius: 162px;
-	border: 0px solid #080808;
-	-moz-box-shadow:
-		0px 0px 0px rgba(000,000,000,0),
-		inset 0px 0px 0px rgba(0,0,0,0);
-	-webkit-box-shadow:
-		0px 0px 0px rgba(000,000,000,0),
-		inset 0px 0px 0px rgba(0,0,0,0);
-	box-shadow:
-		0px 0px 0px rgba(000,000,000,0),
-		inset 0px 0px 0px rgba(0,0,0,0);
-	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.4),
-		0px 1px 0px rgba(255,255,255,0.3);
-
+	-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	box-shadow: inset 0px 1px 0px 0px #fce2c1;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+	background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color: #ffc477;
+	-webkit-border-top-left-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	border-top-left-radius: 2px;
+	-webkit-border-top-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	border-top-right-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	border-bottom-left-radius: 2px;
+	text-indent: 0;
+	border: 1px solid #eeb44f;
+	display: inline-block;
+	color: #000000;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	font-style: normal;
+	height: 12px;
+	line-height: 11px;
+	width: 13px;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px 0px #cc9f52;
 }
+
+.btaction:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+	background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color: #fb9e25;
+}
+
+.btaction:active {
+	position: relative;
+	top: 1px;
+}
+
+/* This button was generated using CSSButtonGenerator.com */
 
 
 
@@ -363,7 +397,7 @@ LI	{
 	font-style:normal;
 	height:10px;
 	line-height:12px;
-	width:30px;
+	width:35px;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #cc9f52;
