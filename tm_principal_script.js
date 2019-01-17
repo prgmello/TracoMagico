@@ -23,8 +23,8 @@ var cor = "#0000FF"; // Inicia com a cor Azul
 var cor1 = "00"; // COMPONENTE DE COR RED=00
 var cor2 = "00"; // COMPONENTE DE COR GREEN=00
 var cor3 = "FF"; // COMPONENTE DE COR BLUE=FF
-var dx = 10; //Taxa de "velocidade" horizontal do desenho
-var dy = 10; //Taxa de "velocidade" vertical do desenho
+var dx = 20; //Taxa de "velocidade" horizontal do desenho
+var dy = 20; //Taxa de "velocidade" vertical do desenho
 var WIDTH = 950; // Largura do Canvas
 var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
@@ -49,7 +49,7 @@ var stShiftKey = false; // Mostra se a Tecla <Shift> está pressionada
 
 // VARIÁVEIS DAS FUNÇÕES LER FOTOS
 var texto = "Escreva seu texto." // Armazena o texto digitado
-var FontSize = 20; // Tamanho da Fonte em pixels
+var FontSize = 40; // Tamanho da Fonte em pixels
 var usuarioIMG = new Image(); // Guarda a foto do usuário lida do computador
 var temIMG = false; // Não tem foto na memória
 var gravouIMG = false // Define se a imagem foi gravada em memória.

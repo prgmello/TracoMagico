@@ -54,9 +54,9 @@
               As ferramentas de Formas utilizam um ou dois cursores:
             </p>
             <ul><li>
-            As Formas círculares serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro. </li><li>
             As Formas Reta e Retângulo serão traçadas utilizando os cursores Ponto Atual (<tm class="cur1">⊗</tm>) e 
             Ponto Anterior (<tm class="cur2">⊕</tm>) como vértices.</li><li>
+            Os outros Polígonos serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro. </li><li>
             Somente o Clique do mouse irá mudar a posição dos cursores no modo Imediato.</li><li>
             No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
                   Ponto Anterior (<tm class="cur4">⊕</tm>).</li><li>
@@ -70,16 +70,16 @@
         <p class="txt">
             O <tm class="tmj">Traço Mágico JS</tm>&nbsp; pode ser utilizado de dois modos: 
             <ul><li>
-            Modo Imediato: Neste modo as ferramentas traçam suas formas diretamente no desenho.
+            <tm class="att">Modo Imediato:</tm> Neste modo as ferramentas traçam suas formas diretamente no desenho.<br>
+            O comando PREVISÃO mostra com um LED verde (<font color="#00FF00">◆</font>).
             </li><li>
-            Modo Previsão: Neste modo as formas aparecem sobre o desenho e podem ser movidas e alteradas à vontade.<br> 
-            O Botão <tm class="btmedio">✔</tm> Envia a forma para o desenho.<br>
-            Uma série de mudanças indica que o Modo Previsão está ligado.<br>
-          <ul><li>
-            A ferramenta IMEDIATO dá lugar à ferramenta PREVISÃO com um Led vermelho aceso.</li><li>
+            <tm class="att">Modo Previsão:</tm> Neste modo as formas aparecem sobre o desenho e podem ser movidas e alteradas à vontade.<br><br> 
+            O botão <tm class="btmedio">✔</tm> Envia a forma para o desenho.<br>
+            Uma série de mudanças indica que o Modo Previsão está ligado.<br><ul><li>
+            O comando PREVISÃO substitui o comando IMEDIATO com um LED vermelho (<font color="#FF0000">◆</font>) para chamar atenção.</li><li>
             No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
             Ponto Anterior (<tm class="cur4">⊕</tm>).</li></ul>
-            <tm class="att">DICA:</tm> Neste modo as setas do teclado movimental o Cursor: <tm class="cur3">⊗</tm>&nbsp; Ponto Atual.           
+            <tm class="att">DICA:</tm> No modo Previsão as setas do teclado movimental o cursor Ponto Atual (<tm class="cur3">⊗</tm>).           
             </ul>
         </p>
 
@@ -89,25 +89,26 @@
             ela é composta de 2 camadas
          </p>
          <ul><li>
-            Camada Fundo - Esta camada fica atrás do desenho e pode ser alterada pela unicamente pela ferramenta Fundo.</li><li>
-            Camada Desenho - Esta camada contem todo o desenho do usuário e pode ser alterada por todas as outras ferramentas.
+            <tm class="att">Camada Fundo</tm> - Esta camada fica atrás do desenho e pode ser alterada pela unicamente pela ferramenta Fundo.</li><li>
+                <tm class="att">Camada Desenho</tm> - Esta camada contem todo o desenho do usuário e pode ser alterada por todas as outras ferramentas.
           </li></ul>
           <br><br><hr width="80%"><br><br>
          <H4>CONTROLES BÁSICOS</H4>
 
          <p class="txt";>
           O <tm class="tmj">Traço Mágico JS</tm>&nbsp; apresenta controles, eles podem ser identificados pelo título em cor <tm class="ControlsTitle">VERDE</tm>.<br>
-          com que afetam as ferramentas, os Controles Deslizantes 
-          operam de forma semelhante em todas os controles:
+          Cada controles afeta uma ou mais ferramentas.<br>
+          <ul>
+            <li>   
+               A janela de Seleção de Cores é o primeiro tipo de ferramenta.   
+            </li><li>   
+               Os Controles Deslizantes operam de forma semelhante vários os controles, apresentando valores máximos e mínimos e uma grande facilidade de uso. 
+            </li><li>
+               A caixa "Formas Solidas" quando marcada define que as formas da linha superior serão traçadas de forma sólida.
+            </li>
+          </ul>
          </p>
-         <ul>
-         <li>
-          O Controles Deslizantes permite definir diretamente o valor de um Controle.
-          Clique no botão e arrate para Baixo ou para Cima para diminuir ou aumentar o valor desejado
-          ou clique diretamente na posição que deseja posicioná-lo. 
           <br>
-        </li>
-      </ul>
        <H5>Tabela de Cores</H5>
        <p class="txt";>
          Clicando no Círculo da Cor Selecionada abrirá uma janela onde você poderá escolher entre as cores pré-selecionadas ou 
@@ -119,46 +120,55 @@
        </p>
        <H5>Fonte</H5>
        <p class="txt";>
-        O Controle Tamanho da Fonte afeta as Ferramentas de Texto: Colar Texto e Tabela de Emojis. 
+        O Controle Tamanho da Fonte afeta as Ferramentas de Texto: Colar Texto e Tabela de Emojis.<br>
         O número que aparece acima do controle deslizante é o tamanho da fonte em pixels.<br>
+        O tamanho da fonte pode ir de 20 a 120 pixels.<br>
+        O valor padrão é 40.
         </p>
 
 
-        <H5>Lados</H5>
+        <H5>Lados/Pontas</H5>
         <p class="txt";>
-         O Controle Lados afeta todas as Ferramentas de Formas Polígono. 
-         O número que aparece abaixo do título é o número de lados definido.<br>
-         O Número de lados padrão é 3 (triângulo) podendo chegar a 30 (triacontágono).
-         <br>Utilize o Controle Deslizante para mudar o número de lados.
+         O Controle Lados afeta todas as Ferramentas Polígono e Estrela.<br>
+         O número que aparece abaixo do título é o número de lados ou pontas definido.<br>
+         O Número padrão é 5 mas pode variar de 3 (triângulo) a 30 (triacontágono).<br>
+         Utilize o Controle Deslizante para mudar o número de lados/Pontas.
         </p>
- 
 
-
-
-       <H5>Largura do Traço</H5>
+        <H5>Largura do Traço</H5>
        <p class="txt";>
         O Controle Largura do Traço afeta todas as Ferramentas de Formas. 
         O número que aparece abaixo do título é a largura definida.<br>
-        A largura padrão é 2 podendo chegar a 20.<br>
+        O valor padrão é 2, podendo variar de 2 a 20.
+        Os objetos Sólidos não apresentam borda, portanto este controle não funciona quando o controle Formas Sólidas está marcado.<br>
         Utilize o Controle Deslizante para mudar a largura.<br>
        </p>
+       
+       <H5>Raio</H5>
+        <p class="txt";>
+         O Controle Raio afeta as ferramentas Forma Círculos, Polígonos e Estrelas, define o raio do objeto.<br>
+         O número que aparece abaixo do título é o número do Raio definido em pixels.<br>
+         O valor padrão é 100, podendo variar de 5 a 250.<br>
+         Utilize o Controle Deslizante para mudar o tamanho do Raio.
+
+        </p>
+
        <H5>Transparência de Objetos</H5>
        <p class="txt";>
-        O Controle Transparência afeta todas as ferramentas de Forma e de Fundo com exceção de <tm class="btmedio"">Cor</tm>.
-        A Transparência padrão é zero [0] (nenhuma transparência), podendo chegar a 99 onde o objeto é 99% transparente.
-        <br>Utilize o Controle Deslizante para mudar o percentual de transparência.
+        O Controle Transparência afeta todas as ferramentas de Forma e de Fundo que aceitem o controle Formas Sólidas.<br>
+        O número que aparece abaixo do título é o percentual de transparência definido.<br>
+        A Transparência padrão é zero [0] (nenhuma transparência), podendo chegar a 99 onde o objeto é 99% transparente.<br>
+        Utilize o Controle Deslizante para mudar o percentual de transparência.
        </p>
+
        <H5>Velocidade do Cursor</H5>
        <p class="txt";>
-        O Controle Velocidade afeta apenas a movimentação feita com as setas do teclado, a velocidade varia de 2 a 20.<br> 
+        O Controle Velocidade define o salto do cursor em pixels quando a movimentação é feita com o teclado.<br> 
+        O número que aparece abaixo do título é a velocidade definida.<br>
+        O valor padrão 20, podendo variar de 2 a 40.<br>
         </p>
-       <H5>Raio</H5>
-       <p class="txt";>
-        O Controle Raio afeta todas as ferramentas Forma Círculos e Polígonos, define o tamanho final do círculo.<br>
-        Utilize o Controle Deslizante para mudar o tamanho do Raio.
         <br> <br> <br> 
-      </p>
-    </TD> 
+      </TD> 
     </TR>
       <TD> 
           <br><br><hr width="80%"><br><br>
@@ -176,15 +186,28 @@
        <TD> 
 <br><br>
       <p class="txt";>
-        As formas incluem Retas, Retângulos e Círculos.<br>
+        As formas incluem Retas, Retângulos, Círculos, Polígonos e Estrelas.<br>
         <ul><li>
-        As retas ligam Ponto Atual (<tm class="cur1">⊗</tm>) e o Ponto Anterior (<tm class="cur2">⊕</tm>).<br>
+        As retas são de dois tipos:
+        <ul>
+            <li>
+                Use o botão Reta <tm class="btaction">/</tm> pra traçar uma reta entre os dois cursores. <tm class="att">Atalho</tm> letra [ R ].
+            </li>
+            <li>
+                Use o botão Traço <tm class="btaction">➜</tm> pra traçar o caminho entre o Ponto Anterio ao Ponto Atual. <tm class="att">Atalho</tm> Letra [ T ]. 
+                <br>Esta opção traz o Ponto Anterior para junto do Ponto Atual.<br><br>
+             <tm class="att">DICA:</tm> Movendo o Cursor com  o teclado o Ponto Anterior (<tm class="cur2">⊕</tm>)&nbsp; não muda de lugar, você pode fazer
+          várias formas repetidas enquando movimenta as setas do cursor e clica nas ferramentas Formas.<br>
+          <tm class="att">DICA:</tm> Você pode utilizar as letras W.A.S.D. para movimentação como mostrado no início deste manual:
+        </li>
+      </ul>
+
       </li><li>
         O retângulos são traçados entre o Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>) 
         sempre iniciando no vértice superior esquerdo independente de qual deles é o Ponto Atual e terminando no ponto mais 
         baixo e mais para direita na tela conforme indicado na imagem acima.
       </li><li>
-        As Formas círculares serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro.
+        Os Polígonos (Círculos, Polígonos e Estrelas) serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro.
       </li>
     </ul>
         <br><br><br>
@@ -389,23 +412,26 @@
 <H5>MODO IMEDIATO / MODO PREVISÃO</H5>
 <br>
 <p class="txt";>
-    O Modo Imediato permite desenhar diretamente sobre o desenho.
+  O Modo <tm class="att">IMEDIATO</tm> permite desenhar diretamente sobre o desenho.
 </p>
 <p class="txt";>
- O Modo Previsão permite experimentar todas as Ferramentas (Título Laranja) e os controles que as afetam (Título Verde) 
+ O Modo <tm class="att">PREVISÃO</tm> permite experimentar todas as Ferramentas (Título Laranja) e os controles que as afetam (Título Verde) 
  antes de aplicar a forma efetivamente ao desenho.
- <ul>
-  <li>
- O botão <tm class="btmedio">Modo</tm> &nbsp;alterna entre os Modos IMEDIATO e PREVISÃO.
-</li> <li>
-Clique na ferramenta desejada. Imediatamente a forma irá aparecer no desenho e você pode modificá-la com todos os Controles, inclusive cor.
-</li><li>
-Para mudar de ferramenta basta clicar no botão de outra ferramenta e a previsão já irá apresentar a nova forma.
-</li><li>
-    Quando estiver satisfeito com o resultado o botão <tm class="btmedio">✔</tm> &nbsp; envia a forma para o desenho.
+ <ul><li>
+    <tm class="att">Modo Imediato:</tm> Neste modo as ferramentas traçam suas formas diretamente no desenho.<br>
+    O comando PREVISÃO mostra com um LED verde (<font color="#00FF00">◆</font>).
+    </li><li>
+    <tm class="att">Modo Previsão:</tm> Neste modo as formas aparecem sobre o desenho e podem ser movidas e alteradas à vontade.<br><br> 
+    O botão <tm class="btmedio">✔</tm> Envia a forma para o desenho.<br>
+    Uma série de mudanças indica que o Modo Previsão está ligado.<br>
+  <ul><li>
+    O comando PREVISÃO substitui o comando IMEDIATO com um LED vermelho (<font color="#FF0000">◆</font>) para chamar atenção.</li><li>
+    No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
+    Ponto Anterior (<tm class="cur4">⊕</tm>).</li><li>
+    <tm class="att">DICA:</tm> No modo Previsão as setas do teclado movimental o cursor Ponto Atual (<tm class="cur3">⊗</tm>).           
+  </li></ul>
+    Quando estiver satisfeito com o resultado o botão&nbsp;<tm class="btmedio">✔</tm> &nbsp;envia a forma para o desenho.
 <br><br>
-   <tm class="att">ATENÇÃO:</tm>  O desenho com teclado não funciona no modo Preview.
-   <br><br>
    <tm class="att">DICA:</tm> Aplique a forma em vários locais do desenho apenas clicando em um novo local e utilizando o botão <tm class="btmedio">✔</tm>.
    <br><br>
    <tm class="att">DICA:</tm> Use as setas para mudar o tamanho de retângulos durante a previsão.
@@ -428,7 +454,6 @@ Para mudar de ferramenta basta clicar no botão de outra ferramenta e a previsã
    </p>
    <ul>
    <li>
-   Utilize o botão Gravar (<tm class="btaction">●</tm>) para ligar a Gravação.</li><li>
    Utilize o botão Pausar (<tm class="btaction">❚❚</tm>) para pausar a Gravação.</li> <li>
    Utilize o botão Play (<tm class="btaction">►</tm>) Refazer todo o desenho gravado, mesmo depois de um Apaga.<br>
    <tm class="att">ATENÇÃO:</tm> Depois de usar  o botão Play (<tm class="btaction">►</tm>) a gravação retorna desligada..</li> <li>

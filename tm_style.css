@@ -223,6 +223,7 @@ input[type="range"] {
 	position: relative;
 	transform: rotate(270deg);
 	width: 35px;
+	bottom: 3px;
  }
 
 
