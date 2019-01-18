@@ -30,18 +30,20 @@ var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
 var StSolid = false; // Define se formas serão sólidas ou vazias
+var StCircle = false; // Define se Elipse Será um círculo
 var largura = 2; // largura do traço de 2 a 20
 var Radius = 100; // Tamanho do raio para circulos
+var RadiusY = 100; // Radius do eixo Y para Elipses
+var Rotate = 1; // Rotação de Objetos
 var Sides = 5 // Númro de Lados para Polígonos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
 var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
-var LinhaManual = false; // Flag se o Usuário está traçando uma linha com as setas do teclado.
 var vResp = "N"; // Saída da função confirma
 var Shape = ""; // Guarda a última forma utilizada pelo usuário.
-var StPreview = false;
+var StPreview = true; //false;
 var vInterval;
 var vTimer = 200; // TEMPO EM MILISSEGUNGOS
 var Behavior; // Comportamento da rotina chamada 
@@ -72,6 +74,8 @@ var pThickness = new Array(PassoLimite);
 var pTransparency = new Array(PassoLimite);
 var pSpeed = new Array(PassoLimite);
 var pRadius = new Array(PassoLimite);
+var pRadiusY = new Array(PassoLimite);
+var pRotate = new Array(PassoLimite);
 var pFontSize = new Array(PassoLimite);
 var pText = new Array(PassoLimite);
 var pEmoji = new Array(PassoLimite);
@@ -133,7 +137,9 @@ function UpdateTools()
   ShowTextSize();
   ShowSides();
   ShowThickness();
+  ShowStCircle() 
   ShowRadius();
+  ShowRotate();
   ShowTransparency();
   ShowSpeed();
   ShowSolid(); 
@@ -511,12 +517,51 @@ function DefRadius(parametro) {
 //
 function ShowRadius()
 {
-  // Mostrando o valor do Raio
+  // Mostrando o valor do Raio (Eixo X)
   var element = document.getElementById("numradius");
   element.innerHTML = "[" + Radius + "]";
   // setando o valor no Slider
   document.getElementById("SlRadius").value = Radius;
 
+  if(StCircle) {RadiusY = Radius}
+  // Mostrando o valor do Raio (Eixo Y)
+  var element = document.getElementById("numradiusY");
+  element.innerHTML = "[" + RadiusY + "]";
+  // setando o valor no Slider
+  document.getElementById("SlRadiusY").value = RadiusY;
+
+}
+
+
+//
+// DEFINE RAIO DO eixo Y
+//
+function DefRadiusY(parametro) {
+  RadiusY = parseInt(parametro);
+  ShowRadius();
+}
+
+
+//
+// DEFINE A ROTAÇÃO
+//
+function DefRotate(parametro) 
+{
+  Rotate = parametro;
+  ShowRotate();
+}
+
+
+//
+// MOSTRA A ROTAÇÃO
+//
+function ShowRotate()
+{
+  // Mostrando o valor do Raio (Eixo X)
+  var element = document.getElementById("numrotate");
+  element.innerHTML = "[" + parseInt((Rotate-1)*360) + "]";
+  // setando o valor no Slider
+  document.getElementById("SlRotate").value = Rotate;
 }
 
 
@@ -563,6 +608,23 @@ function ShowSolid()
  document.getElementById("stSolid").checked = StSolid;
 }
 
+//
+// DEFINE SE ELIPSE SERÁ UM CÍRCULO
+//
+function DefCircle(value) 
+{
+  StCircle = value;
+  ShowStCircle();
+  ShowRadius();
+}
+
+//
+// MOSTRA STATUS SE ELIPSE SERÁ UM CÍRCULO
+//
+function ShowStCircle() 
+{
+ document.getElementById("stCircle").checked = StCircle;
+}
 
 
 

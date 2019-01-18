@@ -138,14 +138,16 @@ function DrawCircle()
   if (StSolid) 
   {
     ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-    ctx.arc(x, y, Radius, 0, Math.PI*2, true);
+    //ctx.arc(x, y, Radius, 0, Math.PI*2, true);
+    ctx.ellipse(x, y, Radius, RadiusY, Math.PI * Rotate, 0, 2 * Math.PI);
     ctx.fill();
     // Faz o reset o RGBA para 1
     ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
   } else
   {
    ctx.strokeStyle = cor;
-   ctx.arc(x, y, Radius, 0, Math.PI*2, true);
+   //ctx.arc(x, y, Radius, 0, Math.PI*2, true);
+   ctx.ellipse(x, y, Radius, RadiusY, Math.PI * Rotate, 0, 2 * Math.PI);
    ctx.stroke(); 
   }
   

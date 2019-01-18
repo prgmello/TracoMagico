@@ -97,6 +97,8 @@ function RedrawProject()
     Xant      = pXant[lPasso];
     Yant      = pYant[lPasso];
     Radius    = pRadius[lPasso];
+    RadiusY   = pRadiusY[lPasso];
+    Rotate    = pRotate[lPasso];
     StSolid   = pStSolid[lPasso];
     cor       = pColor[lPasso];
     Sides     = pSides[lPasso];
@@ -214,6 +216,8 @@ function CutProjetStep()
        pTransparency[lPasso]  = null;
        pSpeed[lPasso]     = null;
        pRadius[lPasso]    = null;
+       pRadiusY[lPasso]   = null;
+       pRotate[lPasso]    = null;
        pUsuarioIMG[Passo] = null;
        pText[lPasso]      = null;
        pFontSize[lPasso]  = null;
@@ -254,6 +258,8 @@ function CancelProjectRecorded()
         pTransparency[lPasso] = null;
         pSpeed[lPasso]      = null;
         pRadius[lPasso]     = null;
+        pRadiusY[Passo]     = null;
+        pRotate[Passo]      = null;
         pFontSize[lPasso]   = null;
         pText[lPasso]       = null;
         pUsuarioIMG[lPasso] = null;
@@ -271,7 +277,7 @@ function CancelProjectRecorded()
 
 
 //
-// SALVA O PASSO 
+// SALVA O PASSO USANDO A VARIÁVEL GLOBAL "PASSO" COMO ÍNDICE
 //
 function SaveStep(forma,tipo,string)
 {
@@ -284,6 +290,8 @@ function SaveStep(forma,tipo,string)
    pXant[Passo]       = Xant;
    pYant[Passo]       = Yant;
    pRadius[Passo]     = Radius;
+   pRadiusY[Passo]    = RadiusY;
+   pRotate[Passo]     = Rotate;
    pStSolid[Passo]    = StSolid;
    pColor[Passo]      = cor;
    pSides[Passo]      = Sides;

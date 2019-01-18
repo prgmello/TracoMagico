@@ -14,6 +14,7 @@
 function testa()
 {
 
+
   ctxFr.moveTo(20,20);
   ctxFr.font = "12 px Verdana";
   ctxFr.fillStyle = "Red";
@@ -22,7 +23,15 @@ function testa()
   ctxFr.fillStyle = "Black";
   ctxFr.fillText("ENTROU NA  ROTINA TESTE",750,20);
 
-  RodaRotina();
+// Draw the ellipse
+ctx.beginPath();
+ctx.strokeStyle = cor;
+ctx.ellipse(x, y, Radius, RadiusY, Math.PI / largura, 0, 2 * Math.PI);
+ctx.stroke();
+//ctx.closePath();
+//ctx.stroke();
+
+//  RodaRotina();
 
   ctxFr.moveTo(20,20);
   ctxFr.font = "12 px Verdana";
@@ -43,29 +52,6 @@ function testa()
 
 
 
-// var onkeydown = (function (ev) {
-//   var key;
-//   var isShift;
-//   if (window.event) {
-//     key = window.event.keyCode;
-//     isShift = !!window.event.shiftKey; // typecast to boolean
-//   } else {
-//     key = ev.which;
-//     isShift = !!ev.shiftKey;
-//   }
-//   if ( isShift ) {
-//     switch (key) {
-//       case 16: // ignore shift key
-//         break;
-//       default:
-//         alert(key);
-//         // do stuff here?
-//         break;
-//     }
-//   }
-// });
-
-
 
 
 //
@@ -76,7 +62,17 @@ function RodaRotina()
  
 //mensagem("Não há rotina para executar")
 
-
+ctx.save();
+ctx.rotate(0.15);
+// var LocalRadius = (100-Radius)/100
+// console.log(LocalRadius);
+// ctx.rotate(LocalRadius);
+// draw your object
+ctx.strokeStyle = "#FF0000";
+ctx.strokeRect(x,y,200,100);
+ctx.stroke();
+// draw your object
+ctx.restore();
 
 }
 

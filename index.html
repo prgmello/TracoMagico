@@ -39,7 +39,7 @@
            <canvas id="tmcanvasPr" class="layer2"  width="950" height="500"></canvas>
            <canvas id="tmcanvasFr" class="layer3"  width="950" height="500"></canvas> <!-- Frente  (Cursor) -->
           </div>
-         </TD> 
+        </TD> 
       </TR>
       <TR>
       <TD>
@@ -58,8 +58,18 @@
               <TD bgcolor="black"> 
                 <H4 class="ControlsTitle" title="Largura do traço.">LARG.</H4>
               </TD>
+              <TD bgcolor="black" colspan="2">
+                 <TABLE BORDER=0 cellspacing=0 bordercolor="#000"> 
+                   <TR> <TD width="80%"> 
+                    <H4 class="ControlsTitle" title="Tamanho do raio para traçar elipses.">&nbsp;RAIO (X,Y)</H4>
+                    </TD> <TD width="10%">
+                     <input type="checkbox" name="stCircle" id="stCircle" title="Marque para círculo" onchange="DefCircle(this.checked);">
+                    </TD>
+                   </TR>
+                 </TABLE>
+              </TD>
               <TD bgcolor="black">
-                  <H4 class="ControlsTitle" title="Tamanho do raio para traçar círculos.">RAIO</H4>
+                  <H4 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROT.</H4>
               </TD>
               <TD bgcolor="black">
                 <H4 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSP.</H4>
@@ -68,8 +78,14 @@
                 <H4 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H4>
               </TD>
               <TD bgcolor="black">
-                 <H4 class="ToolsTitle" title="Formas básicas.">FORMAS</H4>   
-
+                  <TABLE BORDER=0 cellspacing=0 bordercolor="#000"> 
+                      <TR> <TD> 
+                        <H4 class="ToolsTitle" title="Formas básicas.">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FORMAS</H4> 
+                       </TD> <TD>
+                          <input type="checkbox" name="stSolid" id="stSolid" title="Marque para formas sólidas" onchange="DefSolid(this.checked);">
+                        </TD>
+                      </TR>
+                    </TABLE>
               </TD>
               <TD bgcolor="black">
                 <H4 class="ToolsTitle" title="Inserir um texto no desenho.">TEXTO</H4>
@@ -118,11 +134,23 @@
             </TD> 
    
             <TD width="40px"> 
-                <p class="contador" id="numradius"  title="Tamanho do raio para traçar círculos: 5 a 300.">[0]</p> 
+                <p class="contador" id="numradius"  title="Valor do raio do eixo X para traçar elipses: 5 a 250.">[0]</p> 
                 <p>
-                  <input type="range"id="SlRadius"  title="Tamanho do raio." min="5" max="250" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
+                  <input type="range" id="SlRadius"  title="Tamanho do raio." min="5" max="250" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
                 </p>  
+            <TD width="40px"> 
+                <p class="contador" id="numradiusY"  title="Valor do raio do eixo Y para traçar elipses: 5 a 250.">[0]</p> 
+                <p>
+                  <input type="range" id="SlRadiusY"  title="Tamanho do raio do eixo Y." min="5" max="250" value="100" oninput="DefRadiusY(this.value)" onchange="this.blur();">  
+                </p>
             </TD>  
+            <TD  width="40px">
+                <p class="contador" id="numrotate"  title="Rotação: 1 a 8.">[1]</p>
+                <p>
+                  <input type="range" id="SlRotate" title="Rotação." min="1" max="2" value="1" oninput="DefRotate(this.value)" onchange="this.blur();"step="0.02">                  
+                </p>  
+              </TD>    
+  
             <TD  width="40px">
               <p class="contador" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
               <p>
@@ -136,13 +164,12 @@
               </p>  
             </TD>  
             
-            <TD width="80px"> 
+            <TD width="90px"> 
               <p>
                 <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo entre os dois cursores. (R)">▯</a>
                 <a href="#" class="btaction" onclick="CallShape('Circulo','');" title="Desenha um círculo.">◯</a>
                 <a href="#" class="btaction" onclick="CallShape('Poligono','');" title="Desenha um polígono.">◇</a>
                 <a href="#" class="btaction" onclick="CallShape('Estrela','');" title="Desenha uma estrela.">✩</a>
-                <input type="checkbox" name="stSolid" id="stSolid" title="Marque para formas sólidas" onchange="DefSolid(this.checked);">
                 <hr width="80%" color="#333333">
               </p>  
               <p> 

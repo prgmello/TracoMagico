@@ -160,14 +160,16 @@ function PreviewCircle()
   if (StSolid) 
   {
     ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-    ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
+    //ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
+    ctxPr.ellipse(x, y, Radius, RadiusY, Math.PI * Rotate, 0, 2 * Math.PI);
     ctxPr.fill();
     // Faz o reset o RGBA para 1
     ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
   } else
   {
    ctxPr.strokeStyle = cor;
-   ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
+   //ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
+   ctxPr.ellipse(x, y, Radius, RadiusY, Math.PI * Rotate, 0, 2 * Math.PI);
    ctxPr.stroke(); 
   }
   
