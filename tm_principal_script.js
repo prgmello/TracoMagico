@@ -43,7 +43,7 @@ var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
 var vResp = "N"; // Saída da função confirma
 var Shape = ""; // Guarda a última forma utilizada pelo usuário.
-var StPreview = true; //false;
+var StPreview = false;
 var vInterval;
 var vTimer = 200; // TEMPO EM MILISSEGUNGOS
 var Behavior; // Comportamento da rotina chamada 
@@ -83,7 +83,7 @@ var pUsuarioIMG = new Array(PassoLimite);
 var pGravouIMG = new Array(PassoLimite);
 
 
-var Iteration = 0; // Conta as iterações da rotina de pintura
+//var Iteration = 0; // Conta as iterações da rotina de pintura
 
 //
 // FIM DA DEFINIÇÃO DAS VARIÁVEIS GLOBAIS
@@ -755,6 +755,9 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
 function ola() {console.log('PASSEI AQUI');}
 
 
+// Function XY mostra X e Y na Console
+function xy() {console.log("X: " + x + "  Y: " + y);}
+
 //
 // POSICIONA O CURSOR NO CANVAS DA FRENTE
 //
@@ -802,7 +805,6 @@ function KeyDown(evt)
     default:
       break;
   }
-
   if (StPreview) {ShowPreviewCursor(); } else {ShowCursor();}
 }
 
@@ -828,6 +830,8 @@ function KeyUp(evt) {
       lDrawPoint = false;
       break;
   }
+
+  
 
   // SÓ CHAMA A ROTINA DO CURSOR SE FOR UMA TECLA DE TRAÇO (DRAW)
   if (lDrawPoint) 

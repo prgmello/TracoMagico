@@ -95,33 +95,43 @@ function DrawLine(lBehavior)
 //
 function DrawRectangle()
 {
-    var newX = x;
+  var newX = x;
   var newY = y;
   CalcRectangle();
-  
+  // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO V2 
+  // (A versão anterior era invertida)
+  if (newX < Xant)  {newX = Xant;}  
+  if (newY < Yant)  {newY = Yant}
+
+  // Rotina de Rotação Parte 1 - Início
+  ctx.save();                
+  ctx.translate(newX-retL/2,newY-retA/2);
+  ctx.rotate(((Rotate-1)*360)*(Math.PI/180));
+  var rotateX = 1-retL/2;
+  var rotateY = 1-retA/2;
+ // Rotina de Rotação Parte 1 - Fim
+
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");} 
   else {
-     // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO
-     if (newX > Xant)  {newX = Xant;}  
-     if (newY > Yant)  {newY = Yant}
 
      ctx.beginPath();
      ctx.lineWidth=largura;
      if (StSolid) 
       {
        ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-       ctx.fillRect(newX,newY,retL,retA);
+       ctx.fillRect(rotateX,rotateY,retL,retA);
        ctx.fill();
        // Faz o reset o RGBA para 1
        ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
      } else
      {
       ctx.strokeStyle = cor;
-      ctx.strokeRect(newX,newY,retL,retA);
+      ctx.strokeRect(rotateX,rotateY,retL,retA);
       ctx.stroke(); 
      }
     }
     ctx.closePath();
+    ctx.restore();
 
     if (StGravar) {SaveStep("Retangulo","","");}
   }

@@ -23,15 +23,15 @@ function testa()
   ctxFr.fillStyle = "Black";
   ctxFr.fillText("ENTROU NA  ROTINA TESTE",750,20);
 
-// Draw the ellipse
-ctx.beginPath();
-ctx.strokeStyle = cor;
-ctx.ellipse(x, y, Radius, RadiusY, Math.PI / largura, 0, 2 * Math.PI);
-ctx.stroke();
-//ctx.closePath();
-//ctx.stroke();
+// // Draw Retangulo com Rotação
+// CalcRectangle();
+// ctxPr.rotate(Math.PI * Rotate);
+// ctxPr.strokeRect(x, y, retL, retA);
+// ctx.stroke(); 
 
-//  RodaRotina();
+
+
+RodaRotina();
 
   ctxFr.moveTo(20,20);
   ctxFr.font = "12 px Verdana";
@@ -54,25 +54,62 @@ ctx.stroke();
 
 
 
+function drawRandomlyColoredRectangle() {  
+
+  ctxPr.clearRect(0,0, WIDTH, HEIGHT);
+  ctxPr.lineWidth = largura;
+  CalcRectangle();
+  ctxPr.save();                
+  ctxPr.translate(x-retL/2,y-retA/2);
+  ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
+  
+  ctxPr.strokeStyle = cor;
+  var newX = 1-retL/2;
+  var newY = 1-retA/2;
+  ctxPr.strokeRect(newX, newY, retL, retA); 
+  ctxPr.restore();
+  //ctxPr.rotate(convertToRadians(angle));
+
+  //console.log(angle + " " + ((Rotate-1)*360));
+  // set the fill style
+  //ctxPr.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+  //ctxPr.strokeRect(-25,-25,50,50);
+  // ctxPr.strokeStyle = cor;
+  // var newX = 1-retL/2;
+  // var newY = 1-retA/2;
+  // ctxPr.strokeRect(newX, newY, retL, retA);   
+  //ctxPr.strokeStyle = "#ff0000";
+  //ctxPr.strokeRect(-25,-25,50,70); 
+
+  
+}
+
+
+
+
+
 //
 // COLE AQUI A ROTINA QUE VC QUER TESTAR
 //
 function RodaRotina()
 {
- 
-//mensagem("Não há rotina para executar")
+  clearInterval();
+  CalcRectangle();
+  //drawRandomlyColoredRectangle()
+  setInterval(drawRandomlyColoredRectangle, 20);
+  //DrawRect2();
 
-ctx.save();
-ctx.rotate(0.15);
-// var LocalRadius = (100-Radius)/100
-// console.log(LocalRadius);
-// ctx.rotate(LocalRadius);
-// draw your object
-ctx.strokeStyle = "#FF0000";
-ctx.strokeRect(x,y,200,100);
-ctx.stroke();
-// draw your object
-ctx.restore();
+// //mensagem("Não há rotina para executar")
+// console.log(Math.PI * Rotate);
+// CalcRectangle();
+// ctxPr.save();
+// ctxPr.rotate(Math.PI * Rotate);
+// // draw your object
+// ctxPr.strokeStyle = cor;
+// ctxPr.strokeRect(x, y, retL, retA);
+// ctxPr.stroke();
+// // draw your object
+// ctxPr.restore();
 
 }
 

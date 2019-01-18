@@ -120,32 +120,42 @@ function PreviewRectangle()
   var newX = x;
   var newY = y;
   CalcRectangle();
-  
+  // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO V2 
+  // (A versão anterior era invertida)
+  if (newX < Xant)  {newX = Xant;}  
+  if (newY < Yant)  {newY = Yant}
+
+  // Rotina de Rotação Parte 1 - Início
+  ctxPr.save();                
+  ctxPr.translate(newX-retL/2,newY-retA/2);
+  ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
+  var rotateX = 1-retL/2;
+  var rotateY = 1-retA/2;
+ // Rotina de Rotação Parte 1 - Fim
+
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");} 
   else {
-     // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO
-     if (newX > Xant)  {newX = Xant;}  
-     if (newY > Yant)  {newY = Yant}
 
      ctxPr.beginPath();
      ctxPr.lineWidth=largura;
      if (StSolid) 
       {
        ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-       ctxPr.fillRect(newX,newY,retL,retA);
+       ctxPr.fillRect(rotateX,rotateY,retL,retA);
        ctxPr.fill();
        // Faz o reset o RGBA para 1
        ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
      } else
      {
       ctxPr.strokeStyle = cor;
-      ctxPr.strokeRect(newX,newY,retL,retA);
+      ctxPr.strokeRect(rotateX,rotateY,retL,retA);
       ctxPr.stroke(); 
      }
     }
     ctxPr.closePath();
+    ctxPr.restore();
 
-  }
+}
   
 
 
@@ -212,6 +222,14 @@ ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )'
 function PreviewStar()
 {
 DrawPreviewBox();
+// Rotina de Rotação Parte 1 - Início
+ctxPr.save();                
+ctxPr.translate(x+Radius/4,y+Radius/4);
+ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
+var rotateX = 1-Radius/4;
+var rotateY = 1-Radius/4;
+// Rotina de Rotação Parte 1 - Fim
+
 var lDistance = Radius;
 var lTips = Sides*2;
 var lCalcAngle = lTips;
@@ -228,12 +246,13 @@ while (lLoop--)
    var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
    var lDistance = (lLoop % 2 === 0) ? (parseInt(Radius/2)) : Radius;
    var pt = point(angle, lDistance);
-   ctxPr.lineTo(pt.x + x, pt.y + y); 
+   ctxPr.lineTo(pt.x + rotateX, pt.y + rotateY); 
    
 }
 ctxPr.closePath();
 if (StSolid) {ctxPr.fill();} else {ctxPr.stroke();}
 
+ctxPr.restore();
 
 // Faz o reset o RGBA para 1
 ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
