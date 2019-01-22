@@ -15,11 +15,11 @@
 // function DrawPoint() 
 // {
 //   ctx.beginPath();
-//   ctx.fillStyle = cor;
+//   ctx.fillStyle = color1;
 //   ctx.fillRect(x,y,largura,largura); 
 //   ctx.fill();
 //   ctx.closePath();
-//   ctx.fillStyle = cor;
+//   ctx.fillStyle = color1;
 
 //   if (StGravar) {SaveStep("Ponto","","");}
 //   ShowCursor();
@@ -41,23 +41,25 @@ function CalcRectangle()
 //
 // DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
 //
-function DrawConcentricCircles(lBehavior)
+function DrawConcentricCircles()
 {
   var cores;
   var passo = largura*3;
-  ctx.lineWidth=largura;
-  for (f = 1; f < Radius; f=f+passo)
+  var g = 0;
+  ctx.lineWidth=largura
+  for (f = 1; f < Radius-passo; f=f+passo)
    { 
+    g=g+passo;
+    if (g>RadiusY) {g=RadiusY;}
     ctx.beginPath()
-    if (lBehavior=="uma-cor") {cores=cor;} 
+    if (lBehavior=="uma-cor") {cores=color1;} 
     else if (lBehavior=="varias-cores") 
       {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
     // Plota os Círculos Concêntricos
     ctx.strokeStyle = cores;
-    ctx.arc(x, y, f, 0, Math.PI*2, true);
+    ctx.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
     ctx.stroke();
    }
-
    if (StGravar) {SaveStep("Concentrico",lBehavior,"");}
 }
 
@@ -72,7 +74,7 @@ function DrawLine(lBehavior)
   {
     ctx.beginPath()
     ctx.lineWidth=largura;
-    ctx.strokeStyle = cor;
+    ctx.strokeStyle = color1;
     ctx.moveTo(Xant,Yant); 
     ctx.lineTo(x,y)
     ctx.stroke();
@@ -125,7 +127,7 @@ function DrawRectangle()
        ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
      } else
      {
-      ctx.strokeStyle = cor;
+      ctx.strokeStyle = color1;
       ctx.strokeRect(rotateX,rotateY,retL,retA);
       ctx.stroke(); 
      }
@@ -155,7 +157,7 @@ function DrawCircle()
     ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
   } else
   {
-   ctx.strokeStyle = cor;
+   ctx.strokeStyle = color1;
    //ctx.arc(x, y, Radius, 0, Math.PI*2, true);
    ctx.ellipse(x, y, Radius, RadiusY, Math.PI * Rotate, 0, 2 * Math.PI);
    ctx.stroke(); 
@@ -184,27 +186,38 @@ function point(angle, Radius) {
 //
 function DrawPoligon()
 {
-var lSides = Sides;
-var lCalcAngle = lSides;
-ctx.beginPath();
-ctx.lineWidth=largura;
-if (StSolid) 
-   {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-   } else{ctx.strokeStyle = cor;} 
- 
-var lLoop = lSides +2; // É preciso somar 2 para garantir o fechamento do polígono em modo Stroke
-while (lLoop--) 
-{
-   var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
-   var pt = point(angle, Radius);
-   ctx.lineTo(pt.x + x, pt.y + y);
-}
-ctx.closePath();
-if (StSolid) {ctx.fill();} else {ctx.stroke();}
-
-
-// Faz o reset o RGBA para 1
-ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
+  // Rotina de Rotação Parte 1 - Início
+  ctx.save();                
+  ctx.translate(x,y);
+  ctx.rotate(((Rotate-1)*360)*(Math.PI/180));
+  var rotateX = 1-Radius/180; 
+  var rotateY = 1-Radius/180;
+  // Rotina de Rotação Parte 1 - Fim
+  
+  
+  var lSides = Sides;
+  var lCalcAngle = lSides;
+  ctx.beginPath();
+  ctx.lineWidth=largura;
+  if (StSolid) 
+     {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+     } else{ctx.strokeStyle = color1;} 
+   
+  var lLoop = lSides +2; // É preciso somar 2 para garantir o fechamento do polígono em modo Stroke
+  while (lLoop--) 
+  {
+     var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
+     var pt = point(angle, Radius);
+     ctx.lineTo(pt.x + rotateX, pt.y + rotateY);
+  }
+  ctx.closePath();
+  if (StSolid) {ctx.fill();} else {ctx.stroke();}
+  
+  ctx.restore();
+  
+  // Faz o reset o RGBA para 1
+  ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
+  
 
 
 if (StGravar) {SaveStep("Poligono","","");}
@@ -213,29 +226,38 @@ if (StGravar) {SaveStep("Poligono","","");}
 
 function DrawStar()
 {
+// Rotina de Rotação Parte 1 - Início
+ctx.save();                
+ctx.translate(x,y);
+ctx.rotate(((Rotate-1)*360)*(Math.PI/180));
+var rotateX = 1-Radius/180; 
+var rotateY = 1-Radius/180;
+// Rotina de Rotação Parte 1 - Fim
+
 var lDistance = Radius;
 var lTips = Sides*2;
 var lCalcAngle = lTips;
 ctx.beginPath();
-  if (StSolid) 
-  {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-  } else{ctx.strokeStyle = cor;} 
+if (StSolid) 
+{ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+} else{ctx.strokeStyle = color1;} 
+
 ctx.lineWidth=largura;
-   var lLoop = lTips;
+
+var lLoop = lTips;
 while (lLoop--) 
 {
    var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
-   var lDistance = (lLoop % 2 === 0) ? (parseInt(Radius/2)) : Radius;
+   var lDistance = (lLoop % 2 === 0) ? (parseInt(RadiusY/2)) : Radius;
    var pt = point(angle, lDistance);
-   ctx.lineTo(pt.x + x, pt.y + y); 
+   ctx.lineTo(pt.x + rotateX, pt.y + rotateY); 
    
 }
 ctx.closePath();
 if (StSolid) {ctx.fill();} else {ctx.stroke();}
 
+ctx.restore();
 
-// Faz o reset o RGBA para 1
-ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
 if (StGravar) {SaveStep("Estrela","","");}
 }
 
@@ -261,17 +283,28 @@ if (StGravar) {SaveStep("Estrela","","");}
 //
 function DrawReadImage(StPosition)
 {
-  CalcRectangle();
   var newX = x;
   var newY = y;
-  // Calcula o vértice superior esquerdo do "retangulo" formado pelos 2 últimos pontos
-  // FAZ A COLAGEM ACONTECER NO VÉRTICE ESQUERDO SUPERIOR DO "RETANGULO" DEFINIDO
-  if (newX > Xant)  {newX = Xant;}  
-  if (newY > Yant)  {newY = Yant}
+  CalcRectangle();
+  // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO V2 
+  // (A versão anterior era invertida)
+  if (newX < Xant)  {newX = Xant;}  
+  if (newY < Yant)  {newY = Yant}
 
-  if (temIMG == false)
-  {mensagem("Não há foto para colar ou arquivo inválido.");
-  return false;}   
+  // Rotina de Rotação Parte 1 - Início
+  ctx.save();                
+  ctx.translate(newX-retL/2,newY-retA/2);
+  ctx.rotate(((Rotate-1)*360)*(Math.PI/180));
+  var rotateX = 1-retL/2;
+  var rotateY = 1-retA/2;
+ // Rotina de Rotação Parte 1 - Fim
+
+ console.log(rotateX + " rX   --- rY " + rotateY);
+ console.log(newX + " nX   --- nY " + newY);
+ console.log(x + " x   --- y " + y);
+
+
+  if (temIMG == false) {mensagem("Não há foto para colar ou arquivo inválido."); return false;}   
 
   
   if (StPosition == "frente")
@@ -279,15 +312,17 @@ function DrawReadImage(StPosition)
       if ((Xant==x) && (Yant==y))
       {mensagem("Marque dois pontos formando um retângulo.");
       return false;} 
-      ctx.drawImage(usuarioIMG , newX , newY , retL , retA);
+      ctx.globalAlpha = transp;
+      ctx.drawImage(usuarioIMG , rotateX, rotateY , retL , retA);
+      ctx.globalAlpha = 1;
     }
   else if (StPosition == "fundo")
   { 
     ctxFu.globalAlpha = transp;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
     ctxFu.globalAlpha = 1;
-
   }
+  ctx.restore();
 
   if (StGravar) {SaveStep("Imagem",StPosition,"");}
 }
@@ -321,7 +356,7 @@ function DrawText()
 {
   ctx.moveTo(x,y);
   ctx.font=FontSize+"px Verdana";
-  ctx.fillStyle = cor;
+  ctx.fillStyle = color1;
   ctx.fillText(texto,x,y);
 
   if (StGravar) {SaveStep("Texto","",texto);}
@@ -335,7 +370,7 @@ function DrawEmoji(lEmoji)
 {
   ctx.moveTo(x,y);
   ctx.font=FontSize+"px Verdana";
-  ctx.fillStyle = cor;
+  ctx.fillStyle = color1;
   ctx.fillText(lEmoji,x,y);
 
 if (StGravar) {SaveStep("Emoji","",lEmoji);}
@@ -395,7 +430,7 @@ else if (lBehavior=="retangulos")
 
    ctxFu.beginPath();
    ctxFu.lineWidth=largura;
-   ctxFu.fillStyle = cor;
+   ctxFu.fillStyle = color1;
    ctxFu.fill();
    cor1 = Math.floor(Math.random()*255);
    cor2 = Math.floor(Math.random()*255);
@@ -418,7 +453,7 @@ else if (lBehavior=="retangulos")
 function ChangeBgColor()
 {
     ctxFu.beginPath();
-    ctxFu.fillStyle = cor;
+    ctxFu.fillStyle = color2;
     ctxFu.fillRect(0,0,WIDTH,HEIGHT); 
     ctxFu.fill();
 

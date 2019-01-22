@@ -48,21 +48,6 @@ function ShowPreviewCursor() {
 
 
 //
-// PREVIEW DE PONTO (NÃO FUNCIONA)
-//
-// function PreviewPoint() 
-// {
-//   DrawPreviewBox();
-//   ctxPr.beginPath();
-//   ctxPr.fillStyle = cor;
-//   ctxPr.fillRect(x,y,largura,largura); 
-//   ctxPr.fill();
-//   ctxPr.closePath();
-//   ctxPr.fillStyle = cor;
-// }
-
-
-//
 // DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
 //
 function PreviewConcentricCircles(lBehavior)
@@ -70,19 +55,49 @@ function PreviewConcentricCircles(lBehavior)
   DrawPreviewBox();
   var cores;
   var passo = largura*3;
+  var g = 0;
   ctxPr.lineWidth=largura
-  for (f = 1; f < Radius; f=f+passo)
+  for (f = 1; f < Radius-passo; f=f+passo)
    { 
+    g=g+passo;
+    if (g>RadiusY) {g=RadiusY;}
     ctxPr.beginPath()
-    if (lBehavior=="uma-cor") {cores=cor;} 
+    if (lBehavior=="uma-cor") {cores=color1;} 
     else if (lBehavior=="varias-cores") 
       {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
     // Plota os Círculos Concêntricos
     ctxPr.strokeStyle = cores;
-    ctxPr.arc(x, y, f, 0, Math.PI*2, true);
+    ctxPr.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
     ctxPr.stroke();
    }
 }
+
+
+//
+// DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
+//
+function PreviewForma3D(lBehavior)
+{
+  DrawPreviewBox();
+  var cores;
+  var passo = largura*3;
+  var g = RadiusY;
+  ctxPr.lineWidth=largura
+  for (f = 1; f < Radius-passo; f=f+passo)
+   { 
+    g=g-passo;
+    if (g>0) {g=0;}
+    ctxPr.beginPath()
+    if (lBehavior=="uma-cor") {cores=color1;} 
+    else if (lBehavior=="varias-cores") 
+      {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+    // Plota os Círculos Concêntricos
+    ctxPr.strokeStyle = cores;
+    ctxPr.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
+    ctxPr.stroke();
+   }
+}
+
 
 
 //
@@ -97,7 +112,7 @@ function PreviewLine(lBehavior)
     DrawPreviewBox();
     ctxPr.beginPath()
     ctxPr.lineWidth=largura;
-    ctxPr.strokeStyle = cor;
+    ctxPr.strokeStyle = color1;
     ctxPr.moveTo(Xant+1,Yant+1); 
     ctxPr.lineTo(x,y)
     ctxPr.stroke();
@@ -131,6 +146,7 @@ function PreviewRectangle()
   ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
   var rotateX = 1-retL/2;
   var rotateY = 1-retA/2;
+
  // Rotina de Rotação Parte 1 - Fim
 
   if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");} 
@@ -147,7 +163,7 @@ function PreviewRectangle()
        ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
      } else
      {
-      ctxPr.strokeStyle = cor;
+      ctxPr.strokeStyle = color1;
       ctxPr.strokeRect(rotateX,rotateY,retL,retA);
       ctxPr.stroke(); 
      }
@@ -177,7 +193,7 @@ function PreviewCircle()
     ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
   } else
   {
-   ctxPr.strokeStyle = cor;
+   ctxPr.strokeStyle = color1;
    //ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
    ctxPr.ellipse(x, y, Radius, RadiusY, Math.PI * Rotate, 0, 2 * Math.PI);
    ctxPr.stroke(); 
@@ -193,28 +209,37 @@ function PreviewCircle()
 function PreviewPoligon()
 {
 DrawPreviewBox();
+// Rotina de Rotação Parte 1 - Início
+ctxPr.save();                
+ctxPr.translate(x,y);
+ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
+var rotateX = 1-Radius/180; 
+var rotateY = 1-Radius/180;
+// Rotina de Rotação Parte 1 - Fim
+
+
 var lSides = Sides;
 var lCalcAngle = lSides;
 ctxPr.beginPath();
 ctxPr.lineWidth=largura;
 if (StSolid) 
    {ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-   } else{ctxPr.strokeStyle = cor;} 
+   } else{ctxPr.strokeStyle = color1;} 
  
 var lLoop = lSides +2; // É preciso somar 2 para garantir o fechamento do polígono em modo Stroke
 while (lLoop--) 
 {
    var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
    var pt = point(angle, Radius);
-   ctxPr.lineTo(pt.x + x, pt.y + y);
+   ctxPr.lineTo(pt.x + rotateX, pt.y + rotateY);
 }
 ctxPr.closePath();
 if (StSolid) {ctxPr.fill();} else {ctxPr.stroke();}
 
+ctxPr.restore();
 
 // Faz o reset o RGBA para 1
 ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
-
 
 }
 
@@ -224,10 +249,10 @@ function PreviewStar()
 DrawPreviewBox();
 // Rotina de Rotação Parte 1 - Início
 ctxPr.save();                
-ctxPr.translate(x+Radius/4,y+Radius/4);
+ctxPr.translate(x,y);
 ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
-var rotateX = 1-Radius/4;
-var rotateY = 1-Radius/4;
+var rotateX = 1-Radius/180; 
+var rotateY = 1-Radius/180;
 // Rotina de Rotação Parte 1 - Fim
 
 var lDistance = Radius;
@@ -236,7 +261,7 @@ var lCalcAngle = lTips;
 ctxPr.beginPath();
 if (StSolid) 
 {ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-} else{ctxPr.strokeStyle = cor;} 
+} else{ctxPr.strokeStyle = color1;} 
 
 ctxPr.lineWidth=largura;
 
@@ -244,7 +269,7 @@ var lLoop = lTips;
 while (lLoop--) 
 {
    var angle = (lLoop/(lCalcAngle)) * Math.PI * 2;
-   var lDistance = (lLoop % 2 === 0) ? (parseInt(Radius/2)) : Radius;
+   var lDistance = (lLoop % 2 === 0) ? (parseInt(RadiusY/2)) : Radius;
    var pt = point(angle, lDistance);
    ctxPr.lineTo(pt.x + rotateX, pt.y + rotateY); 
    
@@ -272,36 +297,46 @@ ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )'
 //
 // COLA A IMAGEM NO CANVAS
 //
-function PreviewReadImage(StSolid)
+function PreviewReadImage(StPosition)
 {
-  CalcRectangle();
+  DrawPreviewBox();
   var newX = x;
   var newY = y;
-  // Calcula o vértice superior esquerdo do "retangulo" formado pelos 2 últimos pontos
-  // FAZ A COLAGEM ACONTECER NO VÉRTICE ESQUERDO SUPERIOR DO "RETANGULO" DEFINIDO
-  if (newX > Xant)  {newX = Xant;}  
-  if (newY > Yant)  {newY = Yant}
+  CalcRectangle();
+  // FAZ O RETÂNGULO INICIAR NO PONTO CORRETO V2 
+  // (A versão anterior era invertida)
+  if (newX < Xant)  {newX = Xant;}  
+  if (newY < Yant)  {newY = Yant}
+
+  // Rotina de Rotação Parte 1 - Início
+  ctxPr.save();                
+  ctxPr.translate(newX-retL/2,newY-retA/2);
+  ctxPr.rotate(((Rotate-1)*360)*(Math.PI/180));
+  var rotateX = 1-retL/2;
+  var rotateY = 1-retA/2;
+
+ // Rotina de Rotação Parte 1 - Fim
 
   if (temIMG == false)
   {mensagem("Não há foto para colar ou arquivo inválido.");
   return false;}   
 
   
-  if (StSolid == "frente")
+  if (StPosition == "frente")
     { 
       if ((Xant==x) && (Yant==y))
       {mensagem("Marque dois pontos formando um retângulo.");
       return false;} 
-      ctxPr.drawImage(usuarioIMG , newX , newY , retL , retA);
+      ctxPr.drawImage(usuarioIMG , rotateX, rotateY , retL , retA);
     }
-  else if (StSolid == "fundo")
+  else if (StPosition == "fundo")
   { 
     ctxFu.globalAlpha = transp;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
     ctxFu.globalAlpha = 1;
 
   }
-
+  ctxPr.restore();
 }
 
 
@@ -314,7 +349,7 @@ function PreviewText()
   DrawPreviewBox();
   ctxPr.moveTo(x,y);
   ctxPr.font=FontSize+"px Verdana";
-  ctxPr.fillStyle = cor;
+  ctxPr.fillStyle = color1;
   ctxPr.fillText(texto,x,y);
 }
 
@@ -327,7 +362,7 @@ function PreviewEmoji(lEmoji)
   DrawPreviewBox();
   ctxPr.moveTo(x,y);
   ctxPr.font=FontSize+"px Verdana";
-  ctxPr.fillStyle = cor;
+  ctxPr.fillStyle = color1;
   ctxPr.fillText(lEmoji,x,y);
 
 }

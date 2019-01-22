@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <link href="tm_style.css" rel="stylesheet" type="text/css">
-    <title>Traço Mágico em JS - v3.8L</title>
+    <title>Traço Mágico em JS - v3.8M</title>
     <meta charset="utf-8">
   </head>
   <body>
@@ -30,6 +30,115 @@
             </TR>
         </TABLE> 
         </TD> 
+        <TD width="80px" rowspan="3">
+            <TABLE  BORDER=1 cellspacing=0 bordercolor="#444444" width="100px"> 
+              <TR>
+                <TD bgcolor="white" width="90px"> 
+                      <H3 class="ControlsTitle" title="Controles que afetam as ferramentas.">CONTROLES</H4>
+                </TD>
+              </TR>
+             <TR>
+                 <TD> 
+                     <H4 class="ControlsTitle" title="Tamanho da fonte para Texto ou Emojis.">FONTE</H4>
+                 </TD>
+               </TR>
+               <TR>
+                 <TD>
+                     <p class="contador2" id="numtexto" title="Tamanho da fonte: 10 a 120.">[40]</p>
+                     <p><input type="range" id="SlTextSize" title="Tamanho da fonte." min="10" max="120" value="40" oninput="DefTextSize(this.value)" onchange="this.blur();"></p>
+                 </TD> 
+               </TR>
+               <TR>
+                <TD> 
+                  <H4 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H4>
+                </TD>
+               </TR>
+               <TR>
+                 <TD>
+                   <p class="contador" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
+                   <p><input type="range" id="SlSides" title="Lados de um polígono/Pontas da estrela." min="3" max="30" value="5" oninput="DefSides(this.value)" onchange="this.blur();">                     </p>   
+                  </TD> 
+                </TR>
+                <TR>
+                    <TD bgcolor="black" width="90px"> 
+                        <H4 class="ControlsTitle" title="Largura do traço.">LARG.</H4>
+                      </TD>
+                  </TR>
+                  <TR>
+                    <TD>
+                        <p class="contador" id="numlargura"  title="Largura do Taço: 2 a 20.">[0]</p> 
+                        <p><input type="range" id="SlLargura" title="Largura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"></p>   
+                    </TD> 
+                  </TR>
+                <TD colspan="2"> 
+                   <H4 class="ControlsTitle" title="Tamanho dos raio X e Y para traçar elipses e polígonos.">&nbsp;RAIO (X,Y)
+                  <input type="checkbox" name="stCircle" id="stCircle" title="Marque para círculo" onchange="DefCircle(this.checked);">
+                </H4>
+                 </TD>
+              </TR>
+              <TR>
+              <TD> 
+                <p class="contador2" id="numradius" title="Valor do raio do eixo X para traçar elipses e polígonos: 5 a 250.">[0]</p> 
+                <p><input  type="range" width="50px" id="SlRadius"  title="Tamanho do raio." min="5" max="250" value="100" oninput="DefRadius(this.value)" onchange="this.blur();"></p>  
+                <p class="contador2" id="numradiusY" title="Valor do raio do eixo Y para traçar elipses e polígonos: 5 a 250.">[0]</p> 
+                <p><input  type="range" id="SlRadiusY"  title="Tamanho do raio do eixo Y." min="5" max="250" value="100" oninput="DefRadiusY(this.value)" onchange="this.blur();"></p>
+              </TD>  
+              </TR>
+              <TR>
+              <TD>
+                  <H4 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROTAÇÃO</H4>
+              </TD>
+              </TR>
+              <TR>
+              <TD>
+                  <p class="contador2" id="numrotate"  title="Rotação: 0º a 360º.">[1]</p>
+                  <p><input type="range" id="SlRotate" title="Rotação." min="1" max="2" value="1" oninput="DefRotate(this.value)" onchange="this.blur();"step="0.002"></p>
+              </TD>    
+            </TR>
+            <TR>
+                <TD>
+                  <H4 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSP.</H4>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+                  <p class="contador2" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
+                  <p><input type="range" id="SlTransparency" title="Transparência." min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();"></p>
+                </TD>    
+            </TR>
+            <TR>
+                <TD>
+                  <H4 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H4>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+                  <p class="contador2" id="numvelocidade" title="Velocidade: 1 a 40.">[20]</p>
+                  <p><input type="range" id="SlVelocidade" title="Velocidade." min="1" max="40" value="20" oninput="DefSpeed(this.value)" onchange="this.blur();"></p>  
+                </TD>    
+            </TR>
+
+            <TR>
+              <TD>
+                <H4 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H4>
+             </TD>
+            </TR>
+            <TR>
+              <TD>
+                <div class="input-color-container"> 
+                   <input id="input-color1" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor 1." oninput="DefColor1(this.value);"> 
+                </div> 
+              </TD>
+              </TR>
+              <TR>
+               <TD>
+                <div class="input-color-container"> 
+                    <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
+                 </div> 
+              </TD>    
+            </TR>
+          </TABLE>
+      </TD>
       </TR>
       <TR> 
         <TD>
@@ -41,145 +150,57 @@
           </div>
         </TD> 
       </TR>
-      <TR>
+      <TR >
       <TD>
        <TABLE BORDER=1 cellspacing=0 cellpadding=0 bordercolor="#444444" width="100%" height="100%">
           <TR>  
               <font face="Tahoma" size="1" font-color="#333333;">
-              <TD bgcolor="black"> 
-                  <H4 class="ControlsTitle" title="Cores de Desenho e Fundo.">COR</H4>
+              <TD>
+                <H4 class="ToolsTitle" title="Formas básicas.">FORMAS</H4> 
               </TD>
-              <TD bgcolor="black">
-                  <H4 class="ControlsTitle" title="Tamanho da fonte para Texto ou Emojis.">FONTE</H4>
-              </TD>
-              <TD bgcolor="black"> 
-                <H4 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H4>
-              </TD>
-              <TD bgcolor="black"> 
-                <H4 class="ControlsTitle" title="Largura do traço.">LARG.</H4>
-              </TD>
-              <TD bgcolor="black" colspan="2">
-                 <TABLE BORDER=0 cellspacing=0 bordercolor="#000"> 
-                   <TR> <TD width="80%"> 
-                    <H4 class="ControlsTitle" title="Tamanho do raio para traçar elipses.">&nbsp;RAIO (X,Y)</H4>
-                    </TD> <TD width="10%">
-                     <input type="checkbox" name="stCircle" id="stCircle" title="Marque para círculo" onchange="DefCircle(this.checked);">
-                    </TD>
-                   </TR>
-                 </TABLE>
-              </TD>
-              <TD bgcolor="black">
-                  <H4 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROT.</H4>
-              </TD>
-              <TD bgcolor="black">
-                <H4 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSP.</H4>
-              </TD>
-              <TD bgcolor="black"> 
-                <H4 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H4>
-              </TD>
-              <TD bgcolor="black">
-                  <TABLE BORDER=0 cellspacing=0 bordercolor="#000"> 
-                      <TR> <TD> 
-                        <H4 class="ToolsTitle" title="Formas básicas.">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FORMAS</H4> 
-                       </TD> <TD>
-                          <input type="checkbox" name="stSolid" id="stSolid" title="Marque para formas sólidas" onchange="DefSolid(this.checked);">
-                        </TD>
-                      </TR>
-                    </TABLE>
-              </TD>
-              <TD bgcolor="black">
+              <TD>
                 <H4 class="ToolsTitle" title="Inserir um texto no desenho.">TEXTO</H4>
               </TD>
-              <TD bgcolor="black"> 
+              <TD> 
                  <H4 class="ToolsTitle" title="Inserir fotos do computador.">IMAGEM</H4>
               </TD>
-              <TD bgcolor="black">
+              <TD>
                 <H4 class="BackgroundToolsTitle" title="Define uma cor ou imagem para o fundo.">FUNDO</H4>
               </TD>
-              <TD bgcolor="black">
+              <TD>
                 <H4 class="CommandTitle" title="Modo Imediato/Modo Previsão."><rec id="StModo">PREVISÃO</rec><rec id="StPreview">◆</rec></H4>
               </TD>
-              <TD bgcolor="black">
+              <TD>
                 <H4 class="CommandTitle" title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H4>
                 </TD>
-              <TD bgcolor="black">
-                <H4 class="CommandTitle" title="Apaga o desenho.">AÇÕES</H4>
+              <TD>
+                <H4 class="CommandTitle" title="Apaga o desenho.">DOWNLOAD</H4>
+              </TD>
+              <TD>
+                  <H4 class="CommandTitle" title="Apaga o desenho.">AÇÕES</H4>
                 </TD>
-             </font>
+               </font>
             </TR>
             <TR>
-              <TD width="30px">
-                <div class="input-color-container"> 
-                  <input id="input-color" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor." oninput="DefColor(this.value);"> 
-                </div> 
-            </TD>
-            
-            <TD width="40px"> 
-                <p class="contador" id="numtexto" title="Tamanho da fonte: 10 a 120.">[40]</p>
-                <p>
-                  <input type="range"  id="SlTextSize" title="Tamanho da fonte." min="10" max="120" value="40" oninput="DefTextSize(this.value)" onchange="this.blur();">
-                </p>
-              </TD>
-            <TD width="40px">
-                <p class="contador" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
-                <p>
-                <input type="range" id="SlSides" title="Lados de um polígono/Pontas da estrela." min="3" max="30" value="5" oninput="DefSides(this.value)" onchange="this.blur();"> 
-                </p>   
-            </TD> 
-            <TD width="40px">
-              <p class="contador" id="numlargura"  title="Largura do Taço: 2 a 20.">[0]</p> 
-              <p>
-                <input type="range" id="SlLargura" title="Largura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"> 
-              </p>   
-            </TD> 
-   
-            <TD width="40px"> 
-                <p class="contador" id="numradius"  title="Valor do raio do eixo X para traçar elipses: 5 a 250.">[0]</p> 
-                <p>
-                  <input type="range" id="SlRadius"  title="Tamanho do raio." min="5" max="250" value="100" oninput="DefRadius(this.value)" onchange="this.blur();">  
-                </p>  
-            <TD width="40px"> 
-                <p class="contador" id="numradiusY"  title="Valor do raio do eixo Y para traçar elipses: 5 a 250.">[0]</p> 
-                <p>
-                  <input type="range" id="SlRadiusY"  title="Tamanho do raio do eixo Y." min="5" max="250" value="100" oninput="DefRadiusY(this.value)" onchange="this.blur();">  
-                </p>
-            </TD>  
-            <TD  width="40px">
-                <p class="contador" id="numrotate"  title="Rotação: 1 a 8.">[1]</p>
-                <p>
-                  <input type="range" id="SlRotate" title="Rotação." min="1" max="2" value="1" oninput="DefRotate(this.value)" onchange="this.blur();"step="0.02">                  
-                </p>  
-              </TD>    
-  
-            <TD  width="40px">
-              <p class="contador" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
-              <p>
-                <input type="range" id="SlTransparency" title="Transparência." min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();">                  
-              </p>  
-            </TD>    
-            <TD width="40px"> 
-              <p class="contador" id="numvelocidade" title="Velocidade: 1 a 40.">[20]</p>
-              <p>
-                <input type="range" id="SlVelocidade" title="Velocidade." min="1" max="40" value="20" oninput="DefSpeed(this.value)" onchange="this.blur();"> 
-              </p>  
-            </TD>  
-            
             <TD width="90px"> 
               <p>
                 <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo entre os dois cursores. (R)">▯</a>
                 <a href="#" class="btaction" onclick="CallShape('Circulo','');" title="Desenha um círculo.">◯</a>
                 <a href="#" class="btaction" onclick="CallShape('Poligono','');" title="Desenha um polígono.">◇</a>
                 <a href="#" class="btaction" onclick="CallShape('Estrela','');" title="Desenha uma estrela.">✩</a>
+                <input type="checkbox" name="stSolid" id="stSolid" title="Marque para formas sólidas" onchange="DefSolid(this.checked);">
+
                 <hr width="80%" color="#333333">
               </p>  
               <p> 
                 <a href="#" class="btaction" onclick="CallShape('Linha','reta');" title="Cria uma [R]eta ligando os dois últimos pontos marcados. [R]"   >▬&nbsp;&nbsp;</a>
                 &nbsp;
                 <a href="#" class="btaction" onclick="CallShape('Linha','traço');" title="Traça o caminho até o Ponto Atual [T].">➜&nbsp;&nbsp;</a>
+                &nbsp;/&nbsp;
+                <a href="#" class="btaction" onclick="CallShape('ConcentricCircles','');" title="Desenha Círculos concêntricos.">◉</a> 
                 &nbsp;
-                <a href="#" class="btaction" onclick="CallShape('ConcentricCircles','uma-cor');" title="Desenha Círculos concêntricos.">◉</a> 
-                &nbsp;
-                <a href="#" class="btaction" onclick="CallShape('ConcentricCircles','varias-cores');" title="Desenha Círculos concêntricos coloridos.">◎</a> 
+                <a href="#" class="btaction" onclick="CallShape('Forma3D','');" title="Desenha Formas 3D.">✦</a> 
+                <input type="checkbox" name="stMulticolor" id="stMulticolor" title="Marque para formas Multicoloridas" onchange="DefMulticolor(this.checked);">
               </p>  
           </TD>    
           <TD width="50px">
@@ -192,19 +213,19 @@
           </TD>
           <TD width="40px" align="center">
               <p align="center">
-                 <a href="#" class="btaction" id="colaimg" onclick="CallShape('Imagem','frente');"  title="Insere uma imagem no ponto atual.">▣</a>
+                 <a href="#" class="btmedio" id="colaimg" onclick="CallShape('Imagem','frente');"  title="Insere uma imagem no ponto atual.">▣</a>
               </p>
               <p>
               <div id="files" title="Seleciona uma imagem do computador." >
                  <input type="file">
-                 <span align="center" class="btaction">⏏</span>
+                 <span align="center" class="btmedio">⏏</span>
               </div>
               </p>
           </TD>
           
           <TD width="60px">
             <p>
-              <a href="#" class="btmedio" onclick="ChangeBgColor();" title="Troca o fundo para a cor selecionada.">Cor</a>
+              <a href="#" class="btmedio" onclick="ChangeBgColor();" title="Troca o fundo para a Cor 2 selecionada.">Cor</a>
             </p>
             <p>
               <a href="#" class="btaction" onclick="MakeBgTilt('circulos');" title="Círculos randômicos (use transparência).">⠪</a>
@@ -243,13 +264,16 @@
             <p> 
               <a href="#" class="btgrande" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador" onclick="SalvaDesenho()">SALVAR</a>
             </p>
-            <div> 
-              <a href="#" class="btgrande" onclick="apagar();"  title="Apaga a tela atual.">APAGAR</a>
-            </div>
-            <p> 
-              <a href="#" class="btgrande" onclick="reset();" title="Apaga tudo (tela e gravação).">RESET</a>
-            </p>
           </TD>
+          <TD width="70px" align:"center">
+              <div> 
+                <a href="#" class="btgrande" onclick="apagar();"  title="Apaga a tela atual.">APAGAR</a>
+              </div>
+              <p> 
+                <a href="#" class="btgrande" onclick="reset();" title="Apaga tudo (tela e gravação).">RESET</a>
+              </p>
+            </TD>
+  
         </TR> 
       </TABLE> 
     </td>

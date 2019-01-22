@@ -19,7 +19,8 @@ var ctxPr; // CTX de Preview de ferramentas
 // Variáveis de Utilização dos Canvas (FIM)
 
 // Outras Variáveis
-var cor = "#0000FF"; // Inicia com a cor Azul
+var color1 = "#0000FF"; // Inicia com a cor Azul
+var color2 = "#FFFFFF"; // Inicia com a cor Azul
 var cor1 = "00"; // COMPONENTE DE COR RED=00
 var cor2 = "00"; // COMPONENTE DE COR GREEN=00
 var cor3 = "FF"; // COMPONENTE DE COR BLUE=FF
@@ -30,6 +31,7 @@ var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
 var StSolid = false; // Define se formas serão sólidas ou vazias
+var StMulticolor = false; // Define se algumas formas serão Multicores
 var StCircle = false; // Define se Elipse Será um círculo
 var largura = 2; // largura do traço de 2 a 20
 var Radius = 100; // Tamanho do raio para circulos
@@ -44,6 +46,7 @@ var retA = 0; // Altura do Retângulo
 var vResp = "N"; // Saída da função confirma
 var Shape = ""; // Guarda a última forma utilizada pelo usuário.
 var StPreview = false;
+//var StPreview = true;
 var vInterval;
 var vTimer = 200; // TEMPO EM MILISSEGUNGOS
 var Behavior; // Comportamento da rotina chamada 
@@ -68,7 +71,9 @@ var pY = new Array(PassoLimite);
 var pXant = new Array(PassoLimite);
 var pYant = new Array(PassoLimite);
 var pStSolid = new Array(PassoLimite);
-var pColor = new Array(PassoLimite);
+var pStMulticorlor = new Array(PassoLimite);
+var pColor1 = new Array(PassoLimite);
+var pColor2 = new Array(PassoLimite);
 var pSides  = new Array(PassoLimite);
 var pThickness = new Array(PassoLimite);
 var pTransparency = new Array(PassoLimite);
@@ -133,7 +138,7 @@ function Start()
 function UpdateTools() 
 {
   // Ferramentas
-  ShowColor();
+  ShowColors();
   ShowTextSize();
   ShowSides();
   ShowThickness();
@@ -142,7 +147,8 @@ function UpdateTools()
   ShowRotate();
   ShowTransparency();
   ShowSpeed();
-  ShowSolid(); 
+  ShowSolid();
+  ShowMulticolor() 
   ShowPreviewStatus();
   // Gravação e Posição do Cursor
   ShowSaveStatus();
@@ -177,26 +183,43 @@ function UpdateTools()
 
 
 //
-// DEFINE A COR
+// DEFINE COLOR1
 //
-function DefColor(inCor) {
-  cor = inCor;
+function DefColor1(inCor) {
+  color1 = inCor;
   CalcColorParts();
 }
 
-// CALCULA OS COMPONENTES INDIVIDUAIS DE COR
-function CalcColorParts()
-{
-  cor1 = parseInt(cor.substring(1,3), 16);
-  cor2 = parseInt(cor.substring(3,5), 16);
-  cor3 = parseInt(cor.substring(5,7), 16);
+//
+// DEFINE COLOR2
+//
+function DefColor2(inCor) {
+  color2 = inCor;
+  CalcColorParts();
 }
 
+
+
+// CALCULA OS COMPONENTES INDIVIDUAIS DE COLOR1
+function CalcColorParts()
+{
+  // PARTS OF COLOR1
+  cor1 = parseInt(color1.substring(1,3), 16);
+  cor2 = parseInt(color1.substring(3,5), 16);
+  cor3 = parseInt(color1.substring(5,7), 16);
+  // PARTS OF COLOR2
+  cor4 = parseInt(color2.substring(1,3), 16);
+  cor5 = parseInt(color2.substring(3,5), 16);
+  cor6 = parseInt(color2.substring(5,7), 16);
+}
+
+
 //
-// MOSTRA A COR
+// MOSTRA AS CORES
 //
-function ShowColor() {
-  document.getElementById('input-color').value = cor;
+function ShowColors() {
+  document.getElementById('input-color1').value = color1;
+  document.getElementById('input-color2').value = color2;
 }
 
 
@@ -519,14 +542,14 @@ function ShowRadius()
 {
   // Mostrando o valor do Raio (Eixo X)
   var element = document.getElementById("numradius");
-  element.innerHTML = "[" + Radius + "]";
+  element.innerHTML = "X= [" + Radius + "]";
   // setando o valor no Slider
   document.getElementById("SlRadius").value = Radius;
 
   if(StCircle) {RadiusY = Radius}
   // Mostrando o valor do Raio (Eixo Y)
   var element = document.getElementById("numradiusY");
-  element.innerHTML = "[" + RadiusY + "]";
+  element.innerHTML = "Y= [" + RadiusY + "]";
   // setando o valor no Slider
   document.getElementById("SlRadiusY").value = RadiusY;
 
@@ -599,13 +622,31 @@ function DefSolid(value)
   ShowSolid();
 }
 
-
 //
 // MOSTRA STATUS DE DESENHO SÓLIDO
 //
 function ShowSolid() 
 {
  document.getElementById("stSolid").checked = StSolid;
+}
+
+//
+// DEFINE SE DESENHO MULTICOLOR
+//
+function DefMulticolor(value) 
+{
+  StMulticolor = value;
+  ShowMulticolor();
+  console.log(StMulticolor);
+}
+
+
+//
+// MOSTRA STATUS DE DESENHO MULTICOLOR
+//
+function ShowMulticolor() 
+{
+ document.getElementById("stMulticolor").checked = StMulticolor;
 }
 
 //
@@ -730,7 +771,12 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
        if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}
        break;
     case "ConcentricCircles":
+       if (StMulticolor) {vBehavior = "varias-cores";} else {vBehavior = "uma-cor";}
        if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(vBehavior);},vTimer); } else {DrawConcentricCircles(vBehavior);}
+       break;
+    case "Forma3D":
+       if (StMulticolor) {vBehavior = "varias-cores";} else {vBehavior = "uma-cor";} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewForma3D(vBehavior);},vTimer); } else {DrawForma3D(vBehavior);}
        break;
     case "Texto":
       if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 

@@ -16,6 +16,7 @@ p {
 	margin-bottom: 2px;
 }
 
+
 .manual {
 	color: rgb(255, 255, 0);
 	text-align: left;
@@ -70,6 +71,14 @@ p {
 	text-align: center;
 	margin-top: 1px;
 	margin-bottom: 10px;
+	letter-spacing: -1px;
+}
+
+.contador2 {
+	color: white;
+	text-align: center;
+	margin-top: 1px;
+	margin-bottom: 3px;
 	letter-spacing: -1px;
 }
 
@@ -200,32 +209,31 @@ H4 {
 .input-color-container {
 	position: relative;
 	overflow: hidden;
-	width: 20px;
-	height: 20px;
+	width: 60px;
+	height: 18px;
 	border: solid 2px #ff8c00;
 	border-radius: 20px;
-	margin-left: 5px;
+	margin-left: 15px;
 }
 
 .input-color {
 	position: absolute;
 	right: -9px;
 	top: -9px;
-	width: 40px;
-	height: 40px;
+	width: 80px;
+	height: 35px;
 	border: none;
 }
 
 /* FIM DO BOTÃO DO COLOR PICKER */
 
-/* ROTAÇÃO DO SLIDER */
-input[type="range"] {
-	position: relative;
-	transform: rotate(270deg);
-	width: 35px;
-	bottom: 3px;
- }
 
+/* ROTAÇÃO DO SLIDER   BigSlider  */
+input[type=range] {
+	width: 80px;
+	top: 5px;
+	bottom: 5px;
+ }
 
 
 

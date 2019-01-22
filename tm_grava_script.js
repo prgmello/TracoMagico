@@ -100,7 +100,8 @@ function RedrawProject()
     RadiusY   = pRadiusY[lPasso];
     Rotate    = pRotate[lPasso];
     StSolid   = pStSolid[lPasso];
-    cor       = pColor[lPasso];
+    color1    = pColor1[lPasso];
+    color2    = pColor2[lPasso];
     Sides     = pSides[lPasso];
     largura   = pThickness[lPasso];
     dx        = pSpeed[lPasso];
@@ -210,7 +211,8 @@ function CutProjetStep()
        pXant[lPasso]      = null;
        pYant[lPasso]      = null;
        pStSolid[lPasso]   = null;
-       pColor[lPasso]     = null;
+       pColor1[lPasso]    = null;
+       pColor2[lPasso]    = null;
        pSides[lPasso]     = null;
        pThickness[lPasso] = null;
        pTransparency[lPasso]  = null;
@@ -252,7 +254,8 @@ function CancelProjectRecorded()
         pXant[lPasso]       = null;
         pYant[lPasso]       = null;
         pStSolid[lPasso]    = null;
-        pColor[lPasso]      = null;
+        pColor1[lPasso]     = null;
+        pColor2[lPasso]     = null;
         pSides[Passo]       = null;
         pThickness[lPasso]  = null;
         pTransparency[lPasso] = null;
@@ -293,7 +296,8 @@ function SaveStep(forma,tipo,string)
    pRadiusY[Passo]    = RadiusY;
    pRotate[Passo]     = Rotate;
    pStSolid[Passo]    = StSolid;
-   pColor[Passo]      = cor;
+   pColor1[Passo]     = color1;
+   pColor2[Passo]     = color2;
    pSides[Passo]      = Sides;
    pThickness[Passo]  = largura;
    pSpeed[Passo]      = dx;
