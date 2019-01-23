@@ -54,7 +54,6 @@ function RestoreProject()
 {
   if (Passo > 0)
   {
-    
     if (confirm("Confirma Redesenhar?"))
     {
       CallRedrawProject();
@@ -99,7 +98,6 @@ function RedrawProject()
     Radius    = pRadius[lPasso];
     RadiusY   = pRadiusY[lPasso];
     Rotate    = pRotate[lPasso];
-    StSolid   = pStSolid[lPasso];
     color1    = pColor1[lPasso];
     color2    = pColor2[lPasso];
     Sides     = pSides[lPasso];
@@ -136,21 +134,24 @@ function RedrawProject()
            DrawLine(lBehavior);     
            break;
       case "Retangulo":
-           DrawRectangle();  
+           DrawRectangle(lBehavior);  
            break;
       case "Poligono":
-           DrawPoligon();  
+           DrawPoligon(lBehavior);  
            break;
       case "Estrela":
-           DrawStar();
+           DrawStar(lBehavior);
            break;
       case "Circulo":
-           DrawCircle();
+           DrawCircle(lBehavior);
            break;
       case "Concentrico":
            DrawConcentricCircles(lBehavior);
            break;
-      case "Texto":   
+      case "Forma-Complexa":
+           DrawComplexForm(lBehavior);
+           break;
+     case "Texto":   
            DrawText(); 
            break;
       case "Emoji":  
@@ -210,7 +211,6 @@ function CutProjetStep()
        pY[lPasso]         = null;
        pXant[lPasso]      = null;
        pYant[lPasso]      = null;
-       pStSolid[lPasso]   = null;
        pColor1[lPasso]    = null;
        pColor2[lPasso]    = null;
        pSides[lPasso]     = null;
@@ -253,7 +253,6 @@ function CancelProjectRecorded()
         pY[lPasso]          = null;
         pXant[lPasso]       = null;
         pYant[lPasso]       = null;
-        pStSolid[lPasso]    = null;
         pColor1[lPasso]     = null;
         pColor2[lPasso]     = null;
         pSides[Passo]       = null;
@@ -295,7 +294,6 @@ function SaveStep(forma,tipo,string)
    pRadius[Passo]     = Radius;
    pRadiusY[Passo]    = RadiusY;
    pRotate[Passo]     = Rotate;
-   pStSolid[Passo]    = StSolid;
    pColor1[Passo]     = color1;
    pColor2[Passo]     = color2;
    pSides[Passo]      = Sides;

@@ -50,7 +50,7 @@ function ShowPreviewCursor() {
 //
 // DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
 //
-function PreviewConcentricCircles(lBehavior)
+function PreviewConcentricCircles(lMulticolor)
 {
   DrawPreviewBox();
   var cores;
@@ -62,9 +62,10 @@ function PreviewConcentricCircles(lBehavior)
     g=g+passo;
     if (g>RadiusY) {g=RadiusY;}
     ctxPr.beginPath()
-    if (lBehavior=="uma-cor") {cores=color1;} 
-    else if (lBehavior=="varias-cores") 
+      if (lMulticolor) 
       {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+      else {cores=color1;} 
+      
     // Plota os Círculos Concêntricos
     ctxPr.strokeStyle = cores;
     ctxPr.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
@@ -74,9 +75,9 @@ function PreviewConcentricCircles(lBehavior)
 
 
 //
-// DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
+// DESENHA FORMA COMPLEXA
 //
-function PreviewForma3D(lBehavior)
+function PreviewComplexForm(lMulticolor)
 {
   DrawPreviewBox();
   var cores;
@@ -88,9 +89,9 @@ function PreviewForma3D(lBehavior)
     g=g-passo;
     if (g>0) {g=0;}
     ctxPr.beginPath()
-    if (lBehavior=="uma-cor") {cores=color1;} 
-    else if (lBehavior=="varias-cores") 
-      {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+    if (lMulticolor) 
+    {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+    else {cores=color1;} 
     // Plota os Círculos Concêntricos
     ctxPr.strokeStyle = cores;
     ctxPr.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
@@ -129,7 +130,7 @@ function PreviewLine(lBehavior)
 //
 // FAZ UM RETANGULO USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function PreviewRectangle()
+function PreviewRectangle(lSolid)
 {
   DrawPreviewBox();
   var newX = x;
@@ -154,7 +155,7 @@ function PreviewRectangle()
 
      ctxPr.beginPath();
      ctxPr.lineWidth=largura;
-     if (StSolid) 
+     if (lSolid) 
       {
        ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
        ctxPr.fillRect(rotateX,rotateY,retL,retA);
@@ -178,12 +179,12 @@ function PreviewRectangle()
 //
 // FAZ UM CÍRCULO NA POSIÇÃO ATUAL
 //
-function PreviewCircle()
+function PreviewCircle(lSolid)
 {
   DrawPreviewBox();
   ctxPr.beginPath();
   ctxPr.lineWidth=largura;
-  if (StSolid) 
+  if (lSolid) 
   {
     ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
     //ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
@@ -206,7 +207,7 @@ function PreviewCircle()
 //
 // TRAÇA POLÍGONOS DE N LADOS
 //
-function PreviewPoligon()
+function PreviewPoligon(lSolid)
 {
 DrawPreviewBox();
 // Rotina de Rotação Parte 1 - Início
@@ -222,7 +223,7 @@ var lSides = Sides;
 var lCalcAngle = lSides;
 ctxPr.beginPath();
 ctxPr.lineWidth=largura;
-if (StSolid) 
+if (lSolid) 
    {ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
    } else{ctxPr.strokeStyle = color1;} 
  
@@ -234,7 +235,7 @@ while (lLoop--)
    ctxPr.lineTo(pt.x + rotateX, pt.y + rotateY);
 }
 ctxPr.closePath();
-if (StSolid) {ctxPr.fill();} else {ctxPr.stroke();}
+if (lSolid) {ctxPr.fill();} else {ctxPr.stroke();}
 
 ctxPr.restore();
 
@@ -244,7 +245,7 @@ ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )'
 }
 
 
-function PreviewStar()
+function PreviewStar(lSolid)
 {
 DrawPreviewBox();
 // Rotina de Rotação Parte 1 - Início
@@ -259,7 +260,7 @@ var lDistance = Radius;
 var lTips = Sides*2;
 var lCalcAngle = lTips;
 ctxPr.beginPath();
-if (StSolid) 
+if (lSolid) 
 {ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
 } else{ctxPr.strokeStyle = color1;} 
 
@@ -275,7 +276,7 @@ while (lLoop--)
    
 }
 ctxPr.closePath();
-if (StSolid) {ctxPr.fill();} else {ctxPr.stroke();}
+if (lSolid) {ctxPr.fill();} else {ctxPr.stroke();}
 
 ctxPr.restore();
 

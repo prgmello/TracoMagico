@@ -70,7 +70,6 @@ var pX = new Array(PassoLimite);
 var pY = new Array(PassoLimite);
 var pXant = new Array(PassoLimite);
 var pYant = new Array(PassoLimite);
-var pStSolid = new Array(PassoLimite);
 var pStMulticorlor = new Array(PassoLimite);
 var pColor1 = new Array(PassoLimite);
 var pColor2 = new Array(PassoLimite);
@@ -637,7 +636,6 @@ function DefMulticolor(value)
 {
   StMulticolor = value;
   ShowMulticolor();
-  console.log(StMulticolor);
 }
 
 
@@ -698,8 +696,7 @@ function ShowPreviewStatus()
   {
     // MODO PREVIEW
     document.getElementById("StPreview").style.color = "#FF0000";
-    document.getElementById("StPreview").style.color = "#FF0000";
-    document.getElementById("StModo").innerHTML = "PREVISÃO";
+    document.getElementById("StModo").innerHTML = "DESLIGA";
     canvasPr.style.visibility="visible"; // MOSTRA CANVAS DE PREVIEW
     ShowPreviewCursor();
   }
@@ -707,8 +704,8 @@ function ShowPreviewStatus()
   {
 
     // MODO IMEDIATO
-    document.getElementById("StPreview").style.color = "#00ff00";
-    document.getElementById("StModo").innerHTML = "IMEDIATO";
+    document.getElementById("StPreview").style.color = "#B1B1B1";
+    document.getElementById("StModo").innerHTML = "LIGA";
     canvasPr.style.visibility="hidden";  // OCULTA CANVAS DE PREVIEW
     ClearInterval();
     ShowCursor();
@@ -756,27 +753,25 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
   switch (Shape)
   {
     case "Retangulo":
-      if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle()},vTimer); } else {DrawRectangle();} 
+      if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle(StSolid)},vTimer); } else {DrawRectangle(StSolid);} 
        break;
     case "Circulo":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircle()},vTimer); } else {DrawCircle();}  
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircle(StSolid)},vTimer); } else {DrawCircle(StSolid);}  
        break;
     case "Poligono":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon();},vTimer); } else {DrawPoligon();} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon(StSolid);},vTimer); } else {DrawPoligon(StSolid);} 
        break;
     case "Estrela":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewStar();},vTimer); } else {DrawStar();} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewStar(StSolid);},vTimer); } else {DrawStar(StSolid);} 
        break;
     case "Linha":
        if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}
        break;
     case "ConcentricCircles":
-       if (StMulticolor) {vBehavior = "varias-cores";} else {vBehavior = "uma-cor";}
-       if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(vBehavior);},vTimer); } else {DrawConcentricCircles(vBehavior);}
+       if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(StMulticolor);},vTimer); } else {DrawConcentricCircles(StMulticolor);}
        break;
-    case "Forma3D":
-       if (StMulticolor) {vBehavior = "varias-cores";} else {vBehavior = "uma-cor";} 
-       if (StPreview) {vInterval = setInterval(function(){ PreviewForma3D(vBehavior);},vTimer); } else {DrawForma3D(vBehavior);}
+    case "Forma-Complexa":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewComplexForm(StMulticolor);},vTimer); } else {DrawComplexForm(StMulticolor);}
        break;
     case "Texto":
       if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 

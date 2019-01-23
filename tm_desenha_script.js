@@ -41,9 +41,8 @@ function CalcRectangle()
 //
 // DESENHA CÍRCULOS COLORIDOS CONCÊNTRICOS
 //
-function DrawConcentricCircles()
+function DrawConcentricCircles(lMulticolor)
 {
-  var cores;
   var passo = largura*3;
   var g = 0;
   ctx.lineWidth=largura
@@ -52,16 +51,46 @@ function DrawConcentricCircles()
     g=g+passo;
     if (g>RadiusY) {g=RadiusY;}
     ctx.beginPath()
-    if (lBehavior=="uma-cor") {cores=color1;} 
-    else if (lBehavior=="varias-cores") 
+      if (lMulticolor) 
       {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+      else {cores=color1;} 
     // Plota os Círculos Concêntricos
     ctx.strokeStyle = cores;
     ctx.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
     ctx.stroke();
    }
-   if (StGravar) {SaveStep("Concentrico",lBehavior,"");}
+   if (StGravar) {SaveStep("Concentrico",lMulticolor,"");}
 }
+
+
+
+//
+// DESENHA FORMA COMPLEXA
+//
+function DrawComplexForm(lMulticolor)
+{
+  DrawPreviewBox();
+  var cores;
+  var passo = largura*3;
+  var g = RadiusY;
+  ctx.lineWidth=largura
+  for (f = 1; f < Radius-passo; f=f+passo)
+   { 
+    g=g-passo;
+    if (g>0) {g=0;}
+    ctx.beginPath()
+    if (lMulticolor) 
+    {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+    else {cores=color1;} 
+    // Plota os Círculos Concêntricos
+    ctx.strokeStyle = cores;
+    ctx.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
+    ctx.stroke();
+   }
+   if (StGravar) {SaveStep("Forma-Complexa",lMulticolor,"");}
+}
+
+
 
 
 //
@@ -95,7 +124,7 @@ function DrawLine(lBehavior)
 //
 // FAZ UM RETANGULO USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function DrawRectangle()
+function DrawRectangle(lSolid)
 {
   var newX = x;
   var newY = y;
@@ -118,7 +147,7 @@ function DrawRectangle()
 
      ctx.beginPath();
      ctx.lineWidth=largura;
-     if (StSolid) 
+     if (lSolid) 
       {
        ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
        ctx.fillRect(rotateX,rotateY,retL,retA);
@@ -135,7 +164,7 @@ function DrawRectangle()
     ctx.closePath();
     ctx.restore();
 
-    if (StGravar) {SaveStep("Retangulo","","");}
+    if (StGravar) {SaveStep("Retangulo",lSolid,"");}
   }
   
 
@@ -143,11 +172,11 @@ function DrawRectangle()
 //
 // FAZ UM CÍRCULO NA POSIÇÃO ATUAL
 //
-function DrawCircle()
+function DrawCircle(lSolid)
 {
   ctx.beginPath();
   ctx.lineWidth=largura;
-  if (StSolid) 
+  if (lSolid) 
   {
     ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
     //ctx.arc(x, y, Radius, 0, Math.PI*2, true);
@@ -163,7 +192,7 @@ function DrawCircle()
    ctx.stroke(); 
   }
   
-  if (StGravar) {SaveStep("Circulo","","");}
+  if (StGravar) {SaveStep("Circulo",lSolid,"");}
 }
 
 
@@ -184,7 +213,7 @@ function point(angle, Radius) {
 //
 // TRAÇA POLÍGONOS DE N LADOS
 //
-function DrawPoligon()
+function DrawPoligon(lSolid)
 {
   // Rotina de Rotação Parte 1 - Início
   ctx.save();                
@@ -199,7 +228,7 @@ function DrawPoligon()
   var lCalcAngle = lSides;
   ctx.beginPath();
   ctx.lineWidth=largura;
-  if (StSolid) 
+  if (lSolid) 
      {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
      } else{ctx.strokeStyle = color1;} 
    
@@ -211,7 +240,7 @@ function DrawPoligon()
      ctx.lineTo(pt.x + rotateX, pt.y + rotateY);
   }
   ctx.closePath();
-  if (StSolid) {ctx.fill();} else {ctx.stroke();}
+  if (lSolid) {ctx.fill();} else {ctx.stroke();}
   
   ctx.restore();
   
@@ -220,11 +249,11 @@ function DrawPoligon()
   
 
 
-if (StGravar) {SaveStep("Poligono","","");}
+if (StGravar) {SaveStep("Poligono",lSolid,"");}
 }
 
 
-function DrawStar()
+function DrawStar(lSolid)
 {
 // Rotina de Rotação Parte 1 - Início
 ctx.save();                
@@ -238,7 +267,7 @@ var lDistance = Radius;
 var lTips = Sides*2;
 var lCalcAngle = lTips;
 ctx.beginPath();
-if (StSolid) 
+if (lSolid) 
 {ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
 } else{ctx.strokeStyle = color1;} 
 
@@ -254,11 +283,11 @@ while (lLoop--)
    
 }
 ctx.closePath();
-if (StSolid) {ctx.fill();} else {ctx.stroke();}
+if (lSolid) {ctx.fill();} else {ctx.stroke();}
 
 ctx.restore();
 
-if (StGravar) {SaveStep("Estrela","","");}
+if (StGravar) {SaveStep("Estrela",lSolid,"");}
 }
 
 
