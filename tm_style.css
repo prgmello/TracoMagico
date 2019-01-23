@@ -97,8 +97,18 @@ H4 {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	font-family: Verdana;
-	size: 8pt;
+	font-size: 8pt;
 }
+
+H5 {
+
+	text-align: center;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-family: Verdana;
+	font-size: 7pt;
+}
+
 
 .ControlsTitle
 {

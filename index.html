@@ -23,23 +23,19 @@
                 </h3>
               </TD>
               <TD  width="15%">
-                <H4>
+                <H5>
                   <a href="./tm_ajuda.html" target="_blank" style="color:black"><img src="tm_sobre.gif" title="Clique para ajuda"></a>
-                </H4>
+                </H5>
               </TD> 
             </TR>
         </TABLE> 
         </TD> 
         <TD width="80px" rowspan="3">
             <TABLE  BORDER=1 cellspacing=0 bordercolor="#444444" width="100px"> 
-              <TR>
-                <TD bgcolor="white" width="90px"> 
-                      <H3 class="ControlsTitle" title="Controles que afetam as ferramentas.">CONTROLES</H4>
-                </TD>
-              </TR>
+
              <TR>
-                 <TD> 
-                     <H4 class="ControlsTitle" title="Tamanho da fonte para Texto ou Emojis.">FONTE</H4>
+                <TD bgcolor="black" width="90px"> 
+                     <H5 class="ControlsTitle" title="Tamanho da fonte para Texto ou Emojis.">FONTE</H5>
                  </TD>
                </TR>
                <TR>
@@ -49,8 +45,29 @@
                  </TD> 
                </TR>
                <TR>
+                <TD>
+                  <H5 class="ControlsTitle" title="Preenchimento Gradiente.">PREENCHIMENTO</H5>
+                    <input type="checkbox" name="tpPreenchimento" id="stCorSolida" value="Solido" title="Cor sólida"        onchange="DefFillKind(this.checked,this.value);">
+                    <TM class="contador2" >S</TM>
+                    <input type="checkbox" name="tpPreenchimento" id="stGradientL" value="Linear" title="Gradiente Linear"  onchange="DefFillKind(this.checked,this.value);">
+                    <TM class="contador2" >L</TM>
+                    <input type="checkbox" name="tpPreenchimento" id="stGradientR" value="Radial" title="Gradiente Radial"  onchange="DefFillKind(this.checked,this.value);">
+                    <TM class="contador2" >R</TM>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+                  <p class="contador2" id="numgradientx"  title="Gradiente">[0]</p>
+                  <p><input type="range" id="SlGradientX" title="Gradiente X." min="0" max="100" value="0" oninput="DefGradientX(this.value)" onchange="this.blur();"></p>
+                  <p class="contador2" id="numgradienty"  title="Gradiente">[0]</p>
+                  <p><input type="range" id="SlGradientY" title="Gradiente Y." min="0" max="100" value="0" oninput="DefGradientY(this.value)" onchange="this.blur();"></p>
+                </TD>    
+            </TR>
+
+
+               <TR>
                 <TD> 
-                  <H4 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H4>
+                  <H5 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H5>
                 </TD>
                </TR>
                <TR>
@@ -61,7 +78,7 @@
                 </TR>
                 <TR>
                     <TD bgcolor="black" width="90px"> 
-                        <H4 class="ControlsTitle" title="Largura do traço.">LARG.</H4>
+                        <H5 class="ControlsTitle" title="Largura do traço.">LARGURA</H5>
                       </TD>
                   </TR>
                   <TR>
@@ -71,9 +88,9 @@
                     </TD> 
                   </TR>
                 <TD colspan="2"> 
-                   <H4 class="ControlsTitle" title="Tamanho dos raio X e Y para traçar elipses e polígonos.">&nbsp;RAIO (X,Y)
+                   <H5 class="ControlsTitle" title="Tamanho dos raio X e Y para traçar elipses e polígonos.">&nbsp;RAIO (X,Y)
                   <input type="checkbox" name="stCircle" id="stCircle" title="Marque para círculo" onchange="DefCircle(this.checked);">
-                </H4>
+                </H5>
                  </TD>
               </TR>
               <TR>
@@ -86,7 +103,7 @@
               </TR>
               <TR>
               <TD>
-                  <H4 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROTAÇÃO</H4>
+                  <H5 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROTAÇÃO</H5>
               </TD>
               </TR>
               <TR>
@@ -97,7 +114,7 @@
             </TR>
             <TR>
                 <TD>
-                  <H4 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSP.</H4>
+                  <H5 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSPARÊNCIA</H5>
                 </TD>
             </TR>
             <TR>
@@ -108,7 +125,7 @@
             </TR>
             <TR>
                 <TD>
-                  <H4 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H4>
+                  <H5 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H5>
                 </TD>
             </TR>
             <TR>
@@ -118,25 +135,7 @@
                 </TD>    
             </TR>
 
-            <TR>
-              <TD>
-                <H4 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H4>
-             </TD>
-            </TR>
-            <TR>
-              <TD>
-                <div class="input-color-container"> 
-                   <input id="input-color1" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor 1." oninput="DefColor1(this.value);"> 
-                </div> 
-              </TD>
-              </TR>
-              <TR>
-               <TD>
-                <div class="input-color-container"> 
-                    <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
-                 </div> 
-              </TD>    
-            </TR>
+
           </TABLE>
       </TD>
       </TR>
@@ -156,40 +155,49 @@
           <TR>  
               <font face="Tahoma" size="1" font-color="#333333;">
               <TD>
-                <H4 class="ToolsTitle" title="Formas básicas.">FORMAS</H4> 
+                 <H5 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H5> 
               </TD>
               <TD>
-                <H4 class="ToolsTitle" title="Inserir um texto no desenho.">TEXTO</H4>
+                <H5 class="ToolsTitle" title="Formas básicas.">FORMAS</H5> 
+              </TD>
+              <TD>
+                <H5 class="ToolsTitle" title="Inserir um texto no desenho.">TEXTO</H5>
               </TD>
               <TD> 
-                 <H4 class="ToolsTitle" title="Inserir fotos do computador.">IMAGEM</H4>
+                 <H5 class="ToolsTitle" title="Inserir fotos do computador.">IMAGEM</H5>
               </TD>
               <TD>
-                <H4 class="BackgroundToolsTitle" title="Define uma cor ou imagem para o fundo.">FUNDO</H4>
+                <H5 class="BackgroundToolsTitle" title="Define uma cor ou imagem para o fundo.">FUNDO</H5>
               </TD>
               <TD>
-                <H4 class="CommandTitle" title="Modo Imediato/Modo Previsão.">PREVISÃO<rec id="StPreview">◆</rec></H4>
+                <H5 class="CommandTitle" title="Liga/Desliga o Modo Previsão.">PREVISÃO<rec id="StPreview">◆</rec></H5>
               </TD>
               <TD>
-                <H4 class="CommandTitle" title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H4>
+                <H5 class="CommandTitle" title="Controle da gravação dos passos do desenho.">GRAVAÇÃO <rec id="REC">✹<rec></p></H5>
                 </TD>
               <TD>
-                <H4 class="CommandTitle" title="Apaga o desenho.">DOWNLOAD</H4>
+                <H5 class="CommandTitle" title="Faz o download do desenho para o seu computador.">DOWNLOAD</H5>
               </TD>
               <TD>
-                  <H4 class="CommandTitle" title="Apaga o desenho.">AÇÕES</H4>
+                  <H5 class="CommandTitle" title="Apagar desenho/Reiniciar programa.">AÇÕES</H5>
                 </TD>
                </font>
             </TR>
             <TR>
-            <TD width="90px"> 
+            <TD width="50px">
+                <div class="input-color-container"> 
+                    <input id="input-color1" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor 1." oninput="DefColor1(this.value);"> 
+                 </div> 
+                 <div class="input-color-container"> 
+                    <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
+                 </div> 
+            </TD>
+            <TD width="80px"> 
               <p>
                 <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo entre os dois cursores. (R)">▯</a>
                 <a href="#" class="btaction" onclick="CallShape('Circulo','');" title="Desenha um círculo.">◯</a>
                 <a href="#" class="btaction" onclick="CallShape('Poligono','');" title="Desenha um polígono.">◇</a>
                 <a href="#" class="btaction" onclick="CallShape('Estrela','');" title="Desenha uma estrela.">✩</a>
-                <input type="checkbox" name="stSolid" id="stSolid" title="Marque para formas sólidas" onchange="DefSolid(this.checked);">
-
                 <hr width="80%" color="#333333">
               </p>  
               <p> 
@@ -262,7 +270,7 @@
             
             <TD width="70px" align:"center">
             <p> 
-              <a href="#" class="btgrande" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador" onclick="SalvaDesenho()">SALVAR</a>
+              <a href="#" class="btgrande" id="arquivo" download="TM-Imagem.png" title="Salva desenho no computador." onclick="SalvaDesenho()">SALVAR</a>
             </p>
           </TD>
           <TD width="70px" align:"center">
@@ -320,7 +328,7 @@
              </p>  
            </TD>
       <TD>
-         <H4 id="textoCONF">.</H4>
+         <H5 id="textoCONF">.</H5>
       </TD>        
       <TD width="60px">
          <p>

@@ -30,9 +30,13 @@ var WIDTH = 950; // Largura do Canvas
 var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
-var StSolid = false; // Define se formas serão sólidas ou vazias
+var StFill = false; // Define se formas serão sólidas ou vazias
+var FillKind = "Vazio";  // Define tipo de preenchimento de formas "Solido" , "Linear" , "Radial"
+var GradientKind = ""
 var StMulticolor = false; // Define se algumas formas serão Multicores
 var StCircle = false; // Define se Elipse Será um círculo
+var GradientX = 0; // Localização X do Gradiente em percentual
+var GradientY = 0; // Localização Y do Gradiente em percentual
 var largura = 2; // largura do traço de 2 a 20
 var Radius = 100; // Tamanho do raio para circulos
 var RadiusY = 100; // Radius do eixo Y para Elipses
@@ -45,8 +49,8 @@ var retL = 0; // Largura do Retângulo
 var retA = 0; // Altura do Retângulo
 var vResp = "N"; // Saída da função confirma
 var Shape = ""; // Guarda a última forma utilizada pelo usuário.
-var StPreview = false;
-//var StPreview = true;
+//var StPreview = false;
+var StPreview = true;
 var vInterval;
 var vTimer = 200; // TEMPO EM MILISSEGUNGOS
 var Behavior; // Comportamento da rotina chamada 
@@ -137,8 +141,9 @@ function Start()
 function UpdateTools() 
 {
   // Ferramentas
-  ShowColors();
   ShowTextSize();
+  ShowGradientX();
+  ShowGradientY();
   ShowSides();
   ShowThickness();
   ShowStCircle() 
@@ -146,7 +151,7 @@ function UpdateTools()
   ShowRotate();
   ShowTransparency();
   ShowSpeed();
-  ShowSolid();
+  ShowColors();
   ShowMulticolor() 
   ShowPreviewStatus();
   // Gravação e Posição do Cursor
@@ -526,12 +531,60 @@ function ShowSpeed()
 
 
 //
+// DEFINE GRADIENTE DE X
+//
+function DefGradientX(parametro) {
+  GradientX = parseInt(parametro);
+  ShowGradientX();
+}
+
+
+//
+// MOSTRA O GRADIENTE DE X
+//
+function ShowGradientX()
+{
+  // Mostrando o valor do Raio (Eixo X)
+  var element = document.getElementById("numgradientx");
+  element.innerHTML = "X= [" + GradientX + "]";
+  // setando o valor no Slider
+  document.getElementById("SlGradientX").value = GradientX;
+}
+
+
+//
+// DEFINE GRADIENTE DE Y
+//
+function DefGradientY(parametro) {
+  GradientY = parseInt(parametro);
+  ShowGradientY();
+}
+
+
+//
+// MOSTRA O GRADIENTE DE X
+//
+function ShowGradientY()
+{
+  // Mostrando o valor do Raio (Eixo X)
+  var element = document.getElementById("numgradienty");
+  element.innerHTML = "Y= [" + GradientY + "]";
+  // setando o valor no Slider
+  document.getElementById("SlGradientY").value = GradientY;
+}
+
+
+
+
+//
 // DEFINE RAIO DO CIRCULO
 //
 function DefRadius(parametro) {
   Radius = parseInt(parametro);
   ShowRadius();
 }
+
+
 
 
 //
@@ -612,22 +665,44 @@ function ShowTransparency()
 }
 
 
+
+
 //
-// DEFINE SE DESENHO SÓLIDO
+// DEFINE O TIPO DE PREENCHIMENTO "Solido" , "Linear" , "Radial"
 //
-function DefSolid(value) 
+function DefFillKind(Checked,Value) 
 {
-  StSolid = value;
-  ShowSolid();
+  StFill = Checked; // Boolean
+  if (Checked) {FillKind = Value;} // "Solido" , "Linear" , "Radial" , "VAZIO"
+  else {FillKind = "Vazio";} 
+  ShowFillKind();
 }
+
 
 //
 // MOSTRA STATUS DE DESENHO SÓLIDO
 //
-function ShowSolid() 
+function ShowFillKind()
 {
- document.getElementById("stSolid").checked = StSolid;
+  document.getElementById("stCorSolida").checked = false;
+  document.getElementById("stGradientR").checked = false;
+  document.getElementById("stGradientL").checked = false;
+  // HABILITA OS SLIDERS DE GRADIENTE
+  document.getElementById("SlGradientX").disabled = false;
+  document.getElementById("SlGradientY").disabled = false;
+  if (FillKind == "Solido") 
+  {
+    document.getElementById("stCorSolida").checked = true;
+    document.getElementById("SlGradientX").disabled = true;
+    document.getElementById("SlGradientY").disabled = true;
+  }
+  if (FillKind == "Linear") {document.getElementById("stGradientL").checked = true;}
+  if (FillKind == "Radial") {document.getElementById("stGradientR").checked = true;}
+  console.log(FillKind);
+
 }
+
+
 
 //
 // DEFINE SE DESENHO MULTICOLOR
@@ -753,16 +828,16 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
   switch (Shape)
   {
     case "Retangulo":
-      if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle(StSolid)},vTimer); } else {DrawRectangle(StSolid);} 
+      if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle(FillKind);},vTimer); } else {DrawRectangle(FillKind);} 
        break;
     case "Circulo":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircle(StSolid)},vTimer); } else {DrawCircle(StSolid);}  
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircle(FillKind);},vTimer); } else {DrawCircle(FillKind);}  
        break;
     case "Poligono":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon(StSolid);},vTimer); } else {DrawPoligon(StSolid);} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon(FillKind);},vTimer); } else {DrawPoligon(FillKind);} 
        break;
     case "Estrela":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewStar(StSolid);},vTimer); } else {DrawStar(StSolid);} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewStar(FillKind);},vTimer); } else {DrawStar(FillKind);} 
        break;
     case "Linha":
        if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}

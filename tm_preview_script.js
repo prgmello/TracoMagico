@@ -127,10 +127,12 @@ function PreviewLine(lBehavior)
 }
 
 
+
+
 //
 // FAZ UM RETANGULO USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
 //
-function PreviewRectangle(lSolid)
+function PreviewRectangle(lFillKind)
 {
   DrawPreviewBox();
   var newX = x;
@@ -150,28 +152,59 @@ function PreviewRectangle(lSolid)
 
  // Rotina de Rotação Parte 1 - Fim
 
-  if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");} 
-  else {
-
+  if ((Xant==x) && (Yant==y)) { mensagem("Marque um segundo ponto com o mouse");}
+  else 
+ {
      ctxPr.beginPath();
      ctxPr.lineWidth=largura;
-     if (lSolid) 
-      {
-       ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
-       ctxPr.fillRect(rotateX,rotateY,retL,retA);
-       ctxPr.fill();
-       // Faz o reset o RGBA para 1
-       ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
-     } else
-     {
-      ctxPr.strokeStyle = color1;
-      ctxPr.strokeRect(rotateX,rotateY,retL,retA);
-      ctxPr.stroke(); 
-     }
-    }
-    ctxPr.closePath();
-    ctxPr.restore();
 
+     switch (lFillKind)
+     {
+       case "Linear":
+          // Create gradient
+          var lX1 = rotateX;
+          var lY1 = rotateY;
+          var lX2 = rotateX + retL;
+          var lY2 = rotateY + retA;
+          var lShiftX = retL*GradientX/100;
+          var lShiftY = retA*GradientY/100;
+          var grd = ctxPr.createLinearGradient(lX1+lShiftX,lY1+lShiftY,  lX2-lShiftX,lY2-lShiftY);
+          grd.addColorStop(0,color1);
+          grd.addColorStop(1,color2);
+          // Fill with gradient
+          ctxPr.fillStyle = grd;
+          break;
+
+       case "Radial":
+          // INSERIR A ROTINA AQUI
+          break;
+
+       case "Solido":
+          ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+          break;
+
+       case "Vazio":
+          ctxPr.strokeStyle = color1;
+          ctxPr.strokeRect(rotateX,rotateY,retL,retA);
+          ctxPr.stroke(); 
+          break;
+
+       default:
+          mensagem("Erro em: DrawPreviewBox!!!")
+          break;
+        } 
+   
+   
+     if (StFill) 
+     {
+        ctxPr.fillRect(rotateX,rotateY,retL,retA);
+        ctxPr.fill();
+        // Faz o reset o RGBA para 1
+        ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )';
+     }
+    ctxPr.closePath()
+    ctxPr.restore();
+  }
 }
   
 
@@ -179,12 +212,12 @@ function PreviewRectangle(lSolid)
 //
 // FAZ UM CÍRCULO NA POSIÇÃO ATUAL
 //
-function PreviewCircle(lSolid)
+function PreviewCircle(lFillKind)
 {
   DrawPreviewBox();
   ctxPr.beginPath();
   ctxPr.lineWidth=largura;
-  if (lSolid) 
+  if (lFillKind) 
   {
     ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
     //ctxPr.arc(x, y, Radius, 0, Math.PI*2, true);
@@ -207,7 +240,7 @@ function PreviewCircle(lSolid)
 //
 // TRAÇA POLÍGONOS DE N LADOS
 //
-function PreviewPoligon(lSolid)
+function PreviewPoligon(lFillKind)
 {
 DrawPreviewBox();
 // Rotina de Rotação Parte 1 - Início
@@ -223,7 +256,7 @@ var lSides = Sides;
 var lCalcAngle = lSides;
 ctxPr.beginPath();
 ctxPr.lineWidth=largura;
-if (lSolid) 
+if (lFillKind) 
    {ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
    } else{ctxPr.strokeStyle = color1;} 
  
@@ -235,7 +268,7 @@ while (lLoop--)
    ctxPr.lineTo(pt.x + rotateX, pt.y + rotateY);
 }
 ctxPr.closePath();
-if (lSolid) {ctxPr.fill();} else {ctxPr.stroke();}
+if (lFillKind) {ctxPr.fill();} else {ctxPr.stroke();}
 
 ctxPr.restore();
 
@@ -245,7 +278,7 @@ ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + 1 + ' )'
 }
 
 
-function PreviewStar(lSolid)
+function PreviewStar(lFillKind)
 {
 DrawPreviewBox();
 // Rotina de Rotação Parte 1 - Início
@@ -260,7 +293,7 @@ var lDistance = Radius;
 var lTips = Sides*2;
 var lCalcAngle = lTips;
 ctxPr.beginPath();
-if (lSolid) 
+if (lFillKind) 
 {ctxPr.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
 } else{ctxPr.strokeStyle = color1;} 
 
@@ -276,7 +309,7 @@ while (lLoop--)
    
 }
 ctxPr.closePath();
-if (lSolid) {ctxPr.fill();} else {ctxPr.stroke();}
+if (lFillKind) {ctxPr.fill();} else {ctxPr.stroke();}
 
 ctxPr.restore();
 
