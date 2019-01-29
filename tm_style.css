@@ -180,6 +180,25 @@ H5 {
 }
 
 
+/* DIV DOS CONTROLES DE GRADIENTE */
+.GradControls {
+	position: absolute;
+	display: block;
+	top: 75px;
+    left: 35px;
+	z-index: 90;
+	color: Red;
+	text-align: center;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border: solid 4px #32CD32;
+	color: white;
+	text-align: center;
+}
+
+
+
+
 .content {
 	width: 500pt;
 	margin: auto;
@@ -240,9 +259,17 @@ H5 {
 
 /* ROTAÇÃO DO SLIDER   BigSlider  */
 input[type=range] {
-	width: 80px;
+	width: 110px;
 	top: 5px;
 	bottom: 5px;
+ }
+
+
+/* ROTAÇÃO DO SLIDER */
+input[type="range"].vertical {
+	position: relative;
+	transform: rotate(270deg);
+	width: 35px;
  }
 
 

@@ -31,8 +31,17 @@
 //
 function CalcRectangle()
 {
-  retL = Math.abs(x - Xant)+1;
-  retA = Math.abs(y - Yant)+1;
+ // X do vértice do Retangulo Retângulo
+ // Y do vértice do Retangulo Retângulo
+ retX = Math.abs(x - retL/2);
+ retY = Math.abs(y - retA/2);
+  
+//console.log("Nova Rotina de Cálculo de RETANGULO!")
+//console.log(" X " + x + " rX " + retX + " L " + retL); 
+//console.log(" Y " + y + " rY " + retY + " A " + retA)
+  // // ESTA É A ROTINA ANTERIOR:
+  // retL = Math.abs(x - Xant)+1;
+  // retA = Math.abs(y - Yant)+1;
 }
 
 
@@ -69,7 +78,6 @@ function DrawConcentricCircles(lMulticolor)
 //
 function DrawComplexForm(lMulticolor)
 {
-  DrawPreviewBox();
   var cores;
   var passo = largura*3;
   var g = RadiusY;
@@ -94,7 +102,7 @@ function DrawComplexForm(lMulticolor)
 
 
 //
-// TRAÇA UMA RETA USANDO OS DOIS ULTIMOS CLIQUES DO MOUSE
+// TRAÇA UMA RETA 
 //
 function DrawLine(lBehavior)
 {
@@ -147,7 +155,7 @@ function DrawRectangle(lSolid)
 
      ctx.beginPath();
      ctx.lineWidth=largura;
-     if (lSolid) 
+     if (StFill) 
       {
        ctx.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
        ctx.fillRect(rotateX,rotateY,retL,retA);

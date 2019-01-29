@@ -30,8 +30,8 @@
             </TR>
         </TABLE> 
         </TD> 
-        <TD width="80px" rowspan="3">
-            <TABLE  BORDER=1 cellspacing=0 bordercolor="#444444" width="100px"> 
+        <TD width="120px" rowspan="3">
+            <TABLE  BORDER=1 cellspacing=0 bordercolor="#444444" width="120px"> 
 
              <TR>
                 <TD bgcolor="black" width="90px"> 
@@ -45,98 +45,69 @@
                  </TD> 
                </TR>
                <TR>
-                <TD>
+                <TD id="GradientBox">
                   <H5 class="ControlsTitle" title="Preenchimento Gradiente.">PREENCHIMENTO</H5>
-                    <input type="checkbox" name="tpPreenchimento" id="stCorSolida" value="Solido" title="Cor sólida"        onchange="DefFillKind(this.checked,this.value);">
+                    <input type="checkbox" name="tpPreenchimento" id="stVazio"     value="Vazio" title="Sem prreenchimento" onchange="DefFillKind(this.checked,this.value);">
+                    <TM class="contador2" >V</TM>
+                    <input type="checkbox" name="tpPreenchimento" id="stCorSolida" value="Solido" title="Cor sólida"       onchange="DefFillKind(this.checked,this.value);">
                     <TM class="contador2" >S</TM>
-                    <input type="checkbox" name="tpPreenchimento" id="stGradientL" value="Linear" title="Gradiente Linear"  onchange="DefFillKind(this.checked,this.value);">
+                    <br>
+                    <input type="checkbox" name="tpPreenchimento" id="stGradientL" value="Linear" title="Gradiente Linear" onchange="DefFillKind(this.checked,this.value);">
                     <TM class="contador2" >L</TM>
-                    <input type="checkbox" name="tpPreenchimento" id="stGradientR" value="Radial" title="Gradiente Radial"  onchange="DefFillKind(this.checked,this.value);">
+                    <input type="checkbox" name="tpPreenchimento" id="stGradientR" value="Radial" title="Gradiente Radial" onchange="DefFillKind(this.checked,this.value);">
                     <TM class="contador2" >R</TM>
                 </TD>
             </TR>
-            <TR>
-                <TD>
-                  <p class="contador2" id="numgradientx"  title="Gradiente">[0]</p>
-                  <p><input type="range" id="SlGradientX" title="Gradiente X." min="0" max="100" value="0" oninput="DefGradientX(this.value)" onchange="this.blur();"></p>
-                  <p class="contador2" id="numgradienty"  title="Gradiente">[0]</p>
-                  <p><input type="range" id="SlGradientY" title="Gradiente Y." min="0" max="100" value="0" oninput="DefGradientY(this.value)" onchange="this.blur();"></p>
-                </TD>    
-            </TR>
 
 
-               <TR>
-                <TD> 
-                  <H5 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H5>
-                </TD>
-               </TR>
-               <TR>
-                 <TD>
-                   <p class="contador" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
-                   <p><input type="range" id="SlSides" title="Lados de um polígono/Pontas da estrela." min="3" max="30" value="5" oninput="DefSides(this.value)" onchange="this.blur();">                     </p>   
-                  </TD> 
-                </TR>
-                <TR>
-                    <TD bgcolor="black" width="90px"> 
-                        <H5 class="ControlsTitle" title="Largura do traço.">LARGURA</H5>
-                      </TD>
-                  </TR>
-                  <TR>
-                    <TD>
-                        <p class="contador" id="numlargura"  title="Largura do Taço: 2 a 20.">[0]</p> 
-                        <p><input type="range" id="SlLargura" title="Largura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"></p>   
-                    </TD> 
-                  </TR>
-                <TD colspan="2"> 
-                   <H5 class="ControlsTitle" title="Tamanho dos raio X e Y para traçar elipses e polígonos.">&nbsp;RAIO (X,Y)
-                  <input type="checkbox" name="stCircle" id="stCircle" title="Marque para círculo" onchange="DefCircle(this.checked);">
-                </H5>
-                 </TD>
-              </TR>
-              <TR>
-              <TD> 
-                <p class="contador2" id="numradius" title="Valor do raio do eixo X para traçar elipses e polígonos: 5 a 250.">[0]</p> 
-                <p><input  type="range" width="50px" id="SlRadius"  title="Tamanho do raio." min="5" max="250" value="100" oninput="DefRadius(this.value)" onchange="this.blur();"></p>  
-                <p class="contador2" id="numradiusY" title="Valor do raio do eixo Y para traçar elipses e polígonos: 5 a 250.">[0]</p> 
-                <p><input  type="range" id="SlRadiusY"  title="Tamanho do raio do eixo Y." min="5" max="250" value="100" oninput="DefRadiusY(this.value)" onchange="this.blur();"></p>
-              </TD>  
-              </TR>
-              <TR>
-              <TD>
-                  <H5 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROTAÇÃO</H5>
-              </TD>
-              </TR>
-              <TR>
-              <TD>
-                  <p class="contador2" id="numrotate"  title="Rotação: 0º a 360º.">[1]</p>
-                  <p><input type="range" id="SlRotate" title="Rotação." min="1" max="2" value="1" oninput="DefRotate(this.value)" onchange="this.blur();"step="0.002"></p>
-              </TD>    
+           <TR>
+            <TD> 
+              <H5 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H5>
+            </TD>
+           </TR>
+           <TR>
+             <TD>
+               <p class="contador" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
+               <p><input type="range" id="SlSides" title="Lados de um polígono/Pontas da estrela." min="3" max="30" value="5" oninput="DefSides(this.value)" onchange="this.blur();">                     </p>   
+              </TD> 
             </TR>
-            <TR>
-                <TD>
-                  <H5 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSPARÊNCIA</H5>
-                </TD>
-            </TR>
-            <TR>
-                <TD>
-                  <p class="contador2" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
-                  <p><input type="range" id="SlTransparency" title="Transparência." min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();"></p>
-                </TD>    
-            </TR>
-            <TR>
-                <TD>
-                  <H5 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H5>
-                </TD>
-            </TR>
-            <TR>
-                <TD>
-                  <p class="contador2" id="numvelocidade" title="Velocidade: 1 a 40.">[20]</p>
-                  <p><input type="range" id="SlVelocidade" title="Velocidade." min="1" max="40" value="20" oninput="DefSpeed(this.value)" onchange="this.blur();"></p>  
-                </TD>    
-            </TR>
-
-
-          </TABLE>
+            <TD colspan="2"> 
+               <H5 class="ControlsTitle" title="Largura e Altura das Formas.">&nbsp;TAMANHO
+              <input type="checkbox" name="StSimetric" id="StSimetric" title="Marque para simétrico" onchange="DefSimetric(this.checked);">
+            </H5>
+             </TD>
+          </TR>
+          <TR>
+          <TD> 
+            <p class="contador2" id="numsizeX" title="Largura de objetos: 1 a 475.">[0]</p> 
+            <p><input  type="range" width="50px" id="SlSizeX"  title="Largura de objetos." min="0" max="100" value="50" oninput="DefSizeX(this.value)" onchange="this.blur();"></p>  
+            <p class="contador2" id="numsizeY" title="Altura de objetos: 1 a 250.">[0]</p> 
+            <p><input  type="range" id="SlSizeY"  title="Altura de objetos." min="0" max="100" value="50" oninput="DefSizeY(this.value)" onchange="this.blur();"></p>
+          </TD>  
+          </TR>
+          <TR>
+          <TD>
+              <H5 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROTAÇÃO</H5>
+          </TD>
+          </TR>
+          <TR>
+          <TD>
+              <p class="contador2" id="numrotate"  title="Rotação: 0º a 360º.">[1]</p>
+              <p><input type="range" id="SlRotate" title="Rotação." min="1" max="2" value="1" oninput="DefRotate(this.value)" onchange="this.blur();"step="0.002"></p>
+          </TD>    
+        </TR>
+        <TR>
+            <TD>
+              <H5 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSPARÊNCIA</H5>
+            </TD>
+        </TR>
+        <TR>
+            <TD>
+              <p class="contador2" id="sttransp"  title="Transparência: 0 a 99%.">[0]</p>
+              <p><input type="range" id="SlTransparency" title="Transparência." min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();"></p>
+            </TD>    
+        </TR>
+      </TABLE>
       </TD>
       </TR>
       <TR> 
@@ -156,6 +127,12 @@
               <font face="Tahoma" size="1" font-color="#333333;">
               <TD>
                  <H5 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H5> 
+              </TD>
+              <TD>
+                <H5 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H5>
+              </TD>
+              <TD>
+                <H5 class="ControlsTitle" title="Espessura do traço.">TRAÇO</H5>
               </TD>
               <TD>
                 <H5 class="ToolsTitle" title="Formas básicas.">FORMAS</H5> 
@@ -192,9 +169,18 @@
                     <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
                  </div> 
             </TD>
+            <TD width="50px">
+              <p class="contador2" id="numvelocidade" title="Velocidade: 1 a 20.">[10]</p>
+              <p><input type="range" id="SlVelocidade" class="vertical" title="Velocidade." min="1" max="20" value="10" oninput="DefSpeed(this.value)" onchange="this.blur();"></p>  
+          </TD>
+          <TD width="50px">
+              <p class="contador" id="numlargura"  title="Espessura do Taço: 2 a 20.">[0]</p> 
+              <p><input type="range" id="SlLargura"   class="vertical" title="Espessura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"></p>   
+          </TD>
+
             <TD width="80px"> 
               <p>
-                <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo entre os dois cursores. (R)">▯</a>
+                <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo.">▯</a>
                 <a href="#" class="btaction" onclick="CallShape('Circulo','');" title="Desenha um círculo.">◯</a>
                 <a href="#" class="btaction" onclick="CallShape('Poligono','');" title="Desenha um polígono.">◇</a>
                 <a href="#" class="btaction" onclick="CallShape('Estrela','');" title="Desenha uma estrela.">✩</a>
@@ -338,6 +324,53 @@
       </TR>
       </TABLE>
    </div>
+
+
+
+
+
+    <!-- 
+    ==
+    == DIV DOS CONTROLES DE GRADIENTE
+    ==
+     -->
+     <div id="GradControls" class="GradControls">
+      <TABLE BORDER=0 cellspacing=0 cellpadding=0 bordercolor="#ff8c00" width="900px" height="100%" bgcolor="#2F4F4F">
+      <TR>
+       <TD width="115px" >
+          <H3 class="EmoBox2">CONTROLES</H3>
+          <H3 class="EmoBox2">  DE  </H3>
+          <H3 class="EmoBox2">GRADIENTE</H3>
+      </TD>
+       <TD width="150px">
+          <p class="EmoBox2">GRADIENTE</p>
+          <p class="contador2"   id="numgradientx"       title="Gradiente">[0]</p>
+          <p><input type="range" id="SlGradientX"        title="Gradiente X." min="-50" max="50" value="0" oninput="DefGradientX(this.value)" onchange="this.blur();"></p>
+          <p class="contador2"   id="numgradienty"       title="Gradiente">[0]</p>
+          <p><input type="range" id="SlGradientY"        title="Gradiente Y." min="-50" max="50" value="0" oninput="DefGradientY(this.value)" onchange="this.blur();"></p>
+      </TD>
+      <TD width="150px">
+          <p class="EmoBox2">DESLOCAMENTO</p>
+        <p class="contador2"   id="numGradientSprainX" title="% Deslocamento X: -50 a 50.">% DX [0]</p>
+        <p><input type="range" id="SlGradientSprainX"  title="% de Deslocamento X." min="-50" max="50" value="0" oninput="DefGradientSprainX(this.value)" onchange="this.blur();"></p>  
+        <p class="contador2"   id="numGradientSprainY" title="% Deslocamento Y: -50 a 50.">% DY [0]</p>
+        <p><input type="range" id="SlGradientSprainY"  title="% de Deslocamento Y." min="-50" max="50" value="0" oninput="DefGradientSprainY(this.value)" onchange="this.blur();"></p>  
+      </TD>
+
+      <TD width="115px">
+          <p class="EmoBox2">
+              <a href="#" class="btaction" title="Move para cima." onclick="MoveGradControls('UP');">▲</a>
+          </p>
+          <div class="EmoBox">
+              <a href="#" class="btgrande" onclick="ShowGradControls(false);">FECHA</a>
+          </div>
+          <p class="EmoBox2">
+              <a href="#" class="btaction" title="Move para baixo." onclick="MoveGradControls('DOWN');">▼</a>
+          </p>
+      </TD>
+      </TR>
+      </TABLE>
+    </div>
 
 
 

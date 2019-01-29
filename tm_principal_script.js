@@ -19,13 +19,13 @@ var ctxPr; // CTX de Preview de ferramentas
 // Variáveis de Utilização dos Canvas (FIM)
 
 // Outras Variáveis
-var color1 = "#0000FF"; // Inicia com a cor Azul
-var color2 = "#FFFFFF"; // Inicia com a cor Azul
+var color1 = "#0000FF"; // Inicia com a cor Azul "#0000FF"
+var color2 = "#FF0000"; // Inicia com a cor Branca "#FFFFFF"
 var cor1 = "00"; // COMPONENTE DE COR RED=00
 var cor2 = "00"; // COMPONENTE DE COR GREEN=00
 var cor3 = "FF"; // COMPONENTE DE COR BLUE=FF
-var dx = 20; //Taxa de "velocidade" horizontal do desenho
-var dy = 20; //Taxa de "velocidade" vertical do desenho
+var dx = 10; //Taxa de "velocidade" horizontal do desenho
+var dy = 10; //Taxa de "velocidade" vertical do desenho
 var WIDTH = 950; // Largura do Canvas
 var HEIGHT = 500; // Altura do Canvas
 var x = WIDTH / 2; //Posição horizontal do desenho
@@ -33,26 +33,43 @@ var y = HEIGHT / 2; //Posição vertical do desenho
 var StFill = false; // Define se formas serão sólidas ou vazias
 var FillKind = "Vazio";  // Define tipo de preenchimento de formas "Solido" , "Linear" , "Radial"
 var GradientKind = ""
+var GradientSprainX = 0 // Deslocamento X do Preenchimento Radial
+var GradientSprainY = 0 // Deslocamento X do Preenchimento Radial
+
 var StMulticolor = false; // Define se algumas formas serão Multicores
-var StCircle = false; // Define se Elipse Será um círculo
-var GradientX = 0; // Localização X do Gradiente em percentual
-var GradientY = 0; // Localização Y do Gradiente em percentual
+var StSimetric = false; // Define se Elipse Será um círculo
+
+var GradientX = 0; // Localização X do Gradiente em percentuaL. INICIAL= 0
+var GradientY = 0; // Localização Y do Gradiente em percentual. INICIAL= 0
+
 var largura = 2; // largura do traço de 2 a 20
-var Radius = 100; // Tamanho do raio para circulos
-var RadiusY = 100; // Radius do eixo Y para Elipses
+
+var RadiusX = 50; // Tamanho do raio para circulos
+var RadiusY = 50; // RadiusX do eixo Y para Elipses
+
+var retX = 0; // X do vértice do retAngulo Retângulo
+var retY = 0; // Y do vértice do retAngulo Retângulo
+var retL = 0; // Largura do Retângulo (VAI SER DEFINIDA POR PERCENTSIZEX)
+var retA = 0; // Altura do Retângulo  (VAI SER DEFINIDA POR PERCENTSIZEY)
+
+var PercentSizeX = 30; // Tamanho Relativo dos objetos em relação a WIDTH
+var PercentSizeY = 30; // Tamanho Relativo dos objetos em relação a HEIGHT
+
 var Rotate = 1; // Rotação de Objetos
 var Sides = 5 // Númro de Lados para Polígonos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
 var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
-var retL = 0; // Largura do Retângulo
-var retA = 0; // Altura do Retângulo
+
+
 var vResp = "N"; // Saída da função confirma
 var Shape = ""; // Guarda a última forma utilizada pelo usuário.
+
 //var StPreview = false;
 var StPreview = true;
+
 var vInterval;
-var vTimer = 200; // TEMPO EM MILISSEGUNGOS
+var vTimer = 100; // TEMPO EM MILISSEGUNGOS
 var Behavior; // Comportamento da rotina chamada 
 var stShiftKey = false; // Mostra se a Tecla <Shift> está pressionada
 
@@ -81,7 +98,7 @@ var pSides  = new Array(PassoLimite);
 var pThickness = new Array(PassoLimite);
 var pTransparency = new Array(PassoLimite);
 var pSpeed = new Array(PassoLimite);
-var pRadius = new Array(PassoLimite);
+var pRadiusX = new Array(PassoLimite);
 var pRadiusY = new Array(PassoLimite);
 var pRotate = new Array(PassoLimite);
 var pFontSize = new Array(PassoLimite);
@@ -130,8 +147,9 @@ function Start()
   y = HEIGHT / 2;
   Xant = x;
   Yant = y;
-  retL = 0;
-  retA = 0;
+  // Posiciona os Sliders de tamanho
+  DefSizeX(PercentSizeX);
+  DefSizeY(PercentSizeY);
 }
 
 
@@ -146,8 +164,8 @@ function UpdateTools()
   ShowGradientY();
   ShowSides();
   ShowThickness();
-  ShowStCircle() 
-  ShowRadius();
+  ShowStSimetric() 
+  ShowSises();
   ShowRotate();
   ShowTransparency();
   ShowSpeed();
@@ -322,6 +340,45 @@ function ocultaCONF(vResp) {
 //     cancelCallback();
 //   };
 // }
+
+
+
+//
+// FUNÇÃO MOSTRA CONTROLES DE GRADIENTE
+//
+function ShowGradControls(modo) {
+  if (!modo) // OCULTA
+  {
+    document.getElementById("GradControls").style.display = "none"; // OCULTA OS CONTROLES DE GRADIENTE
+  } else {
+    document.getElementById("GradControls").style.display = ""; // MOSTRA OS CONTROLES DE GRADIENTE
+  }
+}
+
+
+
+//
+// FUNÇÃO MOVE OS CONTROLES DE GRADIENTE
+//
+function MoveGradControls(parametro) 
+{
+  var lPosition = parseInt(document.getElementById("GradControls").style.top);
+  if (parametro == "DOWN") // MOVE PRA CIMA
+  {
+    if (lPosition == 460) {lPosition = 680;}
+    if (lPosition == 280) {lPosition = 460;}
+    if (lPosition ==  75) {lPosition = 280;}
+  } else if (parametro == "UP")
+  {
+    if (lPosition == 280) {lPosition =  75;}
+    if (lPosition == 460) {lPosition = 280;}
+    if (lPosition == 680) {lPosition = 460;}
+  }
+  document.getElementById("GradControls").style.top = lPosition+"px";
+}
+
+
+
 
 
 
@@ -574,46 +631,113 @@ function ShowGradientY()
 }
 
 
-
-
 //
-// DEFINE RAIO DO CIRCULO
+// DEFINE O DESLOCAMENTO DE GRADIENTE X
 //
-function DefRadius(parametro) {
-  Radius = parseInt(parametro);
-  ShowRadius();
+function DefGradientSprainX(parametro) {
+  GradientSprainX = parseInt(parametro);
+  ShowGradientSprainX();
 }
 
+
+//
+// MOSTRA O DESLOCAMENTO DE GRADIENTE X
+//
+function ShowGradientSprainX()
+{
+  // Mostrando o valor do Raio (Eixo X)
+  var element = document.getElementById("numGradientSprainX");
+  element.innerHTML = "% DX= [" + GradientSprainX + "]";
+  // setando o valor no Slider
+  document.getElementById("SlGradientSprainX").value = GradientSprainX;
+}
+
+
+
+
+//
+// DEFINE O DESLOCAMENTO DE GRADIENTE Y
+//
+function DefGradientSprainY(parametro) {
+  GradientSprainY = parseInt(parametro);
+  ShowGradientSprainY();
+}
+
+
+//
+// MOSTRA O DESLOCAMENTO DE GRADIENTE Y
+//
+function ShowGradientSprainY()
+{
+  // Mostrando o valor do Raio (Eixo X)
+  var element = document.getElementById("numGradientSprainY");
+  element.innerHTML = "% DY= [" + GradientSprainY + "]";
+  // setando o valor no Slider
+  document.getElementById("SlGradientSprainY").value = GradientSprainY;
+}
 
 
 
 //
 // MOSTRA O RAIO DO CIRCULO
 //
-function ShowRadius()
+function ShowSises()
 {
   // Mostrando o valor do Raio (Eixo X)
-  var element = document.getElementById("numradius");
-  element.innerHTML = "X= [" + Radius + "]";
+  var element = document.getElementById("numsizeX");
+ 
   // setando o valor no Slider
-  document.getElementById("SlRadius").value = Radius;
+  document.getElementById("SlSizeX").value = PercentSizeX;
 
-  if(StCircle) {RadiusY = Radius}
-  // Mostrando o valor do Raio (Eixo Y)
-  var element = document.getElementById("numradiusY");
-  element.innerHTML = "Y= [" + RadiusY + "]";
-  // setando o valor no Slider
-  document.getElementById("SlRadiusY").value = RadiusY;
+  if(StSimetric)
+  {
+    // Mostrando o valor de L e A)
+    element.innerHTML = "LxA= [" + retL + "]";
 
+    RadiusY = RadiusX; // FAZ RadiusX = RadiusY
+    retA = retL; // Define Largura = Altura
+    document.getElementById("SlSizeY").style.display = "none";
+    document.getElementById("numsizeY").style.display = "none";
+
+  } else 
+  {
+    // Mostrando o valor de Radius X
+    element.innerHTML = "L= [" + retL + "]";
+    document.getElementById("SlSizeY").style.display = "";
+    document.getElementById("numsizeY").style.display = "";
+    // Mostrando o valor do Raio (Eixo Y)
+    var element = document.getElementById("numsizeY");
+    element.innerHTML = "A= [" + retA + "]";
+    // setando o valor no Slider
+    document.getElementById("SlSizeY").value = PercentSizeY;
+  }
+}
+
+//
+// DEFINE TAMANHO DE OBJETOS NO EIXO X
+//
+function DefSizeX(parametro) 
+{
+  PercentSizeX = parseInt(parametro);
+
+  retL =  parseInt((WIDTH)*PercentSizeX/100);
+  RadiusX = parseInt((WIDTH/2)*PercentSizeX/100);
+  if (PercentSizeX == 0) {retL = 1; RadiusX = 1;}
+  ShowSises();
 }
 
 
+
 //
-// DEFINE RAIO DO eixo Y
+// DEFINE TAMANHO DE OBJETOS NO EIXO Y
 //
-function DefRadiusY(parametro) {
-  RadiusY = parseInt(parametro);
-  ShowRadius();
+function DefSizeY(parametro)
+{
+  PercentSizeY = parseInt(parametro);
+  retA =  parseInt((HEIGHT)*PercentSizeY/100);
+  RadiusY = parseInt(HEIGHT/2*PercentSizeY/100);
+  if (PercentSizeY == 0) {retA = 1; RadiusY = 1;}
+  ShowSises();
 }
 
 
@@ -666,17 +790,29 @@ function ShowTransparency()
 
 
 
-
 //
 // DEFINE O TIPO DE PREENCHIMENTO "Solido" , "Linear" , "Radial"
 //
 function DefFillKind(Checked,Value) 
 {
+ 
   StFill = Checked; // Boolean
-  if (Checked) {FillKind = Value;} // "Solido" , "Linear" , "Radial" , "VAZIO"
-  else {FillKind = "Vazio";} 
+  FillKind = Value; // "Solido" , "Linear" , "Radial" , "VAZIO"
+  if (FillKind == "Linear" || FillKind == "Radial")
+   {
+       document.getElementById("GradientBox").style.backgroundColor = "#2F4F4F";
+       ShowGradControls(true);
+    }
+  else 
+  {
+    StFill = false; // Sera a variável como false!!!
+    document.getElementById("GradientBox").style.backgroundColor = "#000";
+    ShowGradControls(false);
+  } 
+
   ShowFillKind();
 }
+
 
 
 //
@@ -684,18 +820,17 @@ function DefFillKind(Checked,Value)
 //
 function ShowFillKind()
 {
+  document.getElementById("stVazio").checked = false;
   document.getElementById("stCorSolida").checked = false;
   document.getElementById("stGradientR").checked = false;
   document.getElementById("stGradientL").checked = false;
+  
   // HABILITA OS SLIDERS DE GRADIENTE
   document.getElementById("SlGradientX").disabled = false;
   document.getElementById("SlGradientY").disabled = false;
-  if (FillKind == "Solido") 
-  {
-    document.getElementById("stCorSolida").checked = true;
-    document.getElementById("SlGradientX").disabled = true;
-    document.getElementById("SlGradientY").disabled = true;
-  }
+
+  if (FillKind == "Vazio")  {document.getElementById("stVazio").checked = true;}
+  if (FillKind == "Solido") {document.getElementById("stCorSolida").checked = true;}
   if (FillKind == "Linear") {document.getElementById("stGradientL").checked = true;}
   if (FillKind == "Radial") {document.getElementById("stGradientR").checked = true;}
   console.log(FillKind);
@@ -725,19 +860,20 @@ function ShowMulticolor()
 //
 // DEFINE SE ELIPSE SERÁ UM CÍRCULO
 //
-function DefCircle(value) 
+function DefSimetric(value) 
 {
-  StCircle = value;
-  ShowStCircle();
-  ShowRadius();
+  StSimetric = value;
+  if (!StSimetric) {DefSizeY(PercentSizeY);}
+  ShowStSimetric();
+  ShowSises();
 }
 
 //
 // MOSTRA STATUS SE ELIPSE SERÁ UM CÍRCULO
 //
-function ShowStCircle() 
+function ShowStSimetric() 
 {
- document.getElementById("stCircle").checked = StCircle;
+ document.getElementById("StSimetric").checked = StSimetric;
 }
 
 
@@ -750,13 +886,11 @@ function TooglePreview()
   if (StPreview) {StPreview = false;} 
   else {
     StPreview = true;
-    DrawPreviewBox();
+    ClearPeviewCanvas();
   }
   ShowPreviewStatus();
 }
 
-//document.getElementById("DrawCursor").style.display = "none"; // OCULTA 
-//document.getElementById("DrawCursor").style.display = ""; // MOSTRA 
 
 
 
@@ -852,7 +986,7 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
       if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 
       break;
     case "Imagem":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(vBehavior);},vTimer); } else {DrawReadImage(vBehavior);}
+       if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(vBehavior,FillKind);},vTimer); } else {DrawReadImage(vBehavior,FillKind);}
        break;
     case "Emoji":
        if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(vBehavior);},vTimer); } else {DrawEmoji(vBehavior);} 
@@ -936,8 +1070,8 @@ function KeyUp(evt) {
       TooglePreview();
       lDrawPoint = false;
       break;
-    case 82: // Letra R - Traça Reta sem Mudar o Ponto Aterior
-      CallShape("Linha","reta");
+    case 82: // Letra R - Traça retA sem Mudar o Ponto Aterior
+      CallShape("Linha","retA");
       break;
     case 84: // Letra T - Traça Linha e [T]razendo o Ponto Anterior para junto do Ponto Atual.
       CallShape("Linha","traço");
@@ -1038,6 +1172,11 @@ if (window.File && window.FileList && window.FileReader) {
 
 
 ocultaMSG();
+// TEM QUE DEFINIR A POSIÇÃO INICIAL DA JANELA DE GRADIENT CONTROLS
+document.getElementById("GradControls").style.top = "75px"
+DefFillKind(false,"")
+DefGradientSprainX(GradientSprainX);
+DefGradientSprainY(GradientSprainY);
 CreateEmojiTab();
 ShowEmojiTab(false);
 ocultaCONF(vResp);
