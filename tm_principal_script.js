@@ -795,7 +795,6 @@ function ShowTransparency()
 //
 function DefFillKind(Checked,Value) 
 {
- 
   StFill = Checked; // Boolean
   FillKind = Value; // "Solido" , "Linear" , "Radial" , "VAZIO"
   if (FillKind == "Linear" || FillKind == "Radial")
@@ -805,13 +804,14 @@ function DefFillKind(Checked,Value)
     }
   else 
   {
-    StFill = false; // Sera a variável como false!!!
     document.getElementById("GradientBox").style.backgroundColor = "#000";
     ShowGradControls(false);
   } 
+  if (FillKind == "Vazio") {StFill = false;} // Define a variável como false!!!
 
   ShowFillKind();
 }
+
 
 
 
@@ -825,16 +825,10 @@ function ShowFillKind()
   document.getElementById("stGradientR").checked = false;
   document.getElementById("stGradientL").checked = false;
   
-  // HABILITA OS SLIDERS DE GRADIENTE
-  document.getElementById("SlGradientX").disabled = false;
-  document.getElementById("SlGradientY").disabled = false;
-
   if (FillKind == "Vazio")  {document.getElementById("stVazio").checked = true;}
   if (FillKind == "Solido") {document.getElementById("stCorSolida").checked = true;}
   if (FillKind == "Linear") {document.getElementById("stGradientL").checked = true;}
   if (FillKind == "Radial") {document.getElementById("stGradientR").checked = true;}
-  console.log(FillKind);
-
 }
 
 
@@ -962,25 +956,28 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
   switch (Shape)
   {
     case "Retangulo":
-      if (StPreview) {vInterval = setInterval(function(){ PreviewRectangle(FillKind);},vTimer); } else {DrawRectangle(FillKind);} 
+      if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawRectangle(FillKind);} 
        break;
-    case "Circulo":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircle(FillKind);},vTimer); } else {DrawCircle(FillKind);}  
+    case "Elipse":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawCircle(FillKind);}  
        break;
     case "Poligono":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewPoligon(FillKind);},vTimer); } else {DrawPoligon(FillKind);} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawPolygon(FillKind);} 
        break;
     case "Estrela":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewStar(FillKind);},vTimer); } else {DrawStar(FillKind);} 
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawStar(FillKind);} 
        break;
-    case "Linha":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}
+       case "Forma-Complexa":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawComplexForm(StMulticolor);}
        break;
     case "ConcentricCircles":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(StMulticolor);},vTimer); } else {DrawConcentricCircles(StMulticolor);}
+       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawConcentricCircles(StMulticolor);}
        break;
-    case "Forma-Complexa":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewComplexForm(StMulticolor);},vTimer); } else {DrawComplexForm(StMulticolor);}
+    // case "ConcentricCircles":
+    //    if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(StMulticolor);},vTimer); } else {DrawConcentricCircles(StMulticolor);}
+    //    break;
+    case "Linha":
+       if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}
        break;
     case "Texto":
       if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 
@@ -1174,9 +1171,11 @@ if (window.File && window.FileList && window.FileReader) {
 ocultaMSG();
 // TEM QUE DEFINIR A POSIÇÃO INICIAL DA JANELA DE GRADIENT CONTROLS
 document.getElementById("GradControls").style.top = "75px"
-DefFillKind(false,"")
 DefGradientSprainX(GradientSprainX);
 DefGradientSprainY(GradientSprainY);
+//ShowFillKind();
+DefFillKind(true,FillKind);
+//DefFillKind(false,"")
 CreateEmojiTab();
 ShowEmojiTab(false);
 ocultaCONF(vResp);

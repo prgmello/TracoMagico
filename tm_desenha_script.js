@@ -82,7 +82,7 @@ function DrawComplexForm(lMulticolor)
   var passo = largura*3;
   var g = RadiusY;
   ctx.lineWidth=largura
-  for (f = 1; f < Radius-passo; f=f+passo)
+  for (f = 1; f < RadiusX-passo; f=f+passo)
    { 
     g=g-passo;
     if (g>0) {g=0;}
@@ -92,7 +92,7 @@ function DrawComplexForm(lMulticolor)
     else {cores=color1;} 
     // Plota os Círculos Concêntricos
     ctx.strokeStyle = cores;
-    ctx.ellipse(x, y, Radius-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
+    ctx.ellipse(x, y, RadiusX-f, RadiusY-g, Math.PI * Rotate, 0, 2 * Math.PI);
     ctx.stroke();
    }
    if (StGravar) {SaveStep("Forma-Complexa",lMulticolor,"");}
@@ -200,7 +200,7 @@ function DrawCircle(lSolid)
    ctx.stroke(); 
   }
   
-  if (StGravar) {SaveStep("Circulo",lSolid,"");}
+  if (StGravar) {SaveStep("Elipse",lSolid,"");}
 }
 
 

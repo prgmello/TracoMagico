@@ -142,7 +142,7 @@ function RedrawProject()
       case "Estrela":
            DrawStar(lBehavior);
            break;
-      case "Circulo":
+      case "Elipse":
            DrawCircle(lBehavior);
            break;
       case "Concentrico":

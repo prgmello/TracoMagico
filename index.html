@@ -49,7 +49,7 @@
                   <H5 class="ControlsTitle" title="Preenchimento Gradiente.">PREENCHIMENTO</H5>
                     <input type="checkbox" name="tpPreenchimento" id="stVazio"     value="Vazio" title="Sem prreenchimento" onchange="DefFillKind(this.checked,this.value);">
                     <TM class="contador2" >V</TM>
-                    <input type="checkbox" name="tpPreenchimento" id="stCorSolida" value="Solido" title="Cor sólida"       onchange="DefFillKind(this.checked,this.value);">
+                    <input type="checkbox" name="tpPreenchimento" id="stCorSolida" value="Solido" title="Cor sólida/Transparência" onchange="DefFillKind(this.checked,this.value);">
                     <TM class="contador2" >S</TM>
                     <br>
                     <input type="checkbox" name="tpPreenchimento" id="stGradientL" value="Linear" title="Gradiente Linear" onchange="DefFillKind(this.checked,this.value);">
@@ -58,7 +58,6 @@
                     <TM class="contador2" >R</TM>
                 </TD>
             </TR>
-
 
            <TR>
             <TD> 
@@ -96,6 +95,18 @@
               <p><input type="range" id="SlRotate" title="Rotação." min="1" max="2" value="1" oninput="DefRotate(this.value)" onchange="this.blur();"step="0.002"></p>
           </TD>    
         </TR>
+
+        <TR>
+            <TD>
+                <H5 class="ControlsTitle" title="Espessura do traço.">TRAÇO</H5>
+            </TD>
+        </TR>
+        <TR>
+            <TD>
+                <p class="contador"    id="numlargura" title="Espessura do Taço: 2 a 20.">[0]</p> 
+                <p><input type="range" id="SlLargura"  title="Espessura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"></p>   
+            </TD>    
+        </TR>
         <TR>
             <TD>
               <H5 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSPARÊNCIA</H5>
@@ -107,6 +118,20 @@
               <p><input type="range" id="SlTransparency" title="Transparência." min="0" max="99" value="0" oninput="DefTransparency(this.value)" onchange="this.blur();"></p>
             </TD>    
         </TR>
+
+        <TR>
+          <TD>
+            <H5 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOCIDADE</H5>
+
+          </TD>
+      </TR>
+      <TR>
+          <TD>
+            <p class="contador2" id="numvelocidade"  title="Velocidade: 1 a 20.">[10]</p>
+            <p><input type="range" id="SlVelocidade" title="Velocidade." min="1" max="20" value="10" oninput="DefSpeed(this.value)" onchange="this.blur();"></p>  
+          </TD>    
+      </TR>
+
       </TABLE>
       </TD>
       </TR>
@@ -127,12 +152,6 @@
               <font face="Tahoma" size="1" font-color="#333333;">
               <TD>
                  <H5 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H5> 
-              </TD>
-              <TD>
-                <H5 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOC.</H5>
-              </TD>
-              <TD>
-                <H5 class="ControlsTitle" title="Espessura do traço.">TRAÇO</H5>
               </TD>
               <TD>
                 <H5 class="ToolsTitle" title="Formas básicas.">FORMAS</H5> 
@@ -169,21 +188,12 @@
                     <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
                  </div> 
             </TD>
-            <TD width="50px">
-              <p class="contador2" id="numvelocidade" title="Velocidade: 1 a 20.">[10]</p>
-              <p><input type="range" id="SlVelocidade" class="vertical" title="Velocidade." min="1" max="20" value="10" oninput="DefSpeed(this.value)" onchange="this.blur();"></p>  
-          </TD>
-          <TD width="50px">
-              <p class="contador" id="numlargura"  title="Espessura do Taço: 2 a 20.">[0]</p> 
-              <p><input type="range" id="SlLargura"   class="vertical" title="Espessura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"></p>   
-          </TD>
-
             <TD width="80px"> 
               <p>
                 <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo.">▯</a>
-                <a href="#" class="btaction" onclick="CallShape('Circulo','');" title="Desenha um círculo.">◯</a>
-                <a href="#" class="btaction" onclick="CallShape('Poligono','');" title="Desenha um polígono.">◇</a>
-                <a href="#" class="btaction" onclick="CallShape('Estrela','');" title="Desenha uma estrela.">✩</a>
+                <a href="#" class="btaction" onclick="CallShape('Elipse','');"    title="Desenha um círculo.">◯</a>
+                <a href="#" class="btaction" onclick="CallShape('Poligono','');"  title="Desenha um polígono.">◇</a>
+                <a href="#" class="btaction" onclick="CallShape('Estrela','');"   title="Desenha uma estrela.">✩</a>
                 <hr width="80%" color="#333333">
               </p>  
               <p> 
