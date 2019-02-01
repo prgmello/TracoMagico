@@ -86,16 +86,18 @@ function RedrawProject()
   var lPassoFim = Passo;
   var lPasso;
   var lBehavior;
+  var lShape;
   var lEmoji;
   
   for (lPasso = 0; lPasso < lPassoFim; lPasso++) 
   { 
+    lShape     = pShape[lPasso];
     lBehavior = pBehavior[lPasso];
     x         = pX[lPasso];
     y         = pY[lPasso];
     Xant      = pXant[lPasso];
     Yant      = pYant[lPasso];
-    Radius    = pRadius[lPasso];
+    RadiusX   = pRadiusX[lPasso];
     RadiusY   = pRadiusY[lPasso];
     Rotate    = pRotate[lPasso];
     color1    = pColor1[lPasso];
@@ -107,70 +109,68 @@ function RedrawProject()
     transp    = pTransparency[lPasso];
     FontSize  = pFontSize[lPasso];
     lEmoji    = pEmoji[lPasso]
+    FillKind  = pFillKind[lPasso];
+    GradientX = pGradientX[lPasso];
+    GradientY = pGradientY[lPasso];
+    RadiusX   = pRadiusX[lPasso];
+    RadiusY    = pRadiusY[lPasso];
+    StMulticolor = pStMulticorlor[lPasso];
+    GradientSprainX = pGradientSprainX[lPasso];
+    GradientSprainY = pGradientSprainY[lPasso];
 
     CalcColorParts();
 
-    if (pForma[lPasso]=="Texto") {texto  = pText[lPasso];}
+    if (pShape[lPasso]=="Texto") {texto  = pText[lPasso];}
     
     gravouIMG  = pGravouIMG[lPasso];
         
    //console.log("lPasso=" + lPasso + " x= " + x + " y= " + y + " Xant= " + Xant + " Yant= " + Yant + " Raio= " + Radius + " cor= " + cor + " largura= " + largura)
-   //console.log("Passo: " + lPasso + " - "  +pForma[lPasso] + " - "  + lBehavior);
+   //console.log("Passo: " + lPasso + " - "  +pShape[lPasso] + " - "  + lBehavior);
 
    //if (lPasso == 0) {DrawPoint();} // Necessário para calcular retL e retA
    
 
-    switch (pForma[lPasso])
+    switch (lShape)
     {
       // SONHEI QUE NÃO ERA PRECISO GRAVAR O CURSOR... 
       // DEPOIS DE UM PEQUENO AJUSTE NÃO ERA PRECISO MESMO!!!
       // case "Cursor":
       //      ShowCursor();
       //      break;
-      case "Ponto":         
-           DrawPoint();
-           break;
-      case "Linha":
-           DrawLine(lBehavior);     
-           break;
       case "Retangulo":
-           DrawRectangle(lBehavior);  
-           break;
       case "Poligono":
-           DrawPoligon(lBehavior);  
-           break;
       case "Estrela":
-           DrawStar(lBehavior);
-           break;
       case "Elipse":
-           DrawCircle(lBehavior);
-           break;
       case "Concentrico":
-           DrawConcentricCircles(lBehavior);
-           break;
       case "Forma-Complexa":
-           DrawComplexForm(lBehavior);
-           break;
+        DrawPolygonShapes(ctx,lShape,FillKind);
+        break;
+      case "Ponto":         
+        DrawPoint();
+        break;
+      case "Linha":
+        DrawLine(ctx,lBehavior);     
+        break;
      case "Texto":   
-           DrawText(); 
-           break;
+        DrawText(); 
+        break;
       case "Emoji":  
-           DrawEmoji(lEmoji); 
-           break;
+        DrawEmoji(ctx,lEmoji); 
+        break;
       case "Fundo": 
-           ChangeBgColor();
-           break;
+        ChangeBgColor();
+        break;
       case "Imagem": 
-            if (!gravouIMG)
-            {
-             usuarioIMG = new Image();
-             usuarioIMG = pUsuarioIMG[lPasso];
-            }
-            DrawReadImage(lBehavior);
-            break;
+         if (!gravouIMG)
+         {
+          usuarioIMG = new Image();
+          usuarioIMG = pUsuarioIMG[lPasso];
+         }
+         DrawReadImage(ctx,lBehavior);
+         break;
       case "Fundo-Aleatorio":
-           MakeBgTilt(lBehavior);
-           break;
+        MakeBgTilt(lBehavior);
+        break;
  
     }
   }
@@ -180,13 +180,13 @@ function RedrawProject()
  
 
 
-    // var o = new Object;
-    // o.forma = pForma[lPasso];
-    // o.x = x;
-    // o.y = y;
-    // o.tipo = lBehavior;
-    // o.FontSize = FontSize;
-    // console.log(o);
+// var o = new Object;
+// o.forma = pShape[lPasso];
+// o.x = x;
+// o.y = y;
+// o.tipo = lBehavior;
+// o.FontSize = FontSize;
+// console.log(o);
 
 
 
@@ -198,14 +198,14 @@ function CutProjetStep()
   if (Passo > 0)
   {
     var lPasso = Passo-1;
-    if (confirm("Confirma Apagar Último Passo Gravado? ( " + pForma[lPasso] + " " + pBehavior[lPasso] + " )")) 
+    if (confirm("Confirma Apagar Último Passo Gravado? ( " + pShape[lPasso] + " " + pBehavior[lPasso] + " )")) 
     {
        // SE FOR UMA IMAGEM
-       if ( (pForma[lPasso]== "Imagem") && (pBehavior[lPasso] == "N") ) // VERIFICAR ISSO AQUI QUE DEVE SER O BUG DE APAGAR PASSO IMAGEM!!!
+       if ( (pShape[lPasso]== "Imagem") && (pBehavior[lPasso] == "N") ) // VERIFICAR ISSO AQUI QUE DEVE SER O BUG DE APAGAR PASSO IMAGEM!!!
        {
          gravouIMG = false
        }
-       pForma[lPasso]     = "";
+       pShape[lPasso]     = "";
        pBehavior[lPasso]  = null;
        pX[lPasso]         = null;
        pY[lPasso]         = null;
@@ -217,7 +217,7 @@ function CutProjetStep()
        pThickness[lPasso] = null;
        pTransparency[lPasso]  = null;
        pSpeed[lPasso]     = null;
-       pRadius[lPasso]    = null;
+       pRadiusX[lPasso]   = null;
        pRadiusY[lPasso]   = null;
        pRotate[lPasso]    = null;
        pUsuarioIMG[Passo] = null;
@@ -247,7 +247,7 @@ function CancelProjectRecorded()
     {
       for (lPasso = 0; lPasso <= Passo; lPasso++) 
       {
-        pForma[lPasso]      = "";
+        pShape[lPasso]      = "";
         pBehavior[lPasso]   = null;
         pX[lPasso]          = null;
         pY[lPasso]          = null;
@@ -255,17 +255,17 @@ function CancelProjectRecorded()
         pYant[lPasso]       = null;
         pColor1[lPasso]     = null;
         pColor2[lPasso]     = null;
-        pSides[Passo]       = null;
-        pThickness[lPasso]  = null;
-        pTransparency[lPasso] = null;
-        pSpeed[lPasso]      = null;
-        pRadius[lPasso]     = null;
+        pFontSize[lPasso]   = null;
+        pGravouIMG[lPasso]  = null;
+        pRadiusX[lPasso]    = null;
         pRadiusY[Passo]     = null;
         pRotate[Passo]      = null;
-        pFontSize[lPasso]   = null;
+        pSides[Passo]       = null;
+        pSpeed[lPasso]      = null;
+        pThickness[lPasso]  = null;
+        pTransparency[lPasso] = null;
         pText[lPasso]       = null;
         pUsuarioIMG[lPasso] = null;
-        pGravouIMG[lPasso]  = null;
       }
       Passo     = 0;     // Zera o Passo de gravação
       gravouIMG = false; // Define a imagem como não Gravada
@@ -281,33 +281,48 @@ function CancelProjectRecorded()
 //
 // SALVA O PASSO USANDO A VARIÁVEL GLOBAL "PASSO" COMO ÍNDICE
 //
-function SaveStep(forma,tipo,string)
+function SaveStep(lShape,tipo,string)
 {
+  console.log(lShape);
  if (Passo < PassoLimite)  
  {  
-   pForma[Passo]      = forma;
-   pBehavior[Passo]   = tipo;
-   pX[Passo]          = x;
-   pY[Passo]          = y;
-   pXant[Passo]       = Xant;
-   pYant[Passo]       = Yant;
-   pRadius[Passo]     = Radius;
-   pRadiusY[Passo]    = RadiusY;
-   pRotate[Passo]     = Rotate;
-   pColor1[Passo]     = color1;
-   pColor2[Passo]     = color2;
-   pSides[Passo]      = Sides;
-   pThickness[Passo]  = largura;
-   pSpeed[Passo]      = dx;
+   pShape[Passo]     = lShape;
+   pBehavior[Passo]  = tipo;
+   pX[Passo]         = x;
+   pY[Passo]         = y;
+   pXant[Passo]      = Xant;
+   pYant[Passo]      = Yant;
+   pRadiusX[Passo]   = RadiusX;
+   pRadiusY[Passo]   = RadiusY;
+   pRotate[Passo]    = Rotate;
+   pColor1[Passo]    = color1;
+   pColor2[Passo]    = color2;
+   pSides[Passo]     = Sides;
+   pThickness[Passo] = largura;
+   pSpeed[Passo]     = dx;
+   pFontSize[Passo]  = FontSize;
+   pBehavior[Passo]  = Behavior;
+   pColor1[Passo]    = color1;
+   pColor2[Passo]    = color2;
+   pFillKind[Passo]  = FillKind;
+   pGradientX[Passo] = GradientX;
+   pGradientY[Passo] = GradientY;
+   pRadiusX[Passo]   = RadiusX;
+   pRadiusY[Passo]   = RadiusY;
+   pRotate[Passo]    = Rotate;
    pTransparency[Passo] = transp;
-   pFontSize[Passo]   = FontSize;
+   pStMulticorlor[Passo] = StMulticolor;
+   pGradientSprainX[Passo] = GradientSprainX;
+   pGradientSprainY[Passo] = GradientSprainY;
+   
 
-   if (forma=="Emoji") {pEmoji[Passo] = string;} else {pEmoji[Passo]="";} // SE FORMA = EMOJI
-   if (forma=="Texto") {pText[Passo]  = string;} else {pText[Passo]="";}  // SE FORMA = TEXTO
+
+   if (lShape=="Emoji") {pEmoji[Passo] = string;} else {pEmoji[Passo]="";} // SE FORMA = EMOJI
+   if (lShape=="Texto") {pText[Passo]  = string;} else {pText[Passo]="";}  // SE FORMA = TEXTO
 
    pGravouIMG[Passo]  = gravouIMG;
    // SE FORMA = IMAGEM
-   if ((forma=="Imagem") && (!gravouIMG))
+   if ((lShape=="Imagem") && (!gravouIMG))
    { pUsuarioIMG[Passo] = usuarioIMG;
      gravouIMG = true; 
    }

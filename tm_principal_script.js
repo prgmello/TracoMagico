@@ -32,21 +32,15 @@ var x = WIDTH / 2; //Posição horizontal do desenho
 var y = HEIGHT / 2; //Posição vertical do desenho
 var StFill = false; // Define se formas serão sólidas ou vazias
 var FillKind = "Vazio";  // Define tipo de preenchimento de formas "Solido" , "Linear" , "Radial"
-var GradientKind = ""
 var GradientSprainX = 0 // Deslocamento X do Preenchimento Radial
 var GradientSprainY = 0 // Deslocamento X do Preenchimento Radial
-
 var StMulticolor = false; // Define se algumas formas serão Multicores
 var StSimetric = false; // Define se Elipse Será um círculo
-
 var GradientX = 0; // Localização X do Gradiente em percentuaL. INICIAL= 0
 var GradientY = 0; // Localização Y do Gradiente em percentual. INICIAL= 0
-
 var largura = 2; // largura do traço de 2 a 20
-
 var RadiusX = 50; // Tamanho do raio para circulos
 var RadiusY = 50; // RadiusX do eixo Y para Elipses
-
 var retX = 0; // X do vértice do retAngulo Retângulo
 var retY = 0; // Y do vértice do retAngulo Retângulo
 var retL = 0; // Largura do Retângulo (VAI SER DEFINIDA POR PERCENTSIZEX)
@@ -85,7 +79,7 @@ var gravouIMG = false // Define se a imagem foi gravada em memória.
 var StGravar = true;
 var Passo = 0;
 var PassoLimite = 2000;
-var pForma = new Array(PassoLimite);
+
 var pBehavior = new Array(PassoLimite);
 var pX = new Array(PassoLimite);
 var pY = new Array(PassoLimite);
@@ -94,6 +88,13 @@ var pYant = new Array(PassoLimite);
 var pStMulticorlor = new Array(PassoLimite);
 var pColor1 = new Array(PassoLimite);
 var pColor2 = new Array(PassoLimite);
+var pEmoji = new Array(PassoLimite);
+var pShape = new Array(PassoLimite);
+var pFillKind = new Array(PassoLimite);
+var pGradientX = new Array(PassoLimite);
+var pGradientY = new Array(PassoLimite);
+var pGradientSprainX = new Array(PassoLimite);
+var pGradientSprainY = new Array(PassoLimite);
 var pSides  = new Array(PassoLimite);
 var pThickness = new Array(PassoLimite);
 var pTransparency = new Array(PassoLimite);
@@ -103,7 +104,6 @@ var pRadiusY = new Array(PassoLimite);
 var pRotate = new Array(PassoLimite);
 var pFontSize = new Array(PassoLimite);
 var pText = new Array(PassoLimite);
-var pEmoji = new Array(PassoLimite);
 var pUsuarioIMG = new Array(PassoLimite);
 var pGravouIMG = new Array(PassoLimite);
 
@@ -956,37 +956,27 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
   switch (Shape)
   {
     case "Retangulo":
-      if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawRectangle(FillKind);} 
-       break;
     case "Elipse":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawCircle(FillKind);}  
-       break;
     case "Poligono":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawPolygon(FillKind);} 
-       break;
     case "Estrela":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawStar(FillKind);} 
+    case "Forma-Complexa":
+    case "Circulos-Concentricos":
+       if (StPreview) {vInterval = setInterval(function(){ DrawPolygonShapes(ctxPr,Shape,FillKind);},vTimer); } else {DrawPolygonShapes(ctx,Shape,FillKind);}
        break;
-       case "Forma-Complexa":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawComplexForm(StMulticolor);}
-       break;
-    case "ConcentricCircles":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewCircularPolygons(Shape,FillKind);},vTimer); } else {DrawConcentricCircles(StMulticolor);}
-       break;
-    // case "ConcentricCircles":
-    //    if (StPreview) {vInterval = setInterval(function(){ PreviewConcentricCircles(StMulticolor);},vTimer); } else {DrawConcentricCircles(StMulticolor);}
-    //    break;
     case "Linha":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewLine();},vTimer); } else {DrawLine(vBehavior);}
+       if (StPreview) {vInterval = setInterval(function(){ DrawLine(ctxPr,vBehavior);},vTimer); } else {DrawLine(ctx,vBehavior);}
        break;
     case "Texto":
-      if (StPreview) {vInterval = setInterval(function(){ PreviewText();},vTimer); } else {DrawText();} 
-      break;
+       if (StPreview) {vInterval = setInterval(function(){ DrawText(ctxPr);},vTimer); } else {DrawText(ctx);} 
+       break;
     case "Imagem":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewReadImage(vBehavior,FillKind);},vTimer); } else {DrawReadImage(vBehavior,FillKind);}
+       if (vBehavior == "fundo") 
+          {DrawReadImage(ctxFu,vBehavior);}
+       else 
+       {if (StPreview) {vInterval = setInterval(function(){ DrawReadImage(ctxPr,vBehavior);},vTimer); } else {DrawReadImage(ctx,vBehavior);}}
        break;
     case "Emoji":
-       if (StPreview) {vInterval = setInterval(function(){ PreviewEmoji(vBehavior);},vTimer); } else {DrawEmoji(vBehavior);} 
+       if (StPreview) {vInterval = setInterval(function(){ DrawEmoji(ctxPr,vBehavior);},vTimer); } else {DrawEmoji(ctx,vBehavior);} 
        break;
     default:
        mensagem("Erro: Objeto não Definido!!!")
@@ -1068,7 +1058,7 @@ function KeyUp(evt) {
       lDrawPoint = false;
       break;
     case 82: // Letra R - Traça retA sem Mudar o Ponto Aterior
-      CallShape("Linha","retA");
+      CallShape("Linha","reta");
       break;
     case 84: // Letra T - Traça Linha e [T]razendo o Ponto Anterior para junto do Ponto Atual.
       CallShape("Linha","traço");
