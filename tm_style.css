@@ -16,6 +16,7 @@ p {
 	margin-bottom: 2px;
 }
 
+hr {   height: 1px; border: none;   border-top: 1px solid #444444;}
 
 .manual {
 	color: rgb(255, 255, 0);
@@ -78,7 +79,7 @@ p {
 	color: white;
 	text-align: center;
 	margin-top: 1px;
-	margin-bottom: 3px;
+	margin-bottom: 2px;
 	letter-spacing: -1px;
 }
 
@@ -88,6 +89,16 @@ p {
 	margin-top: 1px;
 	margin-bottom: 5px;
 	letter-spacing: -1px;
+}
+
+
+H3 {
+	text-align: center;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-family: Verdana;
+	font-size: 10pt;
+
 }
 
 
@@ -239,7 +250,7 @@ H5 {
 	position: relative;
 	overflow: hidden;
 	width: 60px;
-	height: 18px;
+	height: 16px;
 	border: solid 2px #ff8c00;
 	border-radius: 20px;
 	margin-left: 15px;
@@ -250,7 +261,7 @@ H5 {
 	right: -9px;
 	top: -9px;
 	width: 80px;
-	height: 35px;
+	height: 30px;
 	border: none;
 }
 

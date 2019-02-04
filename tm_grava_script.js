@@ -141,6 +141,7 @@ function RedrawProject()
       //      break;
       case "Retangulo":
       case "Poligono":
+      case "Espiral":
       case "Estrela":
       case "Elipse":
       case "Circulos-Concentricos":

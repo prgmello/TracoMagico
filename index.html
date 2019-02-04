@@ -14,7 +14,7 @@
         <TABLE width="100%" height="100%" cellspacing=0 BORDER=0 bordercolor="orange"> 
             <TR> 
               <TD style="text-align:left;" width="35%">
-                <img src="logo_traco_magico_js.jpg" title="Use setas para desenhar, clique do mouse muda de posição">   
+                <img src="img/logo_traco_magico_js.jpg" title="Use setas para desenhar, clique do mouse muda de posição">   
               </TD> 
               <TD  width="55%">
                  <h3><a href="javascript:sobrePM();" >by Paulo Mello &#169; 2018 </a>
@@ -24,15 +24,14 @@
               </TD>
               <TD  width="15%">
                 <H5>
-                  <a href="./tm_ajuda.html" target="_blank" style="color:black"><img src="tm_sobre.gif" title="Clique para ajuda"></a>
+                  <a href="./tm_ajuda.html" target="_blank" style="color:black"><img src="./img/tm_sobre.gif" title="Clique para ajuda"></a>
                 </H5>
               </TD> 
             </TR>
         </TABLE> 
         </TD> 
         <TD width="120px" rowspan="3">
-            <TABLE  BORDER=1 cellspacing=0 bordercolor="#444444" width="120px"> 
-
+            <TABLE  BORDER=0 cellspacing=0 bordercolor="#444444" width="130px"> 
              <TR>
                 <TD bgcolor="black" width="90px"> 
                      <H5 class="ControlsTitle" title="Tamanho da fonte para Texto ou Emojis.">FONTE</H5>
@@ -44,34 +43,22 @@
                      <p><input type="range" id="SlTextSize" title="Tamanho da fonte." min="10" max="120" value="40" oninput="DefTextSize(this.value)" onchange="this.blur();"></p>
                  </TD> 
                </TR>
-               <TR>
-                <TD id="GradientBox">
-                  <H5 class="ControlsTitle" title="Preenchimento Gradiente.">PREENCHIMENTO</H5>
-                    <input type="checkbox" name="tpPreenchimento" id="stVazio"     value="Vazio" title="Sem prreenchimento" onchange="DefFillKind(this.checked,this.value);">
-                    <TM class="contador2" >V</TM>
-                    <input type="checkbox" name="tpPreenchimento" id="stCorSolida" value="Solido" title="Cor sólida/Transparência" onchange="DefFillKind(this.checked,this.value);">
-                    <TM class="contador2" >S</TM>
-                    <br>
-                    <input type="checkbox" name="tpPreenchimento" id="stGradientL" value="Linear" title="Gradiente Linear" onchange="DefFillKind(this.checked,this.value);">
-                    <TM class="contador2" >L</TM>
-                    <input type="checkbox" name="tpPreenchimento" id="stGradientR" value="Radial" title="Gradiente Radial" onchange="DefFillKind(this.checked,this.value);">
-                    <TM class="contador2" >R</TM>
-                </TD>
-            </TR>
-
            <TR>
             <TD> 
-              <H5 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS</H5>
+                <HR>
+              <H5 class="ControlsTitle" title="Lados/Pontas de polígonos.">LADOS/PONTAS</H5>
             </TD>
            </TR>
            <TR>
              <TD>
-               <p class="contador" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
+               <p class="contador2" id="numSides"  title="Lados do polígono/Pontas da estrela: 3 a 30">[0]</p>
                <p><input type="range" id="SlSides" title="Lados de um polígono/Pontas da estrela." min="3" max="30" value="5" oninput="DefSides(this.value)" onchange="this.blur();">                     </p>   
               </TD> 
             </TR>
-            <TD colspan="2"> 
-               <H5 class="ControlsTitle" title="Largura e Altura das Formas.">&nbsp;TAMANHO
+            <TR>
+            <TD > 
+                <HR>
+               <H5 class="ControlsTitle" title="Largura e Altura das Formas.">&nbsp;RAIO/TAMANHO
               <input type="checkbox" name="StSimetric" id="StSimetric" title="Marque para simétrico" onchange="DefSimetric(this.checked);">
             </H5>
              </TD>
@@ -86,6 +73,7 @@
           </TR>
           <TR>
           <TD>
+              <HR>
               <H5 class="ControlsTitle" title="Grau de Rotação de Objetos.">ROTAÇÃO</H5>
           </TD>
           </TR>
@@ -98,17 +86,19 @@
 
         <TR>
             <TD>
-                <H5 class="ControlsTitle" title="Espessura do traço.">TRAÇO</H5>
+                <HR>
+                <H5 class="ControlsTitle" title="Espessura do traço.">LARGURA DO TRAÇO</H5>
             </TD>
         </TR>
         <TR>
             <TD>
-                <p class="contador"    id="numlargura" title="Espessura do Taço: 2 a 20.">[0]</p> 
+                <p class="contador2"    id="numlargura" title="Espessura do Taço: 2 a 20.">[0]</p> 
                 <p><input type="range" id="SlLargura"  title="Espessura do Traço." min="2" max="20" value="2" oninput="DefThickness(this.value)" onchange="this.blur();"></p>   
             </TD>    
         </TR>
         <TR>
             <TD>
+                <HR>
               <H5 class="ControlsTitle" title="Transparência de objetos sólidos.">TRANSPARÊNCIA</H5>
             </TD>
         </TR>
@@ -121,8 +111,8 @@
 
         <TR>
           <TD>
+              <HR>
             <H5 class="ControlsTitle" title="Velocidade do traço (desenhando com as setas).">VELOCIDADE</H5>
-
           </TD>
       </TR>
       <TR>
@@ -131,6 +121,25 @@
             <p><input type="range" id="SlVelocidade" title="Velocidade." min="1" max="20" value="10" oninput="DefSpeed(this.value)" onchange="this.blur();"></p>  
           </TD>    
       </TR>
+
+      <TR>
+          <TD>
+              <HR>
+              <H5 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H5> 
+          </TD>
+      </TR>
+      <TR>
+          <TD>
+          <div class="input-color-container"> 
+            <input id="input-color1" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor 1." oninput="DefColor1(this.value);"> 
+         </div> 
+         <div class="input-color-container"> 
+            <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
+         </div>           
+    </TD>    
+  </TR>
+
+
 
       </TABLE>
       </TD>
@@ -151,7 +160,7 @@
           <TR>  
               <font face="Tahoma" size="1" font-color="#333333;">
               <TD>
-                 <H5 class="ControlsTitle" title="Cores de Desenho e Gradiente.">CORES</H5> 
+                 <H5 class="ControlsTitle" title="Preenchimento de Formas.">PREENCHIMENTO</H5>
               </TD>
               <TD>
                 <H5 class="ToolsTitle" title="Formas básicas.">FORMAS</H5> 
@@ -180,20 +189,23 @@
                </font>
             </TR>
             <TR>
-            <TD width="50px">
-                <div class="input-color-container"> 
-                    <input id="input-color1" type="color" class="input-color" value = "#0000FF" title="Clique para escolher a cor 1." oninput="DefColor1(this.value);"> 
-                 </div> 
-                 <div class="input-color-container"> 
-                    <input id="input-color2" type="color" class="input-color" value = "#FFFFFF" title="Clique para escolher a cor 2." oninput="DefColor2(this.value);"> 
-                 </div> 
-            </TD>
+              <TD id="GradientBox" width="50px">
+                  <input type="checkbox" name="kindFill" id="stVazio"     value="Vazio" title="Sem prreenchimento" onchange="DefFillKind(this.checked,this.value);">
+                  <TM class="contador2" >V&nbsp;&nbsp;</TM>
+                  <input type="checkbox" name="kindFill" id="stCorSolida" value="Solido" title="Cor sólida/Transparência" onchange="DefFillKind(this.checked,this.value);">
+                  <TM class="contador2" >S</TM>
+                  <input type="checkbox" name="kindFill" id="stGradientL" value="Linear" title="Gradiente Linear" onchange="DefFillKind(this.checked,this.value);">
+                  <TM class="contador2" >L</TM>
+                  <input type="checkbox" name="kindFill" id="stGradientR" value="Radial" title="Gradiente Radial" onchange="DefFillKind(this.checked,this.value);">
+                  <TM class="contador2" >R</TM>
+              </TD>
             <TD width="80px"> 
               <p>
                 <a href="#" class="btaction" onclick="CallShape('Retangulo','');" title="Traça um retângulo.">▯</a>
                 <a href="#" class="btaction" onclick="CallShape('Elipse','');"    title="Desenha um círculo.">◯</a>
                 <a href="#" class="btaction" onclick="CallShape('Poligono','');"  title="Desenha um polígono.">◇</a>
                 <a href="#" class="btaction" onclick="CallShape('Estrela','');"   title="Desenha uma estrela.">✩</a>
+                <a href="#" class="btaction" onclick="CallShape('Espiral','');"   title="Desenha uma espiral.">߷</a>
                 <hr width="80%" color="#333333">
               </p>  
               <p> 

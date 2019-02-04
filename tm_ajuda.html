@@ -13,7 +13,7 @@
 
       <TR> 
         <TD> 
-          <img src="./tm_ajuda.jpg"</TD>
+          <img src="./img/tm_ajuda.jpg"</TD>
         </TD> 
        </TR>
        <TR>
@@ -42,7 +42,7 @@
         </p>
         <br><br>
          <p align="center";>
-            <img src="./tm_teclas.jpg"</TD>
+            <img src="./img/tm_teclas.jpg"</TD>
            </p>
            <br>
            <br><br>
@@ -54,13 +54,13 @@
               As ferramentas de Formas utilizam um ou dois cursores:
             </p>
             <ul><li>
-            As Formas Reta e Retângulo serão traçadas utilizando os cursores Ponto Atual (<tm class="cur1">⊗</tm>) e 
-            Ponto Anterior (<tm class="cur2">⊕</tm>) como vértices.</li><li>
-            Os outros Polígonos serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro. </li><li>
-            Somente o Clique do mouse irá mudar a posição dos cursores no modo Imediato.</li><li>
+            A Retas serão traçadas utilizando os cursores Ponto Atual (<tm class="cur1">⊗</tm>) e 
+            Ponto Anterior (<tm class="cur2">⊕</tm>) como início e fim.</li><li>
+            Os Polígonos serão traçados utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro. </li><li>
+            O Clique do mouse irá mudar a posição dos cursores.</li><li>
             No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
                   Ponto Anterior (<tm class="cur4">⊕</tm>).</li><li>
-            No modo Previsão o Cursor Ponto Atual (<tm class="cur3">⊗</tm>) pode ser movido com o teclado.
+            O Cursor Ponto Atual (<tm class="cur3">⊗</tm>) também pode ser movido com o teclado.
             </li>
            </ul>
         </P>
@@ -116,7 +116,7 @@
          <br><br>
        </P>
        <p align="center";>
-        <img src="./tm_cores.jpg"</TD>
+        <img src="./img/tm_cores.jpg"</TD>
        </p>
        <H5>Fonte</H5>
        <p class="txt";>
@@ -138,27 +138,32 @@
         <H5>Largura do Traço</H5>
        <p class="txt";>
         O Controle Largura do Traço afeta todas as Ferramentas de Formas. 
-        O número que aparece abaixo do título é a largura definida.<br>
+        O número que aparece abaixo do título é a Largura do Traço definida.<br>
         O valor padrão é 2, podendo variar de 2 a 20.
         Os objetos Sólidos não apresentam borda, portanto este controle não funciona quando o controle Formas Sólidas está marcado.<br>
         Utilize o Controle Deslizante para mudar a largura.<br>
        </p>
        
-       <H5>Raio</H5>
+       <H5>Raio/Tamanho</H5>
         <p class="txt";>
-         O Controle Raio afeta as ferramentas Forma Círculos, Polígonos e Estrelas, define o raio do objeto.<br>
-         O número que aparece abaixo do título é o número do Raio definido em pixels.<br>
-         O valor padrão é 100, podendo variar de 5 a 250.<br>
-         Utilize o Controle Deslizante para mudar o tamanho do Raio.
+         É possível determinar diretamente o tamanho (Largura e Altura) de todas as formas.<br>
+         O Controle Raio/Tamanho afeta as ferramentas Forma Círculos, Polígonos Retângulos, Estrelas e Imagens inseridas no desenho, define o raio do objeto.<br>
+         O número que aparece abaixo do título é a largura total da forma definido em pixels.<br>
+         O valor padrão é 285, podendo variar de 1 a 950.<br>
+         Utilize os Controles Deslizante para mudar a Largura e Altura das formas.<br>
+         <tm class="att">ATENÇÃO:</tm> Utilizando Espiral ou Formas Complexas o comportamento pode ser diferente.
 
         </p>
 
-       <H5>Transparência de Objetos</H5>
+       <H5>Preenchimento</H5>
        <p class="txt";>
+        É possivel criar formas com os seguintes preenchimentos:
+        [V]azio, [S]ólido, Gradiente [L]inear, Gradiente [R]adial e em alguns casos Multicor.<br>
         O Controle Transparência afeta todas as ferramentas de Forma e de Fundo que aceitem o controle Formas Sólidas.<br>
         O número que aparece abaixo do título é o percentual de transparência definido.<br>
         A Transparência padrão é zero [0] (nenhuma transparência), podendo chegar a 99 onde o objeto é 99% transparente.<br>
-        Utilize o Controle Deslizante para mudar o percentual de transparência.
+        Utilize o Controle Deslizante para mudar o percentual de transparência.<br>
+        Ao Marcar uma das opções de Gradiente abrirá uma janela com os controles deslizantes de controle de Gradiente.
        </p>
 
        <H5>Velocidade do Cursor</H5>
@@ -180,7 +185,7 @@
 
           <H5>FORMAS</H5>
         <br>
-          <img src="./tm_ferramentas.jpg"</TD>
+          <img src="./img/tm_ferramentas.jpg"</TD>
         </TD> 
        </TR>
        <TD> 
@@ -203,11 +208,7 @@
       </ul>
 
       </li><li>
-        O retângulos são traçados entre o Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>) 
-        sempre iniciando no vértice superior esquerdo independente de qual deles é o Ponto Atual e terminando no ponto mais 
-        baixo e mais para direita na tela conforme indicado na imagem acima.
-      </li><li>
-        Os Polígonos (Círculos, Polígonos e Estrelas) serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro.
+        As Formas (Elipses, Polígonos. Retângulos, Estrelas e Formas Complexas) serão traçadas utilizando o cursor Ponto Atual (<tm class="cur1">⊗</tm>)  como centro.
       </li>
     </ul>
         <br><br><br>
@@ -219,10 +220,10 @@
               <TD width="15%"> 
                 FERRAMENTA
               </TD> 
-              <TD width="50%"> 
+              <TD width="40%"> 
                   DESCRIÇÃO
               </TD> 
-              <TD width="35%"> 
+              <TD width="50%"> 
                   DEPENDENCIA
               </TD> 
             </TR>
@@ -234,7 +235,7 @@
                     Traça uma retângulo.
                   </TD> 
                   <TD> 
-                    Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>)
+                    Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho
                   </TD> 
                 </TR>
                 <TR> 
@@ -245,7 +246,7 @@
                     Traça um círculo.
                   </TD> 
                   <TD> 
-                    Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                    Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho/Raio 
                   </TD> 
                 </TR>
                 <TR> 
@@ -256,7 +257,7 @@
                     Traça um polígono.
                   </TD> 
                   <TD> 
-                      Ponto Atual (<tm class="cur1">⊗</tm>) + Raio + Lados
+                      Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho/Raio + Lados/Pontas
                   </TD>
                 </TR>
                 <TR> 
@@ -267,16 +268,27 @@
                        Traça uma estrela.
                      </TD> 
                      <TD> 
-                         Ponto Atual (<tm class="cur1">⊗</tm>) + Raio + Lados/Pontas
+                         Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho/Raio + Lados/Pontas
                      </TD>
                    </TR>
+                   <TR> 
+                      <TD> 
+                        <tm class="btaction">߷</tm>
+                       </TD> 
+                       <TD> 
+                         Traça uma espiral.
+                       </TD> 
+                       <TD> 
+                           Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho/Raio + Lados/Pontas
+                       </TD>
+                     </TR>
           </TABLE>
           
           <tm class="att">ATENÇÃO:</tm><tm class="txt"> Obtenha formas sólidas mancando a caixa "Formas Solidas".</tm><br>
-          <tm class="att">OBS:</tm> <tm class="txt">Todas estas ferramentas são dependentes dos controles Cor e Largura.</tm> 
+          <tm class="att">OBS:</tm> <tm class="txt">Todas estas ferramentas são dependentes dos controles Preenchimento e Largura do Traço.</tm> 
         </div>
         <br><br><br>
-        <div align="center"></div>
+        <div align="center">
           <TABLE BORDER=2;  class="txt"; cellspacing=0; bordercolor="#333333"; width="90%"> 
                 <TR bgcolor="#1B1B1B"> 
                      <TD width="15%"> 
@@ -301,29 +313,50 @@
                          Ponto Atual (<tm class="cur1">⊗</tm>) e  Ponto Anterior (<tm class="cur2">⊕</tm>)
                       </TD> 
                     </TR>
+           </TABLE>
+        <tm class="att">OBS:</tm> <tm class="txt">Esta ferramenta é dependente dos controles Largura do Traço e Cor.</tm> 
+
+           <br><br><br>
+           </div>
+           <div align="center">
+
+
+        <div align="center"></div>
+          <TABLE BORDER=2;  class="txt"; cellspacing=0; bordercolor="#333333"; width="90%"> 
+                <TR bgcolor="#1B1B1B"> 
+                     <TD width="15%"> 
+                        FERRAMENTA
+                       </TD> 
+                       <TD width="50%"> 
+                           DESCRIÇÃO
+                       </TD> 
+                       <TD width="35%"> 
+                            DEPENDENCIA
+                       </TD> 
+                  </TR>
                     <TR> 
                     <TD> 
                       <tm class="btaction">◉</tm>
                     </TD> 
                     <TD> 
-                      Traça círculos concêntricos com a cor selecionada.
+                      Traça círculos concêntricos.
                   </TD>
                   <TD> 
-                      Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                      Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho/Raio
                   </TD>  
                  </TR>
                  <TD> 
-                    <tm class="btaction">◎</tm>
+                    <tm class="btaction">✦</tm>
                   </TD> 
                   <TD> 
-                      Traça círculos concêntricos com cores aleatórias.
+                      Traça formas complexas.
                   </TD>
                   <TD> 
-                      Ponto Atual (<tm class="cur1">⊗</tm>) + Raio
+                      Ponto Atual (<tm class="cur1">⊗</tm>) + Tamanho/Raio
                   </TD>  
                  </TR>
         </TABLE>
-        <tm class="att">OBS:</tm> <tm class="txt">Todas estas ferramentas são dependentes dos controles Cor, Largura e Transparência.</tm> 
+        <tm class="att">OBS:</tm> <tm class="txt">Todas estas ferramentas são dependentes dos controles Preenchimento, Largura do Traço e Multicor.</tm> 
         </div>
         <br>
        </p>
@@ -389,11 +422,11 @@
   <ul><li>
     Utilize o botão <tm class="btmedio">Cor</tm> para definir o fundo com a cor selecionada.</li><li>
     Utilize o botão Círculos (<tm class="btaction">⠪</tm>) para traçar círculos coloridos aleatórios no fundo.<br>
-    <tm class="att">DICA:</tm> Aumentando o controle Largura a quantidade de círculos diminui.
+    <tm class="att">DICA:</tm> Aumentando o controle Largura do Traço a quantidade de círculos diminui.
   </li><li>
 
     Utilize o botão Retângulos (<tm class="btaction">⧉</tm>) para traçar Retângulos coloridos aleatórios no fundo.<br>
-    <tm class="att">DICA:</tm> Aumentando o controle Largura a quantidade de retângulos diminui.
+    <tm class="att">DICA:</tm> Aumentando o controle Largura do Traço a quantidade de retângulos diminui.
     </li><li>
     Utilize o botão <tm class="btmedio">Foto</tm> para definir o fundo com uma imagem previamente selecionada na ferramenta Imagem.<br>
     <tm class="att">DICA:</tm> Esta é uma opção para editar uma imagem baixada do <tm class="tmj">Traço Mágico JS</tm>.</li><li>
@@ -409,23 +442,18 @@
 
 <br<br>
 
-<H5>MODO IMEDIATO / MODO PREVISÃO</H5>
+<H5>MODO PREVISÃO</H5>
 <br>
+
 <p class="txt";>
-  O Modo <tm class="att">IMEDIATO</tm> permite desenhar diretamente sobre o desenho.
-</p>
-<p class="txt";>
- O Modo <tm class="att">PREVISÃO</tm> permite experimentar todas as Ferramentas (Título Laranja) e os controles que as afetam (Título Verde) 
+ O Modo <tm class="att">PREVISÃO</tm> ligado permite experimentar todas as Ferramentas (Título Laranja) e os controles que as afetam (Título Verde) 
  antes de aplicar a forma efetivamente ao desenho.
  <ul><li>
-    <tm class="att">Modo Imediato:</tm> Neste modo as ferramentas traçam suas formas diretamente no desenho.<br>
-    O comando PREVISÃO mostra com um LED verde (<font color="#00FF00">◆</font>).
-    </li><li>
     <tm class="att">Modo Previsão:</tm> Neste modo as formas aparecem sobre o desenho e podem ser movidas e alteradas à vontade.<br><br> 
     O botão <tm class="btmedio">✔</tm> Envia a forma para o desenho.<br>
     Uma série de mudanças indica que o Modo Previsão está ligado.<br>
   <ul><li>
-    O comando PREVISÃO substitui o comando IMEDIATO com um LED vermelho (<font color="#FF0000">◆</font>) para chamar atenção.</li><li>
+    Ao ligaro o Modo <tm class="att">PREVISÃO</tm> um LED vermelho (<font color="#FF0000">◆</font>) acende para chamar atenção.</li><li>
     No modo Previsão os cursores aparecem desta forma: Ponto Atual (<tm class="cur3">⊗</tm>) e 
     Ponto Anterior (<tm class="cur4">⊕</tm>).</li><li>
     <tm class="att">DICA:</tm> No modo Previsão as setas do teclado movimental o cursor Ponto Atual (<tm class="cur3">⊗</tm>).           
@@ -434,9 +462,12 @@
 <br><br>
    <tm class="att">DICA:</tm> Aplique a forma em vários locais do desenho apenas clicando em um novo local e utilizando o botão <tm class="btmedio">✔</tm>.
    <br><br>
-   <tm class="att">DICA:</tm> Use as setas para mudar o tamanho de retângulos durante a previsão.
+   <tm class="att">DICA:</tm> Use as setas para ajustar a posição da forma durante a previsão.
  </li>
 </ul>
+<p class="txt";>
+    Com o Modo <tm class="att">PREVISÃO</tm> desligado você pode desenhar diretamente sobre a tela de desenho.
+  </p>
 <br><br>
 <br><br>
 

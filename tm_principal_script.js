@@ -59,8 +59,8 @@ var Alpha = 1 // Define a tra-annsparência de objetos hachurados (1=opaco)
 var vResp = "N"; // Saída da função confirma
 var Shape = ""; // Guarda a última forma utilizada pelo usuário.
 
-//var StPreview = false;
-var StPreview = true;
+var StPreview = false;
+//var StPreview = true;
 
 var vInterval;
 var vTimer = 100; // TEMPO EM MILISSEGUNGOS
@@ -960,6 +960,7 @@ function CallDrawShape(vShape,vBehavior) // CHAMA AS FUNÇÕES DE FERRAMENTA (FO
     case "Elipse":
     case "Poligono":
     case "Estrela":
+    case "Espiral":
     case "Forma-Complexa":
     case "Circulos-Concentricos":
        if (StPreview) {vInterval = setInterval(function(){ DrawPolygonShapes(ctxPr,Shape,FillKind);},vTimer); } else {DrawPolygonShapes(ctx,Shape,FillKind);}

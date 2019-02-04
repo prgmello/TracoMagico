@@ -280,31 +280,31 @@ function DrawConcentricCircles(Screen,rotateX,rotateY)
 
 
 
-// //
-// // CALCULA UMA FORMA COMPLEXA V1
-// //
-// function CalcComplexForm2(Screen,rotateX,rotateY)
-// {
-//   var cores;
-//   var passo = largura*3;
-//   var g = RadiusY;
-//   Screen.lineWidth=largura
-//   for (f = 1; f < RadiusX-passo; f=f+passo)
-//    { 
-//     g=g-passo;
-//     if (g>0) {g=0;}
-//     // O COMANDO CLOSE PATH É NECESSÁRIO PARA EVITAR UMA RETA INDESEJADA NO MEIO DA FIGURA!
-//     Screen.beginPath();
-//     if (StMulticolor)
-//     {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
-//     else {cores=color1;}
-//     Screen.strokeStyle = cores;
-//     // Plota os Círculos Concêntricos
-//     Screen.ellipse(rotateX, rotateY, RadiusX-f, RadiusY-g, 0, 0, 2 * Math.PI);
-//     if (StFill) {Screen.fill();} else {Screen.stroke();}
-//     Screen.closePath();
-//    }
-// }
+//
+// CALCULA UMA FORMA COMPLEXA V1
+//
+function DrawComplexForm(Screen,rotateX,rotateY)
+{
+  var cores;
+  var passo = largura*3;
+  var g = RadiusY;
+  Screen.lineWidth=largura
+  for (f = 1; f < RadiusX-passo; f=f+passo)
+   { 
+    g=g-passo;
+    if (g>0) {g=0;}
+    // O COMANDO CLOSE PATH É NECESSÁRIO PARA EVITAR UMA RETA INDESEJADA NO MEIO DA FIGURA!
+    Screen.beginPath();
+    if (StMulticolor)
+    {cores = '#'+ (Math.floor(Math.random()*0xFFFFFF)).toString(16);} 
+    else {cores=color1;}
+    Screen.strokeStyle = cores;
+    // Plota os Círculos Concêntricos
+    Screen.ellipse(rotateX, rotateY, RadiusX-f, RadiusY-g, 0, 0, 2 * Math.PI);
+    if (StFill) {Screen.fill();} else {Screen.stroke();}
+    Screen.closePath();
+   }
+}
 
 
 
@@ -312,14 +312,14 @@ function DrawConcentricCircles(Screen,rotateX,rotateY)
 //
 // CALCULA UMA FORMA COMPLEXA V3
 //
-function DrawComplexForm(Screen,rotateX,rotateY)
+function DrawSpiral(Screen,rotateX,rotateY)
 {
   var cx = rotateX; 
   var cy = rotateY; 
 
   var radius1 = RadiusX/2;
   var radius2 = RadiusY/2;
-  var ratio = Sides; 
+  var ratio = Sides+1; 
   var lx, ly, loop;
   
   Screen.moveTo(rotateX,rotateY);
@@ -330,7 +330,6 @@ function DrawComplexForm(Screen,rotateX,rotateY)
     ly = cy + radius1 * Math.sin(loop) + radius2 * Math.sin(loop * ratio);
     Screen.lineTo(lx, ly);
   }
-  
   Screen.stroke();
 }
 
@@ -429,6 +428,12 @@ function DrawPolygonShapes(Screen,lPolygon,lFillKind)
          DrawStar(Screen,rotateX,rotateY);
          if (!StPreview && StGravar) {SaveStep(lPolygon,FillKind,"");}
          break;
+
+         case "Espiral":
+         DrawSpiral(Screen,rotateX,rotateY);
+         if (!StPreview && StGravar) {SaveStep(lPolygon,FillKind,"");}
+         break;
+
 
        case "Forma-Complexa":
          DrawComplexForm(Screen,rotateX,rotateY);
