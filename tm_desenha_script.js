@@ -54,21 +54,25 @@ function ShowPreviewCursor() {
 //
 function DrawLine(Screen,lBehavior)
 {
-  if ((Xant==x) && (Yant==y)) {mensagem("Marque um segundo ponto com o mouse");}
+  if ((Xant==x) && (Yant==y) && (!StPreview))
+    {mensagem("Marque um segundo ponto com o mouse");}
   else 
   {
     ClearPeviewCanvas();
     Screen.beginPath()
-    Screen.lineWidth=largura;
+    Screen.lineWidth = largura;
     Screen.strokeStyle = color1;
     Screen.moveTo(Xant+1,Yant+1); 
     Screen.lineTo(x,y)
     Screen.stroke();
     Screen.closePath();
-    if (lBehavior == "traço") 
-    {Xant = x;  Yant = y; } 
 
-    if (!StPreview && StGravar) {SaveStep("Linha",lBehavior,"");}
+
+    if ((!StPreview) && (StGravar)) {SaveStep("Linha",lBehavior,"");}
+    // ESTA LINHA TEM!! QUE ESTAR DEPOIS DA LINHA DE GRAVAÇÃO
+    // NO MODO PREVISÃO O COMANDO 'TRAÇA CAMINHO' FUNCIONA COMO A FERRAMENTA 'CRIA RETA' 
+    if  ((lBehavior == "traço") && (!StPreview)) {Xant = x; Yant = y;}
+    ShowCursor();
   }
 }
 
@@ -90,41 +94,57 @@ function DrawLine(Screen,lBehavior)
 //
 function DrawReadImage(Screen,StPosition)
 {
-  ClearPeviewCanvas();
-  // X do vértice do Retangulo Retângulo
-  retX = Math.trunc(x - retL/2);
-  // Y do vértice do Retangulo Retângulo
-  retY = Math.trunc(y - retA/2);
-  // Rotina de Rotação Parte 1 - Início
-  Screen.save();
-  Screen.translate(x,y);
-  Screen.rotate(((Rotate-1)*360)*(Math.PI/180));
-  var rotateX = retX-x;
-  var rotateY = retY-y;
-  // Rotina de Rotação Parte 1 - Fim
-  Screen.beginPath();
   if (StPosition == "frente")
   {
-     Screen.globalAlpha = transp;
-     Screen.drawImage(usuarioIMG , rotateX, rotateY , retL , retA);
-     Screen.globalAlpha = 1;
-  }
-  Screen.closePath()
-  Screen.restore();
-
-  if (StPosition == "fundo")
+    ClearPeviewCanvas();
+    // X do vértice do Retangulo Retângulo
+    retX = Math.trunc(x - retL/2);
+    // Y do vértice do Retangulo Retângulo
+    retY = Math.trunc(y - retA/2);
+    // Rotina de Rotação Parte 1 - Início
+    Screen.save();
+    Screen.translate(x,y);
+    Screen.rotate(((Rotate-1)*360)*(Math.PI/180));
+    var rotateX = retX-x;
+    var rotateY = retY-y;
+    // Rotina de Rotação Parte 1 - Fim
+    Screen.beginPath();
+    Screen.globalAlpha = Alpha;
+    Screen.drawImage(usuarioIMG , rotateX, rotateY , retL , retA);
+    Screen.globalAlpha = 1;
+    Screen.closePath()
+    Screen.restore();
+    if (!StPreview && StGravar) {SaveStep("Imagem",StPosition,"");}
+    // FIM DA ROTINA DE COLA IMAGEM NO PRIMEIRO PLANO
+  } else if (StPosition == "fundo")
   { 
-    ctxFu.globalAlpha = transp;
+    ctxFu.beginPath();
+    ctxFu.globalAlpha = Alpha;
     ctxFu.drawImage(usuarioIMG , 0 , 0 , WIDTH , HEIGHT);
     ctxFu.globalAlpha = 1;
     // SEMPRE GRAVA, NÃO TEM PREVIEW
-    SaveStep("Imagem",StPosition,"");
-  }
-
-  if (!StPreview && StGravar) {SaveStep("Imagem",StPosition,"");}
+    if (StGravar) {SaveStep("Imagem",StPosition,"");}
+  } 
 }
 
 
+
+// PERMITE QUE O USUÁRIO ESCREVA O TEXTO
+function ReadText()
+{
+  var lTexto = texto;
+  texto = prompt("Digite o texto até 150 caracteres", texto);
+  if (texto == null) {
+    texto = lTexto;
+  } else if (texto.length > 150)
+  {
+  texto = texto.substring(0,150);
+  mensagem("Texto cortado para 150 caracteres!")
+  }  else if (texto.length == 0)
+  {   
+    texto = lTexto;
+  }
+}
 
 
 //
@@ -372,7 +392,7 @@ function DrawPolygonShapes(Screen,lPolygon,lFillKind)
       break;
  
     case "Solido":
-    Screen.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + transp + ' )';
+    Screen.fillStyle ='rgba('+ cor1 +  ' , ' + cor2 +  ' , ' + cor3 +  ' , ' + Alpha + ' )';
     break;
     
     case "Vazio":
@@ -382,7 +402,7 @@ function DrawPolygonShapes(Screen,lPolygon,lFillKind)
  
     default:
        mensagem("Erro em: DrawPolygonShapes!!!")
-       console.log(lFillKind);
+       //console.log(lFillKind);
        break;
      } 
 
@@ -445,7 +465,7 @@ if (lBehavior=="circulos")
 {
   var lLineWidth;
   var lRadius;
-  var lTransparency;
+  var lAlpha;
   for (f = 30; f > 10; f--)
   { 
      ctxFu.beginPath()
@@ -455,11 +475,11 @@ if (lBehavior=="circulos")
      lx    = Math.floor(Math.random()*(WIDTH));
      ly    = Math.floor(Math.random()*(HEIGHT));
      lRadius = Math.floor(Math.random()*(HEIGHT/2));
-     lTransparency = transp;
+     lAlpha = Alpha;
      lLineWidth = Math.floor(Math.random()*dx);
 
      ctxFu.lineWidth=lLineWidth;
-     ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + lTransparency + ' )';
+     ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + lAlpha + ' )';
      ctxFu.arc(lx, ly, lRadius, 0, Math.PI*2, true);
 
      ctxFu.fill();
@@ -489,7 +509,7 @@ else if (lBehavior=="retangulos")
    cor1 = Math.floor(Math.random()*255);
    cor2 = Math.floor(Math.random()*255);
    cor3 = Math.floor(Math.random()*255);
-   ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + transp + ' )';
+   ctxFu.fillStyle ='rgba('+ cor1 +  ' , ' + cor2+  ' , ' + cor3+  ' , ' + Alpha + ' )';
    ctxFu.fillRect(lx, ly, lRectWidth, lRectHeight);
   
   }

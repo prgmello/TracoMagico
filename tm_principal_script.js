@@ -53,7 +53,7 @@ var Rotate = 1; // Rotação de Objetos
 var Sides = 5 // Númro de Lados para Polígonos
 var Xant = x; // Coordenada anterior de x para traçar retângulos
 var Yant = y; // Coordenada anterior de x para traçar retângulos
-var transp = 1 // Define a transparência de objetos hachurados (1=opaco)
+var Alpha = 1 // Define a tra-annsparência de objetos hachurados (1=opaco)
 
 
 var vResp = "N"; // Saída da função confirma
@@ -97,7 +97,7 @@ var pGradientSprainX = new Array(PassoLimite);
 var pGradientSprainY = new Array(PassoLimite);
 var pSides  = new Array(PassoLimite);
 var pThickness = new Array(PassoLimite);
-var pTransparency = new Array(PassoLimite);
+var pAlpha = new Array(PassoLimite);
 var pSpeed = new Array(PassoLimite);
 var pRadiusX = new Array(PassoLimite);
 var pRadiusY = new Array(PassoLimite);
@@ -167,7 +167,7 @@ function UpdateTools()
   ShowStSimetric() 
   ShowSises();
   ShowRotate();
-  ShowTransparency();
+  ShowAlpha();
   ShowSpeed();
   ShowColors();
   ShowMulticolor() 
@@ -183,10 +183,11 @@ function UpdateTools()
 //
   // CRIA OS BOTÕES PARA A FERRAMENTA EMOTICONS
   //
-  function CreateEmojiTab() 
+  function CreateEmojiTab()
   {
   // TODOS OS CARACTERES DESTA STRING VIRAM BOTÕES NA EMOJI-TAB
   var str1 = "✢✣✤✥✦✧✩✪✫✬✭✮✯✰✱✲✳✴✵✶✷✸✹✺✻✼✽✾✿❀❁❂❃❄❅❆❇❈❉❊❋♩♪♫♬♭♯★☆✝✞✟✠✡☢☣❥❤♡♥♠♦♣☃۞☼☽☾☁☹☺☙☘✊✋✌✍⌚☔☕";
+  var str1 = "⚀⚁⚂⚃⚄⚅✦✧✩✪✫✬✭✮✯✰☆★✱✲✳✴✵✷✸✹✻✼✽✿❀❁❂❃❄❅❆❇❈❉❊❋♩♪♫♬♭♯✝✞✟✠✡☢☣❥❤♡♥♠♦♣☃۞☼☽☾☁☹☺☙☘✊✋✌✍⚽⌚☔✨☕";
 
   var QtdEMC = str1.length;
   var pEMC = new Array(QtdEMC);
@@ -765,27 +766,27 @@ function ShowRotate()
 
 
 //
-// DEFINE A TRANSPARENCIA
+// DEFINE A tra-annsparENCIA
 //
-function DefTransparency(value) 
+function DefAlpha(value) 
 {
-  var lTransp = 1 - (value / 100);
-  transp = parseFloat(lTransp.toFixed(2));
-  ShowTransparency();
+  var lAlpha = 1 - (value / 100);
+  Alpha = parseFloat(lAlpha.toFixed(2));
+  ShowAlpha();
 }
 
 
 //
-// MOSTRA A TRANSPARENCIA
+// MOSTRA A tra-annsparENCIA
 //
-function ShowTransparency() 
+function ShowAlpha() 
 {
-  var lTransp2Dig = (1-transp) * 100;
-  lTransp2Dig = parseFloat(lTransp2Dig.toFixed(2));
-  var element = document.getElementById("sttransp");
-  element.innerHTML = "[ " + lTransp2Dig + " ]";
+  var lAlpha2Dig = (1-Alpha) * 100;
+  lAlpha2Dig = parseFloat(lAlpha2Dig.toFixed(2));
+  var element = document.getElementById("stalpha");
+  element.innerHTML = "[ " + lAlpha2Dig + " ]";
   // setando o valor no Slider
-  document.getElementById("SlTransparency").value = (1-transp) * 100;
+  document.getElementById("SlAlpha").value = (1-Alpha) * 100;
 }
 
 

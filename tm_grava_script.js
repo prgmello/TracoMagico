@@ -83,6 +83,8 @@ function RedrawProject()
 {
   // OBRIGATORIAMENTE REDESENHA COM StGravar DESLIGADO!!!
   
+  let vGravar = StGravar; // SALVA O ESTADO DE GRAVAÇÃO
+  StGravar = false; // PARA A GRAVAÇÃO DURANTE A ROTINA
   var lPassoFim = Passo;
   var lPasso;
   var lBehavior;
@@ -106,7 +108,7 @@ function RedrawProject()
     largura   = pThickness[lPasso];
     dx        = pSpeed[lPasso];
     dy        = pSpeed[lPasso];
-    transp    = pTransparency[lPasso];
+    Alpha     = pAlpha[lPasso];
     FontSize  = pFontSize[lPasso];
     lEmoji    = pEmoji[lPasso]
     FillKind  = pFillKind[lPasso];
@@ -141,7 +143,7 @@ function RedrawProject()
       case "Poligono":
       case "Estrela":
       case "Elipse":
-      case "Concentrico":
+      case "Circulos-Concentricos":
       case "Forma-Complexa":
         DrawPolygonShapes(ctx,lShape,FillKind);
         break;
@@ -152,7 +154,7 @@ function RedrawProject()
         DrawLine(ctx,lBehavior);     
         break;
      case "Texto":   
-        DrawText(); 
+        DrawText(ctx); 
         break;
       case "Emoji":  
         DrawEmoji(ctx,lEmoji); 
@@ -174,7 +176,8 @@ function RedrawProject()
  
     }
   }
-   // DEVOLVE OS VALORES ORIGINAIS PARA AS VARIÁVEIS GLOBAIS
+  StGravar = vGravar; // VOLTA AO ESTADO ANTERIOR À ENTRADA NA ROTINA
+  // DEVOLVE OS VALORES ORIGINAIS PARA AS VARIÁVEIS GLOBAIS
   UpdateTools();
 }
  
@@ -206,24 +209,30 @@ function CutProjetStep()
          gravouIMG = false
        }
        pShape[lPasso]     = "";
-       pBehavior[lPasso]  = null;
-       pX[lPasso]         = null;
-       pY[lPasso]         = null;
-       pXant[lPasso]      = null;
-       pYant[lPasso]      = null;
-       pColor1[lPasso]    = null;
-       pColor2[lPasso]    = null;
-       pSides[lPasso]     = null;
-       pThickness[lPasso] = null;
-       pTransparency[lPasso]  = null;
-       pSpeed[lPasso]     = null;
-       pRadiusX[lPasso]   = null;
-       pRadiusY[lPasso]   = null;
-       pRotate[lPasso]    = null;
-       pUsuarioIMG[Passo] = null;
-       pText[lPasso]      = null;
-       pFontSize[lPasso]  = null;
-       pGravouIMG[Passo]  = null;
+       pBehavior[lPasso]   = null;
+       pX[lPasso]          = null;
+       pY[lPasso]          = null;
+       pXant[lPasso]       = null;
+       pYant[lPasso]       = null;
+       pColor1[lPasso]     = null;
+       pColor2[lPasso]     = null;
+       pFontSize[lPasso]   = null;
+       pGravouIMG[lPasso]  = null;
+       pSides[Passo]       = null;
+       pSpeed[lPasso]      = null;
+       pThickness[lPasso]  = null;
+       pText[lPasso]       = null;
+       pUsuarioIMG[lPasso] = null;
+       pFillKind[lPasso]   = null;
+       pGradientX[lPasso]  = null;
+       pGradientY[lPasso]  = null;
+       pRadiusX[lPasso]    = null;
+       pRadiusY[lPasso]    = null;
+       pRotate[lPasso]     = null;
+       pAlpha[lPasso]      = null;
+       pStMulticorlor[lPasso]   = null;
+       pGradientSprainX[lPasso] = null;
+       pGradientSprainY[lPasso] = null;
        
        ClearScreen();
        Passo-- // Subtrai um do Passo de gravação
@@ -257,15 +266,21 @@ function CancelProjectRecorded()
         pColor2[lPasso]     = null;
         pFontSize[lPasso]   = null;
         pGravouIMG[lPasso]  = null;
-        pRadiusX[lPasso]    = null;
-        pRadiusY[Passo]     = null;
-        pRotate[Passo]      = null;
         pSides[Passo]       = null;
         pSpeed[lPasso]      = null;
         pThickness[lPasso]  = null;
-        pTransparency[lPasso] = null;
         pText[lPasso]       = null;
         pUsuarioIMG[lPasso] = null;
+        pFillKind[lPasso]   = null;
+        pGradientX[lPasso]  = null;
+        pGradientY[lPasso]  = null;
+        pRadiusX[lPasso]    = null;
+        pRadiusY[lPasso]    = null;
+        pRotate[lPasso]     = null;
+        pAlpha[lPasso]      = null;
+        pStMulticorlor[lPasso]   = null;
+        pGradientSprainX[lPasso] = null;
+        pGradientSprainY[lPasso] = null;
       }
       Passo     = 0;     // Zera o Passo de gravação
       gravouIMG = false; // Define a imagem como não Gravada
@@ -283,7 +298,6 @@ function CancelProjectRecorded()
 //
 function SaveStep(lShape,tipo,string)
 {
-  console.log(lShape);
  if (Passo < PassoLimite)  
  {  
    pShape[Passo]     = lShape;
@@ -292,16 +306,10 @@ function SaveStep(lShape,tipo,string)
    pY[Passo]         = y;
    pXant[Passo]      = Xant;
    pYant[Passo]      = Yant;
-   pRadiusX[Passo]   = RadiusX;
-   pRadiusY[Passo]   = RadiusY;
-   pRotate[Passo]    = Rotate;
-   pColor1[Passo]    = color1;
-   pColor2[Passo]    = color2;
    pSides[Passo]     = Sides;
    pThickness[Passo] = largura;
    pSpeed[Passo]     = dx;
    pFontSize[Passo]  = FontSize;
-   pBehavior[Passo]  = Behavior;
    pColor1[Passo]    = color1;
    pColor2[Passo]    = color2;
    pFillKind[Passo]  = FillKind;
@@ -310,7 +318,7 @@ function SaveStep(lShape,tipo,string)
    pRadiusX[Passo]   = RadiusX;
    pRadiusY[Passo]   = RadiusY;
    pRotate[Passo]    = Rotate;
-   pTransparency[Passo] = transp;
+   pAlpha[Passo]     = Alpha;
    pStMulticorlor[Passo] = StMulticolor;
    pGradientSprainX[Passo] = GradientSprainX;
    pGradientSprainY[Passo] = GradientSprainY;
